@@ -25,16 +25,18 @@ This project will cover implementation of two different types of applications: d
 
 
 ## Satisfaction of Senior Project Requirements ##
-### Time Commitment ### 
+The following outlines the requirements that will be met with the following specifics.
+
+### Time Commitment ###
 This project is estimated to take 200–250 hours of work, based on the calculation of 10–12 hours of work per week over 2 quarters of 10 weeks each. 
 
-### Independence ### 
+### Independence ###
 The project provides a learning experience on the production of a large-scale software application independent from other projects, with completion when the applications are fully functioning.
 
-### Background Research ### 
+### Background Research ###
 As the implementation the project requires the use of new programming languages, extensive background research is needed to achieve completion. 
 
-### Ownership ### 
+### Ownership ###
 As the sole individual responsible for the success of the project, the project creates accountability by requiring myself to complete all aspects outlined in this proposal. 
 
 ### Creativity ###
