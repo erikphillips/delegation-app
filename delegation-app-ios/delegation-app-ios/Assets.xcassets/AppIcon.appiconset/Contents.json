@@ -51,43 +51,43 @@
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "deligation-icon-41.png",
+      "filename" : "deligation-icon-20.png",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "deligation-icon-61.png",
+      "filename" : "deligation-icon-41.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "deligation-icon-29.png",
+      "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
       "filename" : "deligation-icon-59.png",
-      "scale" : "1x"
+      "scale" : "2x"
     },
     {
-      "size" : "29x29",
+      "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "deligation-icon-88.png",
-      "scale" : "2x"
+      "filename" : "deligation-icon-42.png",
+      "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
       "filename" : "deligation-icon-81.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "40x40",
-      "idiom" : "ipad",
-      "filename" : "deligation-icon-122.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "deligation-icon-152.png",
+      "filename" : "deligation-icon-76.png",
       "scale" : "1x"
     },
     {
