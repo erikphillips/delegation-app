@@ -20,6 +20,7 @@
 		98849EDF1FDDD48B009C9B1A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EDE1FDDD48B009C9B1A /* User.swift */; };
 		98849EE11FDDD51D009C9B1A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE01FDDD51D009C9B1A /* Group.swift */; };
 		98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE21FDDD7DF009C9B1A /* Task.swift */; };
+		98849EE51FDDE91B009C9B1A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */; };
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		98849EDE1FDDD48B009C9B1A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		98849EE01FDDD51D009C9B1A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		98849EE21FDDD7DF009C9B1A /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				98849EAC1FDDC7AA009C9B1A /* ViewController.swift */,
+				98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				98849EE11FDDD51D009C9B1A /* Group.swift in Sources */,
 				98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */,
 				98849EAB1FDDC7AA009C9B1A /* AppDelegate.swift in Sources */,
+				98849EE51FDDE91B009C9B1A /* WelcomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
