@@ -23,6 +23,7 @@
 		98849EE11FDDD51D009C9B1A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE01FDDD51D009C9B1A /* Group.swift */; };
 		98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE21FDDD7DF009C9B1A /* Task.swift */; };
 		98849EE51FDDE91B009C9B1A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */; };
+		98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B01FE19CA3009329B2 /* SettingsViewController.swift */; };
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		98849EE01FDDD51D009C9B1A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		98849EE21FDDD7DF009C9B1A /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		98C597B01FE19CA3009329B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,14 @@
 				540F6909FD1B30E807441657 /* Pods_delegation_app_iosUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		984E35261FE1941300F031E0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				98C597B01FE19CA3009329B2 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		98849E9E1FDDC7AA009C9B1A = {
@@ -202,6 +212,7 @@
 		98849EDD1FDDCFB1009C9B1A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				984E35261FE1941300F031E0 /* Settings */,
 				98849EAC1FDDC7AA009C9B1A /* ViewController.swift */,
 				98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */,
 				986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */,
@@ -510,6 +521,7 @@
 				98849EDF1FDDD48B009C9B1A /* User.swift in Sources */,
 				98849EB31FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld in Sources */,
 				98849EAD1FDDC7AA009C9B1A /* ViewController.swift in Sources */,
+				98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */,
 				984E35251FDFBA1100F031E0 /* ViewControllerUtilities.swift in Sources */,
 				98849EE11FDDD51D009C9B1A /* Group.swift in Sources */,
 				986F8E731FDFB6D10033B9D0 /* CreateAccountViewController.swift in Sources */,
