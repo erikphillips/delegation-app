@@ -19,9 +19,11 @@ class Group {
 class GroupInformation {
     private var groupname : String
     private var members : [User]
+    private var owner : User
     
-    init(groupname: String) {
+    init(groupname: String, owner: User) {
         self.groupname = groupname
         self.members = []
+        self.owner = owner
     }
 }

@@ -12,7 +12,6 @@
 		984E35251FDFBA1100F031E0 /* ViewControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerUtilities.swift */; };
 		986F8E731FDFB6D10033B9D0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */; };
 		98849EAB1FDDC7AA009C9B1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */; };
-		98849EAD1FDDC7AA009C9B1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EAC1FDDC7AA009C9B1A /* ViewController.swift */; };
 		98849EB01FDDC7AA009C9B1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98849EAE1FDDC7AA009C9B1A /* Main.storyboard */; };
 		98849EB31FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98849EB11FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld */; };
 		98849EB51FDDC7AA009C9B1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98849EB41FDDC7AA009C9B1A /* Assets.xcassets */; };
@@ -24,6 +23,7 @@
 		98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE21FDDD7DF009C9B1A /* Task.swift */; };
 		98849EE51FDDE91B009C9B1A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */; };
 		98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B01FE19CA3009329B2 /* SettingsViewController.swift */; };
+		98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */; };
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +56,6 @@
 		986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		98849EA71FDDC7AA009C9B1A /* delegation-app-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "delegation-app-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		98849EAC1FDDC7AA009C9B1A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		98849EAF1FDDC7AA009C9B1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		98849EB21FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = delegation_app_ios.xcdatamodel; sourceTree = "<group>"; };
 		98849EB41FDDC7AA009C9B1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		98849EE21FDDD7DF009C9B1A /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		98C597B01FE19CA3009329B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				98C597B01FE19CA3009329B2 /* SettingsViewController.swift */,
+				98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -212,13 +213,36 @@
 		98849EDD1FDDCFB1009C9B1A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				98C597B41FE2E355009329B2 /* Home */,
+				98C597B31FE2E342009329B2 /* Team */,
+				98C597B21FE2E332009329B2 /* Tasks */,
 				984E35261FE1941300F031E0 /* Settings */,
-				98849EAC1FDDC7AA009C9B1A /* ViewController.swift */,
 				98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */,
 				986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */,
 				984E35241FDFBA1100F031E0 /* ViewControllerUtilities.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		98C597B21FE2E332009329B2 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		98C597B31FE2E342009329B2 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
+		98C597B41FE2E355009329B2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -520,11 +544,11 @@
 			files = (
 				98849EDF1FDDD48B009C9B1A /* User.swift in Sources */,
 				98849EB31FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld in Sources */,
-				98849EAD1FDDC7AA009C9B1A /* ViewController.swift in Sources */,
 				98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */,
 				984E35251FDFBA1100F031E0 /* ViewControllerUtilities.swift in Sources */,
 				98849EE11FDDD51D009C9B1A /* Group.swift in Sources */,
 				986F8E731FDFB6D10033B9D0 /* CreateAccountViewController.swift in Sources */,
+				98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */,
 				98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */,
 				98849EAB1FDDC7AA009C9B1A /* AppDelegate.swift in Sources */,
 				98849EE51FDDE91B009C9B1A /* WelcomeViewController.swift in Sources */,
