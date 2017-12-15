@@ -10,9 +10,19 @@ import UIKit
 
 class TasksTableViewCell: UITableViewCell {
 
+    var task: Task?
+    
+    @IBOutlet weak var taskNameLabel: UILabel!
+    @IBOutlet weak var taskPriorityLabel: UILabel!
+    @IBOutlet weak var taskTeamNameLabel: UILabel!
+    @IBOutlet weak var taskAssignedLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        if let task = task {
+            taskNameLabel.text = task.information.taskname
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

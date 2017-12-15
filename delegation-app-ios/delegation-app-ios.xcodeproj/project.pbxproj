@@ -29,6 +29,7 @@
 		98C597BC1FE42EEE009329B2 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597BB1FE42EEE009329B2 /* TasksViewController.swift */; };
 		98C597BE1FE43086009329B2 /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597BD1FE43086009329B2 /* TasksTableViewController.swift */; };
 		98C597C01FE430B5009329B2 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597BF1FE430B5009329B2 /* TasksTableViewCell.swift */; };
+		98C597C61FE465A6009329B2 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597C51FE465A6009329B2 /* TaskDetailViewController.swift */; };
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		98C597BB1FE42EEE009329B2 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		98C597BD1FE43086009329B2 /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
 		98C597BF1FE430B5009329B2 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
+		98C597C51FE465A6009329B2 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,6 +242,7 @@
 				98C597BB1FE42EEE009329B2 /* TasksViewController.swift */,
 				98C597BD1FE43086009329B2 /* TasksTableViewController.swift */,
 				98C597BF1FE430B5009329B2 /* TasksTableViewCell.swift */,
+				98C597C51FE465A6009329B2 /* TaskDetailViewController.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */,
 				98849EAB1FDDC7AA009C9B1A /* AppDelegate.swift in Sources */,
 				98C597BE1FE43086009329B2 /* TasksTableViewController.swift in Sources */,
+				98C597C61FE465A6009329B2 /* TaskDetailViewController.swift in Sources */,
 				98849EE51FDDE91B009C9B1A /* WelcomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
