@@ -15,12 +15,14 @@ delegation-app/
 			groups: [ <GID>: <group_name: str> ]
 			ai/
 				keywords: [ <keyword: str>: <score: int> ]
-			current_tasks: [ <task_id>: <task_name> ]	
-	groups/
+			current_tasks: [ <task_id>: <task_name> ]
+			
+	teams/
 		<GID>/
 			information/
-				groupname: <group_name: str>
+				teamname: <team_name: str>
 				members: [ <UID>: <full_name> ]
+			tasks: [ <task_id>: <task_name> ]
 				
 	tasks/
 		<TID>/
@@ -29,7 +31,9 @@ delegation-app/
 				summary: <task_summary: str>
 				priority: <priority: int>
 				description: <task_description: str>
+				team: <team_id>
 			ai/
 				keywords: [<keyword: str>: <score: int> ]
 			assigned: [ <UID>: <full_name: str> ]	
+			
 ```
