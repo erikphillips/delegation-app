@@ -17,5 +17,6 @@ class Team {
         self.teamname = teamname
         self.owner = owner
         self.members = []
+        self.members.append(owner)
     }
 }
