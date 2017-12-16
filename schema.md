@@ -22,6 +22,7 @@ delegation-app/
 	teams/
 		<GID>/
 			teamname: <team_name: str>
+			description: <description: str>
 			members: [ <UID>: <full_name> ]
 			tasks: [ <task_id>: <task_name> ]
 				
