@@ -21,7 +21,10 @@ class TasksTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         if let task = task {
-            taskNameLabel.text = task.information.taskname
+            taskNameLabel.text = task.getName()
+            taskPriorityLabel.text = String(task.getPriority())
+            taskTeamNameLabel.text = task.getTeamName()
+            taskAssignedLabel.text = String(describing: task.getAssignedUserNames())
         }
     }
 

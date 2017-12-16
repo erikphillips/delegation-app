@@ -9,32 +9,42 @@
 import Foundation
 
 class Task {
-    private var information : TaskInformation
     private var assigned : [User]
     
-    init(information: TaskInformation) {
-        self.information = information
-        self.assigned = []
-    }
-}
-
-class TaskInformation {
     private var taskname : String
-    private var summary : String
+    private var teamID : String
     private var priority : Int
     private var description : String
     
-    init(taskname: String) {
-        self.taskname = taskname
-        self.summary = ""
-        self.priority = 5
-        self.description = ""
-    }
-    
-    init(taskname: String, summary: String, priority: Int, description: String) {
-        self.taskname = taskname
-        self.summary = summary
+    init(name: String, teamID: String, priority: Int, description: String) {
+        self.taskname = name
+        self.teamID = teamID
         self.priority = priority
         self.description = description
+        self.assigned = []
+    }
+    
+    func getName() -> String {
+        return self.taskname
+    }
+    
+    func getDescription() -> String {
+        return self.description
+    }
+    
+    func getPriority() -> Int {
+        return self.priority
+    }
+    
+    func getTeamName() -> String {
+        return self.teamID
+    }
+    
+    func getAssignedUserNames() -> [String] {
+        var rtnUsrs: [String] = []
+        for u in assigned {
+            rtnUsrs.append(u.getFullName())
+        }
+        return rtnUsrs
     }
 }

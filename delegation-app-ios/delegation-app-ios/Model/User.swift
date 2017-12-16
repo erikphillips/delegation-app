@@ -9,28 +9,26 @@
 import Foundation
 
 class User {
-    private var information : UserInformation
-    private var groups : [Group]
+    private var teams : [Team]
     private var tasks : [Task]
     
-    init(information: UserInformation) {
-        self.information = information
-        self.groups = []
-        self.tasks = []
-    }
-}
-
-class UserInformation {
-    private var firstname : String
-    private var lastname : String
-    private var emailAddress : String
-    private var phoneNumber : String
+    private var firstname: String
+    private var lastname: String
+    private var emailAddress: String
+    private var phoneNumber: String
     
-    init(firstname: String, lastname: String, emailAddress: String, phoneNumber: String) {
+    init(firstname: String, lastname: String, email: String, phone: String) {
         self.firstname = firstname
         self.lastname = lastname
-        self.emailAddress = emailAddress
-        self.phoneNumber = phoneNumber
+        self.emailAddress = email
+        self.phoneNumber = phone
+        
+        self.teams = []
+        self.tasks = []
+    }
+    
+    func getFullName() -> String {
+        return String(self.firstname + " " + self.lastname)
     }
 }
 
