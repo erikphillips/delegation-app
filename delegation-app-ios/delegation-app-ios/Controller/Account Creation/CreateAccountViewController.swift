@@ -10,6 +10,12 @@ import UIKit
 
 class CreateAccountViewController: UIViewController {
 
+    @IBOutlet weak var firstnameTextField: UITextField!
+    @IBOutlet weak var lastnameTextField: UITextField!
+    @IBOutlet weak var emailAddressTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +27,14 @@ class CreateAccountViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func continueButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "unwindToWelcomeView", sender: nil)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -39,5 +52,7 @@ class CreateAccountViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func unwindToCreateAccountView(segue: UIStoryboardSegue) { }
 
 }

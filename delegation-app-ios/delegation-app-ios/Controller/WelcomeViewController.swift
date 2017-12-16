@@ -10,27 +10,39 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func submitLogin(_ sender: Any) {
+        let username = usernameTextField.text
+        let password = passwordTextField.text
+        
+        if username != "" && password != "" {
+            print("Starting login process...")
+        }
+        
+        self.performSegue(withIdentifier: "SubmitLogin", sender: nil)
+    }
+    
     
     @IBAction func unwindToWelcomeView(segue: UIStoryboardSegue) { }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "SubmitLogin" {
+            print("Preparing SubmitLogin segue...")
+        }
     }
-    */
 
 }

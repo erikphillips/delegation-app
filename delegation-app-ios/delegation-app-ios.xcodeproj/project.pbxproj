@@ -30,6 +30,11 @@
 		98C597BE1FE43086009329B2 /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597BD1FE43086009329B2 /* TasksTableViewController.swift */; };
 		98C597C01FE430B5009329B2 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597BF1FE430B5009329B2 /* TasksTableViewCell.swift */; };
 		98C597C61FE465A6009329B2 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597C51FE465A6009329B2 /* TaskDetailViewController.swift */; };
+		98C597C91FE597EC009329B2 /* TeamPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597C81FE597EC009329B2 /* TeamPromptViewController.swift */; };
+		98C597CB1FE59808009329B2 /* JoinTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597CA1FE59808009329B2 /* JoinTeamViewController.swift */; };
+		98C597CD1FE5981A009329B2 /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597CC1FE5981A009329B2 /* CreateTeamViewController.swift */; };
+		98C597CF1FE5982B009329B2 /* JoinTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597CE1FE5982B009329B2 /* JoinTeamTableViewController.swift */; };
+		98C597D11FE59DA5009329B2 /* JoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */; };
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +90,11 @@
 		98C597BD1FE43086009329B2 /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
 		98C597BF1FE430B5009329B2 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		98C597C51FE465A6009329B2 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		98C597C81FE597EC009329B2 /* TeamPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPromptViewController.swift; sourceTree = "<group>"; };
+		98C597CA1FE59808009329B2 /* JoinTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamViewController.swift; sourceTree = "<group>"; };
+		98C597CC1FE5981A009329B2 /* CreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
+		98C597CE1FE5982B009329B2 /* JoinTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamTableViewController.swift; sourceTree = "<group>"; };
+		98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamTableViewCell.swift; sourceTree = "<group>"; };
 		ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,13 +235,13 @@
 		98849EDD1FDDCFB1009C9B1A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */,
+				984E35241FDFBA1100F031E0 /* ViewControllerUtilities.swift */,
+				98C597C71FE59774009329B2 /* Account Creation */,
 				98C597B41FE2E355009329B2 /* Home */,
 				98C597B31FE2E342009329B2 /* Team */,
 				98C597B21FE2E332009329B2 /* Tasks */,
 				984E35261FE1941300F031E0 /* Settings */,
-				98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */,
-				986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */,
-				984E35241FDFBA1100F031E0 /* ViewControllerUtilities.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -261,6 +271,19 @@
 				98C597B71FE42EDA009329B2 /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		98C597C71FE59774009329B2 /* Account Creation */ = {
+			isa = PBXGroup;
+			children = (
+				986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */,
+				98C597C81FE597EC009329B2 /* TeamPromptViewController.swift */,
+				98C597CA1FE59808009329B2 /* JoinTeamViewController.swift */,
+				98C597CC1FE5981A009329B2 /* CreateTeamViewController.swift */,
+				98C597CE1FE5982B009329B2 /* JoinTeamTableViewController.swift */,
+				98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */,
+			);
+			path = "Account Creation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -560,6 +583,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C597D11FE59DA5009329B2 /* JoinTeamTableViewCell.swift in Sources */,
 				98849EDF1FDDD48B009C9B1A /* User.swift in Sources */,
 				98C597BA1FE42EE5009329B2 /* TeamViewController.swift in Sources */,
 				98849EB31FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld in Sources */,
@@ -567,10 +591,14 @@
 				984E35251FDFBA1100F031E0 /* ViewControllerUtilities.swift in Sources */,
 				98C597BC1FE42EEE009329B2 /* TasksViewController.swift in Sources */,
 				98C597C01FE430B5009329B2 /* TasksTableViewCell.swift in Sources */,
+				98C597C91FE597EC009329B2 /* TeamPromptViewController.swift in Sources */,
 				98849EE11FDDD51D009C9B1A /* Team.swift in Sources */,
+				98C597CB1FE59808009329B2 /* JoinTeamViewController.swift in Sources */,
 				986F8E731FDFB6D10033B9D0 /* CreateAccountViewController.swift in Sources */,
+				98C597CD1FE5981A009329B2 /* CreateTeamViewController.swift in Sources */,
 				98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */,
 				98C597B81FE42EDA009329B2 /* HomeViewController.swift in Sources */,
+				98C597CF1FE5982B009329B2 /* JoinTeamTableViewController.swift in Sources */,
 				98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */,
 				98849EAB1FDDC7AA009C9B1A /* AppDelegate.swift in Sources */,
 				98C597BE1FE43086009329B2 /* TasksTableViewController.swift in Sources */,
