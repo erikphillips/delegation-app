@@ -9,10 +9,14 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    var user: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("Home view controller loaded...")
+        print(user)
         // Do any additional setup after loading the view.
     }
 

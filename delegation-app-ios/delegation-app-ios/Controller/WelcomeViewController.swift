@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class WelcomeViewController: UIViewController {
 
+    private var segueUser: User?
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -28,9 +31,35 @@ class WelcomeViewController: UIViewController {
         
         if username != "" && password != "" {
             print("Starting login process...")
+            
+            Auth.auth().signIn(withEmail: username!, password: password!) {
+                [weak self] (user, error) in
+                guard let this = self else { return }
+                
+                if let user = user {
+                    let uid = user.uid
+                    print("UID: \(uid)")
+                    
+                    let ref: DatabaseReference! = Database.database().reference()
+                    ref.child("users/\(uid)").observeSingleEvent(of: .value, with: { (snapshot) in
+                        guard let this = self else { return }
+                        
+                        print(snapshot)
+                        let value = snapshot.value as? NSDictionary
+                        dump(value!)
+                        let firstname = value?["firstname"] as? String ?? ""
+                        let lastname = value?["lastname"] as? String ?? ""
+                        let email = value?["email"] as? String ?? ""
+                        let phone = value?["phone"] as? String ?? ""
+                        
+                        this.segueUser = User(firstname: firstname, lastname: lastname, email: email, phone: phone)
+                        this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
+                    }) { (error) in
+                        print(error.localizedDescription)
+                    }
+                }
+            }
         }
-        
-        self.performSegue(withIdentifier: "SubmitLogin", sender: nil)
     }
     
     @IBAction func demoActionAdminLogin(_ sender: Any) {
@@ -43,15 +72,18 @@ class WelcomeViewController: UIViewController {
         passwordTextField.text = "password"
     }
     
-    
     @IBAction func unwindToWelcomeView(segue: UIStoryboardSegue) { }
-
-    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SubmitLogin" {
             print("Preparing SubmitLogin segue...")
+            print(segue.destination)
+            if let dest = segue.destination as? MainTabBarViewController {
+                print("Assigning user:")
+                print(self.segueUser)
+                dest.user = self.segueUser
+            }
         }
     }
 

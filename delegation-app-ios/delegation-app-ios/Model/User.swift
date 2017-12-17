@@ -27,10 +27,28 @@ class User {
         
         self.teams = []
         self.tasks = []
+        
+        print("Created new user instance: \(self.firstname), \(self.lastname), \(self.emailAddress), \(self.phoneNumber)")
     }
     
     func getFullName() -> String {
         return String(self.firstname + " " + self.lastname)
+    }
+    
+    func getFirstName() -> String {
+        return self.firstname
+    }
+    
+    func getLastName() -> String {
+        return self.lastname
+    }
+    
+    func getEmailAddress() -> String {
+        return self.emailAddress
+    }
+    
+    func getPhoneNumber() -> String {
+        return self.phoneNumber
     }
 }
 

@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
+    var user: User?
+    
     @IBOutlet weak var settingsTableView: UITableView!
     @IBAction func settingsLogout(_ sender: Any) {
         self.performSegue(withIdentifier: "unwindToWelcomeView", sender: sender)
@@ -23,12 +25,14 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Settings TableView loaded.")
+        print("Settings TableView loaded...")
         
-        settingsFirstname.text = "<first_name>"
-        settingsLastname.text = "<last_name>"
-        settingsEmailAddress.text = "<email_address>"
-        settingsPhoneNumber.text = "<phone_number>"
+        if let user = user {
+            settingsFirstname.text = user.getFirstName()
+            settingsLastname.text = user.getLastName()
+            settingsEmailAddress.text = user.getEmailAddress()
+            settingsPhoneNumber.text = user.getPhoneNumber()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,7 +42,11 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "<TODO: account_fullname>"
+            if let user = user {
+                return user.getFullName()
+            } else {
+                return "<account_fullname>"
+            }
         case 1:
             return "Teams"
         default:

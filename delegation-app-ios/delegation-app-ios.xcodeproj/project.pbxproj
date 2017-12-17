@@ -35,6 +35,8 @@
 		98C597CD1FE5981A009329B2 /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597CC1FE5981A009329B2 /* CreateTeamViewController.swift */; };
 		98C597CF1FE5982B009329B2 /* JoinTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597CE1FE5982B009329B2 /* JoinTeamTableViewController.swift */; };
 		98C597D11FE59DA5009329B2 /* JoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */; };
+		98C597D31FE637F5009329B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98C597D21FE637F5009329B2 /* GoogleService-Info.plist */; };
+		98C597D51FE644F5009329B2 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */; };
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,8 @@
 		98C597CC1FE5981A009329B2 /* CreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
 		98C597CE1FE5982B009329B2 /* JoinTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamTableViewController.swift; sourceTree = "<group>"; };
 		98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamTableViewCell.swift; sourceTree = "<group>"; };
+		98C597D21FE637F5009329B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +195,7 @@
 				98849EB41FDDC7AA009C9B1A /* Assets.xcassets */,
 				98849EB91FDDC7AA009C9B1A /* Info.plist */,
 				98849EB11FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld */,
+				98C597D21FE637F5009329B2 /* GoogleService-Info.plist */,
 			);
 			path = "delegation-app-ios";
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */,
+				98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */,
 				984E35241FDFBA1100F031E0 /* ViewControllerUtilities.swift */,
 				98C597C71FE59774009329B2 /* Account Creation */,
 				98C597B41FE2E355009329B2 /* Home */,
@@ -403,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98849EB81FDDC7AA009C9B1A /* LaunchScreen.storyboard in Resources */,
+				98C597D31FE637F5009329B2 /* GoogleService-Info.plist in Resources */,
 				98849EB51FDDC7AA009C9B1A /* Assets.xcassets in Resources */,
 				98849EB01FDDC7AA009C9B1A /* Main.storyboard in Resources */,
 			);
@@ -563,12 +570,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,6 +595,7 @@
 				98C597D11FE59DA5009329B2 /* JoinTeamTableViewCell.swift in Sources */,
 				98849EDF1FDDD48B009C9B1A /* User.swift in Sources */,
 				98C597BA1FE42EE5009329B2 /* TeamViewController.swift in Sources */,
+				98C597D51FE644F5009329B2 /* MainTabBarViewController.swift in Sources */,
 				98849EB31FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld in Sources */,
 				98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */,
 				984E35251FDFBA1100F031E0 /* ViewControllerUtilities.swift in Sources */,

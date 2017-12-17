@@ -691,10 +691,10 @@ Creating a new team will automatically place you as the owner/admin of the team 
             </objects>
             <point key="canvasLocation" x="2012" y="2261"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar View Controller-->
         <scene sceneID="hyn-po-v0n">
             <objects>
-                <tabBarController id="RDA-9x-nGO" sceneMemberID="viewController">
+                <tabBarController id="RDA-9x-nGO" customClass="MainTabBarViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iYx-hS-lFn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -834,7 +834,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="3NS-VD-ag1" kind="embed" id="QaP-vz-Tnm"/>
+                                    <segue destination="3NS-VD-ag1" kind="embed" identifier="EmbededView" id="QaP-vz-Tnm"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -843,6 +843,9 @@ Creating a new team will automatically place you as the owner/admin of the team 
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="SettingsGlyph" id="99Z-KM-XgQ"/>
                     <navigationItem key="navigationItem" title="Settings" id="5fd-jk-ygF"/>
+                    <connections>
+                        <outlet property="settingsTableUIView" destination="z3U-XR-yzn" id="fl6-pe-cPR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xk1-C4-fg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
