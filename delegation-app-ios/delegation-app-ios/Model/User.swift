@@ -16,12 +16,14 @@ class User {
     private var lastname: String
     private var emailAddress: String
     private var phoneNumber: String
-    
+    private var password: String?
+
     init(firstname: String, lastname: String, email: String, phone: String) {
         self.firstname = firstname
         self.lastname = lastname
         self.emailAddress = email
         self.phoneNumber = phone
+        self.password = nil
         
         self.teams = []
         self.tasks = []

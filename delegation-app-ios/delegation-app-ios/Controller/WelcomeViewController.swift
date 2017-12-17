@@ -33,6 +33,16 @@ class WelcomeViewController: UIViewController {
         self.performSegue(withIdentifier: "SubmitLogin", sender: nil)
     }
     
+    @IBAction func demoActionAdminLogin(_ sender: Any) {
+        usernameTextField.text = "admin@delegation.com"
+        passwordTextField.text = "password"
+    }
+    
+    @IBAction func demoActionUserLogin(_ sender: Any) {
+        usernameTextField.text = "user1@delegation.com"
+        passwordTextField.text = "password"
+    }
+    
     
     @IBAction func unwindToWelcomeView(segue: UIStoryboardSegue) { }
 
