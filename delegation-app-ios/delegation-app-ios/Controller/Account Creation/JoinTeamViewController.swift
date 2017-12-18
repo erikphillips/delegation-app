@@ -10,6 +10,8 @@ import UIKit
 
 class JoinTeamViewController: UIViewController {
 
+    var user: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

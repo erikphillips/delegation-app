@@ -25,9 +25,6 @@ class SettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EmbededView" {
             if let dest = segue.destination as? SettingsTableViewController {
-                print("setting embeded view user:")
-                print(self.user)
-                print(self.user?.getFullName())
                 dest.user = self.user
             }
         }

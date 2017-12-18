@@ -10,6 +10,8 @@ import UIKit
 
 class CreateTeamViewController: UIViewController {
 
+    var user: User?
+    
     @IBOutlet weak var teamNameTextField: UITextField!
     @IBOutlet weak var teamDescriptionTextView: UITextView!
     

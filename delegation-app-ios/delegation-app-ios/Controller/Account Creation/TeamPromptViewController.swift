@@ -10,6 +10,8 @@ import UIKit
 
 class TeamPromptViewController: UIViewController {
 
+    var user: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -32,14 +34,18 @@ class TeamPromptViewController: UIViewController {
     
     @IBAction func unwindToTeamPromptView(segue: UIStoryboardSegue) { }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "CreateAccountJoinTeam" {
+            print("Preparing CreateAccountJoinTeam segue...")
+            if let dest = segue.destination as? JoinTeamViewController {
+                dest.user = self.user
+            }
+        } else if segue.identifier == "CreateAccountCreateTeam" {
+            print("Preparing CreateAccountCreateTeam segue...")
+            if let dest = segue.destination as? CreateTeamViewController {
+                dest.user = self.user
+            }
+        }
     }
-    */
 
 }

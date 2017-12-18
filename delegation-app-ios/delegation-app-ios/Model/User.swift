@@ -43,12 +43,13 @@ class User {
         self.tasks = []
         
         let ref: DatabaseReference!
-        ref = Database.database().reference().child("test")
-        let refHandle = ref.observe(DataEventType.value, with: {
+        ref = Database.database().reference().child("users/\(uid)")
+        let _ = ref.observe(DataEventType.value, with: {
             [weak self] (snapshot) in
             guard let this = self else { return }
             
             print("User information update detected...")
+            print(snapshot)
             let value = snapshot.value as? NSDictionary
             
             this.firstname = value?["firstname"] as? String ?? this.firstname

@@ -287,8 +287,8 @@
 			children = (
 				986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */,
 				98C597C81FE597EC009329B2 /* TeamPromptViewController.swift */,
-				98C597CA1FE59808009329B2 /* JoinTeamViewController.swift */,
 				98C597CC1FE5981A009329B2 /* CreateTeamViewController.swift */,
+				98C597CA1FE59808009329B2 /* JoinTeamViewController.swift */,
 				98C597CE1FE5982B009329B2 /* JoinTeamTableViewController.swift */,
 				98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */,
 			);
