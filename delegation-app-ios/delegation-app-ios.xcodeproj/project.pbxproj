@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		395A58E2A83757020DA68400 /* Pods_delegation_app_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540F6909FD1B30E807441657 /* Pods_delegation_app_iosUITests.framework */; };
 		85CDF24C2BBA93320FF402AD /* Pods_delegation_app_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E35656F923DEC21B68336F /* Pods_delegation_app_iosTests.framework */; };
-		984E35251FDFBA1100F031E0 /* ViewControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerUtilities.swift */; };
+		984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */; };
 		986F8E731FDFB6D10033B9D0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */; };
 		98849EAB1FDDC7AA009C9B1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */; };
 		98849EB01FDDC7AA009C9B1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98849EAE1FDDC7AA009C9B1A /* Main.storyboard */; };
@@ -37,6 +37,7 @@
 		98C597D11FE59DA5009329B2 /* JoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */; };
 		98C597D31FE637F5009329B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98C597D21FE637F5009329B2 /* GoogleService-Info.plist */; };
 		98C597D51FE644F5009329B2 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */; };
+		98E5E4131FE7A1C600AF0B37 /* UtilitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E5E4121FE7A1C600AF0B37 /* UtilitiesViewController.swift */; };
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +66,7 @@
 		76E35656F923DEC21B68336F /* Pods_delegation_app_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delegation_app_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7955DD0EF43B3D6329899DE6 /* Pods-delegation-app-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delegation_app_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		984E35241FDFBA1100F031E0 /* ViewControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtilities.swift; sourceTree = "<group>"; };
+		984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		98849EA71FDDC7AA009C9B1A /* delegation-app-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "delegation-app-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98C597D21FE637F5009329B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		98E5E4121FE7A1C600AF0B37 /* UtilitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesViewController.swift; sourceTree = "<group>"; };
 		ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -242,7 +244,8 @@
 			children = (
 				98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */,
 				98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */,
-				984E35241FDFBA1100F031E0 /* ViewControllerUtilities.swift */,
+				984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */,
+				98E5E4121FE7A1C600AF0B37 /* UtilitiesViewController.swift */,
 				98C597C71FE59774009329B2 /* Account Creation */,
 				98C597B41FE2E355009329B2 /* Home */,
 				98C597B31FE2E342009329B2 /* Team */,
@@ -593,12 +596,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				98C597D11FE59DA5009329B2 /* JoinTeamTableViewCell.swift in Sources */,
+				98E5E4131FE7A1C600AF0B37 /* UtilitiesViewController.swift in Sources */,
 				98849EDF1FDDD48B009C9B1A /* User.swift in Sources */,
 				98C597BA1FE42EE5009329B2 /* TeamViewController.swift in Sources */,
 				98C597D51FE644F5009329B2 /* MainTabBarViewController.swift in Sources */,
 				98849EB31FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld in Sources */,
 				98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */,
-				984E35251FDFBA1100F031E0 /* ViewControllerUtilities.swift in Sources */,
+				984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */,
 				98C597BC1FE42EEE009329B2 /* TasksViewController.swift in Sources */,
 				98C597C01FE430B5009329B2 /* TasksTableViewCell.swift in Sources */,
 				98C597C91FE597EC009329B2 /* TeamPromptViewController.swift in Sources */,

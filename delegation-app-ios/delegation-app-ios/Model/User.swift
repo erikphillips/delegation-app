@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class User {
     private var teams : [Team]
@@ -29,6 +30,32 @@ class User {
         self.tasks = []
         
         print("Created new user instance: \(self.firstname), \(self.lastname), \(self.emailAddress), \(self.phoneNumber)")
+    }
+    
+    init(uid: String, snapshot: DataSnapshot) {
+        let value = snapshot.value as? NSDictionary
+        
+        self.firstname = value?["firstname"] as? String ?? ""
+        self.lastname = value?["lastname"] as? String ?? ""
+        self.emailAddress = value?["email"] as? String ?? ""
+        self.phoneNumber = value?["phone"] as? String ?? ""
+        self.teams = []
+        self.tasks = []
+        
+        let ref: DatabaseReference!
+        ref = Database.database().reference().child("test")
+        let refHandle = ref.observe(DataEventType.value, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            print("User information update detected...")
+            let value = snapshot.value as? NSDictionary
+            
+            this.firstname = value?["firstname"] as? String ?? this.firstname
+            this.lastname = value?["lastname"] as? String ?? this.lastname
+            this.emailAddress = value?["email"] as? String ?? this.emailAddress
+            this.phoneNumber = value?["phone"] as? String ?? this.phoneNumber
+        })
     }
     
     func getFullName() -> String {

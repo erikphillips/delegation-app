@@ -12,6 +12,7 @@ import Firebase
 class WelcomeViewController: UIViewController {
 
     private var segueUser: User?
+    private var uid: String = ""
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -37,22 +38,21 @@ class WelcomeViewController: UIViewController {
                 guard let this = self else { return }
                 
                 if let user = user {
-                    let uid = user.uid
-                    print("UID: \(uid)")
+                    this.uid = user.uid
+                    print("Received UID: \(this.uid)")
                     
                     let ref: DatabaseReference! = Database.database().reference()
-                    ref.child("users/\(uid)").observeSingleEvent(of: .value, with: { (snapshot) in
+                    ref.child("users/\(this.uid)").observeSingleEvent(of: .value, with: { (snapshot) in
                         guard let this = self else { return }
                         
-                        print(snapshot)
-                        let value = snapshot.value as? NSDictionary
-                        dump(value!)
-                        let firstname = value?["firstname"] as? String ?? ""
-                        let lastname = value?["lastname"] as? String ?? ""
-                        let email = value?["email"] as? String ?? ""
-                        let phone = value?["phone"] as? String ?? ""
+//                        let value = snapshot.value as? NSDictionary
+//                        let firstname = value?["firstname"] as? String ?? ""
+//                        let lastname = value?["lastname"] as? String ?? ""
+//                        let email = value?["email"] as? String ?? ""
+//                        let phone = value?["phone"] as? String ?? ""
                         
-                        this.segueUser = User(firstname: firstname, lastname: lastname, email: email, phone: phone)
+//                        this.segueUser = User(firstname: firstname, lastname: lastname, email: email, phone: phone)
+                        this.segueUser = User(uid: this.uid, snapshot: snapshot)
                         this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
                     }) { (error) in
                         print(error.localizedDescription)
@@ -80,8 +80,6 @@ class WelcomeViewController: UIViewController {
             print("Preparing SubmitLogin segue...")
             print(segue.destination)
             if let dest = segue.destination as? MainTabBarViewController {
-                print("Assigning user:")
-                print(self.segueUser)
                 dest.user = self.segueUser
             }
         }
