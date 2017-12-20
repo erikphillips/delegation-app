@@ -383,6 +383,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                     </view>
                     <connections>
                         <segue destination="Cvn-zS-FrI" kind="unwind" identifier="unwindToTeamPromptView" unwindAction="unwindToTeamPromptViewWithSegue:" id="uci-j2-jIF"/>
+                        <segue destination="Cvn-zS-FrI" kind="unwind" identifier="unwindToWelcomeFromJoinTeam" unwindAction="unwindToWelcomeViewWithSegue:" id="RdR-Dr-B0F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhr-yq-dFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -523,6 +524,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         <outlet property="teamDescriptionTextView" destination="qrc-dI-hwC" id="jt0-yb-dFu"/>
                         <outlet property="teamNameTextField" destination="PiP-wp-PfH" id="e35-BW-6LU"/>
                         <segue destination="In1-pH-cKg" kind="unwind" identifier="unwindToTeamPromptView" unwindAction="unwindToTeamPromptViewWithSegue:" id="98b-0c-jWk"/>
+                        <segue destination="In1-pH-cKg" kind="unwind" identifier="unwindToWelcomeFromCreateTeam" unwindAction="unwindToWelcomeViewWithSegue:" id="uUK-v3-7zN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yhh-Vh-DMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -726,6 +728,15 @@ Creating a new team will automatically place you as the owner/admin of the team 
                     <view key="view" contentMode="scaleToFill" id="9Ai-wj-9T6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create New Task Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3M-Ie-ZaM">
+                                <rect key="frame" x="101" y="323" width="172" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Y1g-h0-BXn"/>
                     </view>

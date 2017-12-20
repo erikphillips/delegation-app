@@ -29,6 +29,14 @@ class CreateTeamViewController: UIViewController {
     }
     
     @IBAction func createAccountAndNewTeam(_ sender: Any) {
+        if let teamName = self.teamNameTextField.text {
+            if let teamDescriptoin = self.teamDescriptionTextView.text {
+                if let user = self.user {
+                    
+                }
+            }
+        }
+        self.performSegue(withIdentifier: "unwindToWelcomeFromCreateTeam", sender: nil)
     }
         
     /*

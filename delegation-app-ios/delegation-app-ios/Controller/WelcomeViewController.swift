@@ -45,14 +45,14 @@ class WelcomeViewController: UIViewController {
                     ref.child("users/\(this.uid)").observeSingleEvent(of: .value, with: { (snapshot) in
                         guard let this = self else { return }
                         
-//                        let value = snapshot.value as? NSDictionary
-//                        let firstname = value?["firstname"] as? String ?? ""
-//                        let lastname = value?["lastname"] as? String ?? ""
-//                        let email = value?["email"] as? String ?? ""
-//                        let phone = value?["phone"] as? String ?? ""
+                        let value = snapshot.value as? NSDictionary
+                        let firstname = value?["firstname"] as? String ?? ""
+                        let lastname = value?["lastname"] as? String ?? ""
+                        let email = value?["email"] as? String ?? ""
+                        let phone = value?["phone"] as? String ?? ""
                         
-//                        this.segueUser = User(firstname: firstname, lastname: lastname, email: email, phone: phone)
-                        this.segueUser = User(uid: this.uid, snapshot: snapshot)
+                        this.segueUser = User(uid: this.uid, firstname: firstname, lastname: lastname, email: email, phone: phone)
+//                        this.segueUser = User(uid: this.uid, snapshot: snapshot)
                         this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
                     }) { (error) in
                         print(error.localizedDescription)
@@ -78,7 +78,6 @@ class WelcomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SubmitLogin" {
             print("Preparing SubmitLogin segue...")
-            print(segue.destination)
             if let dest = segue.destination as? MainTabBarViewController {
                 dest.user = self.segueUser
             }

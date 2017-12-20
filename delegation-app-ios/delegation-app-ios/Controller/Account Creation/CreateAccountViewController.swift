@@ -38,7 +38,7 @@ class CreateAccountViewController: UIViewController {
                     if let password = passwordTextField.text {
                         if let confirmPassword = confirmPasswordTextField.text {
                             if password == confirmPassword {
-                                self.user = User(firstname: firstname, lastname: lastname, email: email, phone: "")
+                                self.user = User(uid: "", firstname: firstname, lastname: lastname, email: email, phone: "")
                                 self.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
                             } else {
                                 self.displayAlert(title: "Incorrect Passwords",

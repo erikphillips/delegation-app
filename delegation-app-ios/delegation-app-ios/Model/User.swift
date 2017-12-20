@@ -13,13 +13,15 @@ class User {
     private var teams : [Team]
     private var tasks : [Task]
     
+    private var uid: String
     private var firstname: String
     private var lastname: String
     private var emailAddress: String
     private var phoneNumber: String
     private var password: String?
 
-    init(firstname: String, lastname: String, email: String, phone: String) {
+    init(uid: String, firstname: String, lastname: String, email: String, phone: String) {
+        self.uid = uid
         self.firstname = firstname
         self.lastname = lastname
         self.emailAddress = email
@@ -35,6 +37,7 @@ class User {
     init(uid: String, snapshot: DataSnapshot) {
         let value = snapshot.value as? NSDictionary
         
+        self.uid = uid
         self.firstname = value?["firstname"] as? String ?? ""
         self.lastname = value?["lastname"] as? String ?? ""
         self.emailAddress = value?["email"] as? String ?? ""

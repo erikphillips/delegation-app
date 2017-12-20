@@ -7,11 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
 class JoinTeamTableViewController: UITableViewController {
 
+    var teamsArray: [Team]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let ref: DatabaseReference! = Database.database().reference()
+        ref.child("teams").observeSingleEvent(of: .value, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            let value = snapshot.value as? NSDictionary
+            print(value)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -28,12 +42,10 @@ class JoinTeamTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 0
     }
 
