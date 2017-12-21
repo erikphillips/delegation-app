@@ -12,6 +12,7 @@ import Firebase
 class JoinTeamTableViewController: UITableViewController {
 
     var teamsArray: [Team]?
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()

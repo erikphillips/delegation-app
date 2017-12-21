@@ -359,7 +359,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txu-SC-tfZ">
                                 <rect key="frame" x="0.0" y="143" width="375" height="388"/>
                                 <connections>
-                                    <segue destination="qcE-Kh-Jo6" kind="embed" id="KVk-aO-BuA"/>
+                                    <segue destination="qcE-Kh-Jo6" kind="embed" identifier="EmbeddedSegue" id="KVk-aO-BuA"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -382,6 +382,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         <viewLayoutGuide key="safeArea" id="jbe-9n-u1Z"/>
                     </view>
                     <connections>
+                        <outlet property="uiViewOutlet" destination="txu-SC-tfZ" id="Cph-Fz-QL7"/>
                         <segue destination="Cvn-zS-FrI" kind="unwind" identifier="unwindToTeamPromptView" unwindAction="unwindToTeamPromptViewWithSegue:" id="uci-j2-jIF"/>
                         <segue destination="Cvn-zS-FrI" kind="unwind" identifier="unwindToWelcomeFromJoinTeam" unwindAction="unwindToWelcomeViewWithSegue:" id="RdR-Dr-B0F"/>
                     </connections>

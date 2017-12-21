@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateAccountViewController: UIViewController {
 
@@ -32,32 +33,81 @@ class CreateAccountViewController: UIViewController {
     }
     
     @IBAction func continueButtonPressed(_ sender: Any) {
-        if let firstname = firstnameTextField.text {
-            if let lastname = lastnameTextField.text {
-                if let email = emailAddressTextField.text {
-                    if let password = passwordTextField.text {
-                        if let confirmPassword = confirmPasswordTextField.text {
-                            if password == confirmPassword {
-                                self.user = User(uid: "", firstname: firstname, lastname: lastname, email: email, phone: "")
-                                self.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
-                            } else {
-                                self.displayAlert(title: "Incorrect Passwords",
-                                                  message: "The passwords do not match. Please confirm passwords.")
-                            }
-                        } else {
-                            self.displayAlert(title: "Confirm Password Required", message: "A confirmation password is required.")
-                        }
-                    } else {
-                        self.displayAlert(title: "Password Required", message: "A password is required.")
-                    }
-                } else {
-                    self.displayAlert(title: "Email Required", message: "An email address is required.")
-                }
-            } else {
-                self.displayAlert(title: "Lastname Required", message: "A lastname is required.")
+        var firstname = ""
+        var lastname = ""
+        var email = ""
+        var password = ""
+        var confirmPassword = ""
+        
+        var passing = true
+        
+        if let value = firstnameTextField.text {
+            firstname = value
+            if firstname == "" {
+                self.displayAlert(title: "Firstname Required", message: "A firstname is required.")
+                passing = false
             }
         } else {
             self.displayAlert(title: "Firstname Required", message: "A firstname is required.")
+            passing = false
+        }
+        
+        if let value = lastnameTextField.text {
+            lastname = value
+            if lastname == "" {
+                self.displayAlert(title: "Lastname Required", message: "A lastname is required.")
+                passing = false
+            }
+        } else {
+            self.displayAlert(title: "Lastname Required", message: "A lastname is required.")
+            passing = false
+        }
+        
+        if let value = emailAddressTextField.text {
+            email = value
+            if email == "" {
+                self.displayAlert(title: "Email Required", message: "An email address is required.")
+                passing = false
+            } else if !Utilities.isValidEmail(email) {
+                self.displayAlert(title: "Email Required", message: "The email address provided is not valid. Please confirm that the email address is in a valid format.")
+                passing = false
+            }
+        } else {
+            self.displayAlert(title: "Email Required", message: "An email address is required.")
+            passing = false
+        }
+        
+        if let value = passwordTextField.text {
+            password = value
+            if password == "" {
+                self.displayAlert(title: "Password Required", message: "A password is required.")
+                passing = false
+            } else if !Utilities.isValidPassword(password) {
+                self.displayAlert(title: "Password Required", message: "The password provided is not valid. Passwords must be 6 characters or longer.")
+            }
+        } else {
+            self.displayAlert(title: "Password Required", message: "A password is required.")
+            passing = false
+        }
+        
+        if let value = confirmPasswordTextField.text {
+            confirmPassword = value
+            if confirmPassword == "" {
+                self.displayAlert(title: "Confirm Password Required", message: "A confirmation password is required.")
+                passing = false
+            } else if password != confirmPassword {
+                self.displayAlert(title: "Password Confirmation Required", message: "Both passwords need to match and are required.")
+                passing = false
+            }
+        } else {
+            self.displayAlert(title: "Confirm Password Required", message: "A confirmation password is required.")
+            passing = false
+        }
+        
+        // If the validation passes, create a user object and perform the segue
+        if passing {
+            self.user = User(uid: "", firstname: firstname, lastname: lastname, email: email, phone: "", password: password)
+            self.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
         }
     }
     

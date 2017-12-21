@@ -34,6 +34,20 @@ class User {
         print("Created new user instance: \(self.firstname), \(self.lastname), \(self.emailAddress), \(self.phoneNumber)")
     }
     
+    init(uid: String, firstname: String, lastname: String, email: String, phone: String, password: String) {
+        self.uid = uid
+        self.firstname = firstname
+        self.lastname = lastname
+        self.emailAddress = email
+        self.phoneNumber = phone
+        self.password = password
+        
+        self.teams = []
+        self.tasks = []
+        
+        print("Created new user instance (with password): \(self.firstname), \(self.lastname), \(self.emailAddress), \(self.phoneNumber)")
+    }
+    
     init(uid: String, snapshot: DataSnapshot) {
         let value = snapshot.value as? NSDictionary
         
@@ -80,6 +94,14 @@ class User {
     
     func getPhoneNumber() -> String {
         return self.phoneNumber
+    }
+    
+    func getPassword() -> String {
+        if let password = self.password {
+            return password
+        } else {
+            return ""
+        }
     }
 }
 
