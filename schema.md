@@ -12,11 +12,10 @@ delegation-app/
 			information/
 				firstname: <first_name: str>
 				lastname: <last_name: str>
-				fullname: !firstname + " " + !lastname
 				email: <email_address: str>
 				phone: <phone_number: str>
 			
-			groups: [ <GID>: <group_name: str> ]
+			teams: [ <GID>: <team_name: str> ]
 			
 			ai/
 				keywords: [ <keyword: str>: <score: int> ]
@@ -26,7 +25,7 @@ delegation-app/
 			current_tasks: [ <task_id>: <task_name> ]
 			closed_tasks: [ <task_id>: <task_name> ]
 			
-	teams/
+	teams/  (i.e. group)
 		<GID>/
 			teamname: <team_name: str>
 			description: <description: str>
