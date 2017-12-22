@@ -34,7 +34,7 @@ delegation-app/
 			tasks: [ <task_id>: <task_name> ]
 			
 			access/
-				<UID of str>: <access_level: str of {'owner', 'admin', 'manager', 'member'}>
+				<UID>: <access_level: str of {'owner', 'admin', 'manager', 'member'}>
 				
 	tasks/
 		<TID>/
