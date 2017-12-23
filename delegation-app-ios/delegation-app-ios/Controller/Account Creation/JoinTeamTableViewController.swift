@@ -17,16 +17,7 @@ class JoinTeamTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let ref: DatabaseReference! = Database.database().reference()
-        ref.child("teams").observeSingleEvent(of: .value, with: {
-            [weak self] (snapshot) in
-            guard let this = self else { return }
-            
-            let value = snapshot.value as? NSDictionary
-            print(value)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

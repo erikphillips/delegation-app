@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TeamPromptViewController: UIViewController {
 
@@ -25,6 +26,17 @@ class TeamPromptViewController: UIViewController {
     }
     
     @IBAction func joinExistingTeamPressed(_ sender: Any) {
+        let ref: DatabaseReference! = Database.database().reference()
+        ref.child("teams").observeSingleEvent(of: .value, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            let value = snapshot.value as? NSDictionary
+            print(value)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
         self.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
     }
     
