@@ -21,7 +21,10 @@ class JoinTeamViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let selectedTeams = selectedTeams {
+        print("JoinTeam Loaded...")
+        print("selectedTeams length: \(self.selectedTeams?.count)")
+        
+        if let selectedTeams = self.selectedTeams {
             if selectedTeams.count <= 0 {
                 createAccountButton.setTitle("Create Account", for: .normal)
             } else if selectedTeams.count == 1 {
@@ -29,6 +32,8 @@ class JoinTeamViewController: UIViewController {
             } else {
                 createAccountButton.setTitle("Create Account and Join \(selectedTeams.count) Teams", for: .normal)
             }
+        } else {
+            createAccountButton.setTitle("Create Account", for: .normal)
         }
     }
 

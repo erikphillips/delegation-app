@@ -11,7 +11,7 @@ import Foundation
 class Team {
     private var teamname : String
     private var members : [User]
-    private var owner : User
+    private var owner : User?
     
     private var uid: String?
     
@@ -20,6 +20,12 @@ class Team {
         self.owner = owner
         self.members = []
         self.members.append(owner)
+    }
+    
+    init(teamname: String, uid: String) {
+        self.teamname = teamname
+        self.uid = uid
+        self.members = []
     }
     
     func getTeamName() -> String {

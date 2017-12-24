@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Utilities {
     
@@ -21,4 +22,26 @@ class Utilities {
         return testStr.count > 5
     }
     
+}
+
+class FirebaseUtilities {
+    static func extractTeamsFromSnapshot(_ snapshot: DataSnapshot) -> [Team] {
+        print("Extracting teams...")
+        
+        var teams: [Team] = []
+        
+        if let value = (snapshot.value as? NSDictionary) {
+            for elem in value {
+                if let teamData = elem.value as? NSDictionary {
+                    let teamname = teamData["teamname"] as? String ?? ""
+                    let uid = elem.key as? String ?? ""
+                    teams.append(Team(teamname: teamname, uid: uid))
+                }
+            }
+        }
+        
+        print("Found \(teams.count) teams")
+        
+        return teams
+    }
 }

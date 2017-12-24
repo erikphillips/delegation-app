@@ -21,15 +21,15 @@ class JoinTeamTableViewController: UITableViewController {
         
         print("JoinTeamTableViewController loaded...")
         
-        if let teams = teamsArray {
-            for (index, element) in teams.enumerated() {
-                let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! JoinTeamTableViewCell
-                
-            }
-        }
+//        if let teams = teamsArray {
+//            for (index, element) in teams.enumerated() {
+//                let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! JoinTeamTableViewCell
+//
+//            }
+//        }
         
         // Uncomment the following line to preserve selection between presentations
-         self.clearsSelectionOnViewWillAppear = false
+        // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -53,7 +53,7 @@ class JoinTeamTableViewController: UITableViewController {
         if let teams = teamsArray {
             return teams.count
         } else {
-            return 100
+            return 0
         }
     }
 
@@ -114,6 +114,16 @@ class JoinTeamTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindWithTeamSelection" {
             if let dest = segue.destination as? JoinTeamViewController {
+                if let teams = self.teamsArray {
+                    self.selectedTeams = []
+                    for (index, element) in teams.enumerated() {
+                        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! JoinTeamTableViewCell
+                        if cell.isCellSelected {
+                            self.selectedTeams?.append(element.getUid())
+                        }
+                    }
+                }
+                
                 dest.selectedTeams = self.selectedTeams
             }
         }

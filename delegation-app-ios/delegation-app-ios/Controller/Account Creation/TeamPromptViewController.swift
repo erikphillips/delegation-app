@@ -12,6 +12,7 @@ import Firebase
 class TeamPromptViewController: UIViewController {
 
     var user: User?
+    var teams: [Team]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +31,13 @@ class TeamPromptViewController: UIViewController {
         ref.child("teams").observeSingleEvent(of: .value, with: {
             [weak self] (snapshot) in
             guard let this = self else { return }
+                        
+            this.teams = FirebaseUtilities.extractTeamsFromSnapshot(snapshot)
+            this.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
             
-            let value = snapshot.value as? NSDictionary
-            print(value)
         }) { (error) in
             print(error.localizedDescription)
         }
-        
-        self.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
     }
     
     @IBAction func createNewTeamPressed(_ sender: Any) {
@@ -51,6 +51,8 @@ class TeamPromptViewController: UIViewController {
             print("Preparing CreateAccountJoinTeam segue...")
             if let dest = segue.destination as? JoinTeamViewController {
                 dest.user = self.user
+                dest.selectedTeams = []
+                dest.teamsArray = self.teams
             }
         } else if segue.identifier == "CreateAccountCreateTeam" {
             print("Preparing CreateAccountCreateTeam segue...")
