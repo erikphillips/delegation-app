@@ -14,13 +14,22 @@ class JoinTeamTableViewController: UITableViewController {
     var teamsArray: [Team]?
     var user: User?
     
+    var selectedTeams: [String]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("JoinTeamTableViewController loaded...")
         
-
+        if let teams = teamsArray {
+            for (index, element) in teams.enumerated() {
+                let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! JoinTeamTableViewCell
+                
+            }
+        }
+        
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+         self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -30,26 +39,33 @@ class JoinTeamTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
+    
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        print("Done button pressed")
+        self.performSegue(withIdentifier: "unwindWithTeamSelection", sender: nil)
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        if let teams = teamsArray {
+            return teams.count
+        } else {
+            return 100
+        }
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TeamSelectionCell", for: indexPath) as! JoinTeamTableViewCell
 
-        // Configure the cell...
+        if let teams = teamsArray {
+            cell.titleLabel.text = teams[indexPath.row].getTeamName()
+        }
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -85,15 +101,22 @@ class JoinTeamTableViewController: UITableViewController {
         return true
     }
     */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! JoinTeamTableViewCell
+        if cell.isCellSelected {
+            cell.isCellSelected = true
+        } else {
+            cell.isCellSelected = false
+        }
     }
-    */
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "unwindWithTeamSelection" {
+            if let dest = segue.destination as? JoinTeamViewController {
+                dest.selectedTeams = self.selectedTeams
+            }
+        }
+    }
 
 }

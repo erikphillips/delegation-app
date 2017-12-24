@@ -189,6 +189,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="continue" secureTextEntry="YES" textContentType="password"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTA-vH-kFg">
+                                <rect key="frame" x="253" y="446" width="106" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Load Fake Data">
+                                    <color key="titleColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loadFakeDataButtonPressed:" destination="2cE-3t-tiV" eventType="touchUpInside" id="63d-LC-Ha6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -356,33 +366,46 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                     <action selector="createNewAccountAndJoinTeam:" destination="sbM-9g-E9y" eventType="touchUpInside" id="Bxm-um-kCh"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txu-SC-tfZ">
-                                <rect key="frame" x="0.0" y="143" width="375" height="388"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvm-CU-NE4">
+                                <rect key="frame" x="16" y="423" width="343" height="50"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="LNo-Ze-awV"/>
+                                </constraints>
+                                <state key="normal" title="Select Teams">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <segue destination="qcE-Kh-Jo6" kind="embed" identifier="EmbeddedSegue" id="KVk-aO-BuA"/>
+                                    <segue destination="9pc-Tl-339" kind="show" identifier="ShowTeamSelection" id="cTE-lX-bvv"/>
                                 </connections>
-                            </containerView>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Teams Below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFx-PF-a2d">
+                                <rect key="frame" x="104" y="143" width="153" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="txu-SC-tfZ" firstAttribute="top" secondItem="DcK-Gh-4oq" secondAttribute="bottom" constant="8" id="0Ef-S6-epS"/>
                             <constraint firstItem="jbe-9n-u1Z" firstAttribute="bottom" secondItem="Mzo-JZ-WJ8" secondAttribute="bottom" constant="20" id="1KS-Sj-06d"/>
-                            <constraint firstItem="txu-SC-tfZ" firstAttribute="leading" secondItem="jbe-9n-u1Z" secondAttribute="leading" id="38e-gN-za2"/>
                             <constraint firstItem="Mzo-JZ-WJ8" firstAttribute="top" secondItem="GbF-iH-VU4" secondAttribute="bottom" constant="8" id="4pc-5X-DWh"/>
                             <constraint firstItem="GbF-iH-VU4" firstAttribute="leading" secondItem="jbe-9n-u1Z" secondAttribute="leading" constant="16" id="8kx-wh-jnH"/>
                             <constraint firstItem="DcK-Gh-4oq" firstAttribute="top" secondItem="jbe-9n-u1Z" secondAttribute="top" id="Bn6-vU-azz"/>
                             <constraint firstItem="jbe-9n-u1Z" firstAttribute="trailing" secondItem="GbF-iH-VU4" secondAttribute="trailing" constant="16" id="FHk-wH-diQ"/>
-                            <constraint firstItem="txu-SC-tfZ" firstAttribute="trailing" secondItem="jbe-9n-u1Z" secondAttribute="trailing" id="ICj-VH-utr"/>
                             <constraint firstItem="DcK-Gh-4oq" firstAttribute="leading" secondItem="jbe-9n-u1Z" secondAttribute="leading" constant="16" id="Jmq-xt-4sW"/>
-                            <constraint firstItem="GbF-iH-VU4" firstAttribute="top" secondItem="txu-SC-tfZ" secondAttribute="bottom" constant="8" id="O8G-YK-EbX"/>
                             <constraint firstItem="Mzo-JZ-WJ8" firstAttribute="leading" secondItem="jbe-9n-u1Z" secondAttribute="leading" constant="16" id="PTA-yu-9GJ"/>
+                            <constraint firstItem="GbF-iH-VU4" firstAttribute="top" secondItem="fvm-CU-NE4" secondAttribute="bottom" constant="66" id="Ruo-we-i9B"/>
                             <constraint firstItem="jbe-9n-u1Z" firstAttribute="trailing" secondItem="Mzo-JZ-WJ8" secondAttribute="trailing" constant="16" id="bTZ-c5-Kik"/>
                             <constraint firstItem="jbe-9n-u1Z" firstAttribute="trailing" secondItem="DcK-Gh-4oq" secondAttribute="trailing" constant="16" id="c0Z-EM-hA7"/>
+                            <constraint firstItem="fvm-CU-NE4" firstAttribute="leading" secondItem="jbe-9n-u1Z" secondAttribute="leading" constant="16" id="mfE-ZH-XBj"/>
+                            <constraint firstItem="jbe-9n-u1Z" firstAttribute="trailing" secondItem="fvm-CU-NE4" secondAttribute="trailing" constant="16" id="py2-V6-IK2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jbe-9n-u1Z"/>
                     </view>
                     <connections>
-                        <outlet property="uiViewOutlet" destination="txu-SC-tfZ" id="Cph-Fz-QL7"/>
+                        <outlet property="createAccountButton" destination="GbF-iH-VU4" id="oux-bP-Gac"/>
                         <segue destination="Cvn-zS-FrI" kind="unwind" identifier="unwindToTeamPromptView" unwindAction="unwindToTeamPromptViewWithSegue:" id="uci-j2-jIF"/>
                         <segue destination="Cvn-zS-FrI" kind="unwind" identifier="unwindToWelcomeFromJoinTeam" unwindAction="unwindToWelcomeViewWithSegue:" id="RdR-Dr-B0F"/>
                     </connections>
@@ -390,51 +413,64 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhr-yq-dFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Cvn-zS-FrI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3694" y="-347"/>
+            <point key="canvasLocation" x="3693.5999999999999" y="-347.67616191904051"/>
         </scene>
-        <!--Join Team Table View Controller-->
-        <scene sceneID="M6h-Ny-zrE">
+        <!--Team Selection-->
+        <scene sceneID="RcJ-gr-skb">
             <objects>
-                <tableViewController id="qcE-Kh-Jo6" customClass="JoinTeamTableViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H4F-8M-a3g">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="388"/>
+                <tableViewController title="Team Selection" id="9pc-Tl-339" customClass="JoinTeamTableViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CFU-L2-FAB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="ONo-eH-RY3">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Team Selection" id="bTa-Tq-j9R">
+                                    <barButtonItem key="leftBarButtonItem" systemItem="done" id="pLG-7D-QVP">
+                                        <connections>
+                                            <action selector="doneButtonPressed:" destination="9pc-Tl-339" id="Gsr-fN-UM4"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JoinTeamCell" textLabel="MWp-gC-UzQ" detailTextLabel="uMm-wg-GS9" style="IBUITableViewCellStyleSubtitle" id="Lq3-1O-oP4" customClass="JoinTeamTableViewCell" customModule="delegation_app_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeamSelectionCell" textLabel="cXr-eF-T3J" style="IBUITableViewCellStyleDefault" id="zOe-eQ-pAA" customClass="JoinTeamTableViewCell" customModule="delegation_app_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lq3-1O-oP4" id="WeB-H2-gSx">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zOe-eQ-pAA" id="bmw-Rj-lCE">
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MWp-gC-UzQ">
-                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cXr-eF-T3J">
+                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uMm-wg-GS9">
-                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="cXr-eF-T3J" id="fIL-1o-hFe"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="qcE-Kh-Jo6" id="JRT-x0-5aO"/>
-                            <outlet property="delegate" destination="qcE-Kh-Jo6" id="7e6-Xb-aLh"/>
+                            <outlet property="dataSource" destination="9pc-Tl-339" id="nmT-bi-h92"/>
+                            <outlet property="delegate" destination="9pc-Tl-339" id="URt-mV-fuG"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="0gw-y9-Wgc" kind="unwind" identifier="unwindWithTeamSelection" unwindAction="unwindToJoinTeamViewWithSegue:" id="yxL-fy-Qy2"/>
+                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YRw-ox-Cla" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SGZ-4k-AUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="0gw-y9-Wgc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4473" y="-346"/>
+            <point key="canvasLocation" x="4521" y="-348"/>
         </scene>
         <!--Create Team View Controller-->
         <scene sceneID="YgH-TZ-rBr">

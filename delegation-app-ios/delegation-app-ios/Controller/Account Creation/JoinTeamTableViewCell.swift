@@ -10,6 +10,9 @@ import UIKit
 
 class JoinTeamTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    var isCellSelected = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +23,4 @@ class JoinTeamTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

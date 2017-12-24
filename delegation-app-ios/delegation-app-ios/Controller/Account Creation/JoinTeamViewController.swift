@@ -12,10 +12,24 @@ import Firebase
 class JoinTeamViewController: UIViewController {
 
     var user: User?
+    var selectedTeams: [String]?
+    var teamsArray: [Team]?
     
+    @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var uiViewOutlet: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let selectedTeams = selectedTeams {
+            if selectedTeams.count <= 0 {
+                createAccountButton.setTitle("Create Account", for: .normal)
+            } else if selectedTeams.count == 1 {
+                createAccountButton.setTitle("Create Account and Join 1 Team", for: .normal)
+            } else {
+                createAccountButton.setTitle("Create Account and Join \(selectedTeams.count) Teams", for: .normal)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,8 +47,6 @@ class JoinTeamViewController: UIViewController {
                 guard let this = self else { return }
                 
                 if (user != nil && error == nil) {
-                    print("firebase: user added successfully")
-                    
                     let uid = Auth.auth().currentUser!.uid
                     print("Got UID: \(uid)")
                     
@@ -45,6 +57,7 @@ class JoinTeamViewController: UIViewController {
                     ref.child("email").setValue(this.user?.getEmailAddress())
                     ref.child("phone").setValue(this.user?.getPhoneNumber())
                     
+                    print("firebase: user added successfully")
                 } else {
                     print("firebase: failed to add user")
                 }
@@ -59,10 +72,12 @@ class JoinTeamViewController: UIViewController {
     @IBAction func unwindToJoinTeamView(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "EmbeddedSegue" {
-            print("Preparing EmbeddedSegue segue...")
+        if segue.identifier == "ShowTeamSelection" {
+            print("Preparing ShowTeamSelection segue...")
             if let dest = segue.destination as? JoinTeamTableViewController {
                 dest.user = self.user
+                dest.selectedTeams = self.selectedTeams
+                dest.teamsArray = self.teamsArray
             }
         }
     }

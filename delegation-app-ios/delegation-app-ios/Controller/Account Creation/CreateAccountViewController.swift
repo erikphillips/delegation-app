@@ -32,6 +32,14 @@ class CreateAccountViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func loadFakeDataButtonPressed(_ sender: Any) {
+        self.firstnameTextField.text = "Erik"
+        self.lastnameTextField.text = "Phillips"
+        self.emailAddressTextField.text = "erik@app.com"
+        self.passwordTextField.text = "123456"
+        self.confirmPasswordTextField.text = "123456"
+    }
+    
     @IBAction func continueButtonPressed(_ sender: Any) {
         var firstname = ""
         var lastname = ""
