@@ -41,3 +41,6 @@ As the sole individual responsible for the success of the project, the project c
 
 ### Creativity ###
 The user-interface and design of the application will require the creative use of computer and mobile applications to achieve project completion with a user-centered design that offers easy usability and functionality, a main requirement for the project.
+
+# Contact #
+Email: delegation.application@gmail.com
