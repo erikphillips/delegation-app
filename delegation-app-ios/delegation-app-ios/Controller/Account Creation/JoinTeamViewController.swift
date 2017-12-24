@@ -65,6 +65,10 @@ class JoinTeamViewController: UIViewController {
                     ref.child("email").setValue(this.user?.getEmailAddress())
                     ref.child("phone").setValue(this.user?.getPhoneNumber())
                     
+                    for id in (this.selectedTeams ?? []) {
+                        ref.child("teams").childByAutoId().setValue(id)
+                    }
+                    
                     print("firebase: user added successfully")
                     
                     this.performSegue(withIdentifier: "unwindToWelcomeFromJoinTeam", sender: nil)
