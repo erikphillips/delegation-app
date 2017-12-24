@@ -13,13 +13,17 @@ class WelcomeViewController: UIViewController {
 
     private var segueUser: User?
     private var uid: String = ""
-    
+
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        passwordTextField.text = ""
     }
 
     override func didReceiveMemoryWarning() {

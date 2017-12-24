@@ -105,9 +105,9 @@ class JoinTeamTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! JoinTeamTableViewCell
         if cell.isCellSelected {
-            cell.isCellSelected = true
-        } else {
             cell.isCellSelected = false
+        } else {
+            cell.isCellSelected = true
         }
     }
 
@@ -117,8 +117,10 @@ class JoinTeamTableViewController: UITableViewController {
                 if let teams = self.teamsArray {
                     self.selectedTeams = []
                     for (index, element) in teams.enumerated() {
+                        print("idx=\(index) elem=\(element)")
                         let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! JoinTeamTableViewCell
                         if cell.isCellSelected {
+                            print("Cell is selected")
                             self.selectedTeams?.append(element.getUid())
                         }
                     }

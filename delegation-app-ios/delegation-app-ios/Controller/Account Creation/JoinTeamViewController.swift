@@ -20,8 +20,11 @@ class JoinTeamViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print("JoinTeam Loaded...")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("JoinTeam Will Appear...")
         print("selectedTeams length: \(self.selectedTeams?.count)")
         
         if let selectedTeams = self.selectedTeams {
@@ -63,15 +66,18 @@ class JoinTeamViewController: UIViewController {
                     ref.child("phone").setValue(this.user?.getPhoneNumber())
                     
                     print("firebase: user added successfully")
+                    
+                    this.performSegue(withIdentifier: "unwindToWelcomeFromJoinTeam", sender: nil)
                 } else {
                     print("firebase: failed to add user")
+                    print(error?.localizedDescription)
                 }
-            }
+            } 
         } else {
             print("createNewAccountAndJoinTeam failed - unable to unwrap user")
         }
         
-        self.performSegue(withIdentifier: "unwindToWelcomeFromJoinTeam", sender: nil)
+        
     }
     
     @IBAction func unwindToJoinTeamView(segue: UIStoryboardSegue) { }
