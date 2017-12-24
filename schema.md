@@ -5,10 +5,7 @@ The database is held in a Firebase format (JSON):
 ```
 delegation-app/
 	users/
-		<UUID>/
-			access/
-				<team_id>: <access_level: str of {'owner', 'admin', 'manager', 'member'}>
-				
+		<UUID>/	
 			information/
 				firstname: <first_name: str>
 				lastname: <last_name: str>
