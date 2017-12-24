@@ -1,11 +1,11 @@
 # Database Schema #
 
-The database is held in a Firebase format:
+The database is held in a Firebase format (JSON):
 
 ```
 delegation-app/
 	users/
-		<UID>/
+		<UUID>/
 			access/
 				<team_id>: <access_level: str of {'owner', 'admin', 'manager', 'member'}>
 				
@@ -15,39 +15,40 @@ delegation-app/
 				email: <email_address: str>
 				phone: <phone_number: str>
 			
-			teams: [ <GID>: <team_name: str> ]
+			teams: [ <auto_id>: <GUID: str> ]
 			
 			ai/
 				keywords: [ <keyword: str>: <score: int> ]
 				preferences: ...
 				muted_topics: ...
 			
-			current_tasks: [ <task_id>: <task_name> ]
-			closed_tasks: [ <task_id>: <task_name> ]
+			current_tasks: [ <auto_id>: <TUID: str> ]
+			closed_tasks: [ <auto_id>: <TUID: str> ]
 			
 	teams/  (i.e. group)
-		<GID>/
-			teamname: <team_name: str>
-			description: <description: str>
-			owner: <UID: str>
-			members: [ <UID>: <full_name> ]
-			tasks: [ <task_id>: <task_name> ]
+		<GUID>/
+			information/
+				teamname: <team_name: str>
+				description: <description: str>
+				owner: <UUID: str>
+			members: [ <auto_id>: <UUID: str> ]
+			tasks: [ <auto_id>: <TUID: str> ]
 			
 			access/
-				<UID>: <access_level: str of {'owner', 'admin', 'manager', 'member'}>
+				<UUID>: <access_level: str of {'owner', 'admin', 'manager', 'member'}>
 				
 	tasks/
-		<TID>/
+		<TUID>/
 			taskname: <task_name: str>
 			summary: <task_summary: str>
 			priority: <priority: int>
 			description: <task_description: str>
-			team: <team_id>
+			team: <GUID: str>
 			state: <state: str of {'open', 'pending', 'in_progress', 'closed'}
 			
 			ai/
 				keywords: [<keyword: str>: <score: int> ]
 			
-			assigned: [ <UID>: <full_name: str> ]	
+			assigned: [ <auto_id>: <UUID: str> ]	
 			
 ```
