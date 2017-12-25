@@ -46,7 +46,7 @@ class WelcomeViewController: UIViewController {
                     print("Received UID: \(this.uid)")
                     
                     let ref: DatabaseReference! = Database.database().reference()
-                    ref.child("users/\(this.uid)").observeSingleEvent(of: .value, with: { (snapshot) in
+                    ref.child("users/\(this.uid)/information").observeSingleEvent(of: .value, with: { (snapshot) in
                         guard let this = self else { return }
                         
                         let value = snapshot.value as? NSDictionary
@@ -61,9 +61,34 @@ class WelcomeViewController: UIViewController {
                     }) { (error) in
                         print(error.localizedDescription)
                     }
+                } else if let error = error {
+                    print(error.localizedDescription)
+                    this.displayAlert(title: "Signin Error", message: "\(error.localizedDescription) Please try the signin process again or create a new account.")
+                } else {
+                    print("Unknown signin error")
+                    this.displayAlert(title: "Signin Error", message: "An unknown error occured when signing into to the account. Please try the signin process again or create a new account.")
                 }
             }
+        } else {
+            if username == "" && password == "" {
+                self.displayAlert(title: "Username and Password Required", message: "Both your username and password are required to signin. Please enter your information in the fields provided.")
+            } else if username == "" {
+                self.displayAlert(title: "Username Required", message: "A username is required. This is typically your email address. Please enter your username/email address in the field provided.")
+            } else if password == "" {
+                self.displayAlert(title: "Password Required", message: "Your password is required for login. Please enter your password in the field provided.")
+            }
         }
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+            print("You've pressed OK button");
+        }
+        
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion:nil)
     }
     
     @IBAction func demoActionAdminLogin(_ sender: Any) {

@@ -1107,6 +1107,27 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qBB-JV-8n7" id="dgX-Dv-htT">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hC4-Yq-dQU">
+                                                    <rect key="frame" x="100" y="7" width="174" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="Edit User Information">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="ICn-tI-Lah" kind="show" identifier="SettingsEditUserInfo" id="O8l-1H-tMR"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GwX-FR-2IH">
+                                        <rect key="frame" x="0.0" y="248" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GwX-FR-2IH" id="h1U-qF-fih">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1114,7 +1135,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                             <tableViewSection headerTitle="Teams" id="hQk-8J-DPM">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ttb-2f-Ix1" style="IBUITableViewCellStyleDefault" id="tVn-SN-3I0">
-                                        <rect key="frame" x="0.0" y="276" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="320" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tVn-SN-3I0" id="tnX-BY-ApY">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
@@ -1131,7 +1152,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="dny-PT-h8e" style="IBUITableViewCellStyleDefault" id="Urk-KQ-ZNo">
-                                        <rect key="frame" x="0.0" y="320" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="364" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Urk-KQ-ZNo" id="hG1-eJ-spw">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
@@ -1152,7 +1173,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                             <tableViewSection id="C63-2R-25i">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="l82-bQ-gYd">
-                                        <rect key="frame" x="0.0" y="364" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="408" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l82-bQ-gYd" id="K4K-uK-oPS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1161,7 +1182,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsLogout" id="ceG-HG-h21">
-                                        <rect key="frame" x="0.0" y="408" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="452" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ceG-HG-h21" id="1il-gn-f2w">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1182,7 +1203,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2zT-gf-ex4">
-                                        <rect key="frame" x="0.0" y="452" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="496" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2zT-gf-ex4" id="b30-Mr-Pz7">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1191,7 +1212,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="oj6-bM-aBH" style="IBUITableViewCellStyleDefault" id="Fr0-hU-aLX">
-                                        <rect key="frame" x="0.0" y="496" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="540" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fr0-hU-aLX" id="oaz-mb-oCm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1223,7 +1244,131 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OxL-cQ-vCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Uou-VT-fte" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5022" y="2964"/>
+            <point key="canvasLocation" x="5021.6000000000004" y="2963.1184407796104"/>
+        </scene>
+        <!--Update Account Settings View Controller-->
+        <scene sceneID="GPQ-bS-KAk">
+            <objects>
+                <viewController id="ICn-tI-Lah" customClass="UpdateAccountSettingsViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B4u-9L-iAe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your updated information:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJu-1k-8KF">
+                                <rect key="frame" x="37" y="20" width="300" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="GxX-a8-HPT">
+                                <rect key="frame" x="37" y="49" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="given-name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JrV-Ed-ZEn">
+                                <rect key="frame" x="37" y="87" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="family-name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="E3R-Zx-73w">
+                                <rect key="frame" x="37" y="125" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCq-24-CRD">
+                                <rect key="frame" x="16" y="426" width="343" height="50"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="TzN-h2-VlD"/>
+                                </constraints>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="ICn-tI-Lah" eventType="touchUpInside" id="MR4-GT-vpn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qw5-vg-89m">
+                                <rect key="frame" x="16" y="484" width="343" height="50"/>
+                                <color key="backgroundColor" red="0.48627450979999998" green="0.68627450980000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Z5a-NV-HZb"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="ICn-tI-Lah" eventType="touchUpInside" id="9eG-5Z-dEz"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Clw-W7-Q1I">
+                                <rect key="frame" x="37" y="163" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="L7e-Im-kJP">
+                                <rect key="frame" x="37" y="201" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm New Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fdy-sH-am1">
+                                <rect key="frame" x="37" y="239" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="continue" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="bottom" secondItem="qw5-vg-89m" secondAttribute="bottom" constant="20" id="1wH-nA-a67"/>
+                            <constraint firstItem="E3R-Zx-73w" firstAttribute="top" secondItem="JrV-Ed-ZEn" secondAttribute="bottom" constant="8" id="4Sc-Ef-lwG"/>
+                            <constraint firstItem="GxX-a8-HPT" firstAttribute="leading" secondItem="f0R-32-o4W" secondAttribute="leading" constant="37" id="GOI-AX-RcL"/>
+                            <constraint firstItem="gCq-24-CRD" firstAttribute="leading" secondItem="f0R-32-o4W" secondAttribute="leading" constant="16" id="JMY-ec-S5V"/>
+                            <constraint firstItem="JrV-Ed-ZEn" firstAttribute="leading" secondItem="f0R-32-o4W" secondAttribute="leading" constant="37" id="JsJ-i6-9sO"/>
+                            <constraint firstItem="L7e-Im-kJP" firstAttribute="leading" secondItem="f0R-32-o4W" secondAttribute="leading" constant="37" id="LI3-AI-0WU"/>
+                            <constraint firstItem="GxX-a8-HPT" firstAttribute="top" secondItem="gJu-1k-8KF" secondAttribute="bottom" constant="8" id="Mwl-Bz-XWQ"/>
+                            <constraint firstItem="Fdy-sH-am1" firstAttribute="top" secondItem="L7e-Im-kJP" secondAttribute="bottom" constant="8" id="Vsy-Fv-hZm"/>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="trailing" secondItem="L7e-Im-kJP" secondAttribute="trailing" constant="38" id="W6p-E6-aCL"/>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="trailing" secondItem="qw5-vg-89m" secondAttribute="trailing" constant="16" id="WxV-ro-a9S"/>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="trailing" secondItem="Clw-W7-Q1I" secondAttribute="trailing" constant="38" id="cBr-ad-SeV"/>
+                            <constraint firstItem="JrV-Ed-ZEn" firstAttribute="top" secondItem="GxX-a8-HPT" secondAttribute="bottom" constant="8" id="dog-8D-iAp"/>
+                            <constraint firstItem="qw5-vg-89m" firstAttribute="top" secondItem="gCq-24-CRD" secondAttribute="bottom" constant="8" id="dsw-sM-qtt"/>
+                            <constraint firstItem="E3R-Zx-73w" firstAttribute="leading" secondItem="f0R-32-o4W" secondAttribute="leading" constant="37" id="g13-Hn-EiW"/>
+                            <constraint firstItem="qw5-vg-89m" firstAttribute="leading" secondItem="f0R-32-o4W" secondAttribute="leading" constant="16" id="iFb-vj-MjG"/>
+                            <constraint firstItem="gJu-1k-8KF" firstAttribute="top" secondItem="f0R-32-o4W" secondAttribute="top" id="llb-Ou-GPL"/>
+                            <constraint firstItem="gJu-1k-8KF" firstAttribute="leading" secondItem="f0R-32-o4W" secondAttribute="leading" constant="37" id="md6-GU-FpU"/>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="trailing" secondItem="JrV-Ed-ZEn" secondAttribute="trailing" constant="38" id="mfr-Fp-dAm"/>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="trailing" secondItem="gCq-24-CRD" secondAttribute="trailing" constant="16" id="ng8-Ht-vvu"/>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="trailing" secondItem="gJu-1k-8KF" secondAttribute="trailing" constant="38" id="pCc-M2-rve"/>
+                            <constraint firstItem="L7e-Im-kJP" firstAttribute="top" secondItem="Clw-W7-Q1I" secondAttribute="bottom" constant="8" id="qna-PZ-NzJ"/>
+                            <constraint firstItem="Fdy-sH-am1" firstAttribute="leading" secondItem="f0R-32-o4W" secondAttribute="leading" constant="37" id="rgW-ei-ysR"/>
+                            <constraint firstItem="Clw-W7-Q1I" firstAttribute="top" secondItem="E3R-Zx-73w" secondAttribute="bottom" constant="8" id="ri8-d8-l8X"/>
+                            <constraint firstItem="Clw-W7-Q1I" firstAttribute="leading" secondItem="f0R-32-o4W" secondAttribute="leading" constant="37" id="shA-L4-cR2"/>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="trailing" secondItem="GxX-a8-HPT" secondAttribute="trailing" constant="38" id="wCr-vF-iQq"/>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="trailing" secondItem="E3R-Zx-73w" secondAttribute="trailing" constant="38" id="xm4-k3-3Uw"/>
+                            <constraint firstItem="f0R-32-o4W" firstAttribute="trailing" secondItem="Fdy-sH-am1" secondAttribute="trailing" constant="38" id="zPq-Y7-P4r"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="f0R-32-o4W"/>
+                    </view>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="Fdy-sH-am1" id="ukk-wX-tQA"/>
+                        <outlet property="emailAddressTextField" destination="E3R-Zx-73w" id="jes-Fp-5O7"/>
+                        <outlet property="firstNameTextField" destination="GxX-a8-HPT" id="F5b-tU-o7A"/>
+                        <outlet property="lastNameTextField" destination="JrV-Ed-ZEn" id="KEI-Dk-0px"/>
+                        <outlet property="passwordTextField" destination="L7e-Im-kJP" id="i5r-4t-ONa"/>
+                        <outlet property="phoneNumberTextField" destination="Clw-W7-Q1I" id="J8P-nq-oMi"/>
+                        <segue destination="s3f-ZL-h54" kind="unwind" identifier="unwindToSettingsTableView" unwindAction="unwindToSettingsTableViewWithSegue:" id="0Hn-aF-olf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CQz-0F-iV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="s3f-ZL-h54" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5912.8000000000002" y="2962.2188905547227"/>
         </scene>
     </scenes>
     <resources>

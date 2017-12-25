@@ -53,10 +53,18 @@ class SettingsTableViewController: UITableViewController {
             return nil
         }
     }
+    
+    @IBAction func unwindToSettingsTableView(segue: UIStoryboardSegue) { }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindToWelcomeView" {
             print("unwindToWelcomeView segue called.")
+        }
+        
+        if segue.identifier == "SettingsEditUserInfo" {
+            if let dest = segue.destination as? UpdateAccountSettingsViewController {
+                dest.user = self.user
+            }
         }
     }
     
