@@ -23,7 +23,11 @@ class UtilitiesViewController: UIViewController {
     }
     
     @IBAction func fetchAllUsersPressed(_ sender: Any) {
-        
+        print("Fetch all users pressed...")
+        FirebaseUtilities.getUserInformation(uid: "Kd8p3fl5xyPT0g9BGkHASF025D23", callback: {
+            (user) in
+            print(user.getFullName())
+        })
     }
     
     @IBAction func fetchTestDataPressed(_ sender: Any) {

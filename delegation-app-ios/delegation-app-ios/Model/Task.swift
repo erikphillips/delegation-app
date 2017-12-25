@@ -15,12 +15,14 @@ class Task {
     private var teamID : String
     private var priority : Int
     private var description : String
+    private var state: String
     
-    init(name: String, teamID: String, priority: Int, description: String) {
+    init(name: String, teamID: String, priority: Int, description: String, state: String) {
         self.taskname = name
         self.teamID = teamID
         self.priority = priority
         self.description = description
+        self.state = state
         self.assigned = []
     }
     
