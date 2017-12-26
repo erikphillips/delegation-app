@@ -13,7 +13,7 @@ class User {
     private var teams : [Team]
     private var tasks : [Task]
     
-    private var uid: String
+    private var uuid: String
     private var firstname: String
     private var lastname: String
     private var emailAddress: String
@@ -21,7 +21,7 @@ class User {
     private var password: String?
 
     init(uid: String, firstname: String, lastname: String, email: String, phone: String) {
-        self.uid = uid
+        self.uuid = uid
         self.firstname = firstname
         self.lastname = lastname
         self.emailAddress = email
@@ -35,7 +35,7 @@ class User {
     }
     
     init(uid: String, firstname: String, lastname: String, email: String, phone: String, password: String) {
-        self.uid = uid
+        self.uuid = uid
         self.firstname = firstname
         self.lastname = lastname
         self.emailAddress = email
@@ -51,7 +51,7 @@ class User {
     init(uid: String, snapshot: DataSnapshot) {
         let value = snapshot.value as? NSDictionary
         
-        self.uid = uid
+        self.uuid = uid
         self.firstname = value?["firstname"] as? String ?? ""
         self.lastname = value?["lastname"] as? String ?? ""
         self.emailAddress = value?["email"] as? String ?? ""
@@ -76,6 +76,22 @@ class User {
         })
     }
     
+    func getTeams() -> [Team] {
+        return self.teams
+    }
+    
+    func setTeams(_ newTeams: [Team]) {
+        self.teams = newTeams
+    }
+    
+    func getTasks() -> [Task] {
+        return self.tasks
+    }
+    
+    func setTasks(_ newTasks: [Task]) {
+        self.tasks = newTasks
+    }
+    
     func getFullName() -> String {
         return String(self.firstname + " " + self.lastname)
     }
@@ -84,23 +100,52 @@ class User {
         return self.firstname
     }
     
+    func setFirstName(_ newName: String) {
+        self.firstname = newName
+    }
+    
     func getLastName() -> String {
         return self.lastname
+    }
+    
+    func setLastName(_ newName: String) {
+        self.lastname = newName
     }
     
     func getEmailAddress() -> String {
         return self.emailAddress
     }
     
+    // TODO: Set email address function
+    
     func getPhoneNumber() -> String {
         return self.phoneNumber
     }
     
+    func setPhoneNumber(_ newNumber: String) {
+        self.phoneNumber = newNumber
+    }
+
     func getPassword() -> String {
         if let password = self.password {
             return password
         } else {
             return ""
+        }
+    }
+    
+    // TODO: Reset password function
+    
+    func updateUserInDatabase() -> (Int, String) {
+        if self.uuid != "" {
+            let ref = Database.database().reference(withPath: "users/\(self.uuid)/information")
+            ref.child("firstname").setValue(self.getFirstName())
+            ref.child("lastname").setValue(self.getLastName())
+            ref.child("phone").setValue(self.getPhoneNumber())
+            ref.child("email").setValue(self.getEmailAddress())
+            return (200, "Success: User information updated successfully.")
+        } else {
+            return (404, "Error: Unable to upload a user without the UUID reference.")
         }
     }
 }
