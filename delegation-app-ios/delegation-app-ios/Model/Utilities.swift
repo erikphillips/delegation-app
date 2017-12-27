@@ -25,6 +25,10 @@ class Utilities {
     static func isValidPassword(_ testStr: String) -> Bool {
         return testStr.count > 5
     }
+    
+    static func isValidPasswords(pswd: String, cnfrm: String) -> Bool {
+        return pswd.count > 5 && pswd == cnfrm
+    }
 }
 
 class FirebaseUtilities {

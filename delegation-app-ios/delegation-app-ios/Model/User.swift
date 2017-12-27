@@ -138,6 +138,7 @@ class User {
     
     func updateUserInDatabase() -> (Int, String) {
         if self.uuid != "" {
+            print("Updating user information in database...")
             let ref = Database.database().reference(withPath: "users/\(self.uuid)/information")
             ref.child("firstname").setValue(self.getFirstName())
             ref.child("lastname").setValue(self.getLastName())
@@ -145,6 +146,7 @@ class User {
             ref.child("email").setValue(self.getEmailAddress())
             return (200, "Success: User information updated successfully.")
         } else {
+            print("Failed to update user in database, unable to upload user informaion without UUID.")
             return (404, "Error: Unable to upload a user without the UUID reference.")
         }
     }

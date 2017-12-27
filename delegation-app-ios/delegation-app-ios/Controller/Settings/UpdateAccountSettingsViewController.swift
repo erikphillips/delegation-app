@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UpdateAccountSettingsViewController: UIViewController {
 
@@ -28,6 +29,7 @@ class UpdateAccountSettingsViewController: UIViewController {
             self.firstNameTextField.text = user.getFirstName()
             self.lastNameTextField.text = user.getLastName()
             self.emailAddressTextField.text = user.getEmailAddress()
+            self.phoneNumberTextField.text = user.getPhoneNumber()
         }
     }
 
@@ -37,12 +39,41 @@ class UpdateAccountSettingsViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        if  firstNameTextField.text != user?.getFirstName() ||
-            lastNameTextField.text != user?.getLastName() ||
-            emailAddressTextField.text != user?.getEmailAddress() ||
-            phoneNumberTextField.text != user?.getPhoneNumber() {
-            
-            
+        self.user?.setFirstName(self.firstNameTextField!.text!)
+        self.user?.setLastName(self.lastNameTextField!.text!)
+        self.user?.setPhoneNumber(self.phoneNumberTextField!.text!)
+        // TODO: set new email address
+        
+        if self.emailAddressTextField.text != self.user?.getEmailAddress() {
+            if Utilities.isValidEmail(self.emailAddressTextField!.text!) {
+                Auth.auth().currentUser?.updateEmail(to: self.emailAddressTextField!.text!) {
+                    [weak self] (error) in
+                    guard let this = self else { return }
+                    
+                    if let error = error {
+                        print("Error: Unable to update email address - \(error.localizedDescription)")
+                    } else {
+                        print("Email address updated successfully.")
+                    }
+                }
+            } else {
+                print("Error: Unable to update email address, invalid.")
+            }
+        }
+        
+        if self.passwordTextField.text != "" {
+            if Utilities.isValidPasswords(pswd: self.passwordTextField!.text!, cnfrm: self.confirmPasswordTextField!.text!) {
+                Auth.auth().currentUser?.updatePassword(to: self.passwordTextField!.text!) {
+                    (error) in
+                    if let error = error {
+                        print("Error: Unable to update password - \(error.localizedDescription)")
+                    } else {
+                        print("Password updated successfully.")
+                    }
+                }
+            } else {
+                print("Error: Unable to update passwords, the passwords do not match or are not valid.")
+            }
         }
         
         if let (status, resp) = self.user?.updateUserInDatabase() { // perform the update action
