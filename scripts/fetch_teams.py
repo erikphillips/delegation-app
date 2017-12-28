@@ -1,15 +1,15 @@
 #!/usr/bin/python
 
 # Copyright 2017 Erik Phillips
-# Fetch all user information from the database
+# Fetch all team information from the database
 
 import pprint
 from firebase import firebase
 
-print "Fetching delegation-app users..."
+print "Fetching delegation-app teams..."
 
 firebase = firebase.FirebaseApplication('https://delegation-app.firebaseio.com/', None)
-result = firebase.get('/users', None)
+result = firebase.get('/teams', None)
 
-print "Found {} users:".format(len(result))
+print "Found {} teams:".format(len(result))
 pprint.pprint(result)
