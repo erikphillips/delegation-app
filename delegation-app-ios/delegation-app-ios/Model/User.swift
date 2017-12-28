@@ -116,7 +116,16 @@ class User {
         return self.emailAddress
     }
     
-    // TODO: Set email address function
+    func setEmailAddress(_ newEmail: String) {
+        self.emailAddress = newEmail
+    }
+    
+    func setEmailAddressForCurrentUser(_ newEmail: String) {
+        Auth.auth().currentUser?.updateEmail(to: newEmail) { (error) in
+            if let error = error { print("Error: Unable to update email address - \(error.localizedDescription)") }
+            else { print("Email address updated successfully.") }
+        }
+    }
     
     func getPhoneNumber() -> String {
         return self.phoneNumber
@@ -134,7 +143,11 @@ class User {
         }
     }
     
-    // TODO: Reset password function
+    func setPasswordForCurrentUser(_ newPassword: String) {
+        Auth.auth().currentUser?.updatePassword(to: newPassword) { (error) in
+            if let error = error { print("Error: Unable to update password - \(error.localizedDescription)") }
+            else { print("Password updated successfully.") }
+    }
     
     func updateUserInDatabase() -> (Int, String) {
         if self.uuid != "" {
