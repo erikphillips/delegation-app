@@ -1,4 +1,6 @@
 
+# Fetch all user information from the database
+
 import pprint
 from firebase import firebase
 
