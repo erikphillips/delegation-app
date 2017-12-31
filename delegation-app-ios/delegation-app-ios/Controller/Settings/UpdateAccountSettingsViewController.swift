@@ -35,14 +35,12 @@ class UpdateAccountSettingsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         self.user?.setFirstName(self.firstNameTextField!.text!)
         self.user?.setLastName(self.lastNameTextField!.text!)
         self.user?.setPhoneNumber(self.phoneNumberTextField!.text!)
-        // TODO: set new email address
         
         if self.emailAddressTextField.text != self.user?.getEmailAddress() {
             if Utilities.isValidEmail(self.emailAddressTextField!.text!) {
@@ -54,10 +52,11 @@ class UpdateAccountSettingsViewController: UIViewController {
                         print("Error: Unable to update email address - \(error.localizedDescription)")
                     } else {
                         print("Email address updated successfully.")
+                        this.user?.setEmailAddress(this.emailAddressTextField!.text!)
                     }
                 }
             } else {
-                print("Error: Unable to update email address, invalid.")
+                print("Error: Unable to update email address, invalid email.")
             }
         }
         
@@ -85,7 +84,6 @@ class UpdateAccountSettingsViewController: UIViewController {
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 [weak self] (action:UIAlertAction) in
                 guard let this = self else { return }
-                
                 this.performSegue(withIdentifier: "unwindToSettingsTableView", sender: nil)
             }
             
@@ -98,7 +96,6 @@ class UpdateAccountSettingsViewController: UIViewController {
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 [weak self] (action:UIAlertAction) in
                 guard let this = self else { return }
-                
                 this.performSegue(withIdentifier: "unwindToSettingsTableView", sender: nil)
             }
             
@@ -127,6 +124,7 @@ class UpdateAccountSettingsViewController: UIViewController {
         if segue.identifier == "unwindToSettingsTableView" {
             if let dest = segue.destination as? SettingsTableViewController {
                 if self.updateUserInformation {
+                    print("segue called - username=\"\(self.user?.getEmailAddress())\"")
                     dest.user = self.user
                 }
             }

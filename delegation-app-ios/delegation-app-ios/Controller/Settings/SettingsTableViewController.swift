@@ -34,12 +34,18 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         print("Settings TableView loaded...")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("Settings TableView will appear...")
         
         if let user = user {
-            settingsFirstname.text = user.getFirstName()
-            settingsLastname.text = user.getLastName()
-            settingsEmailAddress.text = user.getEmailAddress()
-            settingsPhoneNumber.text = user.getPhoneNumber()
+            self.settingsFirstname.text = user.getFirstName()
+            self.settingsLastname.text = user.getLastName()
+            self.settingsEmailAddress.text = user.getEmailAddress()
+            self.settingsPhoneNumber.text = user.getPhoneNumber()
         }
     }
     
