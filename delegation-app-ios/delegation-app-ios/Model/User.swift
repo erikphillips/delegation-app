@@ -147,6 +147,7 @@ class User {
         Auth.auth().currentUser?.updatePassword(to: newPassword) { (error) in
             if let error = error { print("Error: Unable to update password - \(error.localizedDescription)") }
             else { print("Password updated successfully.") }
+        }
     }
     
     func updateUserInDatabase() -> (Int, String) {
