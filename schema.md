@@ -17,7 +17,7 @@ delegation-app/
 			teams: [ <auto_id>: <GUID: str> ]
 			
 			ai/
-				keywords: [ <keyword: str>: <score: int> ]
+				keywords: [ <keyword: str>: <score: int> ] -> [0,10)
 				preferences: ...
 				muted_topics: ...
 			
@@ -38,16 +38,16 @@ delegation-app/
 				
 	tasks/
 		<TUID>/
-			taskname: <task_name: str>
-			summary: <task_summary: str>
+			title: <task_name: str>
 			priority: <priority: int>
 			description: <task_description: str>
 			team: <GUID: str>
-			state: <state: str of {'open', 'pending', 'in_progress', 'closed'}
+			status: <status: str of {'open', 'assigned', 'in_progress', 'closed'}
+			resolution: <resolution: str of {'none', 'duplicate', 'fixed'}
+			duplicate: <TUID: str optional>  (i.e. the id of the duplicate task)
+			assignee: <UUID: str>
 			
 			ai/
-				keywords: [<keyword: str>: <score: int> ]
-			
-			assigned: [ <auto_id>: <UUID: str> ]	
+				keywords: [<keyword: str>: <score: int>] -> [0,10)
 			
 ```
