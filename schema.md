@@ -11,6 +11,8 @@ delegation-app/
 				lastname: <last_name: str>
 				email: <email_address: str>
 				phone: <phone_number: str>
+				
+				notify
 			
 			teams: [ <auto_id>: <GUID: str> ]
 			
