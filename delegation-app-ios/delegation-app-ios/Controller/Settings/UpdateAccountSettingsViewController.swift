@@ -42,6 +42,8 @@ class UpdateAccountSettingsViewController: UIViewController {
         self.user?.setLastName(self.lastNameTextField!.text!)
         self.user?.setPhoneNumber(self.phoneNumberTextField!.text!)
         
+        // TODO: This mess needs to be cleaned up.
+        //   Updating the email address and the password should go inside callbacks within the model's code
         if self.emailAddressTextField.text != self.user?.getEmailAddress() {
             if Utilities.isValidEmail(self.emailAddressTextField!.text!) {
                 Auth.auth().currentUser?.updateEmail(to: self.emailAddressTextField!.text!) {

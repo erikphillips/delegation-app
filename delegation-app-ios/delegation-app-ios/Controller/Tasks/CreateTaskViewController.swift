@@ -52,11 +52,15 @@ class CreateTaskViewController: UIViewController {
         
         if state == "" {
             self.displayAlert(title: "State Error", message: "Tasks need states.")
+            return
         }
         
         if teamName == "" {
-            self.displayAlert(title: "Team Name Erorr", message: "Tasks need teams.")
+            self.displayAlert(title: "Team Name Error", message: "Tasks need teams.")
+            return
         }
+        
+        
         
         self.navigationController?.popViewController(animated: true)
     }
