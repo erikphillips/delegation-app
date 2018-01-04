@@ -3,50 +3,48 @@
 //  delegation-app-ios
 //
 //  Created by Erik Phillips on 12/10/17.
-//  Copyright © 2017 Erik Phillips. All rights reserved.
+//  Copyright © 2017-2018  Erik Phillips. All rights reserved.
 //
 
 import Foundation
 
 class Task {
-    private var assigned : [User]
     
-    private var taskname : String
-    private var teamID : String
-    private var priority : Int
-    private var description : String
-    private var state: String
-    
-    init(name: String, teamID: String, priority: Int, description: String, state: String) {
-        self.taskname = name
-        self.teamID = teamID
+    private var title: String
+    private var priority: String
+    private var description: String
+    private var team: String
+    private var status: String
+    private var resolution: String
+    private var assignee: String
+
+    init(title: String, priority: String, description: String, team: String, status: String, resolution: String, assignee: String) {
+        self.title = title
         self.priority = priority
         self.description = description
-        self.state = state
-        self.assigned = []
+        self.team = team
+        self.status = status
+        self.resolution = resolution
+        self.assignee = assignee
     }
     
-    func getName() -> String {
-        return self.taskname
+    func getTitle() -> String {
+        return self.title
     }
     
     func getDescription() -> String {
         return self.description
     }
     
-    func getPriority() -> Int {
+    func getPriority() -> String {
         return self.priority
     }
     
-    func getTeamName() -> String {
-        return self.teamID
+    func getTeam() -> String {
+        return self.team
     }
     
-    func getAssignedUserNames() -> [String] {
-        var rtnUsrs: [String] = []
-        for u in assigned {
-            rtnUsrs.append(u.getFullName())
-        }
-        return rtnUsrs
+    func getAssignee() -> String {
+        return self.assignee
     }
 }
