@@ -162,4 +162,8 @@ class FirebaseUtilities {
     static func deleteCurrentUserAccount(callback: @escaping ((_ status: Int) -> Void)) {
         callback(500)
     }
+    
+    static func performWelcomeProcedure(controller: UIViewController, username: String, password: String, callback: @escaping ((_ user: User, _ tasks: [Task]) -> Void)) {
+        
+    }
 }

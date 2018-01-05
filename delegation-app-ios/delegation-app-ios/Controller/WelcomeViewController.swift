@@ -12,7 +12,8 @@ import Firebase
 class WelcomeViewController: UIViewController {
 
     private var segueUser: User?
-    private var uid: String = ""
+    private var segueTasks: [Task]?
+    private var uuid: String = ""
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -38,42 +39,50 @@ class WelcomeViewController: UIViewController {
             print("Starting login process...")
             
             self.displayLoadingScreen()
-            
-            Auth.auth().signIn(withEmail: username!, password: password!) {
-                [weak self] (user, error) in
+            FirebaseUtilities.performWelcomeProcedure(controller: self, username: username!, password: password!, callback: {
+                [weak self] (user, tasks) in
                 guard let this = self else { return }
-                
-                if let user = user {
-                    this.uid = user.uid
-                    print("Received UID: \(this.uid)")
-                    
-                    let ref: DatabaseReference! = Database.database().reference()
-                    ref.child("users/\(this.uid)/information").observeSingleEvent(of: .value, with: { (snapshot) in
-                        guard let this = self else { return }
-                        
-                        let value = snapshot.value as? NSDictionary
-                        let firstname = value?["firstname"] as? String ?? ""
-                        let lastname = value?["lastname"] as? String ?? ""
-                        let email = value?["email"] as? String ?? ""
-                        let phone = value?["phone"] as? String ?? ""
-                        
-                        this.segueUser = User(uid: this.uid, firstname: firstname, lastname: lastname, email: email, phone: phone)
+                this.segueUser = user
+                this.segueTasks = tasks
+                this.dismissLoadingScreen()
+                this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
+            })
+            
+//            Auth.auth().signIn(withEmail: username!, password: password!) {
+//                [weak self] (user, error) in
+//                guard let this = self else { return }
+//
+//                if let user = user {
+//                    this.uuid = user.uid
+//                    print("Received UID: \(this.uuid)")
+//
+//                    let ref: DatabaseReference! = Database.database().reference()
+//                    ref.child("users/\(this.uuid)/information").observeSingleEvent(of: .value, with: { (snapshot) in
+//                        guard let this = self else { return }
+//
+//                        let value = snapshot.value as? NSDictionary
+//                        let firstname = value?["firstname"] as? String ?? ""
+//                        let lastname = value?["lastname"] as? String ?? ""
+//                        let email = value?["email"] as? String ?? ""
+//                        let phone = value?["phone"] as? String ?? ""
+//
+//                        this.segueUser = User(uid: this.uuid, firstname: firstname, lastname: lastname, email: email, phone: phone)
+////                        this.dismissLoadingScreen()
+//                        this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
+//                    }) { (error) in
 //                        this.dismissLoadingScreen()
-                        this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
-                    }) { (error) in
-                        this.dismissLoadingScreen()
-                        print(error.localizedDescription)
-                    }
-                } else if let error = error {
-                    this.dismissLoadingScreen()
-                    print(error.localizedDescription)
-                    this.displayAlert(title: "Signin Error", message: "\(error.localizedDescription) Please try the signin process again or create a new account.")
-                } else {
-                    this.dismissLoadingScreen()
-                    print("Unknown signin error")
-                    this.displayAlert(title: "Signin Error", message: "An unknown error occured when signing into to the account. Please try the signin process again or create a new account.")
-                }
-            }
+//                        print(error.localizedDescription)
+//                    }
+//                } else if let error = error {
+//                    this.dismissLoadingScreen()
+//                    print(error.localizedDescription)
+//                    this.displayAlert(title: "Signin Error", message: "\(error.localizedDescription) Please try the signin process again or create a new account.")
+//                } else {
+//                    this.dismissLoadingScreen()
+//                    print("Unknown signin error")
+//                    this.displayAlert(title: "Signin Error", message: "An unknown error occured when signing into to the account. Please try the signin process again or create a new account.")
+//                }
+//            }
         } else {
             if username == "" && password == "" {
                 self.displayAlert(title: "Username and Password Required", message: "Both your username and password are required to signin. Please enter your information in the fields provided.")
