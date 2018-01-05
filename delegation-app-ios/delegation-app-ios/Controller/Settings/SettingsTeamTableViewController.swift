@@ -1,49 +1,55 @@
 //
-//  TasksTableViewController.swift
+//  SettingsTeamTableViewController.swift
 //  delegation-app-ios
 //
-//  Created by Erik Phillips on 12/15/17.
-//  Copyright © 2017-2018 Erik Phillips. All rights reserved.
+//  Created by Erik Phillips on 1/4/18.
+//  Copyright © 2018 Erik Phillips. All rights reserved.
 //
 
 import UIKit
 
-class TasksTableViewController: UITableViewController {
-
-    var tasks: [Task] = []
+class SettingsTeamTableViewController: UITableViewController {
     
+    var teams: [Team]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        self.tableView.rowHeight = 100.0
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
+
+    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        if let teams = teams {
+            return teams.count
+        } else {
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TasksTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTeamCell", for: indexPath)
 
-        cell.task = tasks[indexPath.row]
+        cell.textLabel?.text = teams?[indexPath.row].getTeamName() ?? Globals.Team.DEFAULT_TEAMNAME
+        cell.detailTextLabel?.text = "Role: "
 
         return cell
     }
- 
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

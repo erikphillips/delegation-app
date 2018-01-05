@@ -16,8 +16,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         print("Home view controller loaded...")
-        print(user)
-        // Do any additional setup after loading the view.
+        
+        if let user = user {
+            print("User:")
+            print(user)
+        } else {
+            print("No user recieved for HomeViewController")
+        }
     }
 
     override func didReceiveMemoryWarning() {

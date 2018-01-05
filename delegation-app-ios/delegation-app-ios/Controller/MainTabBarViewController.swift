@@ -11,6 +11,8 @@ import UIKit
 class MainTabBarViewController: UITabBarController {
     
     var user: User?
+    var teams: [Team]?
+    var tasks: [Task]?
 
     override func viewDidLoad() {
         super.viewDidLoad()

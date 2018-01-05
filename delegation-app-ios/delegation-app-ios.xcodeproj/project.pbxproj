@@ -38,6 +38,8 @@
 		98C597D11FE59DA5009329B2 /* JoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */; };
 		98C597D31FE637F5009329B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98C597D21FE637F5009329B2 /* GoogleService-Info.plist */; };
 		98C597D51FE644F5009329B2 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */; };
+		98CD42131FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */; };
+		98CD42151FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */; };
 		98D2A8C01FF75B2F00248366 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */; };
 		98E5E4131FE7A1C600AF0B37 /* UtilitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E5E4121FE7A1C600AF0B37 /* UtilitiesViewController.swift */; };
 		98E5E4151FEB5D0A00AF0B37 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E5E4141FEB5D0A00AF0B37 /* Utilities.swift */; };
@@ -104,6 +106,8 @@
 		98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98C597D21FE637F5009329B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewController.swift; sourceTree = "<group>"; };
+		98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		98E5E4121FE7A1C600AF0B37 /* UtilitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesViewController.swift; sourceTree = "<group>"; };
 		98E5E4141FEB5D0A00AF0B37 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -168,6 +172,8 @@
 				98C597B01FE19CA3009329B2 /* SettingsViewController.swift */,
 				98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */,
 				9874033C1FF1923C0059309E /* UpdateAccountSettingsViewController.swift */,
+				98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */,
+				98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 				98849EDF1FDDD48B009C9B1A /* User.swift in Sources */,
 				98C597BA1FE42EE5009329B2 /* TeamViewController.swift in Sources */,
 				98C597D51FE644F5009329B2 /* MainTabBarViewController.swift in Sources */,
+				98CD42151FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift in Sources */,
 				98849EB31FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld in Sources */,
 				98E5E4151FEB5D0A00AF0B37 /* Utilities.swift in Sources */,
 				98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */,
@@ -618,6 +625,7 @@
 				98C597C91FE597EC009329B2 /* TeamPromptViewController.swift in Sources */,
 				98849EE11FDDD51D009C9B1A /* Team.swift in Sources */,
 				98C597CB1FE59808009329B2 /* JoinTeamViewController.swift in Sources */,
+				98CD42131FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift in Sources */,
 				986F8E731FDFB6D10033B9D0 /* CreateAccountViewController.swift in Sources */,
 				98C597CD1FE5981A009329B2 /* CreateTeamViewController.swift in Sources */,
 				98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */,
