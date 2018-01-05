@@ -45,12 +45,17 @@ class SettingsTableViewController: UITableViewController {
                     guard let this = self else { return }
                     
                     if status == 200 {
-                        let deletionAlertController = UIAlertController(title: "Account Deleted", message: "Your account has been deleted.", preferredStyle: .alert)
-                        let deletionOKAction = UIAlertAction(title: "OK", style: .default) { action in print("OK button pressed.") }
+                        let deletionAlertController = UIAlertController(title: "Account Deleted", message: "Your account has been deleted successfully.", preferredStyle: .alert)
+                        let deletionOKAction = UIAlertAction(title: "OK", style: .default) {
+                            [weak self] action in
+                            guard let this = self else { return }
+                            print("OK button pressed, unwinding to welcome view.")
+                            this.performSegue(withIdentifier: "unwindToWelcomeView", sender: sender)
+                        }
                         deletionAlertController.addAction(deletionOKAction)
                         this.present(deletionAlertController, animated: true, completion: nil)
                     } else {
-                        let deletionAlertController = UIAlertController(title: "Unsuccessful Account Deleted", message: "Your account has not been deleted.", preferredStyle: .alert)
+                        let deletionAlertController = UIAlertController(title: "Unsuccessful Account Deletion", message: "Your account has not been deleted.", preferredStyle: .alert)
                         let deletionOKAction = UIAlertAction(title: "OK", style: .default) { action in print("OK button pressed.") }
                         deletionAlertController.addAction(deletionOKAction)
                         this.present(deletionAlertController, animated: true, completion: nil)

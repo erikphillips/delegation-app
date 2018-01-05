@@ -160,6 +160,6 @@ class FirebaseUtilities {
     }
     
     static func deleteCurrentUserAccount(callback: @escaping ((_ status: Int) -> Void)) {
-        callback(200)
+        callback(500)
     }
 }
