@@ -1,25 +1,26 @@
 //
-//  SettingsTeamTableViewController.swift
+//  SettingsJoinTeamTableViewController.swift
 //  delegation-app-ios
 //
-//  Created by Erik Phillips on 1/4/18.
+//  Created by Erik Phillips on 1/8/18.
 //  Copyright © 2018 Erik Phillips. All rights reserved.
 //
 
 import UIKit
 
-class SettingsTeamTableViewController: UITableViewController {
-    
-    var teams: [Team]?
+class SettingsJoinTeamTableViewController: UITableViewController {
 
+    var user: User?
+    var teams: [Team]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,14 +28,12 @@ class SettingsTeamTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let teams = teams {
+        if let teams = self.teams {
             return teams.count
         } else {
             return 0
@@ -42,11 +41,12 @@ class SettingsTeamTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTeamCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsJoinTeamCell", for: indexPath) as! SettingsJoinTeamTableViewCell
 
-        cell.textLabel?.text = teams?[indexPath.row].getTeamName() ?? Globals.Team.DEFAULT_TEAMNAME
-        cell.detailTextLabel?.text = "Role: "
-
+        if let teams = teams {
+            cell.team = teams[indexPath.row]
+        }
+        
         return cell
     }
 
@@ -86,8 +86,6 @@ class SettingsTeamTableViewController: UITableViewController {
     */
 
     /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.

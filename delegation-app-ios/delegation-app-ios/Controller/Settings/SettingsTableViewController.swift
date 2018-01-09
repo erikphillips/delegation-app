@@ -115,7 +115,7 @@ class SettingsTableViewController: UITableViewController {
                 return "<account_fullname>"
             }
         case 1:
-            return "Teams"
+            return "Team Management"
         case 2:
             return "Application Management"
         default:
