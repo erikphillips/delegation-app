@@ -38,14 +38,30 @@ class WelcomeViewController: UIViewController {
         if username != "" && password != "" {
             print("Starting login process...")
             
-            self.displayLoadingScreen()
+//            self.displayLoadingScreen()
             FirebaseUtilities.performWelcomeProcedure(controller: self, username: username!, password: password!, callback: {
-                [weak self] (user, tasks) in
+                [weak self] (user, tasks, error) in
                 guard let this = self else { return }
-                this.segueUser = user
-                this.segueTasks = tasks
-                this.dismissLoadingScreen()
-                this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
+                if let user = user {
+                    this.segueUser = user
+                    
+                    if let tasks = tasks {
+                        this.segueTasks = tasks
+                    } else {
+                        print("submitLogin warning: unable to find tasks for the current user.")
+                    }
+                    
+                    this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
+                } else {
+                    print("submitLogin error: unable to retrieve a valid user.")
+                    if let error = error {
+                        print(error.localizedDescription)
+                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(error.localizedDescription)")
+                    } else {
+                        print("unknown error")
+                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. Please verify your internet connection, username, and password.")
+                    }
+                }
             })
             
 //            Auth.auth().signIn(withEmail: username!, password: password!) {

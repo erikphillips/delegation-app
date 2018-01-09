@@ -116,6 +116,8 @@ class SettingsTableViewController: UITableViewController {
             }
         case 1:
             return "Teams"
+        case 2:
+            return "Application Management"
         default:
             return nil
         }

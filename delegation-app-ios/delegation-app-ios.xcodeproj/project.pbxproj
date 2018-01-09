@@ -23,6 +23,7 @@
 		98849EE11FDDD51D009C9B1A /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE01FDDD51D009C9B1A /* Team.swift */; };
 		98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE21FDDD7DF009C9B1A /* Task.swift */; };
 		98849EE51FDDE91B009C9B1A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */; };
+		9885930F200435E600259079 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9885930E200435E600259079 /* GoogleService-Info.plist */; };
 		98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B01FE19CA3009329B2 /* SettingsViewController.swift */; };
 		98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */; };
 		98C597B81FE42EDA009329B2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B71FE42EDA009329B2 /* HomeViewController.swift */; };
@@ -36,7 +37,6 @@
 		98C597CD1FE5981A009329B2 /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597CC1FE5981A009329B2 /* CreateTeamViewController.swift */; };
 		98C597CF1FE5982B009329B2 /* JoinTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597CE1FE5982B009329B2 /* JoinTeamTableViewController.swift */; };
 		98C597D11FE59DA5009329B2 /* JoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */; };
-		98C597D31FE637F5009329B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98C597D21FE637F5009329B2 /* GoogleService-Info.plist */; };
 		98C597D51FE644F5009329B2 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */; };
 		98CD42131FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */; };
 		98CD42151FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */; };
@@ -91,6 +91,7 @@
 		98849EE01FDDD51D009C9B1A /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		98849EE21FDDD7DF009C9B1A /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		9885930E200435E600259079 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		98C597B01FE19CA3009329B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		98C597B71FE42EDA009329B2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		98C597CC1FE5981A009329B2 /* CreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
 		98C597CE1FE5982B009329B2 /* JoinTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamTableViewController.swift; sourceTree = "<group>"; };
 		98C597D01FE59DA5009329B2 /* JoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamTableViewCell.swift; sourceTree = "<group>"; };
-		98C597D21FE637F5009329B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewController.swift; sourceTree = "<group>"; };
 		98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewCell.swift; sourceTree = "<group>"; };
@@ -208,9 +208,9 @@
 				98849EDB1FDDCF9F009C9B1A /* Model */,
 				98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */,
 				98849EB41FDDC7AA009C9B1A /* Assets.xcassets */,
+				9885930E200435E600259079 /* GoogleService-Info.plist */,
 				98849EB91FDDC7AA009C9B1A /* Info.plist */,
 				98849EB11FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld */,
-				98C597D21FE637F5009329B2 /* GoogleService-Info.plist */,
 			);
 			path = "delegation-app-ios";
 			sourceTree = "<group>";
@@ -427,7 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98849EB81FDDC7AA009C9B1A /* LaunchScreen.storyboard in Resources */,
-				98C597D31FE637F5009329B2 /* GoogleService-Info.plist in Resources */,
+				9885930F200435E600259079 /* GoogleService-Info.plist in Resources */,
 				98849EB51FDDC7AA009C9B1A /* Assets.xcassets in Resources */,
 				98849EB01FDDC7AA009C9B1A /* Main.storyboard in Resources */,
 			);

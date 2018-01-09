@@ -97,17 +97,18 @@ class FirebaseUtilities {
         return User(uid: uuid, firstname: firstname, lastname: lastname, email: email, phone: phone)
     }
     
-    static func getUserInformation(uid: String, callback: @escaping ((_ user: User) -> Void)) {
+    static func getUserInformation(uid: String, callback: @escaping ((_ user: User?, _ error: Error?) -> Void)) {
         var ref: DatabaseReference!
         ref = Database.database().reference()
         
         ref.child("users/\(uid)/information").observeSingleEvent(of: .value, with: {
             (snapshot) in
             
-            callback(FirebaseUtilities.extractUserInformationFromSnapshot(snapshot, uuid: uid))
+            callback(FirebaseUtilities.extractUserInformationFromSnapshot(snapshot, uuid: uid), nil)
             
         }) { (error) in
             print(error.localizedDescription)
+            callback(nil, error)
         }
     }
     
@@ -121,15 +122,18 @@ class FirebaseUtilities {
         return Team(teamname: teamname, description: description, owner: owner)
     }
     
-    static func getTeamInformation(guid: String, callback: @escaping ((_ team: Team) -> Void)) {
+    static func getTeamInformation(guid: String, callback: @escaping ((_ team: Team?, _ error: Error?) -> Void)) {
         var ref: DatabaseReference
         ref = Database.database().reference()
         
         ref.child("teams/\(guid)/information").observeSingleEvent(of: .value, with: {
             (snapshot) in
-            callback(FirebaseUtilities.extractTeamInformationFromSnapshot(snapshot))
+            
+            callback(FirebaseUtilities.extractTeamInformationFromSnapshot(snapshot), nil)
+            
         }) { (error) in
             print(error.localizedDescription)
+            callback(nil, error)
         }
     }
     
@@ -147,15 +151,18 @@ class FirebaseUtilities {
         return Task(title: title, priority: priority, description: description, team: team, status: status, resolution: resolution, assignee: assignee)
     }
     
-    static func getTask(tuid: String, callback: @escaping ((_ task: Task) -> Void)) {
+    static func getTask(tuid: String, callback: @escaping ((_ task: Task?, _ error: Error?) -> Void)) {
         var ref: DatabaseReference
         ref = Database.database().reference()
         
         ref.child("tasks/\(tuid)").observeSingleEvent(of: .value, with: {
             (snapshot) in
-            callback(FirebaseUtilities.extractTaskFromSnapshot(snapshot))
+            
+            callback(FirebaseUtilities.extractTaskFromSnapshot(snapshot), nil)
+            
         }) { (error) in
             print(error.localizedDescription)
+            callback(nil, error)
         }
     }
     
@@ -163,7 +170,42 @@ class FirebaseUtilities {
         callback(500)
     }
     
-    static func performWelcomeProcedure(controller: UIViewController, username: String, password: String, callback: @escaping ((_ user: User, _ tasks: [Task]) -> Void)) {
-        
+    static func loginUser(username: String, password: String, callback: @escaping ((_ uuid: String?, _ error: Error?) -> Void)) {
+        Auth.auth().signIn(withEmail: username, password: password) {
+            (user, error) in
+            if let user = user {
+                callback(user.uid, nil)
+            } else {
+                print("Error found logging in user. \(error?.localizedDescription ?? "Unknown Error")")
+                callback(nil, error)
+            }
+        }
+    }
+    
+    static func performWelcomeProcedure(controller: UIViewController, username: String, password: String, callback: @escaping ((_ user: User?, _ tasks: [Task]?, _ error: Error?) -> Void)) {
+        loginUser(username: username, password: password, callback: { (uuid, error) in
+            if let uuid = uuid {
+                if uuid != Globals.User.DEFAULT_UUID {
+                    FirebaseUtilities.getUserInformation(uid: uuid, callback: { (user, error) in
+                        if let user = user {
+                            print("performWelcomeProcedure: successfully retrieved userr information, returning user,nil,nil")
+                            callback(user, nil, nil)
+                        } else {
+                            print("performWelcomeProcedure: unable to get user information, returning nil,nil,error")
+                            print(String(describing: error?.localizedDescription))
+                            callback(nil, nil, error)
+                        }
+                    })
+                } else {
+                    print("performWelcomeProcedure: Unable to fetch user without default uuid, returning nil,nil,error")
+                    callback(nil, nil, error)
+                }
+            } else {
+                print("performWelcomeProcedure: unable to fetch user, returning nil,nil")
+                print(String(describing: error?.localizedDescription))
+                callback(nil, nil, error)
+            }
+            
+        })
     }
 }
