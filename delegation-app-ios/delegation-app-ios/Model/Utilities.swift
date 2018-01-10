@@ -26,6 +26,7 @@ class Globals {
         static let DEFAULT_EMAIL: String = ""
         static let DEFAULT_PHONE: String = ""
         static let DEFAULT_UUID: String = ""
+        static let MINIMUM_PASSWORD_LENGTH: Int = 6
     }
     
     public class Team {
@@ -37,6 +38,21 @@ class Globals {
 
 class Utilities {
     
+    class Status {
+        public let status: Bool
+        public let message: String
+        
+        init(_ status: Bool, msg: String) {
+            self.status = status
+            self.message = msg
+        }
+        
+        init(_ status: Bool) {
+            self.status = status
+            self.message = ""
+        }
+    }
+    
     static func isValidEmail(_ testStr: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
@@ -44,12 +60,38 @@ class Utilities {
         return emailTest.evaluate(with: testStr)
     }
     
-    static func isValidPassword(_ testStr: String) -> Bool {
-        return testStr.count > 5
+//    static func isValidPassword(_ testStr: String) -> Bool {
+//        return testStr.count > 5
+//    }
+//
+//    static func isValidPasswords(pswd: String, cnfrm: String) -> Bool {
+//        return pswd.count > 5 && pswd == cnfrm
+//    }
+    
+    static func validatePassword(_ pswd: String) -> Status {
+        if pswd == "" {
+            return Status(false, msg: "Password is required.")
+        }
+        
+        if pswd.count < Globals.User.MINIMUM_PASSWORD_LENGTH {
+            return Status(false, msg: "Password length must be \(Globals.User.MINIMUM_PASSWORD_LENGTH) characters or longer.")
+        }
+        
+        return Status(true, msg: "Password accepted.")
     }
     
-    static func isValidPasswords(pswd: String, cnfrm: String) -> Bool {
-        return pswd.count > 5 && pswd == cnfrm
+    static func validatePasswords(pswd: String, cnfrm: String) -> Status {
+        let status = validatePassword(pswd)
+        
+        if !status.status {
+            return status
+        }
+        
+        if pswd != cnfrm {
+            return Status(false, msg: "Passwords do not match.")
+        }
+        
+        return status
     }
 }
 
@@ -137,6 +179,17 @@ class FirebaseUtilities {
         }
     }
     
+    static func getAllTeams(callback: @escaping ((_ teams: [Team]?, _ error: Error?) -> Void)) {
+        let ref: DatabaseReference! = Database.database().reference()
+        ref.child("teams").observeSingleEvent(of: .value, with: { (snapshot) in
+            let teams = FirebaseUtilities.extractTeamsFromSnapshot(snapshot)
+            callback(teams, nil)
+        }) { (error) in
+            print(error.localizedDescription)
+            callback(nil, error)
+        }
+    }
+    
     static func extractTaskFromSnapshot(_ snapshot: DataSnapshot) -> Task {
         let value = snapshot.value as? NSDictionary
         
@@ -163,6 +216,36 @@ class FirebaseUtilities {
         }) { (error) in
             print(error.localizedDescription)
             callback(nil, error)
+        }
+    }
+    
+    static func createNewUser(newUser: User, selectedTeams: [String], callback: @escaping ((_ error: Error?) -> Void)) {
+        Auth.auth().createUser(withEmail: newUser.getEmailAddress(), password: newUser.getPassword()) {
+            (user, error) in
+            
+            if (user != nil && error == nil) {
+                let uid = Auth.auth().currentUser!.uid
+                print("Got new user UID: \(uid)")
+                
+                let ref = Database.database().reference(withPath: "users/\(uid)")
+                
+                ref.child("firstname").setValue(newUser.getFirstName())
+                ref.child("lastname").setValue(newUser.getLastName())
+                ref.child("email").setValue(newUser.getEmailAddress())
+                ref.child("phone").setValue(newUser.getPhoneNumber())
+                
+                for id in selectedTeams {
+                    ref.child("teams").childByAutoId().setValue(id)
+                }
+                
+                print("firebase: user added successfully")
+                
+                callback(nil)
+            } else {
+                print("firebase: failed to add user")
+                print(String(describing:error?.localizedDescription))
+                callback(error)
+            }
         }
     }
     
