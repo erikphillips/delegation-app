@@ -62,8 +62,9 @@ class UpdateAccountSettingsViewController: UIViewController {
             }
         }
         
-        if self.passwordTextField.text != "" {
-            if Utilities.isValidPasswords(pswd: self.passwordTextField!.text!, cnfrm: self.confirmPasswordTextField!.text!) {
+        if self.passwordTextField.text! != "" {
+            let status = Utilities.validatePasswords(pswd: self.passwordTextField.text!, cnfrm: self.confirmPasswordTextField.text!)
+            if status.status {
                 Auth.auth().currentUser?.updatePassword(to: self.passwordTextField!.text!) {
                     (error) in
                     if let error = error {
@@ -73,7 +74,7 @@ class UpdateAccountSettingsViewController: UIViewController {
                     }
                 }
             } else {
-                print("Error: Unable to update passwords, the passwords do not match or are not valid.")
+                print("Waring: Will not update password: \(status.message)")
             }
         }
         
@@ -111,16 +112,16 @@ class UpdateAccountSettingsViewController: UIViewController {
         self.performSegue(withIdentifier: "unwindToSettingsTableView", sender: nil)
     }
     
-//    func displayAlert(title: String, message: String, positiveAction: Any?) {
-//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//
-//        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-//            print("You've pressed OK button")
-//        }
-//
-//        alertController.addAction(OKAction)
-//        self.present(alertController, animated: true, completion:nil)
-//    }
+    func displayAlert(title: String, message: String, positiveAction: Any?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+            print("You've pressed OK button")
+        }
+
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion:nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindToSettingsTableView" {

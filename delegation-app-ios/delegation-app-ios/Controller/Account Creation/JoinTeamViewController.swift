@@ -50,38 +50,17 @@ class JoinTeamViewController: UIViewController {
     
     @IBAction func createNewAccountAndJoinTeam(_ sender: Any) {
         if let user = self.user {
-            Auth.auth().createUser(withEmail: user.getEmailAddress(), password: user.getPassword()) {
-                [weak self](user, error) in
+            FirebaseUtilities.createNewUser(newUser: user, selectedTeams: self.selectedTeams ?? [], callback: {
+                [weak self] (error) in
                 guard let this = self else { return }
                 
-                if (user != nil && error == nil) {
-                    let uid = Auth.auth().currentUser!.uid
-                    print("Got UID: \(uid)")
-                    
-                    let ref = Database.database().reference(withPath: "users/\(uid)")
-                    
-                    ref.child("firstname").setValue(this.user?.getFirstName())
-                    ref.child("lastname").setValue(this.user?.getLastName())
-                    ref.child("email").setValue(this.user?.getEmailAddress())
-                    ref.child("phone").setValue(this.user?.getPhoneNumber())
-                    
-                    for id in (this.selectedTeams ?? []) {
-                        ref.child("teams").childByAutoId().setValue(id)
-                    }
-                    
-                    print("firebase: user added successfully")
-                    
+                if error == nil {
                     this.performSegue(withIdentifier: "unwindToWelcomeFromJoinTeam", sender: nil)
-                } else {
-                    print("firebase: failed to add user")
-                    print(error?.localizedDescription)
                 }
-            } 
+            })
         } else {
             print("createNewAccountAndJoinTeam failed - unable to unwrap user")
         }
-        
-        
     }
     
     @IBAction func unwindToJoinTeamView(segue: UIStoryboardSegue) { }

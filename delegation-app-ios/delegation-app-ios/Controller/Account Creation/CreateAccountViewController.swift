@@ -47,76 +47,71 @@ class CreateAccountViewController: UIViewController {
         var password = ""
         var confirmPassword = ""
         
-        var passing = true
-        
         if let value = firstnameTextField.text {
             firstname = value
             if firstname == "" {
                 self.displayAlert(title: "Firstname Required", message: "A firstname is required.")
-                passing = false
+                return
             }
         } else {
             self.displayAlert(title: "Firstname Required", message: "A firstname is required.")
-            passing = false
+            return
         }
         
         if let value = lastnameTextField.text {
             lastname = value
             if lastname == "" {
                 self.displayAlert(title: "Lastname Required", message: "A lastname is required.")
-                passing = false
+                return
             }
         } else {
             self.displayAlert(title: "Lastname Required", message: "A lastname is required.")
-            passing = false
+            return
         }
         
         if let value = emailAddressTextField.text {
             email = value
             if email == "" {
                 self.displayAlert(title: "Email Required", message: "An email address is required.")
-                passing = false
+                return
             } else if !Utilities.isValidEmail(email) {
                 self.displayAlert(title: "Email Required", message: "The email address provided is not valid. Please confirm that the email address is in a valid format.")
-                passing = false
+                return
             }
         } else {
             self.displayAlert(title: "Email Required", message: "An email address is required.")
-            passing = false
+            return
         }
         
         if let value = passwordTextField.text {
             password = value
-            if password == "" {
-                self.displayAlert(title: "Password Required", message: "A password is required.")
-                passing = false
-            } else if !Utilities.isValidPassword(password) {
-                self.displayAlert(title: "Password Required", message: "The password provided is not valid. Passwords must be 6 characters or longer.")
+            let status = Utilities.validatePassword(password)
+            if !status.status {
+                self.displayAlert(title: "Password Required", message: "\(status.message)")
+                return
             }
         } else {
             self.displayAlert(title: "Password Required", message: "A password is required.")
-            passing = false
+            return
         }
         
         if let value = confirmPasswordTextField.text {
             confirmPassword = value
             if confirmPassword == "" {
                 self.displayAlert(title: "Confirm Password Required", message: "A confirmation password is required.")
-                passing = false
+                return
             } else if password != confirmPassword {
                 self.displayAlert(title: "Password Confirmation Required", message: "Both passwords need to match and are required.")
-                passing = false
+                return
             }
         } else {
             self.displayAlert(title: "Confirm Password Required", message: "A confirmation password is required.")
-            passing = false
+            return
         }
         
         // If the validation passes, create a user object and perform the segue
-        if passing {
-            self.user = User(uid: "", firstname: firstname, lastname: lastname, email: email, phone: "", password: password)
-            self.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
-        }
+        self.user = User(uid: "", firstname: firstname, lastname: lastname, email: email, phone: "", password: password)
+        self.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {

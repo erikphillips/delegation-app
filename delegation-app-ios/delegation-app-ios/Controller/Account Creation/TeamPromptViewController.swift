@@ -26,22 +26,36 @@ class TeamPromptViewController: UIViewController {
         self.performSegue(withIdentifier: "unwindToCreateAccountView", sender: nil)
     }
     
+    // TODO: This needs to be tested
     @IBAction func joinExistingTeamPressed(_ sender: Any) {
-        let ref: DatabaseReference! = Database.database().reference()
-        ref.child("teams").observeSingleEvent(of: .value, with: {
-            [weak self] (snapshot) in
+        FirebaseUtilities.getAllTeams(callback: {
+            [weak self] (teams, error) in
             guard let this = self else { return }
-                        
-            this.teams = FirebaseUtilities.extractTeamsFromSnapshot(snapshot)
-            this.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
             
-        }) { (error) in
-            print(error.localizedDescription)
-        }
+            if let teams = teams {
+                this.teams = teams
+                this.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
+            } else if let error = error {
+                this.displayAlert(title: "Error", message: "Unable to load team information at this time. \(error.localizedDescription)")
+            } else {
+                this.displayAlert(title: "Unknown Error", message: "An unknown error occurred and the teams cannot be loaded at this time.")
+            }
+        })
     }
     
     @IBAction func createNewTeamPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "CreateAccountCreateTeam", sender: nil)
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+            print("You've pressed OK button");
+        }
+        
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion:nil)
     }
     
     @IBAction func unwindToTeamPromptView(segue: UIStoryboardSegue) { }
