@@ -44,23 +44,23 @@ class UpdateAccountSettingsViewController: UIViewController {
         
         // TODO: This mess needs to be cleaned up.
         //   Updating the email address and the password should go inside callbacks within the model's code
-        if self.emailAddressTextField.text != self.user?.getEmailAddress() {
-            if Utilities.isValidEmail(self.emailAddressTextField!.text!) {
-                Auth.auth().currentUser?.updateEmail(to: self.emailAddressTextField!.text!) {
-                    [weak self] (error) in
-                    guard let this = self else { return }
-                    
-                    if let error = error {
-                        print("Error: Unable to update email address - \(error.localizedDescription)")
-                    } else {
-                        print("Email address updated successfully.")
-                        this.user?.setEmailAddress(this.emailAddressTextField!.text!)
-                    }
-                }
-            } else {
-                print("Error: Unable to update email address, invalid email.")
-            }
-        }
+//        if self.emailAddressTextField.text != self.user?.getEmailAddress() {
+//            if Utilities.isValidEmail(self.emailAddressTextField!.text!) {
+//                Auth.auth().currentUser?.updateEmail(to: self.emailAddressTextField!.text!) {
+//                    [weak self] (error) in
+//                    guard let this = self else { return }
+//                    
+//                    if let error = error {
+//                        print("Error: Unable to update email address - \(error.localizedDescription)")
+//                    } else {
+//                        print("Email address updated successfully.")
+//                        this.user?.setEmailAddress(this.emailAddressTextField!.text!)
+//                    }
+//                }
+//            } else {
+//                print("Error: Unable to update email address, invalid email.")
+//            }
+//        }
         
         if self.passwordTextField.text! != "" {
             let status = Utilities.validatePasswords(pswd: self.passwordTextField.text!, cnfrm: self.confirmPasswordTextField.text!)

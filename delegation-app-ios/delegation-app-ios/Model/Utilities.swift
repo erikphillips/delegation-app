@@ -53,20 +53,25 @@ class Utilities {
         }
     }
     
-    static func isValidEmail(_ testStr: String) -> Bool {
+//    static func isValidEmail(_ testStr: String) -> Bool {
+//        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+//
+//        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+//        return emailTest.evaluate(with: testStr)
+//    }
+    
+    
+    
+    static func validateEmail(_ email: String) -> Status {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: testStr)
+        if emailTest.evaluate(with: email) {
+            return Status(true)
+        } else {
+            return Status(false, msg: "Email must match the format: 'name@domain.com'")
+        }
     }
-    
-//    static func isValidPassword(_ testStr: String) -> Bool {
-//        return testStr.count > 5
-//    }
-//
-//    static func isValidPasswords(pswd: String, cnfrm: String) -> Bool {
-//        return pswd.count > 5 && pswd == cnfrm
-//    }
     
     static func validatePassword(_ pswd: String) -> Status {
         if pswd == "" {
@@ -77,7 +82,7 @@ class Utilities {
             return Status(false, msg: "Password length must be \(Globals.User.MINIMUM_PASSWORD_LENGTH) characters or longer.")
         }
         
-        return Status(true, msg: "Password accepted.")
+        return Status(true)
     }
     
     static func validatePasswords(pswd: String, cnfrm: String) -> Status {
@@ -227,15 +232,15 @@ class FirebaseUtilities {
                 let uid = Auth.auth().currentUser!.uid
                 print("Got new user UID: \(uid)")
                 
-                let ref = Database.database().reference(withPath: "users/\(uid)")
-                
+                let ref = Database.database().reference(withPath: "users/\(uid)/information/")
                 ref.child("firstname").setValue(newUser.getFirstName())
                 ref.child("lastname").setValue(newUser.getLastName())
                 ref.child("email").setValue(newUser.getEmailAddress())
                 ref.child("phone").setValue(newUser.getPhoneNumber())
                 
+                let teamsRef = Database.database().reference(withPath: "users/\(uid)/teams/")
                 for id in selectedTeams {
-                    ref.child("teams").childByAutoId().setValue(id)
+                    teamsRef.childByAutoId().setValue(id)
                 }
                 
                 print("firebase: user added successfully")
@@ -271,7 +276,7 @@ class FirebaseUtilities {
                 if uuid != Globals.User.DEFAULT_UUID {
                     FirebaseUtilities.getUserInformation(uid: uuid, callback: { (user, error) in
                         if let user = user {
-                            print("performWelcomeProcedure: successfully retrieved userr information, returning user,nil,nil")
+                            print("performWelcomeProcedure: successfully retrieved user information, returning user,nil,nil")
                             callback(user, nil, nil)
                         } else {
                             print("performWelcomeProcedure: unable to get user information, returning nil,nil,error")

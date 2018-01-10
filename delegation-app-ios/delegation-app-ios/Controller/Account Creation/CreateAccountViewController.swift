@@ -41,71 +41,32 @@ class CreateAccountViewController: UIViewController {
     }
     
     @IBAction func continueButtonPressed(_ sender: Any) {
-        var firstname = ""
-        var lastname = ""
-        var email = ""
-        var password = ""
-        var confirmPassword = ""
+        let firstname = firstnameTextField.text!
+        let lastname = lastnameTextField.text!
+        let email = emailAddressTextField.text!
+        let password = passwordTextField.text!
+        let confirmPassword = confirmPasswordTextField.text!
         
-        if let value = firstnameTextField.text {
-            firstname = value
-            if firstname == "" {
-                self.displayAlert(title: "Firstname Required", message: "A firstname is required.")
-                return
-            }
-        } else {
+        if firstname == "" {
             self.displayAlert(title: "Firstname Required", message: "A firstname is required.")
             return
         }
         
-        if let value = lastnameTextField.text {
-            lastname = value
-            if lastname == "" {
-                self.displayAlert(title: "Lastname Required", message: "A lastname is required.")
-                return
-            }
-        } else {
+        if lastname == "" {
             self.displayAlert(title: "Lastname Required", message: "A lastname is required.")
             return
         }
         
-        if let value = emailAddressTextField.text {
-            email = value
-            if email == "" {
-                self.displayAlert(title: "Email Required", message: "An email address is required.")
-                return
-            } else if !Utilities.isValidEmail(email) {
-                self.displayAlert(title: "Email Required", message: "The email address provided is not valid. Please confirm that the email address is in a valid format.")
-                return
-            }
-        } else {
-            self.displayAlert(title: "Email Required", message: "An email address is required.")
+        
+        let emailStatus = Utilities.validateEmail(email)
+        if !emailStatus.status {
+            self.displayAlert(title: "Email Required", message: "The email address provided is not valid. \(emailStatus.message)")
             return
         }
         
-        if let value = passwordTextField.text {
-            password = value
-            let status = Utilities.validatePassword(password)
-            if !status.status {
-                self.displayAlert(title: "Password Required", message: "\(status.message)")
-                return
-            }
-        } else {
-            self.displayAlert(title: "Password Required", message: "A password is required.")
-            return
-        }
-        
-        if let value = confirmPasswordTextField.text {
-            confirmPassword = value
-            if confirmPassword == "" {
-                self.displayAlert(title: "Confirm Password Required", message: "A confirmation password is required.")
-                return
-            } else if password != confirmPassword {
-                self.displayAlert(title: "Password Confirmation Required", message: "Both passwords need to match and are required.")
-                return
-            }
-        } else {
-            self.displayAlert(title: "Confirm Password Required", message: "A confirmation password is required.")
+        let passwordStatus = Utilities.validatePasswords(pswd: password, cnfrm: confirmPassword)
+        if !passwordStatus.status {
+            self.displayAlert(title: "Password Required", message: "\(passwordStatus.message)")
             return
         }
         
