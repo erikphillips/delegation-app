@@ -364,6 +364,7 @@
 				98849EA51FDDC7AA009C9B1A /* Resources */,
 				A10E1787994A9639367A6E25 /* [CP] Embed Pods Frameworks */,
 				61323EF64102C50FB00A5378 /* [CP] Copy Pods Resources */,
+				98B8B2BC2007269700785A80 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -619,6 +620,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		98B8B2BC2007269700785A80 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
 		A10E1787994A9639367A6E25 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
