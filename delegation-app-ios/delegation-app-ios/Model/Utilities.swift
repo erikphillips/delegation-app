@@ -34,6 +34,10 @@ class Globals {
         static let DEFAULT_OWNER: String = ""
         static let DEFAULT_DESCRIPTION: String = ""
     }
+    
+    public class Application {
+        static let VERSION: String = "v0.1"
+    }
 }
 
 class Utilities {
@@ -59,8 +63,6 @@ class Utilities {
 //        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
 //        return emailTest.evaluate(with: testStr)
 //    }
-    
-    
     
     static func validateEmail(_ email: String) -> Status {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -221,6 +223,40 @@ class FirebaseUtilities {
         }) { (error) in
             print(error.localizedDescription)
             callback(nil, error)
+        }
+    }
+    
+    static func updateCurrentUserEmailAddress(_ email: String, callback: @escaping ((_ status: Utilities.Status) -> Void)) {
+        let emailStatus = Utilities.validateEmail(email)
+        if emailStatus.status {
+            Auth.auth().currentUser?.updateEmail(to: email) { (error) in
+                if let error = error {
+                    print("Error: Unable to update email address - \(error.localizedDescription)")
+                    callback(Utilities.Status(false, msg: error.localizedDescription))
+                } else {
+                    print("Email address updated successfully.")
+                    callback(Utilities.Status(true))
+                }
+            }
+        } else {
+            callback(emailStatus)
+        }
+    }
+    
+    static func updateCurrentUserPassword(_ password: String, callback: @escaping ((_ status: Utilities.Status) -> Void)) {
+        let passwordStatus = Utilities.validatePassword(password)
+        if passwordStatus.status {
+            Auth.auth().currentUser?.updatePassword(to: password) { (error) in
+                if let error = error {
+                    print("Error: Unable to update password - \(error.localizedDescription)")
+                    callback(Utilities.Status(false, msg: error.localizedDescription))
+                } else {
+                    print("Password updated successfully.")
+                    callback(Utilities.Status(true))
+                }
+            }
+        } else {
+            callback(passwordStatus)
         }
     }
     

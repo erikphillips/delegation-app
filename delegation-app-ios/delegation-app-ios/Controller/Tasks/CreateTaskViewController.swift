@@ -60,8 +60,7 @@ class CreateTaskViewController: UIViewController {
             return
         }
         
-        
-        
+        // TODO: Create the task in the database
         self.navigationController?.popViewController(animated: true)
     }
     

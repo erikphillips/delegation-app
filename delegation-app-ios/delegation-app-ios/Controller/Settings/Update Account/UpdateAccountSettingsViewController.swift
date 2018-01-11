@@ -42,68 +42,42 @@ class UpdateAccountSettingsViewController: UIViewController {
         self.user?.setLastName(self.lastNameTextField!.text!)
         self.user?.setPhoneNumber(self.phoneNumberTextField!.text!)
         
-        // TODO: This mess needs to be cleaned up.
-        //   Updating the email address and the password should go inside callbacks within the model's code
-//        if self.emailAddressTextField.text != self.user?.getEmailAddress() {
-//            if Utilities.isValidEmail(self.emailAddressTextField!.text!) {
-//                Auth.auth().currentUser?.updateEmail(to: self.emailAddressTextField!.text!) {
-//                    [weak self] (error) in
-//                    guard let this = self else { return }
-//                    
-//                    if let error = error {
-//                        print("Error: Unable to update email address - \(error.localizedDescription)")
-//                    } else {
-//                        print("Email address updated successfully.")
-//                        this.user?.setEmailAddress(this.emailAddressTextField!.text!)
-//                    }
-//                }
-//            } else {
-//                print("Error: Unable to update email address, invalid email.")
-//            }
-//        }
+        let dispatchGroup = DispatchGroup()
         
-        if self.passwordTextField.text! != "" {
-            let status = Utilities.validatePasswords(pswd: self.passwordTextField.text!, cnfrm: self.confirmPasswordTextField.text!)
-            if status.status {
-                Auth.auth().currentUser?.updatePassword(to: self.passwordTextField!.text!) {
-                    (error) in
-                    if let error = error {
-                        print("Error: Unable to update password - \(error.localizedDescription)")
-                    } else {
-                        print("Password updated successfully.")
-                    }
+        if self.emailAddressTextField.text != self.user?.getEmailAddress() {
+            dispatchGroup.enter()
+            FirebaseUtilities.updateCurrentUserEmailAddress(emailAddressTextField.text!, callback: {
+                [weak self] (status) in
+                guard let this = self else { return }
+                
+                if status.status {
+                   this.user?.setEmailAddress(this.emailAddressTextField.text!)
+                } else {
+                    print("Error: unable to update email address.")
                 }
-            } else {
-                print("Waring: Will not update password: \(status.message)")
-            }
+                
+                dispatchGroup.leave()
+            })
         }
         
-        if let (status, resp) = self.user?.updateUserInDatabase() { // perform the update action
+        if self.passwordTextField.text! != "" {
+            print("Warning: will update password to '\(self.passwordTextField.text!)'")
             
-            if status == 200 { self.updateUserInformation = true }
-            if status == 404 { self.updateUserInformation = false }
-            
-            let alertController = UIAlertController(title: "Update User", message: resp, preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                [weak self] (action:UIAlertAction) in
-                guard let this = self else { return }
-                this.performSegue(withIdentifier: "unwindToSettingsTableView", sender: nil)
-            }
-            
-            alertController.addAction(OKAction)
-            self.present(alertController, animated: true, completion:nil)
+            dispatchGroup.enter()
+            FirebaseUtilities.updateCurrentUserPassword(self.passwordTextField.text!, callback: {(status) in
+                dispatchGroup.leave()
+            })
         } else {
-            self.updateUserInformation = false
-            
-            let alertController = UIAlertController(title: "Update User", message: "Failed to update user due to an unknown error.", preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                [weak self] (action:UIAlertAction) in
-                guard let this = self else { return }
-                this.performSegue(withIdentifier: "unwindToSettingsTableView", sender: nil)
+            print("Warning: will not update password")
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            print("Both dispatch functions complete 👍")
+            if let (status, resp) = self.user?.updateUserInDatabase() {
+                if status == 200 { self.updateUserInformation = true }
+                if status == 404 { self.updateUserInformation = false }
+                self.performSegue(withIdentifier: "unwindToSettingsTableView", sender: nil)
             }
-            
-            alertController.addAction(OKAction)
-            self.present(alertController, animated: true, completion:nil)
         }
     }
     

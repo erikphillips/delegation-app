@@ -13,6 +13,9 @@ class SettingsTableViewController: UITableViewController {
     
     var user: User?
     
+    @IBOutlet weak var applicationVersionLabel: UILabel!
+    @IBOutlet weak var applicationBuildLabel: UILabel!
+    
     @IBOutlet weak var settingsTableView: UITableView!
     @IBAction func settingsLogout(_ sender: Any) {
         let firebaseAuth = Auth.auth()
@@ -87,6 +90,12 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         print("Settings TableView loaded...")
+        
+        let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let buildNumberString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+
+        applicationVersionLabel.text = "Delegation Application v\(appVersionString)"
+        applicationBuildLabel.text = "Build \(buildNumberString)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
