@@ -41,7 +41,7 @@ class WelcomeViewController: UIViewController {
             
 //            self.displayLoadingScreen()
             FirebaseUtilities.performWelcomeProcedure(controller: self, username: username!, password: password!, callback: {
-                [weak self] (user, tasks, error) in
+                [weak self] (user, tasks, status) in
                 guard let this = self else { return }
                 if let user = user {
                     this.segueUser = user
@@ -55,13 +55,16 @@ class WelcomeViewController: UIViewController {
                     this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
                 } else {
                     print("submitLogin error: unable to retrieve a valid user.")
-                    if let error = error {
-                        print(error.localizedDescription)
-                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(error.localizedDescription)")
-                    } else {
-                        print("unknown error")
-                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. Please verify your internet connection, username, and password.")
+                    if status.status == false {
+                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(status.message)")
                     }
+//                    if let error = error {
+//                        print(error.localizedDescription)
+//                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(error.localizedDescription)")
+//                    } else {
+//                        print("unknown error")
+//                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. Please verify your internet connection, username, and password.")
+//                    }
                 }
             })
         } else {

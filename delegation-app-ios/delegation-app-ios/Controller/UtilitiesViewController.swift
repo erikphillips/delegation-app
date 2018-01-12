@@ -24,17 +24,17 @@ class UtilitiesViewController: UIViewController {
     
     @IBAction func fetchAllUsersPressed(_ sender: Any) {
         print("Fetch all users pressed...")
-        FirebaseUtilities.getUserInformation(uid: "Kd8p3fl5xyPT0g9BGkHASF025D23", callback: {
-            (user, error) in
-            if let user = user {
-                print(user.getFullName())
-            } else if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("fetchAllUsersPressed: Found unknown error.")
-            }
-            
-        })
+//        FirebaseUtilities.getUserInformation(uid: "Kd8p3fl5xyPT0g9BGkHASF025D23", callback: {
+//            (user, error) in
+//            if let user = user {
+//                print(user.getFullName())
+//            } else if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                print("fetchAllUsersPressed: Found unknown error.")
+//            }
+//
+//        })
     }
     
     @IBAction func fetchTestDataPressed(_ sender: Any) {
