@@ -40,21 +40,6 @@ class Globals {
     }
 }
 
-class Status {
-    public var status: Bool
-    public var message: String
-    
-    init(_ status: Bool) {
-        self.status = status
-        self.message = ""
-    }
-    
-    init(_ status: Bool, _ msg: String) {
-        self.status = status
-        self.message = msg
-    }
-}
-
 class Utilities {
     
 //    class Status {
