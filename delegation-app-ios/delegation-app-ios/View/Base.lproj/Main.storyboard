@@ -758,10 +758,10 @@ Creating a new team will automatically place you as the owner/admin of the team 
             </objects>
             <point key="canvasLocation" x="2012" y="667"/>
         </scene>
-        <!--Create Task View Controller-->
+        <!--Create Task-->
         <scene sceneID="MXS-Qr-h5U">
             <objects>
-                <viewController id="awO-af-s8G" customClass="CreateTaskViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Create Task" id="awO-af-s8G" customClass="CreateTaskViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Ai-wj-9T6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1025,7 +1025,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xmw-wJ-weC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5022" y="1487"/>
+            <point key="canvasLocation" x="6046" y="1487"/>
         </scene>
         <!--Item-->
         <scene sceneID="vmZ-5x-5SZ">
@@ -1071,7 +1071,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xk1-C4-fg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5022" y="2261"/>
+            <point key="canvasLocation" x="6046" y="2261"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="TKO-pS-Kx3">
@@ -1452,7 +1452,7 @@ All Rights Reserved.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OxL-cQ-vCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Uou-VT-fte" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5021.6000000000004" y="2963.1184407796104"/>
+            <point key="canvasLocation" x="6046" y="2964"/>
         </scene>
         <!--Update Account Settings View Controller-->
         <scene sceneID="GPQ-bS-KAk">
@@ -1576,7 +1576,7 @@ All Rights Reserved.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQz-0F-iV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="s3f-ZL-h54" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5815" y="2719"/>
+            <point key="canvasLocation" x="6838" y="2719"/>
         </scene>
         <!--Join Teams-->
         <scene sceneID="MQ2-Mo-uwq">
@@ -1604,7 +1604,7 @@ All Rights Reserved.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TMy-0h-dpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5700" y="3657"/>
+            <point key="canvasLocation" x="6724" y="3658"/>
         </scene>
         <!--Create Team-->
         <scene sceneID="kOB-dM-o5h">
@@ -1619,7 +1619,7 @@ All Rights Reserved.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOR-o8-CZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6388" y="3657"/>
+            <point key="canvasLocation" x="7409" y="3658"/>
         </scene>
         <!--Your Teams-->
         <scene sceneID="Gcd-aF-xZM">
@@ -1663,7 +1663,7 @@ All Rights Reserved.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IwQ-F0-rqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5022" y="3657"/>
+            <point key="canvasLocation" x="6046" y="3658"/>
         </scene>
     </scenes>
     <resources>
