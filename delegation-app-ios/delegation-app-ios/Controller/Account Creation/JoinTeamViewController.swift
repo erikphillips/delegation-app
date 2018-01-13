@@ -51,11 +51,13 @@ class JoinTeamViewController: UIViewController {
     @IBAction func createNewAccountAndJoinTeam(_ sender: Any) {
         if let user = self.user {
             FirebaseUtilities.createNewUser(newUser: user, selectedTeams: self.selectedTeams ?? [], callback: {
-                [weak self] (error) in
+                [weak self] (status) in
                 guard let this = self else { return }
                 
-                if error == nil {
+                if status.status {
                     this.performSegue(withIdentifier: "unwindToWelcomeFromJoinTeam", sender: nil)
+                } else {
+                    print("ERROR: \(status.message)")
                 }
             })
         } else {

@@ -42,28 +42,6 @@ class Globals {
 
 class Utilities {
     
-//    class Status {
-//        public let status: Bool
-//        public let message: String
-//
-//        init(_ status: Bool, msg: String) {
-//            self.status = status
-//            self.message = msg
-//        }
-//
-//        init(_ status: Bool) {
-//            self.status = status
-//            self.message = ""
-//        }
-//    }
-    
-//    static func isValidEmail(_ testStr: String) -> Bool {
-//        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-//
-//        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-//        return emailTest.evaluate(with: testStr)
-//    }
-    
     static func validateEmail(_ email: String) -> Status {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
@@ -101,7 +79,7 @@ class Utilities {
         return status
     }
     
-    static func validateUser(user: User?) -> Status {
+    static func validateUser(_ user: User?) -> Status {
         if let user = user {
             if user.getFirstName() == Globals.User.DEFAULT_FIRSTNAME {
                 return Status(false, "User object is missing a valid first name.")
@@ -114,6 +92,40 @@ class Utilities {
             }
         } else {
             return Status(false, "User object is an optional set as nil.")
+        }
+    }
+    
+    static func validateTask(_ task: Task?) -> Status {
+        if let task = task {
+            if task.getTitle() == Globals.Task.DEFAULT_TITLE {
+                return Status(false, "Task object is missing a valid title")
+            } else if task.getDescription() == Globals.Task.DEFAULT_DESCRIPTION {
+                return Status(false, "Task object is missing a valid description")
+            } else if task.getAssignee() == Globals.Task.DEFAULT_ASSIGNEE {
+                return Status(false, "Task object is missing a valid assignee")
+            } else if task.getTeam() == Globals.Task.DEFAULT_TEAM {
+                return Status(false, "Task object is missing a valid team")
+            } else {
+                return Status(true, "Task object is considered valid (title, description, assignee, and team")
+            }
+        } else {
+            return Status(false, "Task object is an optional set as nil")
+        }
+    }
+    
+    static func validateTeam(_ team: Team?) -> Status {
+        if let team = team {
+            if team.getTeamName() == Globals.Team.DEFAULT_TEAMNAME {
+                return Status(false, "Team object is missing a valid teamname")
+            } else if team.getDescription() == Globals.Team.DEFAULT_DESCRIPTION {
+                return Status(false, "Team object is missing a valid description")
+            } else if team.getOwnerUUID() == Globals.Team.DEFAULT_OWNER {
+                return Status(false, "Team object is missing a valid owner")
+            } else {
+                return Status(true, "Team ibject is considered valid (teamname, description, owner)")
+            }
+        } else {
+            return Status(false, "Team object is an optional set as nil")
         }
     }
 }
@@ -170,7 +182,7 @@ class FirebaseUtilities {
             (snapshot) in
             
             let user = FirebaseUtilities.extractUserInformationFromSnapshot(snapshot, uuid: uid)
-            let userStatus = Utilities.validateUser(user: user)
+            let userStatus = Utilities.validateUser(user)
             if userStatus.status {
                 callback(user, userStatus)
             } else {
@@ -192,29 +204,29 @@ class FirebaseUtilities {
         return Team(teamname: teamname, description: description, owner: owner)
     }
     
-    static func getTeamInformation(guid: String, callback: @escaping ((_ team: Team?, _ error: Error?) -> Void)) {
+    static func getTeamInformation(guid: String, callback: @escaping ((_ team: Team?, _ status: Status) -> Void)) {
         var ref: DatabaseReference
         ref = Database.database().reference()
         
         ref.child("teams/\(guid)/information").observeSingleEvent(of: .value, with: {
             (snapshot) in
             
-            callback(FirebaseUtilities.extractTeamInformationFromSnapshot(snapshot), nil)
+            callback(FirebaseUtilities.extractTeamInformationFromSnapshot(snapshot), Status(true))
             
         }) { (error) in
             print(error.localizedDescription)
-            callback(nil, error)
+            callback(nil, Status(false, error.localizedDescription))
         }
     }
     
-    static func getAllTeams(callback: @escaping ((_ teams: [Team]?, _ error: Error?) -> Void)) {
+    static func getAllTeams(callback: @escaping ((_ teams: [Team]?, _ status: Status) -> Void)) {
         let ref: DatabaseReference! = Database.database().reference()
         ref.child("teams").observeSingleEvent(of: .value, with: { (snapshot) in
             let teams = FirebaseUtilities.extractTeamsFromSnapshot(snapshot)
-            callback(teams, nil)
+            callback(teams, Status(true))
         }) { (error) in
             print(error.localizedDescription)
-            callback(nil, error)
+            callback(nil, Status(false, error.localizedDescription))
         }
     }
     
@@ -232,18 +244,18 @@ class FirebaseUtilities {
         return Task(title: title, priority: priority, description: description, team: team, status: status, resolution: resolution, assignee: assignee)
     }
     
-    static func getTask(tuid: String, callback: @escaping ((_ task: Task?, _ error: Error?) -> Void)) {
+    static func getTask(tuid: String, callback: @escaping ((_ task: Task?, _ status: Status) -> Void)) {
         var ref: DatabaseReference
         ref = Database.database().reference()
         
         ref.child("tasks/\(tuid)").observeSingleEvent(of: .value, with: {
             (snapshot) in
             
-            callback(FirebaseUtilities.extractTaskFromSnapshot(snapshot), nil)
+            callback(FirebaseUtilities.extractTaskFromSnapshot(snapshot), Status(true))
             
         }) { (error) in
             print(error.localizedDescription)
-            callback(nil, error)
+            callback(nil, Status(false, error.localizedDescription))
         }
     }
     
@@ -281,7 +293,7 @@ class FirebaseUtilities {
         }
     }
     
-    static func createNewUser(newUser: User, selectedTeams: [String], callback: @escaping ((_ error: Error?) -> Void)) {
+    static func createNewUser(newUser: User, selectedTeams: [String], callback: @escaping ((_ status: Status) -> Void)) {
         Auth.auth().createUser(withEmail: newUser.getEmailAddress(), password: newUser.getPassword()) {
             (user, error) in
             
@@ -302,11 +314,11 @@ class FirebaseUtilities {
                 
                 print("firebase: user added successfully")
                 
-                callback(nil)
+                callback(Status(true))
             } else {
                 print("firebase: failed to add user")
                 print(String(describing:error?.localizedDescription))
-                callback(error)
+                callback(Status(false, error?.localizedDescription ?? "Unknown error"))
             }
         }
     }
@@ -333,7 +345,7 @@ class FirebaseUtilities {
                 if uuid != Globals.User.DEFAULT_UUID {
                     FirebaseUtilities.getUserInformation(uid: uuid, callback: { (user, status) in
                         if let user = user {
-                            print("performWelcomeProcedure: successfully retrieved user information, returning user,nil,nil")
+                            print("performWelcomeProcedure: successfully retrieved user information, returning user,nil,true")
                             callback(user, nil, Status(true))
                         } else {
                             print("performWelcomeProcedure: unable to get user information, returning nil,nil,error")
@@ -346,9 +358,9 @@ class FirebaseUtilities {
                     callback(nil, nil, Status(false, "Unable to fetch user without default uuid."))
                 }
             } else {
-                print("performWelcomeProcedure: unable to fetch user, returning nil,nil")
+                print("performWelcomeProcedure: unable to fetch user, returning nil,nil,false")
                 print(String(describing: error?.localizedDescription))
-                callback(nil, nil, Status(false, "Unable to fetch user. " + String(describing: error?.localizedDescription)))
+                callback(nil, nil, Status(false, "Unable to fetch user. " + (error?.localizedDescription ?? "")))
             }
             
         })

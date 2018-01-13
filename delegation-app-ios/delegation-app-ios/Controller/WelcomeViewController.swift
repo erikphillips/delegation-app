@@ -43,6 +43,7 @@ class WelcomeViewController: UIViewController {
             FirebaseUtilities.performWelcomeProcedure(controller: self, username: username!, password: password!, callback: {
                 [weak self] (user, tasks, status) in
                 guard let this = self else { return }
+                
                 if let user = user {
                     this.segueUser = user
                     

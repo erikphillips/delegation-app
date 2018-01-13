@@ -29,16 +29,17 @@ class TeamPromptViewController: UIViewController {
     // TODO: This needs to be tested
     @IBAction func joinExistingTeamPressed(_ sender: Any) {
         FirebaseUtilities.getAllTeams(callback: {
-            [weak self] (teams, error) in
+            [weak self] (teams, status) in
             guard let this = self else { return }
-            
-            if let teams = teams {
-                this.teams = teams
-                this.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
-            } else if let error = error {
-                this.displayAlert(title: "Error", message: "Unable to load team information at this time. \(error.localizedDescription)")
+            if status.status {
+                if let teams = teams {
+                    this.teams = teams
+                    this.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
+                } else {
+                    this.displayAlert(title: "Unknown Error", message: "An unknown error occurred and the teams cannot be loaded at this time.")
+                }
             } else {
-                this.displayAlert(title: "Unknown Error", message: "An unknown error occurred and the teams cannot be loaded at this time.")
+                this.displayAlert(title: "Error", message: "Unable to load team information at this time. \(status.message)")
             }
         })
     }
