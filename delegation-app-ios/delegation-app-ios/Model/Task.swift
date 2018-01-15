@@ -8,6 +8,14 @@
 
 import Foundation
 
+enum Resolution: String {
+    case none
+    case open
+    case assigned
+    case inProgress
+    case closed
+}
+
 class Task {
     
     private var title: String
@@ -15,7 +23,7 @@ class Task {
     private var description: String
     private var team: String
     private var status: String
-    private var resolution: String
+    private var resolution: Resolution
     private var assignee: String
 
     init(title: String, priority: String, description: String, team: String, status: String, resolution: String, assignee: String) {
@@ -24,7 +32,7 @@ class Task {
         self.description = description
         self.team = team
         self.status = status
-        self.resolution = resolution
+        self.resolution = Resolution(rawValue: resolution) ?? Resolution.none
         self.assignee = assignee
     }
     
@@ -32,16 +40,24 @@ class Task {
         return self.title
     }
     
-    func getDescription() -> String {
-        return self.description
-    }
-    
     func getPriority() -> String {
         return self.priority
     }
     
-    func getTeam() -> String {
+    func getDescription() -> String {
+        return self.description
+    }
+    
+    func getTeamUID() -> String {
         return self.team
+    }
+    
+    func getStatus() -> String {
+        return self.status
+    }
+    
+    func getResolution() -> String {
+        return self.resolution.rawValue
     }
     
     func getAssignee() -> String {

@@ -103,7 +103,7 @@ class Utilities {
                 return Status(false, "Task object is missing a valid description")
             } else if task.getAssignee() == Globals.Task.DEFAULT_ASSIGNEE {
                 return Status(false, "Task object is missing a valid assignee")
-            } else if task.getTeam() == Globals.Task.DEFAULT_TEAM {
+            } else if task.getTeamUID() == Globals.Task.DEFAULT_TEAM {
                 return Status(false, "Task object is missing a valid team")
             } else {
                 return Status(true, "Task object is considered valid (title, description, assignee, and team")
@@ -259,6 +259,19 @@ class FirebaseUtilities {
         }
     }
     
+    static func createTask(_ task: Task) {
+        var ref: DatabaseReference
+        ref = Database.database().reference(withPath: "tasks").childByAutoId()
+        
+        ref.child("title").setValue(task.getTitle())
+        ref.child("priority").setValue(task.getPriority())
+        ref.child("description").setValue(task.getDescription())
+        ref.child("team").setValue(task.getTeamUID())
+        ref.child("status").setValue(task.getStatus())
+        ref.child("resolution").setValue(task.getResolution())
+        ref.child("assignee").setValue(task.getAssignee())
+    }
+    
     static func updateCurrentUserEmailAddress(_ email: String, callback: @escaping ((_ status: Status) -> Void)) {
         let emailStatus = Utilities.validateEmail(email)
         if emailStatus.status {
@@ -290,6 +303,25 @@ class FirebaseUtilities {
             }
         } else {
             callback(passwordStatus)
+        }
+    }
+    
+    static func updateCurrentUser(user: User, callback: @escaping ((_ status: Status) -> Void)) {
+        var ref: DatabaseReference
+        ref = Database.database().reference()
+        
+        ref.child("users/\(user.getUUID())/information").observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            
+            let ref = Database.database().reference(withPath: "users/\(user.getUUID())/information")
+            ref.child("firstname").setValue(user.getFirstName())
+            ref.child("lastname").setValue(user.getLastName())
+            ref.child("phone").setValue(user.getPhoneNumber())
+            ref.child("email").setValue(user.getEmailAddress())
+            
+        }) { (error) in
+            print(error.localizedDescription)
+            callback(Status(false, error.localizedDescription))
         }
     }
     

@@ -23,7 +23,7 @@ class TasksTableViewCell: UITableViewCell {
         if let task = task {
             taskNameLabel.text = task.getTitle()
             taskPriorityLabel.text = task.getPriority()
-            taskTeamNameLabel.text = task.getTeam()
+            taskTeamNameLabel.text = task.getTeamUID()
             taskAssignedLabel.text = task.getAssignee()
         }
     }

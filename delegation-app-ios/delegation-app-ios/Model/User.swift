@@ -9,6 +9,14 @@
 import Foundation
 import Firebase
 
+enum AccessRole: String {
+    case none
+    case owner
+    case admin
+    case manager
+    case member
+}
+
 class User {
     private var teams : [Team]
     private var tasks : [Task]
@@ -74,6 +82,10 @@ class User {
             this.emailAddress = value?["email"] as? String ?? this.emailAddress
             this.phoneNumber = value?["phone"] as? String ?? this.phoneNumber
         })
+    }
+    
+    func getUUID() -> String {
+        return self.uuid
     }
     
     func getTeams() -> [Team] {
