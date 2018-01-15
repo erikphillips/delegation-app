@@ -8,37 +8,40 @@
 
 import UIKit
 
-class CreateTaskViewController: UIViewController {
+class CreateTaskViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var taskDescriptionTextView: UITextView!
-    @IBOutlet weak var taskStateTextField: UITextField!
     @IBOutlet weak var taskTeamTextField: UITextField!
     
-    @IBOutlet weak var taskTeamPicker: UIPickerView!
-    @IBOutlet weak var taskStatePicker: UIPickerView!
-    
-    @IBOutlet weak var taskPriorityValueTextField: UILabel!
-    @IBAction func priorityChangerPressed(_ sender: UIStepper) {
-        print("Stepper changed value to \(Int(sender.value))")
-        self.taskPriorityValueTextField.text = String(Int(sender.value))
-    }
+//    @IBOutlet weak var taskPriorityValueTextField: UILabel!
+//    @IBAction func priorityChangerPressed(_ sender: UIStepper) {
+//        print("Stepper changed value to \(Int(sender.value))")
+//        self.taskPriorityValueTextField.text = String(Int(sender.value))
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        self.taskPriorityValueTextField.text = "5"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func teamSelectionEditingPressed(_ sender: Any) {
+        print("selected team textbox pressed")
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
     @IBAction func createTaskPressed(_ sender: Any) {
         let title = self.taskTitleTextField.text ?? ""
         let desc = self.taskDescriptionTextView.text ?? ""
-        let state = self.taskStateTextField.text ?? ""
-        let teamName = self.taskStateTextField.text ?? ""
+        let status = Globals.Task.DEFAULT_STATUS
+        let teamName = self.taskTeamTextField.text ?? ""
         
         if title == "" {
             self.displayAlert(title: "Title Error", message: "Tasks require titles.")
@@ -50,15 +53,10 @@ class CreateTaskViewController: UIViewController {
             return
         }
         
-        if state == "" {
-            self.displayAlert(title: "State Error", message: "Tasks need states.")
-            return
-        }
-        
-        if teamName == "" {
-            self.displayAlert(title: "Team Name Error", message: "Tasks need teams.")
-            return
-        }
+//        if teamName == "" {
+//            self.displayAlert(title: "Team Name Error", message: "Tasks need teams.")
+//            return
+//        }
         
         // TODO: Create the task in the database
         self.navigationController?.popViewController(animated: true)
