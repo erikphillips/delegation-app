@@ -11,27 +11,43 @@ import UIKit
 class TasksViewController: UIViewController {
 
     var user: User?
+    var tasks: [Task]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        print("Task Tab View Loaded, information:")
+        if let user = user {
+            print("  user loaded usccessfully")
+        } else {
+            print("  user did not load")
+        }
+        
+        if let tasks = tasks {
+            print("  tasks loaded successfully - \(tasks.count) tasks loaded")
+        } else {
+            print("  tasks did not load")
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "CreateNewTask" {
+            if let dest = segue.destination as? CreateTaskViewController {
+                dest.user = self.user
+            }
+        }
+        
+        if segue.identifier == "TasksTableEmbededSegue" {
+            if let dest = segue.destination as? TasksTableViewController {
+                if let tasks = self.tasks {
+                    dest.tasks = tasks
+                }
+            }
+        }
     }
-    */
 
 }
