@@ -272,6 +272,30 @@ class FirebaseUtilities {
         ref.child("assignee").setValue(task.getAssignee())
     }
     
+    static func getCurrentTaskIDs(uuid: String, callback: @escaping ((_ taskIDs: [String]?, _ status: Status) -> Void)) {
+        var ref: DatabaseReference
+        ref = Database.database().reference()
+        
+        print("Attempting to read: 'users/\(uuid)/current_tasks'...")
+        ref.child("users/\(uuid)/current_tasks").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let values = snapshot.value as? NSDictionary {
+                var ids: [String] = []
+                for (key, value) in values {
+                    if let value = value as? String {
+                        ids.append(value)
+                    } else {
+                        print("Unable to get value from key=\((key as? String) ?? "") as string")
+                    }
+                }
+                
+                callback(ids, Status(true))
+            } else {
+                print("getCurrentTaskIDs: warning, unable to get value as NSDictionary")
+                callback(nil, Status(false, "unable to retrieve task ids as an NSDictionary."))
+            }
+        })
+    }
+    
     static func updateCurrentUserEmailAddress(_ email: String, callback: @escaping ((_ status: Status) -> Void)) {
         let emailStatus = Utilities.validateEmail(email)
         if emailStatus.status {
@@ -375,16 +399,69 @@ class FirebaseUtilities {
         loginUser(username: username, password: password, callback: { (uuid, error) in
             if let uuid = uuid {
                 if uuid != Globals.User.DEFAULT_UUID {
+                    var welcome_user: User? = nil
+                    var welcome_tasks: [Task]? = nil
+                    
+                    let dispatchGroup = DispatchGroup()
+                    
+                    dispatchGroup.enter()
                     FirebaseUtilities.getUserInformation(uid: uuid, callback: { (user, status) in
                         if let user = user {
-                            print("performWelcomeProcedure: successfully retrieved user information, returning user,nil,true")
-                            callback(user, nil, Status(true))
+                            print("performWelcomeProcedure: successfully retrieved user information")
+                            welcome_user = user
                         } else {
-                            print("performWelcomeProcedure: unable to get user information, returning nil,nil,error")
+                            print("performWelcomeProcedure: unable to get user information")
                             print(status.message)
-                            callback(nil, nil, status)
                         }
+                        
+                        dispatchGroup.leave()
                     })
+                    
+                    dispatchGroup.enter()
+                    FirebaseUtilities.getCurrentTaskIDs(uuid: uuid, callback: { (taskIDs, status) in
+                        if status.status {
+                            if let taskIDs = taskIDs {
+                                welcome_tasks = []
+                                
+                                print("Found the following task ids for the current user:")
+                                for id in taskIDs {
+                                    print(id)
+                                    
+                                    dispatchGroup.enter()
+                                    FirebaseUtilities.getTask(tuid: id, callback: {
+                                        (task, status) in
+                                        if status.status {
+                                            if let task = task {
+                                                welcome_tasks?.append(task)
+                                            }
+                                        }
+                                        dispatchGroup.leave()
+                                    })
+                                }
+                            } else {
+                                print("unable to unwrap the task ids")
+                            }
+                        } else {
+                            print(status.message)
+                        }
+                        
+                        dispatchGroup.leave()
+                    })
+                    
+                    dispatchGroup.notify(queue: .main) {
+                        print("Both dispatch functions complete 👍")
+                        if let user = welcome_user {
+                            if let tasks = welcome_tasks {
+                                callback(user, tasks, Status(true))
+                            } else {
+                                callback(user, nil, Status(false, "Unable to read tasks array after dispatch finished."))
+                            }
+                        } else {
+                            callback(nil, nil, Status(false, "Unable to read user after dispatch finished."))
+                        }
+                    }
+                    
+                    
                 } else {
                     print("performWelcomeProcedure: Unable to fetch user without default uuid, returning nil,nil,error")
                     callback(nil, nil, Status(false, "Unable to fetch user without default uuid."))
