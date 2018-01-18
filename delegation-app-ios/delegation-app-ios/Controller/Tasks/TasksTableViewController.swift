@@ -14,6 +14,8 @@ class TasksTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("TasksTableViewController loaded, number of tasks = \(tasks.count)")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -38,9 +40,14 @@ class TasksTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TasksTableViewCell
-
-        cell.task = tasks[indexPath.row]
-
+        let task = self.tasks[indexPath.row]
+        
+        cell.task = task
+        cell.taskNameLabel.text = task.getTitle()
+        cell.taskAssignedLabel.text = task.getAssignee()
+        cell.taskTeamNameLabel.text = task.getTeamUID()
+        cell.taskPriorityLabel.text = task.getPriority()
+        
         return cell
     }
  
