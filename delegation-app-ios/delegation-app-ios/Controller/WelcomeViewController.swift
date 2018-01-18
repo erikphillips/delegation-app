@@ -126,6 +126,7 @@ class WelcomeViewController: UIViewController {
             print("Preparing SubmitLogin segue...")
             if let dest = segue.destination as? MainTabBarViewController {
                 dest.user = self.segueUser
+                dest.tasks = self.segueTasks
             }
         }
     }
