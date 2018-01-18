@@ -27,7 +27,7 @@ class TasksTableViewCell: UITableViewCell {
             taskAssignedLabel.text = task.getAssignee()
         }
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
