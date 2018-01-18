@@ -10,6 +10,8 @@ import UIKit
 
 class CreateTaskViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
+    var user: User?
+    
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var taskDescriptionTextView: UITextView!
     @IBOutlet weak var taskTeamTextField: UITextField!
@@ -39,9 +41,12 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
     
     @IBAction func createTaskPressed(_ sender: Any) {
         let title = self.taskTitleTextField.text ?? ""
+        let priority = Globals.Task.DEFAULT_PRIORITY
         let desc = self.taskDescriptionTextView.text ?? ""
         let status = Globals.Task.DEFAULT_STATUS
-        let teamName = self.taskTeamTextField.text ?? ""
+        let resolution = Globals.Task.DEFAULT_RESOLUTION
+//        let teamName = self.taskTeamTextField.text ?? ""
+        let teamUUID = "-L16CsxYegfD0P3yix29"
         
         if title == "" {
             self.displayAlert(title: "Title Error", message: "Tasks require titles.")
@@ -58,8 +63,18 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
 //            return
 //        }
         
-        // TODO: Create the task in the database
-        self.navigationController?.popViewController(animated: true)
+        if let user = user {
+            if user.getUUID() == Globals.User.DEFAULT_UUID {
+                self.displayAlert(title: "Error Fetching User", message: "An unknown erorr occured when attempting to fetch the UUID.")
+            } else {
+                let task = Task(title: title, priority: priority, description: desc, team: teamUUID, status: status, resolution: resolution, assignee: user.getUUID())
+                FirebaseUtilities.createTask(task)
+                
+                self.navigationController?.popViewController(animated: true)
+            }
+        } else {
+            self.displayAlert(title: "Invalid User", message: "Unable to get a user object.")
+        }
     }
     
     func displayAlert(title: String, message: String) {
