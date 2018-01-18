@@ -581,7 +581,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="kox-fi-TN3" kind="embed" id="qDN-IO-Kb8"/>
+                                    <segue destination="kox-fi-TN3" kind="embed" identifier="TasksTableEmbededSegue" id="qDN-IO-Kb8"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -592,7 +592,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                     <navigationItem key="navigationItem" title="Tasks" id="rN9-6H-7bT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xeo-er-TL7">
                             <connections>
-                                <segue destination="awO-af-s8G" kind="show" id="Vb3-Fx-TWc"/>
+                                <segue destination="awO-af-s8G" kind="show" identifier="CreateNewTask" id="Vb3-Fx-TWc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -784,7 +784,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <rect key="frame" x="26" y="251" width="333" height="301"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
