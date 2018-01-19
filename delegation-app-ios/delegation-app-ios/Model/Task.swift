@@ -24,16 +24,23 @@ class Task {
     private var team: String
     private var status: String
     private var resolution: Resolution
-    private var assignee: String
+    private var assigneeUUID: String
+    private var originatorUUID: String
 
-    init(title: String, priority: String, description: String, team: String, status: String, resolution: String, assignee: String) {
+    init(title: String, priority: String, description: String, team: String, status: String, resolution: String, assigneeUUID: String, originatorUUID: String?) {
         self.title = title
         self.priority = priority
         self.description = description
         self.team = team
         self.status = status
         self.resolution = Resolution(rawValue: resolution) ?? Resolution.none
-        self.assignee = assignee
+        self.assigneeUUID = assigneeUUID
+        
+        if let originatorUUID = originatorUUID {
+            self.originatorUUID = originatorUUID
+        } else {
+            self.originatorUUID = ""
+        }
     }
     
     func getTitle() -> String {
@@ -60,7 +67,11 @@ class Task {
         return self.resolution.rawValue
     }
     
-    func getAssignee() -> String {
-        return self.assignee
+    func getAssigneeUUID() -> String {
+        return self.assigneeUUID
+    }
+    
+    func getOriginatorUUID() -> String {
+        return self.originatorUUID
     }
 }

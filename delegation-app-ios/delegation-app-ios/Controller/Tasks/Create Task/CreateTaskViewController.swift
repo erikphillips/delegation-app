@@ -67,7 +67,7 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
             if user.getUUID() == Globals.User.DEFAULT_UUID {
                 self.displayAlert(title: "Error Fetching User", message: "An unknown erorr occured when attempting to fetch the UUID.")
             } else {
-                let task = Task(title: title, priority: priority, description: desc, team: teamUUID, status: status, resolution: resolution, assignee: user.getUUID())
+                let task = Task(title: title, priority: priority, description: desc, team: teamUUID, status: status, resolution: resolution, assigneeUUID: user.getUUID(), originatorUUID: user.getUUID())
                 FirebaseUtilities.createTask(task)
                 
                 self.navigationController?.popViewController(animated: true)

@@ -44,7 +44,7 @@ class TasksTableViewController: UITableViewController {
         
         cell.task = task
         cell.taskNameLabel.text = task.getTitle()
-        cell.taskAssignedLabel.text = task.getAssignee()
+        cell.taskAssignedLabel.text = task.getAssigneeUUID()
         cell.taskTeamNameLabel.text = task.getTeamUID()
         cell.taskPriorityLabel.text = task.getPriority()
         

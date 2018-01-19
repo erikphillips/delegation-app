@@ -24,7 +24,7 @@ class TasksTableViewCell: UITableViewCell {
             taskNameLabel.text = task.getTitle()
             taskPriorityLabel.text = task.getPriority()
             taskTeamNameLabel.text = task.getTeamUID()
-            taskAssignedLabel.text = task.getAssignee()
+            taskAssignedLabel.text = task.getAssigneeUUID()
         }
     }
     

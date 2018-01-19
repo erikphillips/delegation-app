@@ -101,7 +101,7 @@ class Utilities {
                 return Status(false, "Task object is missing a valid title")
             } else if task.getDescription() == Globals.Task.DEFAULT_DESCRIPTION {
                 return Status(false, "Task object is missing a valid description")
-            } else if task.getAssignee() == Globals.Task.DEFAULT_ASSIGNEE {
+            } else if task.getAssigneeUUID() == Globals.Task.DEFAULT_ASSIGNEE {
                 return Status(false, "Task object is missing a valid assignee")
             } else if task.getTeamUID() == Globals.Task.DEFAULT_TEAM {
                 return Status(false, "Task object is missing a valid team")
@@ -240,8 +240,9 @@ class FirebaseUtilities {
         let status = value?["status"] as? String ?? Globals.Task.DEFAULT_STATUS
         let resolution = value?["resolution"] as? String ?? Globals.Task.DEFAULT_RESOLUTION
         let assignee = value?["assignee"] as? String ?? Globals.Task.DEFAULT_ASSIGNEE
+        let originatorUUID = value?["originator"] as? String ?? ""
         
-        return Task(title: title, priority: priority, description: description, team: team, status: status, resolution: resolution, assignee: assignee)
+        return Task(title: title, priority: priority, description: description, team: team, status: status, resolution: resolution, assigneeUUID: assignee, originatorUUID: originatorUUID)
     }
     
     static func getTask(tuid: String, callback: @escaping ((_ task: Task?, _ status: Status) -> Void)) {
@@ -261,7 +262,7 @@ class FirebaseUtilities {
     
     static func createTask(_ task: Task) {
         var ref: DatabaseReference
-        ref = Database.database().reference(withPath: "tasks").childByAutoId()
+        ref = Database.database().reference(withPath: "tasks/\(task.getAssigneeUUID())/current_tasks").childByAutoId()
         
         ref.child("title").setValue(task.getTitle())
         ref.child("priority").setValue(task.getPriority())
@@ -269,15 +270,15 @@ class FirebaseUtilities {
         ref.child("team").setValue(task.getTeamUID())
         ref.child("status").setValue(task.getStatus())
         ref.child("resolution").setValue(task.getResolution())
-        ref.child("assignee").setValue(task.getAssignee())
+        ref.child("assignee").setValue(task.getAssigneeUUID())
     }
     
     static func getCurrentTaskIDs(uuid: String, callback: @escaping ((_ taskIDs: [String]?, _ status: Status) -> Void)) {
         var ref: DatabaseReference
         ref = Database.database().reference()
         
-        print("Attempting to read: 'users/\(uuid)/current_tasks'...")
-        ref.child("users/\(uuid)/current_tasks").observeSingleEvent(of: .value, with: { (snapshot) in
+        print("Attempting to read: 'tasks/\(uuid)/current_tasks'...")
+        ref.child("tasks/\(uuid)/current_tasks").observeSingleEvent(of: .value, with: { (snapshot) in
             if let values = snapshot.value as? NSDictionary {
                 var ids: [String] = []
                 for (key, value) in values {
