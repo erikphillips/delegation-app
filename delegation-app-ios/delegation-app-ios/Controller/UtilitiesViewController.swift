@@ -37,6 +37,43 @@ class UtilitiesViewController: UIViewController {
 //        })
     }
     
+    class CustomUser {
+        public var firstname: String = ""
+        public var lastname: String = ""
+        
+        init(uuid: String) {
+            var ref: DatabaseReference!
+            ref = Database.database().reference().child("users/\(uuid)/information/")
+            ref.observe(DataEventType.value, with: {
+                [weak self] (snapshot) in
+                guard let this = self else { return }
+                
+                let value = snapshot.value as? NSDictionary
+                this.firstname = value?["firstname"] as? String ?? Globals.User.DEFAULT_FIRSTNAME
+                this.lastname = value?["lastname"] as? String ?? Globals.User.DEFAULT_LASTNAME
+                
+                print("Values were updated.")
+                print(this.firstname)
+                print(this.lastname)
+            })
+        }
+    }
+    
+    @IBOutlet weak var firstnameLabel: UILabel!
+    @IBOutlet weak var lastnameLabel: UILabel!
+    @IBAction func refreshPressed(_ sender: Any) {
+        self.firstnameLabel.text = self.user?.firstname ?? ""
+        self.lastnameLabel.text = self.user?.lastname ?? ""
+    }
+    
+    var user: CustomUser? = nil
+    
+    @IBAction func loadObservableUserPressed(_ sender: Any) {
+        let uuid = "Kd8p3fl5xyPT0g9BGkHASF025D23"
+        
+        self.user = CustomUser(uuid: uuid)
+    }
+    
     @IBAction func fetchTestDataPressed(_ sender: Any) {
         print("Fetch Test Data Button Pressed...")
         let ref: DatabaseReference!
@@ -58,15 +95,5 @@ class UtilitiesViewController: UIViewController {
             print(postDict)
         })
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
