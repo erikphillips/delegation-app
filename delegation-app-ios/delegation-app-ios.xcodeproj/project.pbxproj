@@ -28,6 +28,7 @@
 		98859311200484CC00259079 /* SettingsJoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859310200484CC00259079 /* SettingsJoinTeamTableViewCell.swift */; };
 		98859313200484E300259079 /* SettingsJoinTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */; };
 		98859315200484FB00259079 /* SettingsCreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */; };
+		98BAFF27201A6D3A002C253A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BAFF26201A6D3A002C253A /* Logger.swift */; };
 		98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B01FE19CA3009329B2 /* SettingsViewController.swift */; };
 		98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */; };
 		98C597B81FE42EDA009329B2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B71FE42EDA009329B2 /* HomeViewController.swift */; };
@@ -101,6 +102,7 @@
 		98859310200484CC00259079 /* SettingsJoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsJoinTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsJoinTeamTableViewController.swift; sourceTree = "<group>"; };
 		98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCreateTeamViewController.swift; sourceTree = "<group>"; };
+		98BAFF26201A6D3A002C253A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		98C597B01FE19CA3009329B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		98C597B71FE42EDA009329B2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				98849EE21FDDD7DF009C9B1A /* Task.swift */,
 				98E5E4141FEB5D0A00AF0B37 /* Utilities.swift */,
 				9849779920099A4600954C3A /* Status.swift */,
+				98BAFF26201A6D3A002C253A /* Logger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */,
 				98C597B81FE42EDA009329B2 /* HomeViewController.swift in Sources */,
 				98C597CF1FE5982B009329B2 /* JoinTeamTableViewController.swift in Sources */,
+				98BAFF27201A6D3A002C253A /* Logger.swift in Sources */,
 				98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */,
 				98849EAB1FDDC7AA009C9B1A /* AppDelegate.swift in Sources */,
 				98D2A8C01FF75B2F00248366 /* CreateTaskViewController.swift in Sources */,
