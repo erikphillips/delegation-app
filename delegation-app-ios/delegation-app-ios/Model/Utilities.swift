@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 class Globals {
-    public class Task {
+    public class TaskGlobals {
         static let DEFAULT_TITLE: String = ""
         static let DEFAULT_PRIORITY: String = "5"
         static let DEFAULT_DESCRIPTION: String = ""
@@ -20,22 +20,26 @@ class Globals {
         static let DEFAULT_ASSIGNEE: String = ""
     }
     
-    public class User {
+    public class UserGlobals {
         static let DEFAULT_FIRSTNAME: String = ""
         static let DEFAULT_LASTNAME: String = ""
         static let DEFAULT_EMAIL: String = ""
         static let DEFAULT_PHONE: String = ""
         static let DEFAULT_UUID: String = ""
+    
         static let MINIMUM_PASSWORD_LENGTH: Int = 6
+        
+        static let DEFAULT_TASKS: [Task] = []
+        static let DEFAULT_TEAMS: [Team] = []
     }
     
-    public class Team {
+    public class TeamGlobals {
         static let DEFAULT_TEAMNAME: String = ""
         static let DEFAULT_OWNER: String = ""
         static let DEFAULT_DESCRIPTION: String = ""
     }
     
-    public class Application {
+    public class ApplicationGlobals {
         static let VERSION: String = "v0.1"
     }
 }
@@ -58,8 +62,8 @@ class Utilities {
             return Status(false, "Password is required.")
         }
         
-        if pswd.count < Globals.User.MINIMUM_PASSWORD_LENGTH {
-            return Status(false, "Password length must be \(Globals.User.MINIMUM_PASSWORD_LENGTH) characters or longer.")
+        if pswd.count < Globals.UserGlobals.MINIMUM_PASSWORD_LENGTH {
+            return Status(false, "Password length must be \(Globals.UserGlobals.MINIMUM_PASSWORD_LENGTH) characters or longer.")
         }
         
         return Status(true)
@@ -81,11 +85,11 @@ class Utilities {
     
     static func validateUser(_ user: User?) -> Status {
         if let user = user {
-            if user.getFirstName() == Globals.User.DEFAULT_FIRSTNAME {
+            if user.getFirstName() == Globals.UserGlobals.DEFAULT_FIRSTNAME {
                 return Status(false, "User object is missing a valid first name.")
-            } else if user.getLastName() == Globals.User.DEFAULT_LASTNAME {
+            } else if user.getLastName() == Globals.UserGlobals.DEFAULT_LASTNAME {
                 return Status(false, "User object is missing a valid last name.")
-            } else if user.getEmailAddress() == Globals.User.DEFAULT_EMAIL {
+            } else if user.getEmailAddress() == Globals.UserGlobals.DEFAULT_EMAIL {
                 return Status(false, "User object is missing a valid email address.")
             } else {
                 return Status(true, "User object is considered valid (first/last name and email address.")
@@ -97,13 +101,13 @@ class Utilities {
     
     static func validateTask(_ task: Task?) -> Status {
         if let task = task {
-            if task.getTitle() == Globals.Task.DEFAULT_TITLE {
+            if task.getTitle() == Globals.TaskGlobals.DEFAULT_TITLE {
                 return Status(false, "Task object is missing a valid title")
-            } else if task.getDescription() == Globals.Task.DEFAULT_DESCRIPTION {
+            } else if task.getDescription() == Globals.TaskGlobals.DEFAULT_DESCRIPTION {
                 return Status(false, "Task object is missing a valid description")
-            } else if task.getAssigneeUUID() == Globals.Task.DEFAULT_ASSIGNEE {
+            } else if task.getAssigneeUUID() == Globals.TaskGlobals.DEFAULT_ASSIGNEE {
                 return Status(false, "Task object is missing a valid assignee")
-            } else if task.getTeamUID() == Globals.Task.DEFAULT_TEAM {
+            } else if task.getTeamUID() == Globals.TaskGlobals.DEFAULT_TEAM {
                 return Status(false, "Task object is missing a valid team")
             } else {
                 return Status(true, "Task object is considered valid (title, description, assignee, and team")
@@ -115,11 +119,11 @@ class Utilities {
     
     static func validateTeam(_ team: Team?) -> Status {
         if let team = team {
-            if team.getTeamName() == Globals.Team.DEFAULT_TEAMNAME {
+            if team.getTeamName() == Globals.TeamGlobals.DEFAULT_TEAMNAME {
                 return Status(false, "Team object is missing a valid teamname")
-            } else if team.getDescription() == Globals.Team.DEFAULT_DESCRIPTION {
+            } else if team.getDescription() == Globals.TeamGlobals.DEFAULT_DESCRIPTION {
                 return Status(false, "Team object is missing a valid description")
-            } else if team.getOwnerUUID() == Globals.Team.DEFAULT_OWNER {
+            } else if team.getOwnerUUID() == Globals.TeamGlobals.DEFAULT_OWNER {
                 return Status(false, "Team object is missing a valid owner")
             } else {
                 return Status(true, "Team ibject is considered valid (teamname, description, owner)")
@@ -154,11 +158,11 @@ class FirebaseUtilities {
     static func extractUserInformationFromSnapshot(_ snapshot: DataSnapshot) -> User {
         let value = snapshot.value as? NSDictionary
         
-        let firstname = value?["firstname"] as? String ?? Globals.User.DEFAULT_FIRSTNAME
-        let lastname = value?["lastname"] as? String ?? Globals.User.DEFAULT_LASTNAME
-        let email = value?["email"] as? String ?? Globals.User.DEFAULT_EMAIL
-        let phone = value?["phone"] as? String ?? Globals.User.DEFAULT_PHONE
-        let uuid = Globals.User.DEFAULT_UUID
+        let firstname = value?["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
+        let lastname = value?["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
+        let email = value?["email"] as? String ?? Globals.UserGlobals.DEFAULT_EMAIL
+        let phone = value?["phone"] as? String ?? Globals.UserGlobals.DEFAULT_PHONE
+        let uuid = Globals.UserGlobals.DEFAULT_UUID
         
         return User(uid: uuid, firstname: firstname, lastname: lastname, email: email, phone: phone)
     }
@@ -166,10 +170,10 @@ class FirebaseUtilities {
     static func extractUserInformationFromSnapshot(_ snapshot: DataSnapshot, uuid: String) -> User {
         let value = snapshot.value as? NSDictionary
         
-        let firstname = value?["firstname"] as? String ?? Globals.User.DEFAULT_FIRSTNAME
-        let lastname = value?["lastname"] as? String ?? Globals.User.DEFAULT_LASTNAME
-        let email = value?["email"] as? String ?? Globals.User.DEFAULT_EMAIL
-        let phone = value?["phone"] as? String ?? Globals.User.DEFAULT_PHONE
+        let firstname = value?["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
+        let lastname = value?["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
+        let email = value?["email"] as? String ?? Globals.UserGlobals.DEFAULT_EMAIL
+        let phone = value?["phone"] as? String ?? Globals.UserGlobals.DEFAULT_PHONE
         
         return User(uid: uuid, firstname: firstname, lastname: lastname, email: email, phone: phone)
     }
@@ -197,9 +201,9 @@ class FirebaseUtilities {
     static func extractTeamInformationFromSnapshot(_ snapshot: DataSnapshot) -> Team {
         let value = snapshot.value as? NSDictionary
         
-        let teamname = value?["teamname"] as? String ?? Globals.Team.DEFAULT_TEAMNAME
-        let description = value?["description"] as? String ?? Globals.Team.DEFAULT_DESCRIPTION
-        let owner = value?["owner"] as? String ?? Globals.Team.DEFAULT_OWNER
+        let teamname = value?["teamname"] as? String ?? Globals.TeamGlobals.DEFAULT_TEAMNAME
+        let description = value?["description"] as? String ?? Globals.TeamGlobals.DEFAULT_DESCRIPTION
+        let owner = value?["owner"] as? String ?? Globals.TeamGlobals.DEFAULT_OWNER
         
         return Team(teamname: teamname, description: description, owner: owner)
     }
@@ -233,13 +237,13 @@ class FirebaseUtilities {
     static func extractTaskFromSnapshot(_ snapshot: DataSnapshot) -> Task {
         let value = snapshot.value as? NSDictionary
         
-        let title = value?["title"] as? String ?? Globals.Task.DEFAULT_TITLE
-        let priority = value?["priority"] as? String ?? Globals.Task.DEFAULT_PRIORITY
-        let description = value?["description"] as? String ?? Globals.Task.DEFAULT_DESCRIPTION
-        let team = value?["team"] as? String ?? Globals.Task.DEFAULT_TEAM
-        let status = value?["status"] as? String ?? Globals.Task.DEFAULT_STATUS
-        let resolution = value?["resolution"] as? String ?? Globals.Task.DEFAULT_RESOLUTION
-        let assignee = value?["assignee"] as? String ?? Globals.Task.DEFAULT_ASSIGNEE
+        let title = value?["title"] as? String ?? Globals.TaskGlobals.DEFAULT_TITLE
+        let priority = value?["priority"] as? String ?? Globals.TaskGlobals.DEFAULT_PRIORITY
+        let description = value?["description"] as? String ?? Globals.TaskGlobals.DEFAULT_DESCRIPTION
+        let team = value?["team"] as? String ?? Globals.TaskGlobals.DEFAULT_TEAM
+        let status = value?["status"] as? String ?? Globals.TaskGlobals.DEFAULT_STATUS
+        let resolution = value?["resolution"] as? String ?? Globals.TaskGlobals.DEFAULT_RESOLUTION
+        let assignee = value?["assignee"] as? String ?? Globals.TaskGlobals.DEFAULT_ASSIGNEE
         let originatorUUID = value?["originator"] as? String ?? ""
         
         return Task(title: title, priority: priority, description: description, team: team, status: status, resolution: resolution, assigneeUUID: assignee, originatorUUID: originatorUUID)
@@ -399,7 +403,7 @@ class FirebaseUtilities {
     static func performWelcomeProcedure(controller: UIViewController, username: String, password: String, callback: @escaping ((_ user: User?, _ tasks: [Task]?, _ status: Status) -> Void)) {
         loginUser(username: username, password: password, callback: { (uuid, error) in
             if let uuid = uuid {
-                if uuid != Globals.User.DEFAULT_UUID {
+                if uuid != Globals.UserGlobals.DEFAULT_UUID {
                     var welcome_user: User? = nil
                     var welcome_tasks: [Task]? = nil
                     

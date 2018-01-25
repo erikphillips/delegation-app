@@ -62,8 +62,8 @@ class UtilitiesViewController: UIViewController {
                 guard let this = self else { return }
                 
                 let value = snapshot.value as? NSDictionary
-                this.firstname = value?["firstname"] as? String ?? Globals.User.DEFAULT_FIRSTNAME
-                this.lastname = value?["lastname"] as? String ?? Globals.User.DEFAULT_LASTNAME
+                this.firstname = value?["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
+                this.lastname = value?["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
                 
                 print("Values were updated.")
                 print(this.firstname)

@@ -41,7 +41,7 @@ class SettingsTeamTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTeamCell", for: indexPath)
 
-        cell.textLabel?.text = teams?[indexPath.row].getTeamName() ?? Globals.Team.DEFAULT_TEAMNAME
+        cell.textLabel?.text = teams?[indexPath.row].getTeamName() ?? Globals.TeamGlobals.DEFAULT_TEAMNAME
         cell.detailTextLabel?.text = "Role: "
 
         return cell
