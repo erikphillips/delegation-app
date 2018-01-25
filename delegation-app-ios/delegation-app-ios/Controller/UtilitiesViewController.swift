@@ -14,6 +14,14 @@ class UtilitiesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.user.userUpdatedHandler = {
+            [weak self] in
+            guard let this = self else { return }
+            
+            print("Controller completion handled")
+            this.firstnameLabel.text = this.user.firstname
+            this.lastnameLabel.text = this.user.lastname
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -41,9 +49,14 @@ class UtilitiesViewController: UIViewController {
         public var firstname: String = ""
         public var lastname: String = ""
         
+        var userUpdatedHandler: (() -> Void)?
+        
+        init() {}
+        
         init(uuid: String) {
             var ref: DatabaseReference!
             ref = Database.database().reference().child("users/\(uuid)/information/")
+            
             ref.observe(DataEventType.value, with: {
                 [weak self] (snapshot) in
                 guard let this = self else { return }
@@ -55,6 +68,9 @@ class UtilitiesViewController: UIViewController {
                 print("Values were updated.")
                 print(this.firstname)
                 print(this.lastname)
+                
+                // If the userUpdateHandler is only needed once, then set it to nil
+//                this.userUpdatedHandler = nil
             })
         }
     }
@@ -62,11 +78,11 @@ class UtilitiesViewController: UIViewController {
     @IBOutlet weak var firstnameLabel: UILabel!
     @IBOutlet weak var lastnameLabel: UILabel!
     @IBAction func refreshPressed(_ sender: Any) {
-        self.firstnameLabel.text = self.user?.firstname ?? ""
-        self.lastnameLabel.text = self.user?.lastname ?? ""
+        self.firstnameLabel.text = self.user.firstname
+        self.lastnameLabel.text = self.user.lastname
     }
     
-    var user: CustomUser? = nil
+    var user: CustomUser = CustomUser()
     
     @IBAction func loadObservableUserPressed(_ sender: Any) {
         let uuid = "Kd8p3fl5xyPT0g9BGkHASF025D23"
