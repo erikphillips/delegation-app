@@ -92,6 +92,8 @@ class User {
         self.phoneNumber = Globals.UserGlobals.DEFAULT_PHONE
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
+        
+        Logger.log("non-observable user object created", event: .warning)
     }
     
     init(uuid: String) {
@@ -103,6 +105,8 @@ class User {
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
         
+        Logger.log("created new user, waiting on observable for 'user/\(uuid)/information/'", event: .info)
+        
         var ref: DatabaseReference!
         ref = Database.database().reference().child("users/\(uuid)/information/")
         
@@ -110,14 +114,14 @@ class User {
             [weak self] (snapshot) in
             guard let this = self else { return }
             
-            Logger.log("user update recieved from database", event: .verbose)
+            Logger.log("user update recieved from database for 'users/\(this.uuid)/information/", event: .verbose)
             
             let value = snapshot.value as? NSDictionary
-            let firstname = value?["firstname"] as? String ?? this.firstname
-            let lastname = value?["lastname"] as? String ?? this.lastname
-            let email = value?["email"] as? String ?? this.emailAddress
-            let phone = value?["phone"] as? String ?? this.phoneNumber
-        }
+            this.firstname = value?["firstname"] as? String ?? this.firstname
+            this.lastname = value?["lastname"] as? String ?? this.lastname
+            this.emailAddress = value?["email"] as? String ?? this.emailAddress
+            this.phoneNumber = value?["phone"] as? String ?? this.phoneNumber
+        })
     }
     
     func getUUID() -> String {
@@ -202,7 +206,7 @@ class User {
         if self.uuid != Globals.UserGlobals.DEFAULT_UUID {
             Logger.log("updating user information in database", event: .verbose)
             
-            let ref = Database.database().reference(withPath: "users/(self.uuid)/information")
+            let ref = Database.database().reference(withPath: "users/\(self.uuid)/information")
             
             if let firstname = firstname {
                 self.firstname = firstname
@@ -231,7 +235,7 @@ class User {
             }
             
             if let password = password {
-                // the password is not stored in the user object
+                // CAUTION: the password is not stored in the user object
                 Auth.auth().currentUser?.updatePassword(to: password) { (error) in
                     if let error = error {
                         Logger.log("Error: Unable to update password - \(error.localizedDescription)", event: .error)
@@ -240,7 +244,6 @@ class User {
                     }
                 }
             }
-            
         } else {
             Logger.log("unable to update user information in database - no uuid other than default", event: .error)
         }

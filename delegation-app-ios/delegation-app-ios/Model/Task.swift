@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Firebase
 
-enum Resolution: String {
+enum TaskStatus: String {
     case none
     case open
     case assigned
@@ -22,25 +23,75 @@ class Task {
     private var priority: String
     private var description: String
     private var team: String
-    private var status: String
-    private var resolution: Resolution
+    private var status: TaskStatus
     private var assigneeUUID: String
     private var originatorUUID: String
+    private var uuid: String
+    private var tuid: String
 
-    init(title: String, priority: String, description: String, team: String, status: String, resolution: String, assigneeUUID: String, originatorUUID: String?) {
-        self.title = title
-        self.priority = priority
-        self.description = description
-        self.team = team
-        self.status = status
-        self.resolution = Resolution(rawValue: resolution) ?? Resolution.none
-        self.assigneeUUID = assigneeUUID
+//    init(title: String, priority: String, description: String, team: String, status: String, resolution: String, assigneeUUID: String, originatorUUID: String?) {
+//        self.title = title
+//        self.priority = priority
+//        self.description = description
+//        self.team = team
+//        self.status = status
+//        self.resolution = Resolution(rawValue: resolution) ?? Resolution.none
+//        self.assigneeUUID = assigneeUUID
+//
+//        if let originatorUUID = originatorUUID {
+//            self.originatorUUID = originatorUUID
+//        } else {
+//            self.originatorUUID = ""
+//        }
+//    }
+    
+    init() {
+        self.title = Globals.TaskGlobals.DEFAULT_TITLE
+        self.priority = Globals.TaskGlobals.DEFAULT_PRIORITY
+        self.description = Globals.TaskGlobals.DEFAULT_DESCRIPTION
+        self.team = Globals.TaskGlobals.DEFAULT_TEAM
+        self.status = Globals.TaskGlobals.DEFAULT_STATUS
+        self.assigneeUUID = Globals.TaskGlobals.DEFAULT_ASSIGNEE
+        self.originatorUUID = Globals.TaskGlobals.DEFAULT_ORIGINATOR
         
-        if let originatorUUID = originatorUUID {
-            self.originatorUUID = originatorUUID
-        } else {
-            self.originatorUUID = ""
-        }
+        self.uuid = Globals.TaskGlobals.DEFAULT_UUID
+        self.tuid = Globals.TaskGlobals.DEFAULT_TUID
+        
+        Logger.log("created new non-observable task", event: .warning)
+    }
+    
+    init(uuid: String, tuid: String) {
+        self.title = Globals.TaskGlobals.DEFAULT_TITLE
+        self.priority = Globals.TaskGlobals.DEFAULT_PRIORITY
+        self.description = Globals.TaskGlobals.DEFAULT_DESCRIPTION
+        self.team = Globals.TaskGlobals.DEFAULT_TEAM
+        self.status = Globals.TaskGlobals.DEFAULT_STATUS
+        self.assigneeUUID = Globals.TaskGlobals.DEFAULT_ASSIGNEE
+        self.originatorUUID = Globals.TaskGlobals.DEFAULT_ORIGINATOR
+        
+        self.uuid = uuid
+        self.tuid = tuid
+        
+        Logger.log("created new task, waiting on observable for 'tasks/\(uuid)/\(tuid)/'", event: .info)
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference().child("tasks/\(uuid)/\(tuid)/")
+        
+        ref.observe(DataEventType.value, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            Logger.log("task update recieved from database for 'tasks/\(uuid)/\(tuid)/'", event: .verbose)
+            
+            let value = snapshot.value as? NSDictionary
+            this.title = value?["title"] as? String ?? this.title
+            this.priority = value?["priority"] as? String ?? this.priority
+            this.description = value?["description"] as? String ?? this.description
+            this.team = value?["team"] as? String ?? this.team
+            this.status = Task.parseTaskStatus(value?["status"] as? String ?? this.status.rawValue)
+            this.assigneeUUID = value?["assignee"] as? String ?? this.assigneeUUID
+            this.originatorUUID = value?["originator"] as? String ?? this.originatorUUID
+        })
     }
     
     func getTitle() -> String {
@@ -60,11 +111,7 @@ class Task {
     }
     
     func getStatus() -> String {
-        return self.status
-    }
-    
-    func getResolution() -> String {
-        return self.resolution.rawValue
+        return self.status.rawValue
     }
     
     func getAssigneeUUID() -> String {
@@ -73,5 +120,65 @@ class Task {
     
     func getOriginatorUUID() -> String {
         return self.originatorUUID
+    }
+    
+    private static func parseTaskStatus(_ text: String) -> TaskStatus {
+        switch text {
+        case "closed":
+            return .closed
+        case "open":
+            return .open
+        case "assigned":
+            return .assigned
+        case "inProgress":
+            return .inProgress
+        default:
+            return .none
+        }
+    }
+    
+    func updateTask(title: String?, priority: String?, description: String?, team: String?, status: String?, assignee: String?) {
+        if self.tuid != Globals.TaskGlobals.DEFAULT_TUID && self.uuid != Globals.TaskGlobals.DEFAULT_UUID {
+            Logger.log("updating task information in database for 'tasks/\(self.uuid)/\(self.tuid)'", event: .info)
+            let ref = Database.database().reference(withPath: "tasks/\(self.uuid)/\(self.tuid)")
+            
+            if let title = title {
+                self.title = title
+                ref.child("title").setValue(title)
+            }
+            
+            if let priority = priority {
+                self.priority = priority
+                ref.child("priority").setValue(priority)
+            }
+            
+            if let description = description {
+                self.description = description
+                ref.child("description").setValue(description)
+            }
+            
+            if let team = team {
+                self.team = team
+                ref.child("team").setValue(team)
+            }
+            
+            if let title = title {
+                self.title = title
+                ref.child("title").setValue(title)
+            }
+            
+            if let status = status {
+                self.status = Task.parseTaskStatus(status)
+                ref.child("status").setValue(status)
+            }
+            
+            if let assignee = assignee {
+                self.assigneeUUID = assignee
+                ref.child("assignee").setValue(assignee)
+                Logger.log("incomplete method - unable to truly assign different user", event: .error)
+            }
+        } else {
+            Logger.log("unable to update task in database - no tuid or uuid other than global", event: .error)
+        }
     }
 }

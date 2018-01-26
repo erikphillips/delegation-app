@@ -11,6 +11,7 @@
 		85CDF24C2BBA93320FF402AD /* Pods_delegation_app_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E35656F923DEC21B68336F /* Pods_delegation_app_iosTests.framework */; };
 		9849779A20099A4600954C3A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
 		984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */; };
+		985F2BA8201AF602004097ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 985F2BA7201AF602004097ED /* GoogleService-Info.plist */; };
 		986F8E731FDFB6D10033B9D0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */; };
 		9874033D1FF1923C0059309E /* UpdateAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874033C1FF1923C0059309E /* UpdateAccountSettingsViewController.swift */; };
 		98849EAB1FDDC7AA009C9B1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */; };
@@ -24,7 +25,6 @@
 		98849EE11FDDD51D009C9B1A /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE01FDDD51D009C9B1A /* Team.swift */; };
 		98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE21FDDD7DF009C9B1A /* Task.swift */; };
 		98849EE51FDDE91B009C9B1A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */; };
-		9885930F200435E600259079 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9885930E200435E600259079 /* GoogleService-Info.plist */; };
 		98859311200484CC00259079 /* SettingsJoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859310200484CC00259079 /* SettingsJoinTeamTableViewCell.swift */; };
 		98859313200484E300259079 /* SettingsJoinTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */; };
 		98859315200484FB00259079 /* SettingsCreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */; };
@@ -79,6 +79,7 @@
 		9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delegation_app_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9849779920099A4600954C3A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		985F2BA7201AF602004097ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		986F8E721FDFB6D10033B9D0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9874033C1FF1923C0059309E /* UpdateAccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountSettingsViewController.swift; sourceTree = "<group>"; };
 		98849EA71FDDC7AA009C9B1A /* delegation-app-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "delegation-app-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,7 +99,6 @@
 		98849EE01FDDD51D009C9B1A /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		98849EE21FDDD7DF009C9B1A /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		98849EE41FDDE91B009C9B1A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		9885930E200435E600259079 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		98859310200484CC00259079 /* SettingsJoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsJoinTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsJoinTeamTableViewController.swift; sourceTree = "<group>"; };
 		98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCreateTeamViewController.swift; sourceTree = "<group>"; };
@@ -221,9 +221,9 @@
 				98849EDB1FDDCF9F009C9B1A /* Model */,
 				98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */,
 				98849EB41FDDC7AA009C9B1A /* Assets.xcassets */,
-				9885930E200435E600259079 /* GoogleService-Info.plist */,
 				98849EB91FDDC7AA009C9B1A /* Info.plist */,
 				98849EB11FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld */,
+				985F2BA7201AF602004097ED /* GoogleService-Info.plist */,
 			);
 			path = "delegation-app-ios";
 			sourceTree = "<group>";
@@ -486,7 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98849EB81FDDC7AA009C9B1A /* LaunchScreen.storyboard in Resources */,
-				9885930F200435E600259079 /* GoogleService-Info.plist in Resources */,
+				985F2BA8201AF602004097ED /* GoogleService-Info.plist in Resources */,
 				98849EB51FDDC7AA009C9B1A /* Assets.xcassets in Resources */,
 				98849EB01FDDC7AA009C9B1A /* Main.storyboard in Resources */,
 			);

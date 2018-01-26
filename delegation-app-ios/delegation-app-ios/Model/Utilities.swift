@@ -15,9 +15,11 @@ class Globals {
         static let DEFAULT_PRIORITY: String = "5"
         static let DEFAULT_DESCRIPTION: String = ""
         static let DEFAULT_TEAM: String = ""
-        static let DEFAULT_STATUS: String = ""
-        static let DEFAULT_RESOLUTION: String = ""
+        static let DEFAULT_STATUS: TaskStatus = .none
         static let DEFAULT_ASSIGNEE: String = ""
+        static let DEFAULT_ORIGINATOR: String = ""
+        static let DEFAULT_TUID: String = ""
+        static let DEFAULT_UUID: String = ""
     }
     
     public class UserGlobals {
@@ -37,6 +39,8 @@ class Globals {
         static let DEFAULT_TEAMNAME: String = ""
         static let DEFAULT_OWNER: String = ""
         static let DEFAULT_DESCRIPTION: String = ""
+        static let DEFAULT_MEMBERS: [String] = []
+        static let DEFAULT_GUID: String = ""
     }
     
     public class ApplicationGlobals {
