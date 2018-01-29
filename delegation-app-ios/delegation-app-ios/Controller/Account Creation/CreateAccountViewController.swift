@@ -17,7 +17,7 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
-    private var user: User?
+    private var userDictionary: [String: String]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +70,13 @@ class CreateAccountViewController: UIViewController {
             return
         }
         
-        // If the validation passes, create a user object and perform the segue
-        // TODO: Fix this to work with the new API
-//        self.user = User(uid: "", firstname: firstname, lastname: lastname, email: email, phone: "", password: password)
+        // If the validation passes, create a user dictionary and perform the segue
+        self.userDictionary = [
+            "firstname": firstname,
+            "lastname": lastname,
+            "phone": Globals.UserGlobals.DEFAULT_PHONE, // TODO: replace this with a valid phone number
+            "email": email,
+            "password": password ]
         self.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
     }
     
@@ -100,7 +104,7 @@ class CreateAccountViewController: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-            print("You've pressed OK button");
+            Logger.log("You've pressed OK button");
         }
         
         alertController.addAction(OKAction)
@@ -111,9 +115,9 @@ class CreateAccountViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CreateAccountContinue" {
-            print("Preparing CreateAccountContinue segue...")
+            Logger.log("Preparing CreateAccountContinue segue...")
             if let dest = segue.destination as? TeamPromptViewController {
-                dest.user = self.user
+                dest.userDictionary = self.userDictionary
             }
         }
     }

@@ -57,7 +57,7 @@ class Team {
         
         self.guid = guid
         
-        Logger.log("created new task, waiting on observable for 'teams/\(guid)/information/'", event: .info)
+        Logger.log("created new task, waiting on observable for 'teams/\(guid)/information/'")
         
         var ref: DatabaseReference!
         ref = Database.database().reference().child("teams/\(guid)/information/")
@@ -93,7 +93,7 @@ class Team {
     
     func updateTeam(teamname: String?, description: String?, owner: String?) {
         if self.guid != Globals.TeamGlobals.DEFAULT_GUID {
-            Logger.log("updating team information in database for 'teams/\(self.guid)/information'", event: .info)
+            Logger.log("updating team information in database for 'teams/\(self.guid)/information'")
             let ref = Database.database().reference(withPath: "teams/\(self.guid)/information")
             
             if let teamname = teamname {

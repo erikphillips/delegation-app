@@ -15,7 +15,7 @@ class TasksTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("TasksTableViewController loaded, number of tasks = \(tasks.count)")
+        Logger.log("TasksTableViewController loaded, number of tasks = \(tasks.count)")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

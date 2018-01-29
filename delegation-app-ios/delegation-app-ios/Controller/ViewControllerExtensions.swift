@@ -26,7 +26,7 @@ extension UIViewController {
         do {
             try firebaseAuth.signOut()
         } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+            Logger.log("Error signing out: \(signOutError)", event: .error)
         }
     }
     
@@ -34,7 +34,7 @@ extension UIViewController {
 //        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 //        
 //        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-//            print("You've pressed OK button");
+    //            Logger.log("You've pressed OK button");
 //        }
 //        
 //        alertController.addAction(OKAction)

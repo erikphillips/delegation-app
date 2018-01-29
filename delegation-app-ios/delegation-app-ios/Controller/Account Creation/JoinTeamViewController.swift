@@ -11,7 +11,7 @@ import Firebase
 
 class JoinTeamViewController: UIViewController {
 
-    var user: User?
+    var userDictionary: [String: String]?
     var selectedTeams: [String]?
     var teamsArray: [Team]?
     
@@ -20,12 +20,12 @@ class JoinTeamViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("JoinTeam Loaded...")
+        Logger.log("JoinTeam Loaded...")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("JoinTeam Will Appear...")
-        print("selectedTeams length: \(self.selectedTeams?.count)")
+        Logger.log("JoinTeam Will Appear...")
+        Logger.log("selectedTeams length: \(self.selectedTeams?.count)")
         
         if let selectedTeams = self.selectedTeams {
             if selectedTeams.count <= 0 {
@@ -49,19 +49,21 @@ class JoinTeamViewController: UIViewController {
     }
     
     @IBAction func createNewAccountAndJoinTeam(_ sender: Any) {
-        if let user = self.user {
-            FirebaseUtilities.createNewUser(newUser: user, selectedTeams: self.selectedTeams ?? [], callback: {
-                [weak self] (status) in
-                guard let this = self else { return }
-                
-                if status.status {
-                    this.performSegue(withIdentifier: "unwindToWelcomeFromJoinTeam", sender: nil)
-                } else {
-                    print("ERROR: \(status.message)")
-                }
-            })
+        if let userDictionary = self.userDictionary {
+            // TODO: Create a new user using the new API
+            
+//            FirebaseUtilities.createNewUser(newUser: user, selectedTeams: self.selectedTeams ?? [], callback: {
+//                [weak self] (status) in
+//                guard let this = self else { return }
+//
+//                if status.status {
+//                    this.performSegue(withIdentifier: "unwindToWelcomeFromJoinTeam", sender: nil)
+//                } else {
+//                    Logger.log("ERROR: \(status.message)", event: .error)
+//                }
+//            })
         } else {
-            print("createNewAccountAndJoinTeam failed - unable to unwrap user")
+            Logger.log("createNewAccountAndJoinTeam failed - unable to unwrap user", event: .error)
         }
     }
     
@@ -69,9 +71,9 @@ class JoinTeamViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowTeamSelection" {
-            print("Preparing ShowTeamSelection segue...")
+            Logger.log("Preparing ShowTeamSelection segue...")
             if let dest = segue.destination as? JoinTeamTableViewController {
-                dest.user = self.user
+                dest.userDictionary = self.userDictionary
                 dest.selectedTeams = self.selectedTeams
                 dest.teamsArray = self.teamsArray
             }

@@ -12,13 +12,13 @@ import Firebase
 class JoinTeamTableViewController: UITableViewController {
 
     var teamsArray: [Team]?
-    var user: User?
+    var userDictionary: [String: String]?
     
     var selectedTeams: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("JoinTeamTableViewController loaded...")
+        Logger.log("JoinTeamTableViewController loaded...")
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +26,7 @@ class JoinTeamTableViewController: UITableViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
-        print("Done button pressed")
+        Logger.log("Done button pressed")
         self.performSegue(withIdentifier: "unwindWithTeamSelection", sender: nil)
     }
     
@@ -67,10 +67,10 @@ class JoinTeamTableViewController: UITableViewController {
                 if let teams = self.teamsArray {
                     self.selectedTeams = []
                     for (index, element) in teams.enumerated() {
-                        print("idx=\(index) elem=\(element)")
+                        Logger.log("idx=\(index) elem=\(element)")
                         let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! JoinTeamTableViewCell
                         if cell.isCellSelected {
-                            print("Cell is selected")
+                            Logger.log("Cell is selected")
                             // TODO: Fix this to work with the new API
 //                            self.selectedTeams?.append(element.getUid())
                         }

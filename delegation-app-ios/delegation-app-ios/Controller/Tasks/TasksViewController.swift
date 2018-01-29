@@ -16,17 +16,17 @@ class TasksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Task Tab View Loaded, information:")
-        if let user = user {
-            print("  user loaded usccessfully")
+        Logger.log("Task Tab View Loaded, information:")
+        if let _ = user {
+            Logger.log("  user loaded usccessfully")
         } else {
-            print("  user did not load")
+            Logger.log("  user did not load")
         }
         
         if let tasks = tasks {
-            print("  tasks loaded successfully - \(tasks.count) tasks loaded")
+            Logger.log("  tasks loaded successfully - \(tasks.count) tasks loaded")
         } else {
-            print("  tasks did not load")
+            Logger.log("  tasks did not load")
         }
     }
 

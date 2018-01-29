@@ -72,7 +72,7 @@ class Task {
         self.uuid = uuid
         self.tuid = tuid
         
-        Logger.log("created new task, waiting on observable for 'tasks/\(uuid)/\(tuid)/'", event: .info)
+        Logger.log("created new task, waiting on observable for 'tasks/\(uuid)/\(tuid)/'")
         
         var ref: DatabaseReference!
         ref = Database.database().reference().child("tasks/\(uuid)/\(tuid)/")
@@ -139,7 +139,7 @@ class Task {
     
     func updateTask(title: String?, priority: String?, description: String?, team: String?, status: String?, assignee: String?) {
         if self.tuid != Globals.TaskGlobals.DEFAULT_TUID && self.uuid != Globals.TaskGlobals.DEFAULT_UUID {
-            Logger.log("updating task information in database for 'tasks/\(self.uuid)/\(self.tuid)'", event: .info)
+            Logger.log("updating task information in database for 'tasks/\(self.uuid)/\(self.tuid)'")
             let ref = Database.database().reference(withPath: "tasks/\(self.uuid)/\(self.tuid)")
             
             if let title = title {

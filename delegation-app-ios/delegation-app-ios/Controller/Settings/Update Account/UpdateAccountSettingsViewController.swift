@@ -52,10 +52,10 @@ class UpdateAccountSettingsViewController: UIViewController {
 //                guard let this = self else { return }
 //
 //                if status.status {
-//                    print("Email address update msg: " + status.message)
+//                    Logger.log("Email address update msg: " + status.message)
 //                    this.user?.setEmailAddress(this.emailAddressTextField.text!)
 //                } else {
-//                    print("Error: unable to update email address.")
+//                    Logger.log("Error: unable to update email address.", event: .error)
 //                }
 //
 //                dispatchGroup.leave()
@@ -63,7 +63,7 @@ class UpdateAccountSettingsViewController: UIViewController {
 //        }
 //
 //        if self.passwordTextField.text! != "" {
-//            print("Warning: will update password to '\(self.passwordTextField.text!)'")
+//            Logger.log("Warning: will update password to '\(self.passwordTextField.text!)'", event: .warning)
 //
 //            dispatchGroup.enter()
 //            FirebaseUtilities.updateCurrentUserPassword(self.passwordTextField.text!, callback: { (status) in
@@ -71,15 +71,15 @@ class UpdateAccountSettingsViewController: UIViewController {
 //                dispatchGroup.leave()
 //            })
 //        } else {
-//            print("Warning: will not update password")
+//            Logger.log("Warning: will not update password", event: .warning)
 //        }
 //
 //        dispatchGroup.notify(queue: .main) {
-//            print("Both dispatch functions complete 👍")
+//            Logger.log("Both dispatch functions complete 👍")
 //            if let (status, resp) = self.user?.updateUserInDatabase() {
 //                if status == 200 { self.updateUserInformation = true }
 //                if status == 404 { self.updateUserInformation = false }
-//                print("User update: " + resp)
+//                Logger.log("User update: " + resp)
 //                self.performSegue(withIdentifier: "unwindToSettingsTableView", sender: nil)
 //            }
 //        }
@@ -94,7 +94,7 @@ class UpdateAccountSettingsViewController: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-            print("You've pressed OK button")
+            Logger.log("You've pressed OK button")
         }
 
         alertController.addAction(OKAction)
@@ -105,7 +105,7 @@ class UpdateAccountSettingsViewController: UIViewController {
         if segue.identifier == "unwindToSettingsTableView" {
             if let dest = segue.destination as? SettingsTableViewController {
                 if self.updateUserInformation {
-                    print("segue called - username=\"\(self.user?.getEmailAddress())\"")
+                    Logger.log("segue called - username=\"\(self.user?.getEmailAddress())\"")
                     dest.user = self.user
                 }
             }

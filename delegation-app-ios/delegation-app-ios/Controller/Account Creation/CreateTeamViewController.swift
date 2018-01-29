@@ -11,7 +11,7 @@ import Firebase
 
 class CreateTeamViewController: UIViewController {
 
-    var user: User?
+    var userDictionary: [String: String]?
     private var userUID: String?
     
     @IBOutlet weak var teamNameTextField: UITextField!
@@ -31,24 +31,28 @@ class CreateTeamViewController: UIViewController {
     }
     
     @IBAction func createAccountAndNewTeam(_ sender: Any) {
-        if let user = self.user {
-            Auth.auth().createUser(withEmail: user.getEmailAddress(), password: user.getPassword()) {
+        if let userDictionary = self.userDictionary {
+            
+            let email = userDictionary["email"] ?? Globals.UserGlobals.DEFAULT_EMAIL
+            let password = userDictionary["password"] ?? Globals.UserGlobals.DEFAULT_PASSWORD
+            
+            Auth.auth().createUser(withEmail: email, password: password) {
                 [weak self](user, error) in
                 guard let this = self else { return }
                 
                 if (user != nil && error == nil) {
                     let uid = Auth.auth().currentUser!.uid
                     this.userUID = uid
-                    print("Got UID: \(uid)")
+                    Logger.log("Got UID: \(uid)")
                     
                     let ref = Database.database().reference(withPath: "users/\(uid)")
                     
-                    ref.child("firstname").setValue(this.user?.getFirstName())
-                    ref.child("lastname").setValue(this.user?.getLastName())
-                    ref.child("email").setValue(this.user?.getEmailAddress())
-                    ref.child("phone").setValue(this.user?.getPhoneNumber())
+                    ref.child("firstname").setValue(this.userDictionary?["firstname"] ?? Globals.UserGlobals.DEFAULT_FIRSTNAME)
+                    ref.child("lastname").setValue(this.userDictionary?["lastname"] ?? Globals.UserGlobals.DEFAULT_LASTNAME)
+                    ref.child("email").setValue(this.userDictionary?["email"] ?? Globals.UserGlobals.DEFAULT_EMAIL)
+                    ref.child("phone").setValue(this.userDictionary?["phone"] ?? Globals.UserGlobals.DEFAULT_PHONE)
                     
-                    print("firebase: user added successfully")
+                    Logger.log("firebase: user added successfully")
                     
                     // TODO: Fix this to work with the new API
 //                    if let teamName = this.teamNameTextField.text {
@@ -70,17 +74,17 @@ class CreateTeamViewController: UIViewController {
 //                    }
                     
                 } else {
-                    print("firebase: failed to add user")
-                    print(error?.localizedDescription)
+                    Logger.log("firebase: failed to add user:", event: .error)
+                    Logger.log(error?.localizedDescription ?? "unknown error", event: .error)
                 }
             }
         } else {
-            print("createAccountAndNewTeam failed - unable to unwrap user")
+            Logger.log("createAccountAndNewTeam failed - unable to unwrap user", event: .error)
         }
     }
     
     func displayLoadingScreen() {
-        print("Displaying loading screen.")
+        Logger.log("Displaying loading screen.")
         
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         

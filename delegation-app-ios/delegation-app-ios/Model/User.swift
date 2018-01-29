@@ -28,10 +28,15 @@ class User {
     private var phoneNumber: String
     private var password: String?
     
+    private var initialSetupComplete = false
     var userUpdatedHandler: (() -> Void)? {
         didSet {
-            userUpdatedHandler?()
-            Logger.log("user updated, handler was called", event: .info)
+            if self.initialSetupComplete {
+                Logger.log("user updated, handler was called for \(self.toString())")
+                userUpdatedHandler?()
+            } else {
+                Logger.log("user handler was called, but setup has not finished.. aborting", event: .warning)
+            }
         }
     }
 
@@ -104,7 +109,7 @@ class User {
     }
     
     init(uuid: String) {
-        self.uuid = Globals.UserGlobals.DEFAULT_UUID
+        self.uuid = uuid
         self.firstname = Globals.UserGlobals.DEFAULT_FIRSTNAME
         self.lastname = Globals.UserGlobals.DEFAULT_LASTNAME
         self.emailAddress = Globals.UserGlobals.DEFAULT_EMAIL
@@ -112,7 +117,7 @@ class User {
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
         
-        Logger.log("created new user, waiting on observable for 'user/\(uuid)/information/'", event: .info)
+        Logger.log("created new user, waiting on observable for 'user/\(uuid)/information/'")
         
         var ref: DatabaseReference!
         ref = Database.database().reference().child("users/\(uuid)/information/")
@@ -129,6 +134,7 @@ class User {
             this.emailAddress = value?["email"] as? String ?? this.emailAddress
             this.phoneNumber = value?["phone"] as? String ?? this.phoneNumber
             
+            this.initialSetupComplete = true
             this.userUpdatedHandler?()  // called when the user has been updated at any point in the application
         })
     }
@@ -200,7 +206,7 @@ class User {
                     if let error = error {
                         Logger.log("unable to update email address - \(error.localizedDescription)", event: .error)
                     } else {
-                        Logger.log("Email address updated successfully.", event: .info)
+                        Logger.log("Email address updated successfully.")
                     }
                 }
             }
@@ -211,7 +217,7 @@ class User {
                     if let error = error {
                         Logger.log("Error: Unable to update password - \(error.localizedDescription)", event: .error)
                     } else {
-                        Logger.log("Password updated successfully.", event: .info)
+                        Logger.log("Password updated successfully.")
                     }
                 }
             }
@@ -220,9 +226,8 @@ class User {
         }
     }
     
-    // TODO: This needs to be completed
     func toString() -> String {
-        return "User: first=" + self.firstname + ", last=" + self.lastname + "; email=" + self.emailAddress + ", phone=" + self.phoneNumber + ";"
+        return "User: uuid=" + self.uuid + ", first=" + self.firstname + ", last=" + self.lastname + "; email=" + self.emailAddress + ", phone=" + self.phoneNumber + ";"
     }
 }
 

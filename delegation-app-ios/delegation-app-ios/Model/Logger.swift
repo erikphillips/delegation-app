@@ -32,8 +32,12 @@ class Logger {
         return components.isEmpty ? "" : components.last!
     }
     
-    class func log(_ message: String, event: LogEvent, fileName: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
+    class func log(_ message: String, event: LogEvent = LogEvent.info, fileName: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
         print("\(Date().toString()) \(event.rawValue)[\(sourceFileName(filePath: fileName)):\(line):\(column)] \(funcName) -> \(message)")
+    }
+    
+    class func log(_ message: String, fileName: String = #file, line: Int = #line, column: Int = #column, funcName: String = #function) {
+        print("\(Date().toString()) \(LogEvent.info.rawValue)[\(sourceFileName(filePath: fileName)):\(line):\(column)] \(funcName) -> \(message)")
     }
 }
 

@@ -18,7 +18,7 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
     
 //    @IBOutlet weak var taskPriorityValueTextField: UILabel!
 //    @IBAction func priorityChangerPressed(_ sender: UIStepper) {
-//        print("Stepper changed value to \(Int(sender.value))")
+//        Logger.log("Stepper changed value to \(Int(sender.value))")
 //        self.taskPriorityValueTextField.text = String(Int(sender.value))
 //    }
     
@@ -32,7 +32,7 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     @IBAction func teamSelectionEditingPressed(_ sender: Any) {
-        print("selected team textbox pressed")
+        Logger.log("selected team textbox pressed")
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -81,7 +81,7 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-            print("You've pressed OK button");
+            Logger.log("You've pressed OK button");
         }
         
         alertController.addAction(OKAction)

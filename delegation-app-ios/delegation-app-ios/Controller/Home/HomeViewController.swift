@@ -15,13 +15,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("Home view controller loaded...")
+        Logger.log("Home view controller loaded...")
         
         if let user = user {
-            print("User:")
-            print(user)
+            Logger.log("User data retrieved in HomeController")
+            Logger.log(user.toString())
         } else {
-            print("No user recieved for HomeViewController")
+            Logger.log("No user recieved for HomeViewController", event: .warning)
         }
     }
 

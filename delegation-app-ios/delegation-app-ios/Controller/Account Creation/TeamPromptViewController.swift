@@ -11,7 +11,7 @@ import Firebase
 
 class TeamPromptViewController: UIViewController {
 
-    var user: User?
+    var userDictionary: [String: String]?
     var teams: [Team]?
     
     override func viewDidLoad() {
@@ -53,7 +53,7 @@ class TeamPromptViewController: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-            print("You've pressed OK button");
+            Logger.log("You've pressed OK button");
         }
         
         alertController.addAction(OKAction)
@@ -64,16 +64,16 @@ class TeamPromptViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CreateAccountJoinTeam" {
-            print("Preparing CreateAccountJoinTeam segue...")
+            Logger.log("Preparing CreateAccountJoinTeam segue...")
             if let dest = segue.destination as? JoinTeamViewController {
-                dest.user = self.user
+                dest.userDictionary = self.userDictionary
                 dest.selectedTeams = []
                 dest.teamsArray = self.teams
             }
         } else if segue.identifier == "CreateAccountCreateTeam" {
-            print("Preparing CreateAccountCreateTeam segue...")
+            Logger.log("Preparing CreateAccountCreateTeam segue...")
             if let dest = segue.destination as? CreateTeamViewController {
-                dest.user = self.user
+                dest.userDictionary = self.userDictionary
             }
         }
     }

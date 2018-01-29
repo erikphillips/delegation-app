@@ -37,7 +37,7 @@ class WelcomeViewController: UIViewController {
         let password = passwordTextField.text
         
         if username != "" && password != "" {
-            Logger.log("starting the login process", event: .info)
+            Logger.log("starting the login process")
             
 //            self.displayLoadingScreen()
             FirebaseUtilities.performWelcomeProcedure(controller: self, username: username!, password: password!, callback: {
@@ -60,10 +60,10 @@ class WelcomeViewController: UIViewController {
                         this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(status.message)")
                     }
 //                    if let error = error {
-//                        print(error.localizedDescription)
+                    //                        Logger.log(error.localizedDescription, event: .error)
 //                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(error.localizedDescription)")
 //                    } else {
-//                        print("unknown error")
+                    //                        Logger.log("unknown error", event: .error)
 //                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. Please verify your internet connection, username, and password.")
 //                    }
                 }
@@ -83,7 +83,7 @@ class WelcomeViewController: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-            print("You've pressed OK button");
+            Logger.log("You've pressed OK button");
         }
         
         alertController.addAction(OKAction)
@@ -91,7 +91,7 @@ class WelcomeViewController: UIViewController {
     }
     
     func displayLoadingScreen() {
-        print("Displaying loading screen.")
+        Logger.log("Displaying loading screen.")
         
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         
@@ -105,7 +105,7 @@ class WelcomeViewController: UIViewController {
     }
     
     func dismissLoadingScreen() {
-        print("Dismissing loading screen.")
+        Logger.log("Dismissing loading screen.")
         self.dismiss(animated: false, completion: nil)
     }
     
@@ -123,7 +123,7 @@ class WelcomeViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SubmitLogin" {
-            print("Preparing SubmitLogin segue...")
+            Logger.log("Preparing SubmitLogin segue...")
             if let dest = segue.destination as? MainTabBarViewController {
                 dest.user = self.segueUser
                 dest.tasks = self.segueTasks

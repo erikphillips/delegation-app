@@ -29,6 +29,7 @@ class Globals {
         static let DEFAULT_PHONE: String = ""
         static let DEFAULT_UUID: String = ""
     
+        static let DEFAULT_PASSWORD: String = ""
         static let MINIMUM_PASSWORD_LENGTH: Int = 6
         
         static let DEFAULT_TASKS: [Task] = []
@@ -414,10 +415,10 @@ class FirebaseUtilities {
                     
                     let dispatchGroup = DispatchGroup()
                     
-                    dispatchGroup.enter()
+//                    dispatchGroup.enter()
 //                    FirebaseUtilities.getUserInformation(uid: uuid, callback: { (user, status) in
 //                        if let user = user {
-//                            Logger.log("successfully retrieved user information", event: .info)
+//                            Logger.log("successfully retrieved user information")
 //                            welcome_user = user
 //                        } else {
 //                            Logger.log("unable to get user information:", event: .warning)
@@ -426,10 +427,13 @@ class FirebaseUtilities {
 //
 //                        dispatchGroup.leave()
 //                    })
+                    
+                    dispatchGroup.enter()
                     welcome_user = User(uuid: uuid)
-                    welcome_user?.userUpdatedHandler = {
-                        Logger.log("user information loaded, leaving dispatch group", event: .info)
-                        dispatchGroup.leave()
+                    welcome_user?.userUpdatedHandler = { [weak dispatchGroup] in
+                        guard let dg = dispatchGroup else { return }
+                        Logger.log("user information loaded, leaving dispatch group")
+                        dg.leave()
                     }
                     
                     // TODO: Gather the tasks for the current user
@@ -465,24 +469,31 @@ class FirebaseUtilities {
 //                    })
                     
                     dispatchGroup.notify(queue: .main) {
-                        Logger.log("both dispatch functions have completed (user fetch and tasks fetch)", event: .info)
+                        Logger.log("both dispatch functions have completed (user fetch and tasks fetch)")
+                        
                         if let user = welcome_user {
+                            
+                            Logger.log(user.toString())
+                            
                             if let tasks = welcome_tasks {
-                                Logger.log("successfully gathered user and tasks objects", event: .info)
+                                Logger.log("successfully gathered user and tasks objects")
                                 callback(user, tasks, Status(true))
                             } else {
                                 Logger.log("unable to read task for the logged in user, returning only the user object", event: .warning)
                                 callback(user, nil, Status(false, "Unable to read tasks array after dispatch finished."))
                             }
+                            
                         } else {
                             Logger.log("unable to retrieve the welcome_user object", event: .error)
                             callback(nil, nil, Status(false, "Unable to read user after dispatch finished."))
                         }
                     }
+                    
                 } else {
-                    Logger.log("performWelcomeProcedure: Unable to fetch user without default uuid, returning nil,nil,error", event: .error)
+                    Logger.log("unable to fetch user without default uuid, returning nil,nil,error", event: .error)
                     callback(nil, nil, Status(false, "Unable to fetch user without default uuid."))
                 }
+                
             } else {
                 Logger.log("unable to fetch user, returning nil,nil,false", event: .error)
                 print(String(describing: error?.localizedDescription))

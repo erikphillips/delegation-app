@@ -18,20 +18,18 @@ class UtilitiesViewController: UIViewController {
             [weak self] in
             guard let this = self else { return }
             
-            print("Controller completion handled")
+            Logger.log("Controller completion handled")
             this.firstnameLabel.text = this.user.firstname
             this.lastnameLabel.text = this.user.lastname
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func fetchAllUsersPressed(_ sender: Any) {
-        print("Fetch all users pressed...")
+        Logger.log("Fetch all users pressed...")
 //        FirebaseUtilities.getUserInformation(uid: "Kd8p3fl5xyPT0g9BGkHASF025D23", callback: {
 //            (user, error) in
 //            if let user = user {
@@ -65,9 +63,9 @@ class UtilitiesViewController: UIViewController {
                 this.firstname = value?["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
                 this.lastname = value?["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
                 
-                print("Values were updated.")
-                print(this.firstname)
-                print(this.lastname)
+                Logger.log("Values were updated.")
+                Logger.log(this.firstname)
+                Logger.log(this.lastname)
                 
                 // If the userUpdateHandler is only needed once, then set it to nil
 //                this.userUpdatedHandler = nil
@@ -91,12 +89,12 @@ class UtilitiesViewController: UIViewController {
     }
     
     @IBAction func fetchTestDataPressed(_ sender: Any) {
-        print("Fetch Test Data Button Pressed...")
+        Logger.log("Fetch Test Data Button Pressed...")
         let ref: DatabaseReference!
         ref = Database.database().reference()
         ref.child("test").observeSingleEvent(of: .value, with: {
             (snapshot) in
-            print(snapshot)
+            Logger.log(String(describing: snapshot))
         })
     }
     
@@ -104,11 +102,11 @@ class UtilitiesViewController: UIViewController {
         let ref: DatabaseReference!
         ref = Database.database().reference().child("test")
         
-        print("Active listener pressed...")
+        Logger.log("Active listener pressed...")
         let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
-            print(snapshot)
+            Logger.log(String(describing: snapshot))
             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-            print(postDict)
+            Logger.log(String(describing: postDict))
         })
     }
 

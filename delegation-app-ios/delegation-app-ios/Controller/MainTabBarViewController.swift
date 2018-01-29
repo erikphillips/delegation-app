@@ -16,7 +16,7 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Loaded custom tab bar controller...")
+        Logger.log("loaded custom tab bar controller")
         
         let homeVC = (self.viewControllers![0] as! UINavigationController).viewControllers[0] as! HomeViewController
         let tasksVC = (self.viewControllers![1] as! UINavigationController).viewControllers[0] as! TasksViewController
