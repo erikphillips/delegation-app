@@ -27,6 +27,13 @@ class User {
     private var emailAddress: String
     private var phoneNumber: String
     private var password: String?
+    
+    var userUpdatedHandler: (() -> Void)? {
+        didSet {
+            userUpdatedHandler?()
+            Logger.log("user updated, handler was called", event: .info)
+        }
+    }
 
 //    init(uid: String, firstname: String, lastname: String, email: String, phone: String) {
 //        self.uuid = uid
@@ -121,6 +128,8 @@ class User {
             this.lastname = value?["lastname"] as? String ?? this.lastname
             this.emailAddress = value?["email"] as? String ?? this.emailAddress
             this.phoneNumber = value?["phone"] as? String ?? this.phoneNumber
+            
+            this.userUpdatedHandler?()  // called when the user has been updated at any point in the application
         })
     }
     
@@ -132,17 +141,9 @@ class User {
         return self.teams
     }
     
-//    func setTeams(_ newTeams: [Team]) {
-//        self.teams = newTeams
-//    }
-    
     func getTasks() -> [Task] {
         return self.tasks
     }
-    
-//    func setTasks(_ newTasks: [Task]) {
-//        self.tasks = newTasks
-//    }
     
     func getFullName() -> String {
         return String(self.firstname + " " + self.lastname)
@@ -152,41 +153,18 @@ class User {
         return self.firstname
     }
     
-//    func setFirstName(_ newName: String) {
-//        self.firstname = newName
-//    }
-    
     func getLastName() -> String {
         return self.lastname
     }
-    
-//    func setLastName(_ newName: String) {
-//        self.lastname = newName
-//    }
     
     func getEmailAddress() -> String {
         return self.emailAddress
     }
     
-//    func setEmailAddress(_ newEmail: String) {
-//        self.emailAddress = newEmail
-//    }
-    
-//    func setEmailAddressForCurrentUser(_ newEmail: String) {
-//        Auth.auth().currentUser?.updateEmail(to: newEmail) { (error) in
-//            if let error = error { print("Error: Unable to update email address - \(error.localizedDescription)") }
-//            else { print("Email address updated successfully.") }
-//        }
-//    }
-    
     func getPhoneNumber() -> String {
         return self.phoneNumber
     }
     
-//    func setPhoneNumber(_ newNumber: String) {
-//        self.phoneNumber = newNumber
-//    }
-
     func getPassword() -> String {
         if let password = self.password {
             return password
@@ -194,13 +172,6 @@ class User {
             return ""
         }
     }
-    
-//    func setPasswordForCurrentUser(_ newPassword: String) {
-//        Auth.auth().currentUser?.updatePassword(to: newPassword) { (error) in
-//            if let error = error { print("Error: Unable to update password - \(error.localizedDescription)") }
-//            else { print("Password updated successfully.") }
-//        }
-//    }
     
     func updateCurrentUser(firstname: String?, lastname: String?, email: String?, phone: String?, password: String?) {
         if self.uuid != Globals.UserGlobals.DEFAULT_UUID {
@@ -249,20 +220,10 @@ class User {
         }
     }
     
-//    func updateUserInDatabase() -> (Int, String) {
-//        if self.uuid != "" {
-//            print("Updating user information in database...")
-//            let ref = Database.database().reference(withPath: "users/\(self.uuid)/information")
-//            ref.child("firstname").setValue(self.getFirstName())
-//            ref.child("lastname").setValue(self.getLastName())
-//            ref.child("phone").setValue(self.getPhoneNumber())
-//            ref.child("email").setValue(self.getEmailAddress())
-//            return (200, "Success: User information updated successfully.")
-//        } else {
-//            print("Failed to update user in database, unable to upload user informaion without UUID.")
-//            return (404, "Error: Unable to upload a user without the UUID reference.")
-//        }
-//    }
+    // TODO: This needs to be completed
+    func toString() -> String {
+        return "User: first=" + self.firstname + ", last=" + self.lastname + "; email=" + self.emailAddress + ", phone=" + self.phoneNumber + ";"
+    }
 }
 
 class UserAIKeyword {

@@ -38,50 +38,51 @@ class UpdateAccountSettingsViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        self.user?.setFirstName(self.firstNameTextField!.text!)
-        self.user?.setLastName(self.lastNameTextField!.text!)
-        self.user?.setPhoneNumber(self.phoneNumberTextField!.text!)
-        
-        let dispatchGroup = DispatchGroup()
-        
-        if self.emailAddressTextField.text != self.user?.getEmailAddress() {
-            dispatchGroup.enter()
-            FirebaseUtilities.updateCurrentUserEmailAddress(emailAddressTextField.text!, callback: {
-                [weak self] (status) in
-                guard let this = self else { return }
-                
-                if status.status {
-                    print("Email address update msg: " + status.message)
-                    this.user?.setEmailAddress(this.emailAddressTextField.text!)
-                } else {
-                    print("Error: unable to update email address.")
-                }
-                
-                dispatchGroup.leave()
-            })
-        }
-        
-        if self.passwordTextField.text! != "" {
-            print("Warning: will update password to '\(self.passwordTextField.text!)'")
-            
-            dispatchGroup.enter()
-            FirebaseUtilities.updateCurrentUserPassword(self.passwordTextField.text!, callback: { (status) in
-                print("Password update msg: " + status.message)
-                dispatchGroup.leave()
-            })
-        } else {
-            print("Warning: will not update password")
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            print("Both dispatch functions complete 👍")
-            if let (status, resp) = self.user?.updateUserInDatabase() {
-                if status == 200 { self.updateUserInformation = true }
-                if status == 404 { self.updateUserInformation = false }
-                print("User update: " + resp)
-                self.performSegue(withIdentifier: "unwindToSettingsTableView", sender: nil)
-            }
-        }
+        // TODO: Fix this to work with the new API
+//        self.user?.setFirstName(self.firstNameTextField!.text!)
+//        self.user?.setLastName(self.lastNameTextField!.text!)
+//        self.user?.setPhoneNumber(self.phoneNumberTextField!.text!)
+//
+//        let dispatchGroup = DispatchGroup()
+//
+//        if self.emailAddressTextField.text != self.user?.getEmailAddress() {
+//            dispatchGroup.enter()
+//            FirebaseUtilities.updateCurrentUserEmailAddress(emailAddressTextField.text!, callback: {
+//                [weak self] (status) in
+//                guard let this = self else { return }
+//
+//                if status.status {
+//                    print("Email address update msg: " + status.message)
+//                    this.user?.setEmailAddress(this.emailAddressTextField.text!)
+//                } else {
+//                    print("Error: unable to update email address.")
+//                }
+//
+//                dispatchGroup.leave()
+//            })
+//        }
+//
+//        if self.passwordTextField.text! != "" {
+//            print("Warning: will update password to '\(self.passwordTextField.text!)'")
+//
+//            dispatchGroup.enter()
+//            FirebaseUtilities.updateCurrentUserPassword(self.passwordTextField.text!, callback: { (status) in
+//                print("Password update msg: " + status.message)
+//                dispatchGroup.leave()
+//            })
+//        } else {
+//            print("Warning: will not update password")
+//        }
+//
+//        dispatchGroup.notify(queue: .main) {
+//            print("Both dispatch functions complete 👍")
+//            if let (status, resp) = self.user?.updateUserInDatabase() {
+//                if status == 200 { self.updateUserInformation = true }
+//                if status == 404 { self.updateUserInformation = false }
+//                print("User update: " + resp)
+//                self.performSegue(withIdentifier: "unwindToSettingsTableView", sender: nil)
+//            }
+//        }
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {

@@ -71,7 +71,8 @@ class CreateAccountViewController: UIViewController {
         }
         
         // If the validation passes, create a user object and perform the segue
-        self.user = User(uid: "", firstname: firstname, lastname: lastname, email: email, phone: "", password: password)
+        // TODO: Fix this to work with the new API
+//        self.user = User(uid: "", firstname: firstname, lastname: lastname, email: email, phone: "", password: password)
         self.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
     }
     

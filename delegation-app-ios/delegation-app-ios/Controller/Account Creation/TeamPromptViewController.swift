@@ -28,20 +28,21 @@ class TeamPromptViewController: UIViewController {
     
     // TODO: This needs to be tested
     @IBAction func joinExistingTeamPressed(_ sender: Any) {
-        FirebaseUtilities.getAllTeams(callback: {
-            [weak self] (teams, status) in
-            guard let this = self else { return }
-            if status.status {
-                if let teams = teams {
-                    this.teams = teams
-                    this.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
-                } else {
-                    this.displayAlert(title: "Unknown Error", message: "An unknown error occurred and the teams cannot be loaded at this time.")
-                }
-            } else {
-                this.displayAlert(title: "Error", message: "Unable to load team information at this time. \(status.message)")
-            }
-        })
+        // TODO: Fix this to work with the new API
+//        FirebaseUtilities.getAllTeams(callback: {
+//            [weak self] (teams, status) in
+//            guard let this = self else { return }
+//            if status.status {
+//                if let teams = teams {
+//                    this.teams = teams
+//                    this.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
+//                } else {
+//                    this.displayAlert(title: "Unknown Error", message: "An unknown error occurred and the teams cannot be loaded at this time.")
+//                }
+//            } else {
+//                this.displayAlert(title: "Error", message: "Unable to load team information at this time. \(status.message)")
+//            }
+//        })
     }
     
     @IBAction func createNewTeamPressed(_ sender: Any) {

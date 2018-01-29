@@ -44,7 +44,6 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
         let priority = Globals.TaskGlobals.DEFAULT_PRIORITY
         let desc = self.taskDescriptionTextView.text ?? ""
         let status = Globals.TaskGlobals.DEFAULT_STATUS
-        let resolution = Globals.TaskGlobals.DEFAULT_RESOLUTION
 //        let teamName = self.taskTeamTextField.text ?? ""
         let teamUUID = "-L16CsxYegfD0P3yix29"
         
@@ -63,18 +62,19 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
 //            return
 //        }
         
-        if let user = user {
-            if user.getUUID() == Globals.UserGlobals.DEFAULT_UUID {
-                self.displayAlert(title: "Error Fetching User", message: "An unknown erorr occured when attempting to fetch the UUID.")
-            } else {
-                let task = Task(title: title, priority: priority, description: desc, team: teamUUID, status: status, resolution: resolution, assigneeUUID: user.getUUID(), originatorUUID: user.getUUID())
-                FirebaseUtilities.createTask(task)
-                
-                self.navigationController?.popViewController(animated: true)
-            }
-        } else {
-            self.displayAlert(title: "Invalid User", message: "Unable to get a user object.")
-        }
+        // TODO: Fix this to work with the new API
+//        if let user = user {
+//            if user.getUUID() == Globals.UserGlobals.DEFAULT_UUID {
+//                self.displayAlert(title: "Error Fetching User", message: "An unknown erorr occured when attempting to fetch the UUID.")
+//            } else {
+//                let task = Task(title: title, priority: priority, description: desc, team: teamUUID, status: status, resolution: resolution, assigneeUUID: user.getUUID(), originatorUUID: user.getUUID())
+//                FirebaseUtilities.createTask(task)
+//
+//                self.navigationController?.popViewController(animated: true)
+//            }
+//        } else {
+//            self.displayAlert(title: "Invalid User", message: "Unable to get a user object.")
+//        }
     }
     
     func displayAlert(title: String, message: String) {

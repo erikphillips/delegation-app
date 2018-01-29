@@ -139,224 +139,224 @@ class Utilities {
 }
 
 class FirebaseUtilities {
-    static func extractTeamsFromSnapshot(_ snapshot: DataSnapshot) -> [Team] {
-        print("Extracting teams...")
-        
-        var teams: [Team] = []
-        
-        if let value = (snapshot.value as? NSDictionary) {
-            for elem in value {
-                if let teamData = elem.value as? NSDictionary {
-                    let teamname = teamData["teamname"] as? String ?? ""
-                    let uid = elem.key as? String ?? ""
-                    teams.append(Team(teamname: teamname, uid: uid))
-                }
-            }
-        }
-        
-        print("Found \(teams.count) teams")
-        
-        return teams
-    }
+//    static func extractTeamsFromSnapshot(_ snapshot: DataSnapshot) -> [Team] {
+//        print("Extracting teams...")
+//
+//        var teams: [Team] = []
+//
+//        if let value = (snapshot.value as? NSDictionary) {
+//            for elem in value {
+//                if let teamData = elem.value as? NSDictionary {
+//                    let teamname = teamData["teamname"] as? String ?? ""
+//                    let uid = elem.key as? String ?? ""
+//                    teams.append(Team(teamname: teamname, uid: uid))
+//                }
+//            }
+//        }
+//
+//        print("Found \(teams.count) teams")
+//
+//        return teams
+//    }
     
-    static func extractUserInformationFromSnapshot(_ snapshot: DataSnapshot) -> User {
-        let value = snapshot.value as? NSDictionary
-        
-        let firstname = value?["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
-        let lastname = value?["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
-        let email = value?["email"] as? String ?? Globals.UserGlobals.DEFAULT_EMAIL
-        let phone = value?["phone"] as? String ?? Globals.UserGlobals.DEFAULT_PHONE
-        let uuid = Globals.UserGlobals.DEFAULT_UUID
-        
-        return User(uid: uuid, firstname: firstname, lastname: lastname, email: email, phone: phone)
-    }
+//    static func extractUserInformationFromSnapshot(_ snapshot: DataSnapshot) -> User {
+//        let value = snapshot.value as? NSDictionary
+//
+//        let firstname = value?["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
+//        let lastname = value?["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
+//        let email = value?["email"] as? String ?? Globals.UserGlobals.DEFAULT_EMAIL
+//        let phone = value?["phone"] as? String ?? Globals.UserGlobals.DEFAULT_PHONE
+//        let uuid = Globals.UserGlobals.DEFAULT_UUID
+//
+//        return User(uid: uuid, firstname: firstname, lastname: lastname, email: email, phone: phone)
+//    }
     
-    static func extractUserInformationFromSnapshot(_ snapshot: DataSnapshot, uuid: String) -> User {
-        let value = snapshot.value as? NSDictionary
-        
-        let firstname = value?["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
-        let lastname = value?["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
-        let email = value?["email"] as? String ?? Globals.UserGlobals.DEFAULT_EMAIL
-        let phone = value?["phone"] as? String ?? Globals.UserGlobals.DEFAULT_PHONE
-        
-        return User(uid: uuid, firstname: firstname, lastname: lastname, email: email, phone: phone)
-    }
+//    static func extractUserInformationFromSnapshot(_ snapshot: DataSnapshot, uuid: String) -> User {
+//        let value = snapshot.value as? NSDictionary
+//
+//        let firstname = value?["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
+//        let lastname = value?["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
+//        let email = value?["email"] as? String ?? Globals.UserGlobals.DEFAULT_EMAIL
+//        let phone = value?["phone"] as? String ?? Globals.UserGlobals.DEFAULT_PHONE
+//
+//        return User(uid: uuid, firstname: firstname, lastname: lastname, email: email, phone: phone)
+//    }
     
-    static func getUserInformation(uid: String, callback: @escaping ((_ user: User?, _ status: Status) -> Void)) {
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        
-        ref.child("users/\(uid)/information").observeSingleEvent(of: .value, with: {
-            (snapshot) in
-            
-            let user = FirebaseUtilities.extractUserInformationFromSnapshot(snapshot, uuid: uid)
-            let userStatus = Utilities.validateUser(user)
-            if userStatus.status {
-                callback(user, userStatus)
-            } else {
-                callback(nil, userStatus)
-            }
-        }) { (error) in
-            print(error.localizedDescription)
-            callback(nil, Status(false, error.localizedDescription))
-        }
-    }
+//    static func getUserInformation(uid: String, callback: @escaping ((_ user: User?, _ status: Status) -> Void)) {
+//        var ref: DatabaseReference!
+//        ref = Database.database().reference()
+//
+//        ref.child("users/\(uid)/information").observeSingleEvent(of: .value, with: {
+//            (snapshot) in
+//
+//            let user = FirebaseUtilities.extractUserInformationFromSnapshot(snapshot, uuid: uid)
+//            let userStatus = Utilities.validateUser(user)
+//            if userStatus.status {
+//                callback(user, userStatus)
+//            } else {
+//                callback(nil, userStatus)
+//            }
+//        }) { (error) in
+//            print(error.localizedDescription)
+//            callback(nil, Status(false, error.localizedDescription))
+//        }
+//    }
     
-    static func extractTeamInformationFromSnapshot(_ snapshot: DataSnapshot) -> Team {
-        let value = snapshot.value as? NSDictionary
-        
-        let teamname = value?["teamname"] as? String ?? Globals.TeamGlobals.DEFAULT_TEAMNAME
-        let description = value?["description"] as? String ?? Globals.TeamGlobals.DEFAULT_DESCRIPTION
-        let owner = value?["owner"] as? String ?? Globals.TeamGlobals.DEFAULT_OWNER
-        
-        return Team(teamname: teamname, description: description, owner: owner)
-    }
+//    static func extractTeamInformationFromSnapshot(_ snapshot: DataSnapshot) -> Team {
+//        let value = snapshot.value as? NSDictionary
+//
+//        let teamname = value?["teamname"] as? String ?? Globals.TeamGlobals.DEFAULT_TEAMNAME
+//        let description = value?["description"] as? String ?? Globals.TeamGlobals.DEFAULT_DESCRIPTION
+//        let owner = value?["owner"] as? String ?? Globals.TeamGlobals.DEFAULT_OWNER
+//
+//        return Team(teamname: teamname, description: description, owner: owner)
+//    }
     
-    static func getTeamInformation(guid: String, callback: @escaping ((_ team: Team?, _ status: Status) -> Void)) {
-        var ref: DatabaseReference
-        ref = Database.database().reference()
-        
-        ref.child("teams/\(guid)/information").observeSingleEvent(of: .value, with: {
-            (snapshot) in
-            
-            callback(FirebaseUtilities.extractTeamInformationFromSnapshot(snapshot), Status(true))
-            
-        }) { (error) in
-            print(error.localizedDescription)
-            callback(nil, Status(false, error.localizedDescription))
-        }
-    }
+//    static func getTeamInformation(guid: String, callback: @escaping ((_ team: Team?, _ status: Status) -> Void)) {
+//        var ref: DatabaseReference
+//        ref = Database.database().reference()
+//
+//        ref.child("teams/\(guid)/information").observeSingleEvent(of: .value, with: {
+//            (snapshot) in
+//
+//            callback(FirebaseUtilities.extractTeamInformationFromSnapshot(snapshot), Status(true))
+//
+//        }) { (error) in
+//            print(error.localizedDescription)
+//            callback(nil, Status(false, error.localizedDescription))
+//        }
+//    }
     
-    static func getAllTeams(callback: @escaping ((_ teams: [Team]?, _ status: Status) -> Void)) {
-        let ref: DatabaseReference! = Database.database().reference()
-        ref.child("teams").observeSingleEvent(of: .value, with: { (snapshot) in
-            let teams = FirebaseUtilities.extractTeamsFromSnapshot(snapshot)
-            callback(teams, Status(true))
-        }) { (error) in
-            print(error.localizedDescription)
-            callback(nil, Status(false, error.localizedDescription))
-        }
-    }
+//    static func getAllTeams(callback: @escaping ((_ teams: [Team]?, _ status: Status) -> Void)) {
+//        let ref: DatabaseReference! = Database.database().reference()
+//        ref.child("teams").observeSingleEvent(of: .value, with: { (snapshot) in
+//            let teams = FirebaseUtilities.extractTeamsFromSnapshot(snapshot)
+//            callback(teams, Status(true))
+//        }) { (error) in
+//            print(error.localizedDescription)
+//            callback(nil, Status(false, error.localizedDescription))
+//        }
+//    }
     
-    static func extractTaskFromSnapshot(_ snapshot: DataSnapshot) -> Task {
-        let value = snapshot.value as? NSDictionary
-        
-        let title = value?["title"] as? String ?? Globals.TaskGlobals.DEFAULT_TITLE
-        let priority = value?["priority"] as? String ?? Globals.TaskGlobals.DEFAULT_PRIORITY
-        let description = value?["description"] as? String ?? Globals.TaskGlobals.DEFAULT_DESCRIPTION
-        let team = value?["team"] as? String ?? Globals.TaskGlobals.DEFAULT_TEAM
-        let status = value?["status"] as? String ?? Globals.TaskGlobals.DEFAULT_STATUS
-        let resolution = value?["resolution"] as? String ?? Globals.TaskGlobals.DEFAULT_RESOLUTION
-        let assignee = value?["assignee"] as? String ?? Globals.TaskGlobals.DEFAULT_ASSIGNEE
-        let originatorUUID = value?["originator"] as? String ?? ""
-        
-        return Task(title: title, priority: priority, description: description, team: team, status: status, resolution: resolution, assigneeUUID: assignee, originatorUUID: originatorUUID)
-    }
+//    static func extractTaskFromSnapshot(_ snapshot: DataSnapshot) -> Task {
+//        let value = snapshot.value as? NSDictionary
+//
+//        let title = value?["title"] as? String ?? Globals.TaskGlobals.DEFAULT_TITLE
+//        let priority = value?["priority"] as? String ?? Globals.TaskGlobals.DEFAULT_PRIORITY
+//        let description = value?["description"] as? String ?? Globals.TaskGlobals.DEFAULT_DESCRIPTION
+//        let team = value?["team"] as? String ?? Globals.TaskGlobals.DEFAULT_TEAM
+//        let status = value?["status"] as? String ?? Globals.TaskGlobals.DEFAULT_STATUS
+//        let resolution = value?["resolution"] as? String ?? Globals.TaskGlobals.DEFAULT_RESOLUTION
+//        let assignee = value?["assignee"] as? String ?? Globals.TaskGlobals.DEFAULT_ASSIGNEE
+//        let originatorUUID = value?["originator"] as? String ?? ""
+//
+//        return Task(title: title, priority: priority, description: description, team: team, status: status, resolution: resolution, assigneeUUID: assignee, originatorUUID: originatorUUID)
+//    }
     
-    static func getTask(tuid: String, callback: @escaping ((_ task: Task?, _ status: Status) -> Void)) {
-        var ref: DatabaseReference
-        ref = Database.database().reference()
-        
-        ref.child("tasks/\(tuid)").observeSingleEvent(of: .value, with: {
-            (snapshot) in
-            
-            callback(FirebaseUtilities.extractTaskFromSnapshot(snapshot), Status(true))
-            
-        }) { (error) in
-            print(error.localizedDescription)
-            callback(nil, Status(false, error.localizedDescription))
-        }
-    }
+//    static func getTask(tuid: String, callback: @escaping ((_ task: Task?, _ status: Status) -> Void)) {
+//        var ref: DatabaseReference
+//        ref = Database.database().reference()
+//
+//        ref.child("tasks/\(tuid)").observeSingleEvent(of: .value, with: {
+//            (snapshot) in
+//
+//            callback(FirebaseUtilities.extractTaskFromSnapshot(snapshot), Status(true))
+//
+//        }) { (error) in
+//            print(error.localizedDescription)
+//            callback(nil, Status(false, error.localizedDescription))
+//        }
+//    }
     
-    static func createTask(_ task: Task) {
-        var ref: DatabaseReference
-        ref = Database.database().reference(withPath: "tasks/\(task.getAssigneeUUID())/current_tasks").childByAutoId()
-        
-        ref.child("title").setValue(task.getTitle())
-        ref.child("priority").setValue(task.getPriority())
-        ref.child("description").setValue(task.getDescription())
-        ref.child("team").setValue(task.getTeamUID())
-        ref.child("status").setValue(task.getStatus())
-        ref.child("resolution").setValue(task.getResolution())
-        ref.child("assignee").setValue(task.getAssigneeUUID())
-    }
+//    static func createTask(_ task: Task) {
+//        var ref: DatabaseReference
+//        ref = Database.database().reference(withPath: "tasks/\(task.getAssigneeUUID())/current_tasks").childByAutoId()
+//
+//        ref.child("title").setValue(task.getTitle())
+//        ref.child("priority").setValue(task.getPriority())
+//        ref.child("description").setValue(task.getDescription())
+//        ref.child("team").setValue(task.getTeamUID())
+//        ref.child("status").setValue(task.getStatus())
+//        ref.child("resolution").setValue(task.getResolution())
+//        ref.child("assignee").setValue(task.getAssigneeUUID())
+//    }
     
-    static func getCurrentTaskIDs(uuid: String, callback: @escaping ((_ taskIDs: [String]?, _ status: Status) -> Void)) {
-        var ref: DatabaseReference
-        ref = Database.database().reference()
-        
-        print("Attempting to read: 'tasks/\(uuid)/current_tasks'...")
-        ref.child("tasks/\(uuid)/current_tasks").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let values = snapshot.value as? NSDictionary {
-                var ids: [String] = []
-                for (key, value) in values {
-                    if let value = value as? String {
-                        ids.append(value)
-                    } else {
-                        print("Unable to get value from key=\((key as? String) ?? "") as string")
-                    }
-                }
-                
-                callback(ids, Status(true))
-            } else {
-                print("getCurrentTaskIDs: warning, unable to get value as NSDictionary")
-                callback(nil, Status(false, "unable to retrieve task ids as an NSDictionary."))
-            }
-        })
-    }
+//    static func getCurrentTaskIDs(uuid: String, callback: @escaping ((_ taskIDs: [String]?, _ status: Status) -> Void)) {
+//        var ref: DatabaseReference
+//        ref = Database.database().reference()
+//
+//        print("Attempting to read: 'tasks/\(uuid)/current_tasks'...")
+//        ref.child("tasks/\(uuid)/current_tasks").observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let values = snapshot.value as? NSDictionary {
+//                var ids: [String] = []
+//                for (key, value) in values {
+//                    if let value = value as? String {
+//                        ids.append(value)
+//                    } else {
+//                        print("Unable to get value from key=\((key as? String) ?? "") as string")
+//                    }
+//                }
+//
+//                callback(ids, Status(true))
+//            } else {
+//                print("getCurrentTaskIDs: warning, unable to get value as NSDictionary")
+//                callback(nil, Status(false, "unable to retrieve task ids as an NSDictionary."))
+//            }
+//        })
+//    }
     
-    static func updateCurrentUserEmailAddress(_ email: String, callback: @escaping ((_ status: Status) -> Void)) {
-        let emailStatus = Utilities.validateEmail(email)
-        if emailStatus.status {
-            Auth.auth().currentUser?.updateEmail(to: email) { (error) in
-                if let error = error {
-                    print("Error: Unable to update email address - \(error.localizedDescription)")
-                    callback(Status(false, error.localizedDescription))
-                } else {
-                    print("Email address updated successfully.")
-                    callback(Status(true))
-                }
-            }
-        } else {
-            callback(emailStatus)
-        }
-    }
+//    static func updateCurrentUserEmailAddress(_ email: String, callback: @escaping ((_ status: Status) -> Void)) {
+//        let emailStatus = Utilities.validateEmail(email)
+//        if emailStatus.status {
+//            Auth.auth().currentUser?.updateEmail(to: email) { (error) in
+//                if let error = error {
+//                    print("Error: Unable to update email address - \(error.localizedDescription)")
+//                    callback(Status(false, error.localizedDescription))
+//                } else {
+//                    print("Email address updated successfully.")
+//                    callback(Status(true))
+//                }
+//            }
+//        } else {
+//            callback(emailStatus)
+//        }
+//    }
     
-    static func updateCurrentUserPassword(_ password: String, callback: @escaping ((_ status: Status) -> Void)) {
-        let passwordStatus = Utilities.validatePassword(password)
-        if passwordStatus.status {
-            Auth.auth().currentUser?.updatePassword(to: password) { (error) in
-                if let error = error {
-                    print("Error: Unable to update password - \(error.localizedDescription)")
-                    callback(Status(false, error.localizedDescription))
-                } else {
-                    print("Password updated successfully.")
-                    callback(Status(true))
-                }
-            }
-        } else {
-            callback(passwordStatus)
-        }
-    }
+//    static func updateCurrentUserPassword(_ password: String, callback: @escaping ((_ status: Status) -> Void)) {
+//        let passwordStatus = Utilities.validatePassword(password)
+//        if passwordStatus.status {
+//            Auth.auth().currentUser?.updatePassword(to: password) { (error) in
+//                if let error = error {
+//                    print("Error: Unable to update password - \(error.localizedDescription)")
+//                    callback(Status(false, error.localizedDescription))
+//                } else {
+//                    print("Password updated successfully.")
+//                    callback(Status(true))
+//                }
+//            }
+//        } else {
+//            callback(passwordStatus)
+//        }
+//    }
     
-    static func updateCurrentUser(user: User, callback: @escaping ((_ status: Status) -> Void)) {
-        var ref: DatabaseReference
-        ref = Database.database().reference()
-        
-        ref.child("users/\(user.getUUID())/information").observeSingleEvent(of: .value, with: {
-            (snapshot) in
-            
-            let ref = Database.database().reference(withPath: "users/\(user.getUUID())/information")
-            ref.child("firstname").setValue(user.getFirstName())
-            ref.child("lastname").setValue(user.getLastName())
-            ref.child("phone").setValue(user.getPhoneNumber())
-            ref.child("email").setValue(user.getEmailAddress())
-            
-        }) { (error) in
-            print(error.localizedDescription)
-            callback(Status(false, error.localizedDescription))
-        }
-    }
+//    static func updateCurrentUser(user: User, callback: @escaping ((_ status: Status) -> Void)) {
+//        var ref: DatabaseReference
+//        ref = Database.database().reference()
+//
+//        ref.child("users/\(user.getUUID())/information").observeSingleEvent(of: .value, with: {
+//            (snapshot) in
+//
+//            let ref = Database.database().reference(withPath: "users/\(user.getUUID())/information")
+//            ref.child("firstname").setValue(user.getFirstName())
+//            ref.child("lastname").setValue(user.getLastName())
+//            ref.child("phone").setValue(user.getPhoneNumber())
+//            ref.child("email").setValue(user.getEmailAddress())
+//
+//        }) { (error) in
+//            print(error.localizedDescription)
+//            callback(Status(false, error.localizedDescription))
+//        }
+//    }
     
     static func createNewUser(newUser: User, selectedTeams: [String], callback: @escaping ((_ status: Status) -> Void)) {
         Auth.auth().createUser(withEmail: newUser.getEmailAddress(), password: newUser.getPassword()) {
@@ -398,7 +398,7 @@ class FirebaseUtilities {
             if let user = user {
                 callback(user.uid, nil)
             } else {
-                print("Error found logging in user. \(error?.localizedDescription ?? "Unknown Error")")
+                Logger.log("Error found logging in user. \(error?.localizedDescription ?? "Unknown Error")", event: .error)
                 callback(nil, error)
             }
         }
@@ -407,76 +407,84 @@ class FirebaseUtilities {
     static func performWelcomeProcedure(controller: UIViewController, username: String, password: String, callback: @escaping ((_ user: User?, _ tasks: [Task]?, _ status: Status) -> Void)) {
         loginUser(username: username, password: password, callback: { (uuid, error) in
             if let uuid = uuid {
-                if uuid != Globals.UserGlobals.DEFAULT_UUID {
+                if uuid != Globals.UserGlobals.DEFAULT_UUID {  // verify that the UUID is not simply the default UUID
+                    // Initialize the begining values for the master return objects
                     var welcome_user: User? = nil
                     var welcome_tasks: [Task]? = nil
                     
                     let dispatchGroup = DispatchGroup()
                     
                     dispatchGroup.enter()
-                    FirebaseUtilities.getUserInformation(uid: uuid, callback: { (user, status) in
-                        if let user = user {
-                            print("performWelcomeProcedure: successfully retrieved user information")
-                            welcome_user = user
-                        } else {
-                            print("performWelcomeProcedure: unable to get user information")
-                            print(status.message)
-                        }
-                        
+//                    FirebaseUtilities.getUserInformation(uid: uuid, callback: { (user, status) in
+//                        if let user = user {
+//                            Logger.log("successfully retrieved user information", event: .info)
+//                            welcome_user = user
+//                        } else {
+//                            Logger.log("unable to get user information:", event: .warning)
+//                            Logger.log(status.message, event: .warning)
+//                        }
+//
+//                        dispatchGroup.leave()
+//                    })
+                    welcome_user = User(uuid: uuid)
+                    welcome_user?.userUpdatedHandler = {
+                        Logger.log("user information loaded, leaving dispatch group", event: .info)
                         dispatchGroup.leave()
-                    })
+                    }
                     
-                    dispatchGroup.enter()
-                    FirebaseUtilities.getCurrentTaskIDs(uuid: uuid, callback: { (taskIDs, status) in
-                        if status.status {
-                            if let taskIDs = taskIDs {
-                                welcome_tasks = []
-                                
-                                print("Found the following task ids for the current user:")
-                                for id in taskIDs {
-                                    print(id)
-                                    
-                                    dispatchGroup.enter()
-                                    FirebaseUtilities.getTask(tuid: id, callback: {
-                                        (task, status) in
-                                        if status.status {
-                                            if let task = task {
-                                                welcome_tasks?.append(task)
-                                            }
-                                        }
-                                        dispatchGroup.leave()
-                                    })
-                                }
-                            } else {
-                                print("unable to unwrap the task ids")
-                            }
-                        } else {
-                            print(status.message)
-                        }
-                        
-                        dispatchGroup.leave()
-                    })
+                    // TODO: Gather the tasks for the current user
+//                    dispatchGroup.enter()
+//                    FirebaseUtilities.getCurrentTaskIDs(uuid: uuid, callback: { (taskIDs, status) in
+//                        if status.status {
+//                            if let taskIDs = taskIDs {
+//                                welcome_tasks = []
+//
+//                                print("Found the following task ids for the current user:")
+//                                for id in taskIDs {
+//                                    print(id)
+//
+//                                    dispatchGroup.enter()
+//                                    FirebaseUtilities.getTask(tuid: id, callback: {
+//                                        (task, status) in
+//                                        if status.status {
+//                                            if let task = task {
+//                                                welcome_tasks?.append(task)
+//                                            }
+//                                        }
+//                                        dispatchGroup.leave()
+//                                    })
+//                                }
+//                            } else {
+//                                print("unable to unwrap the task ids")
+//                            }
+//                        } else {
+//                            print(status.message)
+//                        }
+//
+//                        dispatchGroup.leave()
+//                    })
                     
                     dispatchGroup.notify(queue: .main) {
-                        print("Both dispatch functions complete 👍")
+                        Logger.log("both dispatch functions have completed (user fetch and tasks fetch)", event: .info)
                         if let user = welcome_user {
                             if let tasks = welcome_tasks {
+                                Logger.log("successfully gathered user and tasks objects", event: .info)
                                 callback(user, tasks, Status(true))
                             } else {
+                                Logger.log("unable to read task for the logged in user, returning only the user object", event: .warning)
                                 callback(user, nil, Status(false, "Unable to read tasks array after dispatch finished."))
                             }
                         } else {
+                            Logger.log("unable to retrieve the welcome_user object", event: .error)
                             callback(nil, nil, Status(false, "Unable to read user after dispatch finished."))
                         }
                     }
-                    
-                    
                 } else {
-                    print("performWelcomeProcedure: Unable to fetch user without default uuid, returning nil,nil,error")
+                    Logger.log("performWelcomeProcedure: Unable to fetch user without default uuid, returning nil,nil,error", event: .error)
                     callback(nil, nil, Status(false, "Unable to fetch user without default uuid."))
                 }
             } else {
-                print("performWelcomeProcedure: unable to fetch user, returning nil,nil,false")
+                Logger.log("unable to fetch user, returning nil,nil,false", event: .error)
                 print(String(describing: error?.localizedDescription))
                 callback(nil, nil, Status(false, "Unable to fetch user. " + (error?.localizedDescription ?? "")))
             }

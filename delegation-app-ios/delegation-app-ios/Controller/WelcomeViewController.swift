@@ -13,7 +13,7 @@ class WelcomeViewController: UIViewController {
 
     private var segueUser: User?
     private var segueTasks: [Task]?
-    private var uuid: String = ""
+    private var uuid: String = Globals.UserGlobals.DEFAULT_UUID
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -37,7 +37,7 @@ class WelcomeViewController: UIViewController {
         let password = passwordTextField.text
         
         if username != "" && password != "" {
-            print("Starting login process...")
+            Logger.log("starting the login process", event: .info)
             
 //            self.displayLoadingScreen()
             FirebaseUtilities.performWelcomeProcedure(controller: self, username: username!, password: password!, callback: {
@@ -50,12 +50,12 @@ class WelcomeViewController: UIViewController {
                     if let tasks = tasks {
                         this.segueTasks = tasks
                     } else {
-                        print("submitLogin warning: unable to find tasks for the current user.")
+                        Logger.log("submitLogin warning: unable to find tasks for the current user.", event: .error)
                     }
                     
                     this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
                 } else {
-                    print("submitLogin error: unable to retrieve a valid user.")
+                    Logger.log("submitLogin error: unable to retrieve a valid user.", event: .error)
                     if status.status == false {
                         this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(status.message)")
                     }

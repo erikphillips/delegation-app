@@ -71,7 +71,8 @@ class JoinTeamTableViewController: UITableViewController {
                         let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! JoinTeamTableViewCell
                         if cell.isCellSelected {
                             print("Cell is selected")
-                            self.selectedTeams?.append(element.getUid())
+                            // TODO: Fix this to work with the new API
+//                            self.selectedTeams?.append(element.getUid())
                         }
                     }
                 }

@@ -50,23 +50,24 @@ class CreateTeamViewController: UIViewController {
                     
                     print("firebase: user added successfully")
                     
-                    if let teamName = this.teamNameTextField.text {
-                        if let teamDescription = this.teamDescriptionTextView.text {
-                            if let uuid = this.userUID {
-                                let newTeam = Team(teamname: teamName, description: teamDescription, owner: uuid)
-                                
-                                let ref = Database.database().reference(withPath: "teams").childByAutoId()
-                                ref.child("teamname").setValue(newTeam.getTeamName())
-                                ref.child("description").setValue(newTeam.getDescription())
-                                ref.child("owner").setValue(newTeam.getOwnerUUID())
-                                
-                                let userRef = Database.database().reference(withPath: "users/\(uuid)/teams")
-                                userRef.child(ref.key).setValue(newTeam.getTeamName())
-                                
-                                this.performSegue(withIdentifier: "unwindToWelcomeFromCreateTeam", sender: nil)
-                            }
-                        }
-                    }
+                    // TODO: Fix this to work with the new API
+//                    if let teamName = this.teamNameTextField.text {
+//                        if let teamDescription = this.teamDescriptionTextView.text {
+//                            if let uuid = this.userUID {
+//                                let newTeam = Team(teamname: teamName, description: teamDescription, owner: uuid)
+//
+//                                let ref = Database.database().reference(withPath: "teams").childByAutoId()
+//                                ref.child("teamname").setValue(newTeam.getTeamName())
+//                                ref.child("description").setValue(newTeam.getDescription())
+//                                ref.child("owner").setValue(newTeam.getOwnerUUID())
+//
+//                                let userRef = Database.database().reference(withPath: "users/\(uuid)/teams")
+//                                userRef.child(ref.key).setValue(newTeam.getTeamName())
+//
+//                                this.performSegue(withIdentifier: "unwindToWelcomeFromCreateTeam", sender: nil)
+//                            }
+//                        }
+//                    }
                     
                 } else {
                     print("firebase: failed to add user")
