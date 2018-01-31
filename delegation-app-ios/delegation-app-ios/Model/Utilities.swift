@@ -409,32 +409,54 @@ class FirebaseUtilities {
         loginUser(username: username, password: password, callback: { (uuid, error) in
             if let uuid = uuid {
                 if uuid != Globals.UserGlobals.DEFAULT_UUID {  // verify that the UUID is not simply the default UUID
+                    
                     // Initialize the begining values for the master return objects
-                    var welcome_user: User? = nil
+                    let welcome_user: User? = User(uuid: uuid)
                     var welcome_tasks: [Task]? = nil
                     
-                    let dispatchGroup = DispatchGroup()
-                    
-//                    dispatchGroup.enter()
-//                    FirebaseUtilities.getUserInformation(uid: uuid, callback: { (user, status) in
-//                        if let user = user {
-//                            Logger.log("successfully retrieved user information")
-//                            welcome_user = user
-//                        } else {
-//                            Logger.log("unable to get user information:", event: .warning)
-//                            Logger.log(status.message, event: .warning)
+//                    var userSetupCompleted = false
+//                    var taskSetupCompleted = false
+//
+//                    let allSetupComplete = {
+//                        [callback, welcome_user, welcome_tasks] in
+//
+//                        Logger.log("allSetupComplete called, checking for completion...")
+//
+//                        if !userSetupCompleted || !taskSetupCompleted {
+//                            Logger.log("setup has not completed", event: .warning)
+//                            return
 //                        }
 //
-//                        dispatchGroup.leave()
-//                    })
+//                        if let user = welcome_user {
+//                            Logger.log("user unwrapped: " + user.toString())
+//
+//                            if let tasks = welcome_tasks {
+//                                Logger.log("successfully gathered user and tasks objects")
+//                                callback(user, tasks, Status(true))
+//                            } else {
+//                                Logger.log("unable to read task for the logged in user, returning only the user object", event: .warning)
+//                                callback(user, nil, Status(false, "Unable to read tasks array after dispatch finished."))
+//                            }
+//
+//                        } else {
+//                            Logger.log("unable to retrieve the welcome_user object", event: .error)
+//                            callback(nil, nil, Status(false, "Unable to read user after dispatch finished."))
+//                        }
+//                    }
                     
-                    dispatchGroup.enter()
-                    welcome_user = User(uuid: uuid)
-                    welcome_user?.userUpdatedHandler = { [weak dispatchGroup] in
-                        guard let dg = dispatchGroup else { return }
-                        Logger.log("user information loaded, leaving dispatch group")
-                        dg.leave()
+                    let userInitialSetupComplete = {
+                        [callback] (user: User) in
+                        Logger.log("user information loaded, marking as completed")
+                        Logger.log("TODO: the task data has not been loaded", event: .warning)
+                        callback(user, nil, Status(false, "Unable to read tasks array after dispatch finished."))
                     }
+                    
+                    if let user = welcome_user {
+                        user.observers.observe(canary: self, callback: userInitialSetupComplete)
+                        userInitialSetupComplete(user)
+                    }
+                    
+                    
                     
                     // TODO: Gather the tasks for the current user
 //                    dispatchGroup.enter()
@@ -467,27 +489,6 @@ class FirebaseUtilities {
 //
 //                        dispatchGroup.leave()
 //                    })
-                    
-                    dispatchGroup.notify(queue: .main) {
-                        Logger.log("both dispatch functions have completed (user fetch and tasks fetch)")
-                        
-                        if let user = welcome_user {
-                            
-                            Logger.log(user.toString())
-                            
-                            if let tasks = welcome_tasks {
-                                Logger.log("successfully gathered user and tasks objects")
-                                callback(user, tasks, Status(true))
-                            } else {
-                                Logger.log("unable to read task for the logged in user, returning only the user object", event: .warning)
-                                callback(user, nil, Status(false, "Unable to read tasks array after dispatch finished."))
-                            }
-                            
-                        } else {
-                            Logger.log("unable to retrieve the welcome_user object", event: .error)
-                            callback(nil, nil, Status(false, "Unable to read user after dispatch finished."))
-                        }
-                    }
                     
                 } else {
                     Logger.log("unable to fetch user without default uuid, returning nil,nil,error", event: .error)

@@ -28,6 +28,7 @@ class User {
     private var phoneNumber: String
     private var password: String?
     
+    public var observers = FBObservers<User>()
     private var initialSetupComplete = false
     var userUpdatedHandler: (() -> Void)? {
         didSet {
@@ -129,13 +130,16 @@ class User {
             Logger.log("user update recieved from database for 'users/\(this.uuid)/information/", event: .verbose)
             
             let value = snapshot.value as? NSDictionary
-            this.firstname = value?["firstname"] as? String ?? this.firstname
+            this.firstname = value?["firstname"] as? String ?? "error"
             this.lastname = value?["lastname"] as? String ?? this.lastname
             this.emailAddress = value?["email"] as? String ?? this.emailAddress
             this.phoneNumber = value?["phone"] as? String ?? this.phoneNumber
             
+            Logger.log("updated user information: \(this.toString())", event: .verbose)
+            
             this.initialSetupComplete = true
             this.userUpdatedHandler?()  // called when the user has been updated at any point in the application
+            this.observers.notify(this)
         })
     }
     
@@ -227,7 +231,7 @@ class User {
     }
     
     func toString() -> String {
-        return "User: uuid=" + self.uuid + ", first=" + self.firstname + ", last=" + self.lastname + "; email=" + self.emailAddress + ", phone=" + self.phoneNumber + ";"
+        return "User: uuid=\"" + self.uuid + "\", first=\"" + self.firstname + "\", last=\"" + self.lastname + "\"; email=\"" + self.emailAddress + "\", phone=\"" + self.phoneNumber + "\";"
     }
 }
 

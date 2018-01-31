@@ -60,10 +60,10 @@ class WelcomeViewController: UIViewController {
                         this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(status.message)")
                     }
 //                    if let error = error {
-                    //                        Logger.log(error.localizedDescription, event: .error)
+//                        Logger.log(error.localizedDescription, event: .error)
 //                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(error.localizedDescription)")
 //                    } else {
-                    //                        Logger.log("unknown error", event: .error)
+//                        Logger.log("unknown error", event: .error)
 //                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. Please verify your internet connection, username, and password.")
 //                    }
                 }
@@ -87,7 +87,7 @@ class WelcomeViewController: UIViewController {
         }
         
         alertController.addAction(OKAction)
-        self.present(alertController, animated: true, completion:nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func displayLoadingScreen() {

@@ -96,6 +96,23 @@ class SettingsTableViewController: UITableViewController {
 
         applicationVersionLabel.text = "Delegation Application v\(appVersionString)"
         applicationBuildLabel.text = "Build \(buildNumberString)"
+        
+        if let user = user {
+            user.observers.observe(canary: self, callback: {
+                (user: User) in
+                
+                Logger.log("Settings table view controller recieved user update")
+                
+                self.settingsFirstname.text = user.getFirstName()
+                self.settingsLastname.text = user.getLastName()
+                self.settingsEmailAddress.text = user.getEmailAddress()
+                self.settingsPhoneNumber.text = user.getPhoneNumber()
+                
+                DispatchQueue.main.async{
+                    self.tableView.reloadData()
+                }
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,7 +138,7 @@ class SettingsTableViewController: UITableViewController {
             if let user = user {
                 return user.getFullName()
             } else {
-                return "<account_fullname>"
+                return "User Account Management"
             }
         case 1:
             return "Team Management"
@@ -141,6 +158,7 @@ class SettingsTableViewController: UITableViewController {
         
         if segue.identifier == "SettingsEditUserInfo" {
             if let dest = segue.destination as? UpdateAccountSettingsViewController {
+                Logger.log("UpdateAccountSettingsViewController segue called.")
                 dest.user = self.user
             }
         }
