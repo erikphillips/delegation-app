@@ -63,12 +63,10 @@ class TeamPromptViewController: UIViewController {
     @IBAction func unwindToTeamPromptView(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CreateAccountJoinTeam" {
-            Logger.log("Preparing CreateAccountJoinTeam segue...")
-            if let dest = segue.destination as? JoinTeamViewController {
+        if segue.identifier == "ShowTeamSelectionTable" {
+            Logger.log("Preparing ShowTeamSelection segue...")
+            if let dest = segue.destination as? JoinTeamTableViewController {
                 dest.userDictionary = self.userDictionary
-                dest.selectedTeams = []
-                dest.teamsArray = self.teams
             }
         } else if segue.identifier == "CreateAccountCreateTeam" {
             Logger.log("Preparing CreateAccountCreateTeam segue...")

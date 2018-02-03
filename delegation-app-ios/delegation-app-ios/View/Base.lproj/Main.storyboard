@@ -255,6 +255,7 @@
                                 </state>
                                 <connections>
                                     <action selector="joinExistingTeamPressed:" destination="wtY-eC-XBQ" eventType="touchUpInside" id="fzj-nB-FjW"/>
+                                    <segue destination="9pc-Tl-339" kind="show" identifier="ShowTeamSelection" id="Bno-I1-mwS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vx1-qj-MjO">
@@ -316,7 +317,6 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         <viewLayoutGuide key="safeArea" id="Xmx-dv-7Sq"/>
                     </view>
                     <connections>
-                        <segue destination="sbM-9g-E9y" kind="show" identifier="CreateAccountJoinTeam" id="gSh-3u-BGV"/>
                         <segue destination="jWV-aX-oiQ" kind="show" identifier="CreateAccountCreateTeam" id="6GS-XO-Z7b"/>
                         <segue destination="gGk-bf-8lc" kind="unwind" identifier="unwindToCreateAccountView" unwindAction="unwindToCreateAccountViewWithSegue:" id="ViE-Vp-cz2"/>
                     </connections>
@@ -375,9 +375,6 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <state key="normal" title="Select Teams">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="9pc-Tl-339" kind="show" identifier="ShowTeamSelection" id="cTE-lX-bvv"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Teams Below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFx-PF-a2d">
                                 <rect key="frame" x="104" y="143" width="153" height="21"/>
@@ -413,7 +410,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhr-yq-dFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Cvn-zS-FrI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3693.5999999999999" y="-347.67616191904051"/>
+            <point key="canvasLocation" x="5106" y="-417"/>
         </scene>
         <!--Team Selection-->
         <scene sceneID="RcJ-gr-skb">
@@ -428,9 +425,14 @@ Creating a new team will automatically place you as the owner/admin of the team 
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Team Selection" id="bTa-Tq-j9R">
-                                    <barButtonItem key="leftBarButtonItem" systemItem="done" id="pLG-7D-QVP">
+                                    <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pLG-7D-QVP">
                                         <connections>
-                                            <action selector="doneButtonPressed:" destination="9pc-Tl-339" id="Gsr-fN-UM4"/>
+                                            <segue destination="0gw-y9-Wgc" kind="unwind" unwindAction="unwindToTeamPromptViewWithSegue:" id="pEB-rw-AuL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" systemItem="done" id="5LH-D9-X7l">
+                                        <connections>
+                                            <action selector="doneButtonPressed:" destination="9pc-Tl-339" id="JnU-G5-6oq"/>
                                         </connections>
                                     </barButtonItem>
                                 </navigationItem>
@@ -465,12 +467,13 @@ Creating a new team will automatically place you as the owner/admin of the team 
                     </tableView>
                     <connections>
                         <segue destination="0gw-y9-Wgc" kind="unwind" identifier="unwindWithTeamSelection" unwindAction="unwindToJoinTeamViewWithSegue:" id="yxL-fy-Qy2"/>
+                        <segue destination="0gw-y9-Wgc" kind="unwind" identifier="unwindTeamSelectionToWelcome" unwindAction="unwindToWelcomeViewWithSegue:" id="Tdo-sN-L4f"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGZ-4k-AUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0gw-y9-Wgc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4521" y="-348"/>
+            <point key="canvasLocation" x="3694" y="-322"/>
         </scene>
         <!--Create Team View Controller-->
         <scene sceneID="YgH-TZ-rBr">
@@ -499,7 +502,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                     <action selector="backButtonPressed:" destination="jWV-aX-oiQ" eventType="touchUpInside" id="A2E-oE-AFD"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter team information:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiS-p6-Bqm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter team title/name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiS-p6-Bqm">
                                 <rect key="frame" x="37" y="143" width="300" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -524,19 +527,23 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                     <action selector="createAccountAndNewTeam:" destination="jWV-aX-oiQ" eventType="touchUpInside" id="pe4-LD-RkF"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Team Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qrc-dI-hwC">
-                                <rect key="frame" x="37" y="210" width="300" height="247"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qrc-dI-hwC">
+                                <rect key="frame" x="37" y="246" width="300" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="247" id="lai-u6-IjV"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brief team description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihi-0Y-jEi">
+                                <rect key="frame" x="37" y="217" width="300" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="qrc-dI-hwC" firstAttribute="leading" secondItem="bOV-xj-8Uv" secondAttribute="leading" constant="37" id="1an-KK-H7O"/>
                             <constraint firstItem="QJi-w3-tpd" firstAttribute="leading" secondItem="bOV-xj-8Uv" secondAttribute="leading" constant="16" id="2YD-bO-Rkg"/>
                             <constraint firstItem="Lzx-7l-vG1" firstAttribute="leading" secondItem="bOV-xj-8Uv" secondAttribute="leading" constant="16" id="3tK-JS-kWa"/>
                             <constraint firstItem="Lzx-7l-vG1" firstAttribute="top" secondItem="bOV-xj-8Uv" secondAttribute="top" id="F0V-Sh-ezj"/>
@@ -548,11 +555,9 @@ Creating a new team will automatically place you as the owner/admin of the team 
                             <constraint firstItem="bOV-xj-8Uv" firstAttribute="bottom" secondItem="QJi-w3-tpd" secondAttribute="bottom" constant="20" id="dqu-TA-UMg"/>
                             <constraint firstItem="bOV-xj-8Uv" firstAttribute="trailing" secondItem="Lzx-7l-vG1" secondAttribute="trailing" constant="16" id="fXG-Bu-oLf"/>
                             <constraint firstItem="hiS-p6-Bqm" firstAttribute="leading" secondItem="bOV-xj-8Uv" secondAttribute="leading" constant="37" id="hdS-KM-96a"/>
-                            <constraint firstItem="bOV-xj-8Uv" firstAttribute="trailing" secondItem="qrc-dI-hwC" secondAttribute="trailing" constant="38" id="j8e-es-eVf"/>
                             <constraint firstItem="hiS-p6-Bqm" firstAttribute="top" secondItem="Lzx-7l-vG1" secondAttribute="bottom" constant="8" id="jOu-l0-CY4"/>
                             <constraint firstItem="bOV-xj-8Uv" firstAttribute="trailing" secondItem="6Fs-lF-YPk" secondAttribute="trailing" constant="16" id="lCy-nb-jMp"/>
                             <constraint firstItem="PiP-wp-PfH" firstAttribute="top" secondItem="hiS-p6-Bqm" secondAttribute="bottom" constant="8" id="wFc-Im-eD0"/>
-                            <constraint firstItem="qrc-dI-hwC" firstAttribute="top" secondItem="PiP-wp-PfH" secondAttribute="bottom" constant="8" id="xCK-e5-KGH"/>
                             <constraint firstItem="6Fs-lF-YPk" firstAttribute="leading" secondItem="bOV-xj-8Uv" secondAttribute="leading" constant="16" id="yFW-zQ-fkV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bOV-xj-8Uv"/>
@@ -567,7 +572,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yhh-Vh-DMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="In1-pH-cKg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3694" y="341"/>
+            <point key="canvasLocation" x="3693.5999999999999" y="340.47976011994007"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="Q3B-Vl-D2N">
@@ -1365,7 +1370,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                         <rect key="frame" x="0.0" y="568" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dop-tC-sh3" id="0aS-oT-hPd">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbP-Ge-02h">
@@ -1386,18 +1391,18 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                         <rect key="frame" x="0.0" y="612" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2zT-gf-ex4" id="b30-Mr-Pz7">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Account Support" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zYe-r7-YYR">
-                                                    <rect key="frame" x="16" y="5" width="130" height="20.5"/>
+                                                    <rect key="frame" x="15" y="5" width="130" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="delegation.application@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5o2-Vd-uiu">
-                                                    <rect key="frame" x="16" y="25.5" width="194" height="14.5"/>
+                                                    <rect key="frame" x="15" y="25.5" width="194" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.48627450979999998" green="0.68627450980000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1449,7 +1454,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oj6-bM-aBH">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <string key="text">Copyright © 2017-2018 Erik Phillips 
 All Rights Reserved.</string>

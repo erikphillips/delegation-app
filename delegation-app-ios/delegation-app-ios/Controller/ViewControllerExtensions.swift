@@ -24,6 +24,7 @@ extension UIViewController {
     func signoutUser() {
         let firebaseAuth = Auth.auth()
         do {
+            Logger.log("attempting to sign out current user...")
             try firebaseAuth.signOut()
         } catch let signOutError as NSError {
             Logger.log("Error signing out: \(signOutError)", event: .error)

@@ -70,14 +70,26 @@ class CreateAccountViewController: UIViewController {
             return
         }
         
-        // If the validation passes, create a user dictionary and perform the segue
-        self.userDictionary = [
-            "firstname": firstname,
-            "lastname": lastname,
-            "phone": Globals.UserGlobals.DEFAULT_PHONE, // TODO: replace this with a valid phone number
-            "email": email,
-            "password": password ]
-        self.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
+        self.displayLoadingScreen()
+        FirebaseUtilities.emailAddressInUse(email: email, callback: {
+            [weak self] (status) in
+            guard let this = self else { return; }
+            
+            this.dismissLoadingScreen {
+                if status.status {
+                    // If the validation passes, create a user dictionary and perform the segue
+                    this.userDictionary = [
+                        "firstname": firstname,
+                        "lastname": lastname,
+                        "phone": Globals.UserGlobals.DEFAULT_PHONE, // TODO: replace this with a valid phone number
+                        "email": email,
+                        "password": password ]
+                    this.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)
+                } else {
+                    this.displayAlert(title: "Email Address Invalid", message: status.message)
+                }
+            }
+        })
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -109,6 +121,27 @@ class CreateAccountViewController: UIViewController {
         
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion:nil)
+    }
+    
+    func displayLoadingScreen() {
+        Logger.log("displaying loading screen...")
+        
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func dismissLoadingScreen(callback: @escaping (() -> Void)) {
+        Logger.log("dismissing loading screen...")
+        self.dismiss(animated: true, completion: {
+            callback()
+        })
     }
     
     @IBAction func unwindToCreateAccountView(segue: UIStoryboardSegue) { }

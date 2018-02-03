@@ -143,6 +143,40 @@ class User {
         })
     }
     
+    init(firstname: String, lastname: String, phoneNumber: String, emailAddress: String, password: String, callback: @escaping ((_ user: User?, _ status: Status) -> Void)) {
+        self.uuid = Globals.UserGlobals.DEFAULT_UUID
+        self.firstname = firstname
+        self.lastname = lastname
+        self.emailAddress = emailAddress
+        self.phoneNumber = phoneNumber
+        self.tasks = Globals.UserGlobals.DEFAULT_TASKS
+        self.teams = Globals.UserGlobals.DEFAULT_TEAMS
+        
+        Logger.log("creating a new user account, waiting on observable for '\(emailAddress)'")
+        
+        Auth.auth().createUser(withEmail: emailAddress, password: password, completion: {
+            [weak self] (user, error) in
+            guard let this = self else { return; }
+            
+            if let user = user {
+                this.uuid = user.uid
+                Logger.log("Recieved uuid='\(this.uuid)' for the new user account")
+                
+                let ref = Database.database().reference(withPath: "users/\(this.uuid)/information")
+                ref.child("firstname").setValue(this.firstname)
+                ref.child("lastname").setValue(this.lastname)
+                ref.child("email").setValue(this.emailAddress)
+                ref.child("phone").setValue(this.phoneNumber)
+                
+                callback(self, Status(true))
+            } else {
+                Logger.log("firebase failed to add user:", event: .error)
+                Logger.log(error?.localizedDescription ?? "unknown error", event: .error)
+                callback(self, Status(false, error?.localizedDescription ?? "Unknown Error"))
+            }
+        })
+    }
+    
     func getUUID() -> String {
         return self.uuid
     }
@@ -172,7 +206,7 @@ class User {
     }
     
     func getPhoneNumber() -> String {
-        return self.phoneNumber
+        return Utilities.format(phoneNumber: self.phoneNumber) ?? Globals.UserGlobals.DEFAULT_PHONE
     }
     
     func getPassword() -> String {
@@ -210,21 +244,25 @@ class User {
                     if let error = error {
                         Logger.log("unable to update email address - \(error.localizedDescription)", event: .error)
                     } else {
-                        Logger.log("Email address updated successfully.")
+                        Logger.log("Email address updated successfully: \(email).")
                     }
                 }
             }
             
             if let password = password {
-                // CAUTION: the password is not stored in the user object
+                // CAUTION: the password is not stored in the user object, so if it is changed, it better be recorded
                 Auth.auth().currentUser?.updatePassword(to: password) { (error) in
                     if let error = error {
                         Logger.log("Error: Unable to update password - \(error.localizedDescription)", event: .error)
                     } else {
-                        Logger.log("Password updated successfully.")
+                        Logger.log("Password updated successfully: \(password).", event: .warning)
                     }
                 }
             }
+            
+            // Notify all observers that data has changed for this object
+            self.observers.notify(self)
+            
         } else {
             Logger.log("unable to update user information in database - no uuid other than default", event: .error)
         }

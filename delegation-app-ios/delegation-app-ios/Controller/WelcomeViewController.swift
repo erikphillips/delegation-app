@@ -21,6 +21,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        FirebaseUtilities.emailAddressInUse(email: "user1@delegation.com", callback: {(status) in })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,9 +105,11 @@ class WelcomeViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func dismissLoadingScreen() {
-        Logger.log("Dismissing loading screen.")
-        self.dismiss(animated: false, completion: nil)
+    func dismissLoadingScreen(callback: @escaping (() -> Void)) {
+        Logger.log("Dismissing loading screen...")
+        self.dismiss(animated: true, completion: {
+            callback()
+        })
     }
     
     @IBAction func demoActionAdminLogin(_ sender: Any) {

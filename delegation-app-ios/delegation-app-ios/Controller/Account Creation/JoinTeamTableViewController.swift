@@ -27,7 +27,21 @@ class JoinTeamTableViewController: UITableViewController {
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         Logger.log("Done button pressed")
-        self.performSegue(withIdentifier: "unwindWithTeamSelection", sender: nil)
+        
+        if let dict = userDictionary {
+            let _ = User(firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!, password: dict["password"]!, callback: {
+                [weak self] (user, status) in
+                guard let this = self else { return; }
+                
+                if status.status {
+                    Logger.log("user account created successfully")
+                    this.performSegue(withIdentifier: "unwindTeamSelectionToWelcome", sender: nil)
+                } else {
+                    Logger.log("error creating user account", event: .error)
+                    this.displayAlert(title: "Error Creating Account", message: status.message)
+                }
+            })
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,26 +74,20 @@ class JoinTeamTableViewController: UITableViewController {
             cell.isCellSelected = true
         }
     }
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+            Logger.log("You've pressed OK button");
+        }
+        
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "unwindWithTeamSelection" {
-            if let dest = segue.destination as? JoinTeamViewController {
-                if let teams = self.teamsArray {
-                    self.selectedTeams = []
-                    for (index, element) in teams.enumerated() {
-                        Logger.log("idx=\(index) elem=\(element)")
-                        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! JoinTeamTableViewCell
-                        if cell.isCellSelected {
-                            Logger.log("Cell is selected")
-                            // TODO: Fix this to work with the new API
-//                            self.selectedTeams?.append(element.getUid())
-                        }
-                    }
-                }
-                
-                dest.selectedTeams = self.selectedTeams
-            }
-        }
+        
     }
 
 }

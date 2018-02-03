@@ -137,6 +137,69 @@ class Utilities {
             return Status(false, "Team object is an optional set as nil")
         }
     }
+    
+    static func format(phoneNumber sourcePhoneNumber: String) -> String? {
+        // Remove any character that is not a number
+        let numbersOnly = sourcePhoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let length = numbersOnly.count
+        let hasLeadingOne = numbersOnly.hasPrefix("1")
+        
+        // Check for supported phone number length
+        guard length == 7 || length == 10 || (length == 11 && hasLeadingOne) else {
+            return nil
+        }
+        
+        let hasAreaCode = (length >= 10)
+        var sourceIndex = 0
+        
+        // Leading 1
+        var leadingOne = ""
+        if hasLeadingOne {
+            leadingOne = "1 "
+            sourceIndex += 1
+        }
+        
+        // Area code
+        var areaCode = ""
+        if hasAreaCode {
+            let areaCodeLength = 3
+            guard let areaCodeSubstring = numbersOnly.substring(start: sourceIndex, offsetBy: areaCodeLength) else {
+                return nil
+            }
+            areaCode = String(format: "(%@) ", areaCodeSubstring)
+            sourceIndex += areaCodeLength
+        }
+        
+        // Prefix, 3 characters
+        let prefixLength = 3
+        guard let prefix = numbersOnly.substring(start: sourceIndex, offsetBy: prefixLength) else {
+            return nil
+        }
+        sourceIndex += prefixLength
+        
+        // Suffix, 4 characters
+        let suffixLength = 4
+        guard let suffix = numbersOnly.substring(start: sourceIndex, offsetBy: suffixLength) else {
+            return nil
+        }
+        
+        return leadingOne + areaCode + prefix + "-" + suffix
+    }
+}
+
+extension String {
+    /// This method makes it easier extract a substring by character index where a character is viewed as a human-readable character (grapheme cluster).
+    internal func substring(start: Int, offsetBy: Int) -> String? {
+        guard let substringStartIndex = self.index(startIndex, offsetBy: start, limitedBy: endIndex) else {
+            return nil
+        }
+        
+        guard let substringEndIndex = self.index(startIndex, offsetBy: start + offsetBy, limitedBy: endIndex) else {
+            return nil
+        }
+        
+        return String(self[substringStartIndex ..< substringEndIndex])
+    }
 }
 
 class FirebaseUtilities {
@@ -405,6 +468,22 @@ class FirebaseUtilities {
         }
     }
     
+    static func emailAddressInUse(email: String, callback: @escaping ((_ status: Status) -> Void)) {
+        Auth.auth().fetchProviders(forEmail: email, completion: {
+            (providers, error) in
+            
+            if let error = error {
+                Logger.log(error.localizedDescription, event: .severe)
+            } else if let providers = providers {
+                if providers.count > 0 {
+                    callback(Status(false, "The email address appears to already be in use."))
+                }
+            }
+            
+            callback(Status(true))
+        })
+    }
+    
     static func performWelcomeProcedure(controller: UIViewController, username: String, password: String, callback: @escaping ((_ user: User?, _ tasks: [Task]?, _ status: Status) -> Void)) {
         loginUser(username: username, password: password, callback: { (uuid, error) in
             if let uuid = uuid {
@@ -452,7 +531,7 @@ class FirebaseUtilities {
                     }
                     
                     if let user = welcome_user {
-                        user.observers.observe(canary: self, callback: userInitialSetupComplete)
+//                        user.observers.observe(canary: self, callback: userInitialSetupComplete)
                         userInitialSetupComplete(user)
                     }
                     
