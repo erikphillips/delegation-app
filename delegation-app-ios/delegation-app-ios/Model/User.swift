@@ -143,7 +143,7 @@ class User {
         })
     }
     
-    init(firstname: String, lastname: String, phoneNumber: String, emailAddress: String, password: String, callback: @escaping ((_ user: User?, _ status: Status) -> Void)) {
+    init(firstname: String, lastname: String, phoneNumber: String, emailAddress: String, password: String, callback: @escaping ((_ user: User, _ status: Status) -> Void)) {
         self.uuid = Globals.UserGlobals.DEFAULT_UUID
         self.firstname = firstname
         self.lastname = lastname
@@ -156,11 +156,14 @@ class User {
         
         Auth.auth().createUser(withEmail: emailAddress, password: password, completion: {
             [weak self] (user, error) in
-            guard let this = self else { return; }
+            guard let this = self else {
+                Logger.log("Error", event: .error)
+                return
+            }
             
             if let user = user {
-                this.uuid = user.uid
-                Logger.log("Recieved uuid='\(this.uuid)' for the new user account")
+//                this.uuid = user.uid
+                Logger.log("Recieved uuid='\(user.uid)' for the new user account")
                 
                 let ref = Database.database().reference(withPath: "users/\(this.uuid)/information")
                 ref.child("firstname").setValue(this.firstname)
@@ -168,11 +171,11 @@ class User {
                 ref.child("email").setValue(this.emailAddress)
                 ref.child("phone").setValue(this.phoneNumber)
                 
-                callback(self, Status(true))
+                callback(this, Status(true))
             } else {
                 Logger.log("firebase failed to add user:", event: .error)
                 Logger.log(error?.localizedDescription ?? "unknown error", event: .error)
-                callback(self, Status(false, error?.localizedDescription ?? "Unknown Error"))
+                callback(this, Status(false, error?.localizedDescription ?? "Unknown Error"))
             }
         })
     }
@@ -215,6 +218,13 @@ class User {
         } else {
             return ""
         }
+    }
+    
+    func addNewTeam(teamname: String) {
+        let ref = Database.database().reference(withPath: "users/\(teamname)/teams/")
+        ref.childByAutoId().setValue(teamname)
+        
+        self.teams.append(Team(guid: teamname))
     }
     
     func updateCurrentUser(firstname: String?, lastname: String?, email: String?, phone: String?, password: String?) {

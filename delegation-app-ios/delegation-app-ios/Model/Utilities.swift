@@ -484,6 +484,24 @@ class FirebaseUtilities {
         })
     }
     
+    static func teamNameInUse(teamname: String, callback: @escaping ((_ status: Status) -> Void)) {
+        let ref = Database.database().reference(withPath: "teams/\(teamname)")
+
+        ref.observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            
+            if snapshot.exists() {
+                callback(Status(false, "The team name is already in use. Please choose another name."))
+            } else {
+                callback(Status(true, "The team name is available."))
+            }
+
+        }) { (error) in
+            print(error.localizedDescription)
+            callback(Status(false, error.localizedDescription))
+        }
+    }
+    
     static func performWelcomeProcedure(controller: UIViewController, username: String, password: String, callback: @escaping ((_ user: User?, _ tasks: [Task]?, _ status: Status) -> Void)) {
         loginUser(username: username, password: password, callback: { (uuid, error) in
             if let uuid = uuid {

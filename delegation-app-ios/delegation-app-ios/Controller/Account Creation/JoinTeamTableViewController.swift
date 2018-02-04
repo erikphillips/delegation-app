@@ -31,7 +31,7 @@ class JoinTeamTableViewController: UITableViewController {
         if let dict = userDictionary {
             let _ = User(firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!, password: dict["password"]!, callback: {
                 [weak self] (user, status) in
-                guard let this = self else { return; }
+                guard let this = self else { return }
                 
                 if status.status {
                     Logger.log("user account created successfully")
@@ -41,6 +41,8 @@ class JoinTeamTableViewController: UITableViewController {
                     this.displayAlert(title: "Error Creating Account", message: status.message)
                 }
             })
+        } else {
+            Logger.log("unable to unwrap user dictionary object", event: .error)
         }
     }
     

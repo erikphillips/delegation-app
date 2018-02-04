@@ -47,6 +47,8 @@ class Team {
         
         self.members = Globals.TeamGlobals.DEFAULT_MEMBERS
         self.guid = Globals.TeamGlobals.DEFAULT_GUID
+        
+        Logger.log("create a new non-observable team")
     }
     
     init(guid: String) {
@@ -57,7 +59,7 @@ class Team {
         
         self.guid = guid
         
-        Logger.log("created new task, waiting on observable for 'teams/\(guid)/information/'")
+        Logger.log("created new team, waiting on observable for 'teams/\(guid)/information/'")
         
         var ref: DatabaseReference!
         ref = Database.database().reference().child("teams/\(guid)/information/")
@@ -73,6 +75,22 @@ class Team {
             this.description = value?["description"] as? String ?? this.description
             this.owner = value?["owner"] as? String ?? this.owner
         })
+    }
+    
+    init(teamname: String, description: String, owner: String) {
+        self.guid = teamname
+        self.teamname = teamname
+        self.description = description
+        self.owner = owner
+        self.members = [owner]
+        
+        let ref = Database.database().reference(withPath: "teams/\(self.guid)/")
+        ref.child("teamname").setValue(teamname)
+        ref.child("description").setValue(description)
+        ref.child("owner").setPriority(owner)
+        ref.child("members").childByAutoId().setValue(owner)
+        
+        Logger.log("create a new non-observable team account in database with guid='\(self.guid)'")
     }
     
     func getTeamName() -> String {

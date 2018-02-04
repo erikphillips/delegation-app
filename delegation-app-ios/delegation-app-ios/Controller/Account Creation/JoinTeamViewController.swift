@@ -72,11 +72,11 @@ class JoinTeamViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowTeamSelection" {
             Logger.log("Preparing ShowTeamSelection segue...")
-            if let dest = segue.destination as? JoinTeamTableViewController {
-                dest.userDictionary = self.userDictionary
-                dest.selectedTeams = self.selectedTeams
-                dest.teamsArray = self.teamsArray
-            }
+//            if let dest = segue.destination as? JoinTeamTableViewController {
+//                dest.userDictionary = self.userDictionary
+//                dest.selectedTeams = self.selectedTeams
+//                dest.teamsArray = self.teamsArray
+//            }
         }
     }
 
