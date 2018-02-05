@@ -87,7 +87,7 @@ class Team {
         let ref = Database.database().reference(withPath: "teams/\(self.guid)/")
         ref.child("teamname").setValue(teamname)
         ref.child("description").setValue(description)
-        ref.child("owner").setPriority(owner)
+        ref.child("owner").setValue(owner)
         ref.child("members").childByAutoId().setValue(owner)
         
         Logger.log("create a new non-observable team account in database with guid='\(self.guid)'")

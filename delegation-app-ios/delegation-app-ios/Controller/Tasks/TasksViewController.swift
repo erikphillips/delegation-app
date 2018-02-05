@@ -11,22 +11,15 @@ import UIKit
 class TasksViewController: UIViewController {
 
     var user: User?
-    var tasks: [Task]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         Logger.log("Task Tab View Loaded, information:")
-        if let _ = user {
-            Logger.log("  user loaded usccessfully")
+        if let user = user {
+            Logger.log("  user loaded usccessfully - tasks count=\(user.getTasks().count)")
         } else {
             Logger.log("  user did not load")
-        }
-        
-        if let tasks = tasks {
-            Logger.log("  tasks loaded successfully - \(tasks.count) tasks loaded")
-        } else {
-            Logger.log("  tasks did not load")
         }
     }
 
@@ -43,8 +36,8 @@ class TasksViewController: UIViewController {
         
         if segue.identifier == "TasksTableEmbededSegue" {
             if let dest = segue.destination as? TasksTableViewController {
-                if let tasks = self.tasks {
-                    dest.tasks = tasks
+                if let user = self.user {
+                    dest.user = user
                 }
             }
         }

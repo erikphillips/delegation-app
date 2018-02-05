@@ -422,32 +422,44 @@ class FirebaseUtilities {
 //        }
 //    }
     
-    static func createNewUser(newUser: User, selectedTeams: [String], callback: @escaping ((_ status: Status) -> Void)) {
-        Auth.auth().createUser(withEmail: newUser.getEmailAddress(), password: newUser.getPassword()) {
-            (user, error) in
-            
-            if (user != nil && error == nil) {
-                let uid = Auth.auth().currentUser!.uid
-                print("Got new user UID: \(uid)")
-                
-                let ref = Database.database().reference(withPath: "users/\(uid)/information/")
-                ref.child("firstname").setValue(newUser.getFirstName())
-                ref.child("lastname").setValue(newUser.getLastName())
-                ref.child("email").setValue(newUser.getEmailAddress())
-                ref.child("phone").setValue(newUser.getPhoneNumber())
-                
-                let teamsRef = Database.database().reference(withPath: "users/\(uid)/teams/")
-                for id in selectedTeams {
-                    teamsRef.childByAutoId().setValue(id)
-                }
-                
-                print("firebase: user added successfully")
-                
-                callback(Status(true))
+//    static func createNewUser(newUser: User, selectedTeams: [String], callback: @escaping ((_ status: Status) -> Void)) {
+//        Auth.auth().createUser(withEmail: newUser.getEmailAddress(), password: newUser.getPassword()) {
+//            (user, error) in
+//
+//            if (user != nil && error == nil) {
+//                let uid = Auth.auth().currentUser!.uid
+//                print("Got new user UID: \(uid)")
+//
+//                let ref = Database.database().reference(withPath: "users/\(uid)/information/")
+//                ref.child("firstname").setValue(newUser.getFirstName())
+//                ref.child("lastname").setValue(newUser.getLastName())
+//                ref.child("email").setValue(newUser.getEmailAddress())
+//                ref.child("phone").setValue(newUser.getPhoneNumber())
+//
+//                let teamsRef = Database.database().reference(withPath: "users/\(uid)/teams/")
+//                for id in selectedTeams {
+//                    teamsRef.childByAutoId().setValue(id)
+//                }
+//
+//                print("firebase: user added successfully")
+//
+//                callback(Status(true))
+//            } else {
+//                print("firebase: failed to add user")
+//                print(String(describing:error?.localizedDescription))
+//                callback(Status(false, error?.localizedDescription ?? "Unknown error"))
+//            }
+//        }
+//    }
+    
+    static func createNewUser(email: String, password: String, callback: @escaping ((_ uuid: String, _ status: Status) -> Void)) {
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if error == nil, let user = user {
+                Logger.log("new user account created successfully \(user.uid)")
+                callback(user.uid, Status(true))
             } else {
-                print("firebase: failed to add user")
-                print(String(describing:error?.localizedDescription))
-                callback(Status(false, error?.localizedDescription ?? "Unknown error"))
+                Logger.log("an error occurred creating a new user account - \(error?.localizedDescription ?? "unknown error")", event: .severe)
+                callback(Globals.UserGlobals.DEFAULT_UUID, Status(false, error?.localizedDescription ?? "unknown error"))
             }
         }
     }
@@ -509,37 +521,6 @@ class FirebaseUtilities {
                     
                     // Initialize the begining values for the master return objects
                     let welcome_user: User? = User(uuid: uuid)
-                    var welcome_tasks: [Task]? = nil
-                    
-//                    var userSetupCompleted = false
-//                    var taskSetupCompleted = false
-//
-//                    let allSetupComplete = {
-//                        [callback, welcome_user, welcome_tasks] in
-//
-//                        Logger.log("allSetupComplete called, checking for completion...")
-//
-//                        if !userSetupCompleted || !taskSetupCompleted {
-//                            Logger.log("setup has not completed", event: .warning)
-//                            return
-//                        }
-//
-//                        if let user = welcome_user {
-//                            Logger.log("user unwrapped: " + user.toString())
-//
-//                            if let tasks = welcome_tasks {
-//                                Logger.log("successfully gathered user and tasks objects")
-//                                callback(user, tasks, Status(true))
-//                            } else {
-//                                Logger.log("unable to read task for the logged in user, returning only the user object", event: .warning)
-//                                callback(user, nil, Status(false, "Unable to read tasks array after dispatch finished."))
-//                            }
-//
-//                        } else {
-//                            Logger.log("unable to retrieve the welcome_user object", event: .error)
-//                            callback(nil, nil, Status(false, "Unable to read user after dispatch finished."))
-//                        }
-//                    }
                     
                     let userInitialSetupComplete = {
                         [callback] (user: User) in
@@ -552,40 +533,6 @@ class FirebaseUtilities {
 //                        user.observers.observe(canary: self, callback: userInitialSetupComplete)
                         userInitialSetupComplete(user)
                     }
-                    
-                    
-                    
-                    // TODO: Gather the tasks for the current user
-//                    dispatchGroup.enter()
-//                    FirebaseUtilities.getCurrentTaskIDs(uuid: uuid, callback: { (taskIDs, status) in
-//                        if status.status {
-//                            if let taskIDs = taskIDs {
-//                                welcome_tasks = []
-//
-//                                print("Found the following task ids for the current user:")
-//                                for id in taskIDs {
-//                                    print(id)
-//
-//                                    dispatchGroup.enter()
-//                                    FirebaseUtilities.getTask(tuid: id, callback: {
-//                                        (task, status) in
-//                                        if status.status {
-//                                            if let task = task {
-//                                                welcome_tasks?.append(task)
-//                                            }
-//                                        }
-//                                        dispatchGroup.leave()
-//                                    })
-//                                }
-//                            } else {
-//                                print("unable to unwrap the task ids")
-//                            }
-//                        } else {
-//                            print(status.message)
-//                        }
-//
-//                        dispatchGroup.leave()
-//                    })
                     
                 } else {
                     Logger.log("unable to fetch user without default uuid, returning nil,nil,error", event: .error)

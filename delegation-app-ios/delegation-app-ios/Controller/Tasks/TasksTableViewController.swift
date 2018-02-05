@@ -10,12 +10,14 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 
-    var tasks: [Task] = []
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Logger.log("TasksTableViewController loaded, number of tasks = \(tasks.count)")
+        if let user = user {
+            Logger.log("TasksTableViewController loaded, number of tasks = \(user.getTasks().count)")
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,18 +37,26 @@ class TasksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        if let user = user {
+            return user.getTasks().count
+        } else {
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TasksTableViewCell
-        let task = self.tasks[indexPath.row]
         
-        cell.task = task
-        cell.taskNameLabel.text = task.getTitle()
-        cell.taskAssignedLabel.text = task.getAssigneeUUID()
-        cell.taskTeamNameLabel.text = task.getTeamUID()
-        cell.taskPriorityLabel.text = task.getPriority()
+        if let user = user {
+            
+            let task = user.getTasks()[indexPath.row]
+            
+            cell.task = task
+            cell.taskNameLabel.text = task.getTitle()
+            cell.taskAssignedLabel.text = task.getAssigneeUUID()
+            cell.taskTeamNameLabel.text = task.getTeamUID()
+            cell.taskPriorityLabel.text = task.getPriority()
+        }
         
         return cell
     }

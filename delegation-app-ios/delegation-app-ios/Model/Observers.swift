@@ -23,6 +23,10 @@ class FBObservers<T> {
         observers.append(node)
     }
     
+    func unobserve(canary: AnyObject?) {
+        
+    }
+    
     func notify(_ data: T) {
         var remove = IndexSet()
         

@@ -24,12 +24,8 @@ class MainTabBarViewController: UITabBarController {
         let settingsVC = (self.viewControllers![3] as! UINavigationController).viewControllers[0] as! SettingsViewController
         
         homeVC.user = self.user
-        
         tasksVC.user = self.user
-        tasksVC.tasks = self.tasks
-        
         teamVC.user = self.user
-        
         settingsVC.user = self.user
     }
 

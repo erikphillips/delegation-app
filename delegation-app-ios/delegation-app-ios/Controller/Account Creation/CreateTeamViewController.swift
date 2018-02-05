@@ -44,20 +44,39 @@ class CreateTeamViewController: UIViewController {
                 this.displayAlert(title: "Invalid Team Name", message: status.message)
             } else {
                 if let dict = this.userDictionary {
-                    let _ = User(firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!, password: dict["password"]!, callback: {
-                        [weak self] (user, status) in
-                        guard let this = self else { return; }
-                        
+                    FirebaseUtilities.createNewUser(email: dict["email"]!, password: dict["password"]!, callback: {
+                        [weak this] (uuid, status) in
+                        guard let that = this else { return }
                         if status.status {
-                            Logger.log("user account created successfully")
-                            let _ = Team(teamname: this.teamNameTextField.text!, description: this.teamDescriptionTextView.text!, owner: user.getUUID())
-                            user.addNewTeam(teamname: this.teamNameTextField.text!)
-                            this.performSegue(withIdentifier: "unwindTeamSelectionToWelcome", sender: nil)
+                            Logger.log("new user created: \(uuid)")
+                            let user = User(uuid: uuid, firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!)
+                            let team = Team(teamname: that.teamNameTextField.text!, description: that.teamDescriptionTextView.text!, owner: user.getUUID())
+                            user.addNewTeam(guid: team.getGUID())
+                            that.performSegue(withIdentifier: "unwindToWelcomeFromCreateTeam", sender: nil)
                         } else {
-                            Logger.log("error creating user account", event: .error)
-                            this.displayAlert(title: "Error Creating Account", message: status.message)
+                            Logger.log("error creating a new user in firebase - \(status.message)", event: .error)
+                            that.displayAlert(title: "Error Creating Account", message: status.message)
                         }
                     })
+                    
+//                    let _ = User(firstname: dict["firstname"] ?? Globals.UserGlobals.DEFAULT_FIRSTNAME,
+//                                 lastname: dict["lastname"] ?? Globals.UserGlobals.DEFAULT_LASTNAME,
+//                                 phoneNumber: dict["phone"] ?? Globals.UserGlobals.DEFAULT_PHONE,
+//                                 emailAddress: dict["email"] ?? Globals.UserGlobals.DEFAULT_EMAIL,
+//                                 password: dict["password"] ?? Globals.UserGlobals.DEFAULT_PASSWORD, callback: {
+//                        [weak self] (user, status) in
+//                        guard let this = self else { return; }
+//
+//                        if status.status {
+//                            Logger.log("user account created successfully")
+//                            let _ = Team(teamname: this.teamNameTextField.text!, description: this.teamDescriptionTextView.text!, owner: user.getUUID())
+//                            user.addNewTeam(teamname: this.teamNameTextField.text!)
+//                            this.performSegue(withIdentifier: "unwindTeamSelectionToWelcome", sender: nil)
+//                        } else {
+//                            Logger.log("error creating user account", event: .error)
+//                            this.displayAlert(title: "Error Creating Account", message: status.message)
+//                        }
+//                    })
                 } else {
                     Logger.log("createAccountAndNewTeam failed - unable to unwrap user dictionary", event: .error)
                 }

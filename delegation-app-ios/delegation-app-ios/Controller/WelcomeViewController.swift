@@ -12,8 +12,9 @@ import Firebase
 class WelcomeViewController: UIViewController {
 
     private var segueUser: User?
-    private var segueTasks: [Task]?
     private var uuid: String = Globals.UserGlobals.DEFAULT_UUID
+    
+    private var seguePerformed = false
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -21,12 +22,14 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        FirebaseUtilities.emailAddressInUse(email: "user1@delegation.com", callback: {(status) in })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // Clear the password text field before the screen is presented
-        passwordTextField.text = ""
+        
+        Logger.log("WelcomeViewController will appear...")
+        self.seguePerformed = false
+        self.passwordTextField.text = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,33 +43,36 @@ class WelcomeViewController: UIViewController {
         if username != "" && password != "" {
             Logger.log("starting the login process")
             
-//            self.displayLoadingScreen()
+            self.displayLoadingScreen()
             FirebaseUtilities.performWelcomeProcedure(controller: self, username: username!, password: password!, callback: {
                 [weak self] (user, tasks, status) in
                 guard let this = self else { return }
                 
                 if let user = user {
                     this.segueUser = user
+                    this.segueUser?.observers.observe(canary: this, callback: {
+                        [weak this] (user) in
+                        guard let that = this else { return }
+                        
+                        if that.seguePerformed == false {
+                            that.seguePerformed = true
+                            that.dismissLoadingScreen {
+                                [weak that] in
+                                guard let other = that else { return }
+                                other.performSegue(withIdentifier: "SubmitLogin", sender: nil)
+                            }
+                        }
+                    })
                     
-                    if let tasks = tasks {
-                        this.segueTasks = tasks
-                    } else {
-                        Logger.log("submitLogin warning: unable to find tasks for the current user.", event: .error)
-                    }
-                    
-                    this.performSegue(withIdentifier: "SubmitLogin", sender: nil)
                 } else {
                     Logger.log("submitLogin error: unable to retrieve a valid user.", event: .error)
                     if status.status == false {
-                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(status.message)")
+                        this.dismissLoadingScreen {
+                            [weak this] in
+                            guard let that = this else { return }
+                            that.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(status.message)")
+                        }
                     }
-//                    if let error = error {
-//                        Logger.log(error.localizedDescription, event: .error)
-//                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. \(error.localizedDescription)")
-//                    } else {
-//                        Logger.log("unknown error", event: .error)
-//                        this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password. Please verify your internet connection, username, and password.")
-//                    }
                 }
             })
         } else {
@@ -129,7 +135,6 @@ class WelcomeViewController: UIViewController {
             Logger.log("Preparing SubmitLogin segue...")
             if let dest = segue.destination as? MainTabBarViewController {
                 dest.user = self.segueUser
-                dest.tasks = self.segueTasks
             }
         }
     }

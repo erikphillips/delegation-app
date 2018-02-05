@@ -22,31 +22,25 @@ class TeamPromptViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func backButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "unwindToCreateAccountView", sender: nil)
-    }
-    
-    // TODO: This needs to be tested
-    @IBAction func joinExistingTeamPressed(_ sender: Any) {
-        // TODO: Fix this to work with the new API
-//        FirebaseUtilities.getAllTeams(callback: {
-//            [weak self] (teams, status) in
-//            guard let this = self else { return }
-//            if status.status {
-//                if let teams = teams {
-//                    this.teams = teams
-//                    this.performSegue(withIdentifier: "CreateAccountJoinTeam", sender: nil)
-//                } else {
-//                    this.displayAlert(title: "Unknown Error", message: "An unknown error occurred and the teams cannot be loaded at this time.")
-//                }
-//            } else {
-//                this.displayAlert(title: "Error", message: "Unable to load team information at this time. \(status.message)")
-//            }
-//        })
-    }
-    
-    @IBAction func createNewTeamPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "CreateAccountCreateTeam", sender: nil)
+    @IBAction func createAccountPressed(_ sender: Any) {
+        Logger.log("createAccountPressed")
+        
+        if let dict = self.userDictionary {
+            FirebaseUtilities.createNewUser(email: dict["email"]!, password: dict["password"]!, callback: {
+                [weak self] (uuid, status) in
+                guard let this = self else { return }
+                if status.status {
+                    Logger.log("new user created: \(uuid)")
+                    let user = User(uuid: uuid, firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!)
+                    this.performSegue(withIdentifier: "unwindTeamPromptToWelcome", sender: nil)
+                } else {
+                    Logger.log("error creating a new user in firebase - \(status.message)", event: .error)
+                    this.displayAlert(title: "Error Creating Account", message: status.message)
+                }
+            })
+        } else {
+            Logger.log("unable to unwrap user dictionary object", event: .error)
+        }
     }
     
     func displayAlert(title: String, message: String) {
@@ -63,8 +57,8 @@ class TeamPromptViewController: UIViewController {
     @IBAction func unwindToTeamPromptView(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowTeamSelectionTable" {
-            Logger.log("Preparing ShowTeamSelection segue...")
+        if segue.identifier == "ShowTeamSelection" {
+            Logger.log("Preparing JoinTeamTableViewController segue...")
             if let dest = segue.destination as? JoinTeamTableViewController {
                 dest.userDictionary = self.userDictionary
             }

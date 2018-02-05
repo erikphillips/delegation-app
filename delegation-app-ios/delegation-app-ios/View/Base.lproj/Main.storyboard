@@ -244,33 +244,6 @@
                                     <constraint firstAttribute="height" constant="115" id="RKC-qb-YHa"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlf-gU-e5X">
-                                <rect key="frame" x="16" y="423" width="343" height="50"/>
-                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="nO9-Pq-dVB"/>
-                                </constraints>
-                                <state key="normal" title="Join Existing Team">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="joinExistingTeamPressed:" destination="wtY-eC-XBQ" eventType="touchUpInside" id="fzj-nB-FjW"/>
-                                    <segue destination="9pc-Tl-339" kind="show" identifier="ShowTeamSelection" id="Bno-I1-mwS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vx1-qj-MjO">
-                                <rect key="frame" x="16" y="481" width="343" height="50"/>
-                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="C4e-Ql-Zum"/>
-                                </constraints>
-                                <state key="normal" title="Create New Team">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="createNewTeamPressed:" destination="wtY-eC-XBQ" eventType="touchUpInside" id="N8s-H5-glM"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hJ-gR-Flf">
                                 <rect key="frame" x="16" y="597" width="343" height="50"/>
                                 <color key="backgroundColor" red="0.48627450979999998" green="0.68627450980000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -281,7 +254,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="backButtonPressed:" destination="wtY-eC-XBQ" eventType="touchUpInside" id="hKr-M0-FaA"/>
+                                    <segue destination="gGk-bf-8lc" kind="unwind" unwindAction="unwindToCreateAccountViewWithSegue:" id="ReW-fj-i1E"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FA4-7d-sBw">
@@ -295,20 +268,47 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlf-gU-e5X">
+                                <rect key="frame" x="16" y="402" width="343" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Join Existing Team">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9pc-Tl-339" kind="show" identifier="ShowTeamSelection" id="Bno-I1-mwS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kF-Fv-LVg">
+                                <rect key="frame" x="16" y="518" width="343" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Skip and Create Account">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="createAccountPressed:" destination="wtY-eC-XBQ" eventType="touchUpInside" id="fIY-li-NFv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vx1-qj-MjO">
+                                <rect key="frame" x="16" y="460" width="343" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Create New Team">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jWV-aX-oiQ" kind="show" identifier="CreateAccountCreateTeam" id="Mpp-2P-m95"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Xmx-dv-7Sq" firstAttribute="trailing" secondItem="Vx1-qj-MjO" secondAttribute="trailing" constant="16" id="2nx-bI-iTV"/>
                             <constraint firstItem="Xmx-dv-7Sq" firstAttribute="trailing" secondItem="6hJ-gR-Flf" secondAttribute="trailing" constant="16" id="CQF-I8-IEA"/>
-                            <constraint firstItem="Xmx-dv-7Sq" firstAttribute="trailing" secondItem="qlf-gU-e5X" secondAttribute="trailing" constant="16" id="K3i-D9-LP4"/>
                             <constraint firstItem="Xmx-dv-7Sq" firstAttribute="trailing" secondItem="eCc-1c-m3r" secondAttribute="trailing" constant="16" id="LEg-lg-a5B"/>
                             <constraint firstItem="FA4-7d-sBw" firstAttribute="top" secondItem="eCc-1c-m3r" secondAttribute="bottom" constant="8" id="PPF-D6-opn"/>
                             <constraint firstItem="Xmx-dv-7Sq" firstAttribute="bottom" secondItem="6hJ-gR-Flf" secondAttribute="bottom" constant="20" id="QYe-Ej-HPA"/>
                             <constraint firstItem="Xmx-dv-7Sq" firstAttribute="trailing" secondItem="FA4-7d-sBw" secondAttribute="trailing" constant="36" id="W67-cx-qNS"/>
-                            <constraint firstItem="Vx1-qj-MjO" firstAttribute="top" secondItem="qlf-gU-e5X" secondAttribute="bottom" constant="8" id="WDs-sK-PBy"/>
-                            <constraint firstItem="6hJ-gR-Flf" firstAttribute="top" secondItem="Vx1-qj-MjO" secondAttribute="bottom" constant="66" id="Ztj-Xc-TQh"/>
-                            <constraint firstItem="Vx1-qj-MjO" firstAttribute="leading" secondItem="Xmx-dv-7Sq" secondAttribute="leading" constant="16" id="eem-3x-ywy"/>
-                            <constraint firstItem="qlf-gU-e5X" firstAttribute="leading" secondItem="Xmx-dv-7Sq" secondAttribute="leading" constant="16" id="gZb-1N-wrK"/>
                             <constraint firstItem="eCc-1c-m3r" firstAttribute="top" secondItem="Xmx-dv-7Sq" secondAttribute="top" id="l3B-R8-Ccj"/>
                             <constraint firstItem="eCc-1c-m3r" firstAttribute="leading" secondItem="Xmx-dv-7Sq" secondAttribute="leading" constant="16" id="lZ7-gr-E0P"/>
                             <constraint firstItem="FA4-7d-sBw" firstAttribute="leading" secondItem="Xmx-dv-7Sq" secondAttribute="leading" constant="37" id="nAv-Oc-8gS"/>
@@ -317,8 +317,8 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         <viewLayoutGuide key="safeArea" id="Xmx-dv-7Sq"/>
                     </view>
                     <connections>
-                        <segue destination="jWV-aX-oiQ" kind="show" identifier="CreateAccountCreateTeam" id="6GS-XO-Z7b"/>
                         <segue destination="gGk-bf-8lc" kind="unwind" identifier="unwindToCreateAccountView" unwindAction="unwindToCreateAccountViewWithSegue:" id="ViE-Vp-cz2"/>
+                        <segue destination="gGk-bf-8lc" kind="unwind" identifier="unwindTeamPromptToWelcome" unwindAction="unwindToWelcomeViewWithSegue:" id="hkH-X6-Qfr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bx9-L6-Hoo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -410,7 +410,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhr-yq-dFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Cvn-zS-FrI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5106" y="-417"/>
+            <point key="canvasLocation" x="4422" y="-322"/>
         </scene>
         <!--Team Selection-->
         <scene sceneID="RcJ-gr-skb">
@@ -512,7 +512,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <rect key="frame" x="37" y="172" width="300" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="given-name"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="organization"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Fs-lF-YPk">
                                 <rect key="frame" x="16" y="539" width="343" height="50"/>

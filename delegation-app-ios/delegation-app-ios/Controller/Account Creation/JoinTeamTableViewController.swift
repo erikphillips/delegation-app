@@ -28,16 +28,16 @@ class JoinTeamTableViewController: UITableViewController {
     @IBAction func doneButtonPressed(_ sender: Any) {
         Logger.log("Done button pressed")
         
-        if let dict = userDictionary {
-            let _ = User(firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!, password: dict["password"]!, callback: {
-                [weak self] (user, status) in
+        if let dict = self.userDictionary {
+            FirebaseUtilities.createNewUser(email: dict["email"]!, password: dict["password"]!, callback: {
+                [weak self] (uuid, status) in
                 guard let this = self else { return }
-                
                 if status.status {
-                    Logger.log("user account created successfully")
+                    Logger.log("new user created: \(uuid)")
+                    let user = User(uuid: uuid, firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!)
                     this.performSegue(withIdentifier: "unwindTeamSelectionToWelcome", sender: nil)
                 } else {
-                    Logger.log("error creating user account", event: .error)
+                    Logger.log("error creating a new user in firebase - \(status.message)", event: .error)
                     this.displayAlert(title: "Error Creating Account", message: status.message)
                 }
             })

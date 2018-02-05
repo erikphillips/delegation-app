@@ -40,62 +40,7 @@ class User {
             }
         }
     }
-
-//    init(uid: String, firstname: String, lastname: String, email: String, phone: String) {
-//        self.uuid = uid
-//        self.firstname = firstname
-//        self.lastname = lastname
-//        self.emailAddress = email
-//        self.phoneNumber = phone
-//        self.password = nil
-//
-//        self.teams = []
-//        self.tasks = []
-//
-//        print("Created new user instance: \(self.firstname), \(self.lastname), \(self.emailAddress), \(self.phoneNumber)")
-//    }
-//
-//    init(uid: String, firstname: String, lastname: String, email: String, phone: String, password: String) {
-//        self.uuid = uid
-//        self.firstname = firstname
-//        self.lastname = lastname
-//        self.emailAddress = email
-//        self.phoneNumber = phone
-//        self.password = password
-//
-//        self.teams = []
-//        self.tasks = []
-//
-//        print("Created new user instance (with password): \(self.firstname), \(self.lastname), \(self.emailAddress), \(self.phoneNumber)")
-//    }
-//
-//    init(uid: String, snapshot: DataSnapshot) {
-//        let value = snapshot.value as? NSDictionary
-//
-//        self.uuid = uid
-//        self.firstname = value?["firstname"] as? String ?? ""
-//        self.lastname = value?["lastname"] as? String ?? ""
-//        self.emailAddress = value?["email"] as? String ?? ""
-//        self.phoneNumber = value?["phone"] as? String ?? ""
-//        self.teams = []
-//        self.tasks = []
-//
-//        let ref: DatabaseReference!
-//        ref = Database.database().reference().child("users/\(uid)")
-//        let _ = ref.observe(DataEventType.value, with: {
-//            [weak self] (snapshot) in
-//            guard let this = self else { return }
-//
-//            print("User information update detected...")
-//            print(snapshot)
-//            let value = snapshot.value as? NSDictionary
-//
-//            this.firstname = value?["firstname"] as? String ?? this.firstname
-//            this.lastname = value?["lastname"] as? String ?? this.lastname
-//            this.emailAddress = value?["email"] as? String ?? this.emailAddress
-//            this.phoneNumber = value?["phone"] as? String ?? this.phoneNumber
-//        })
-//    }
+   
     
     init() {
         self.uuid = Globals.UserGlobals.DEFAULT_UUID
@@ -118,22 +63,48 @@ class User {
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
         
-        Logger.log("created new user, waiting on observable for 'user/\(uuid)/information/'")
+        Logger.log("created new user, waiting on observable for 'user/\(uuid)/'")
         
         var ref: DatabaseReference!
-        ref = Database.database().reference().child("users/\(uuid)/information/")
+        ref = Database.database().reference().child("users/\(uuid)/")
         
         ref.observe(DataEventType.value, with: {
             [weak self] (snapshot) in
             guard let this = self else { return }
             
-            Logger.log("user update recieved from database for 'users/\(this.uuid)/information/", event: .verbose)
+            Logger.log("user update recieved from database for 'users/\(this.uuid)/", event: .verbose)
             
             let value = snapshot.value as? NSDictionary
-            this.firstname = value?["firstname"] as? String ?? "error"
-            this.lastname = value?["lastname"] as? String ?? this.lastname
-            this.emailAddress = value?["email"] as? String ?? this.emailAddress
-            this.phoneNumber = value?["phone"] as? String ?? this.phoneNumber
+            
+            let information = value?["information"] as? NSDictionary
+            this.firstname = information?["firstname"] as? String ?? this.firstname
+            this.lastname = information?["lastname"] as? String ?? this.lastname
+            this.emailAddress = information?["email"] as? String ?? this.emailAddress
+            this.phoneNumber = information?["phone"] as? String ?? this.phoneNumber
+            
+            if let teams = value?["teams"] as? NSDictionary {
+                Logger.log("teams information unwrapped for user observable")
+                for (_, value) in teams {
+                    if let guid = value as? String {
+                        this.teams.append(Team(guid: guid))
+                        Logger.log("added a team, guid='\(guid)'")
+                    }
+                }
+            } else {
+                Logger.log("teams could not be unwrapped in user observable")
+            }
+            
+            if let tasks = value?["current_tasks"] as? NSDictionary {
+                Logger.log("task information unwrapped for user observable")
+                for (_, value) in tasks {
+                    if let tuid = value as? String {
+                        this.tasks.append(Task(uuid: this.uuid, tuid: tuid))
+                        Logger.log("added a task, tuid=\(tuid)")
+                    }
+                }
+            } else {
+                Logger.log("tasks could not be unwrapped in user observable")
+            }
             
             Logger.log("updated user information: \(this.toString())", event: .verbose)
             
@@ -143,8 +114,8 @@ class User {
         })
     }
     
-    init(firstname: String, lastname: String, phoneNumber: String, emailAddress: String, password: String, callback: @escaping ((_ user: User, _ status: Status) -> Void)) {
-        self.uuid = Globals.UserGlobals.DEFAULT_UUID
+    init(uuid: String, firstname: String, lastname: String, phoneNumber: String, emailAddress: String) {
+        self.uuid = uuid
         self.firstname = firstname
         self.lastname = lastname
         self.emailAddress = emailAddress
@@ -152,32 +123,14 @@ class User {
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
         
-        Logger.log("creating a new user account, waiting on observable for '\(emailAddress)'")
+        Logger.log("creating a new user information, waiting on observable for '\(uuid)'")
         
-        Auth.auth().createUser(withEmail: emailAddress, password: password, completion: {
-            [weak self] (user, error) in
-            guard let this = self else {
-                Logger.log("Error", event: .error)
-                return
-            }
-            
-            if let user = user {
-//                this.uuid = user.uid
-                Logger.log("Recieved uuid='\(user.uid)' for the new user account")
-                
-                let ref = Database.database().reference(withPath: "users/\(this.uuid)/information")
-                ref.child("firstname").setValue(this.firstname)
-                ref.child("lastname").setValue(this.lastname)
-                ref.child("email").setValue(this.emailAddress)
-                ref.child("phone").setValue(this.phoneNumber)
-                
-                callback(this, Status(true))
-            } else {
-                Logger.log("firebase failed to add user:", event: .error)
-                Logger.log(error?.localizedDescription ?? "unknown error", event: .error)
-                callback(this, Status(false, error?.localizedDescription ?? "Unknown Error"))
-            }
-        })
+        let ref = Database.database().reference(withPath: "users/\(self.uuid)/information")
+        ref.child("firstname").setValue(firstname)
+        ref.child("lastname").setValue(lastname)
+        ref.child("phone").setValue(phoneNumber)
+        ref.child("email").setValue(emailAddress)
+        self.observers.notify(self)
     }
     
     func getUUID() -> String {
@@ -220,11 +173,12 @@ class User {
         }
     }
     
-    func addNewTeam(teamname: String) {
-        let ref = Database.database().reference(withPath: "users/\(teamname)/teams/")
-        ref.childByAutoId().setValue(teamname)
+    func addNewTeam(guid: String) {
+        Logger.log("adding team '\(guid)' to user '\(self.uuid)'")
+        let ref = Database.database().reference(withPath: "users/\(self.uuid)/teams/")
+        ref.childByAutoId().setValue(guid)
         
-        self.teams.append(Team(guid: teamname))
+        self.teams.append(Team(guid: guid))
     }
     
     func updateCurrentUser(firstname: String?, lastname: String?, email: String?, phone: String?, password: String?) {
