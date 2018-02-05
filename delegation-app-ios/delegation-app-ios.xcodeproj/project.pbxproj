@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		395A58E2A83757020DA68400 /* Pods_delegation_app_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540F6909FD1B30E807441657 /* Pods_delegation_app_iosUITests.framework */; };
 		85CDF24C2BBA93320FF402AD /* Pods_delegation_app_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E35656F923DEC21B68336F /* Pods_delegation_app_iosTests.framework */; };
+		980232F7202843280019E3B2 /* TeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980232F6202843280019E3B2 /* TeamTableViewController.swift */; };
+		980232F9202843380019E3B2 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980232F8202843380019E3B2 /* TeamTableViewCell.swift */; };
 		9849779A20099A4600954C3A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
 		984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */; };
 		985F2BA8201AF602004097ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 985F2BA7201AF602004097ED /* GoogleService-Info.plist */; };
@@ -78,6 +80,8 @@
 		76E35656F923DEC21B68336F /* Pods_delegation_app_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delegation_app_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7955DD0EF43B3D6329899DE6 /* Pods-delegation-app-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delegation_app_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		980232F6202843280019E3B2 /* TeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewController.swift; sourceTree = "<group>"; };
+		980232F8202843380019E3B2 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		9849779920099A4600954C3A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		985F2BA7201AF602004097ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -305,6 +309,8 @@
 			isa = PBXGroup;
 			children = (
 				98C597B91FE42EE5009329B2 /* TeamViewController.swift */,
+				980232F6202843280019E3B2 /* TeamTableViewController.swift */,
+				980232F8202843380019E3B2 /* TeamTableViewCell.swift */,
 			);
 			path = Team;
 			sourceTree = "<group>";
@@ -696,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98C597D11FE59DA5009329B2 /* JoinTeamTableViewCell.swift in Sources */,
+				980232F9202843380019E3B2 /* TeamTableViewCell.swift in Sources */,
 				98E5E4131FE7A1C600AF0B37 /* UtilitiesViewController.swift in Sources */,
 				98849EDF1FDDD48B009C9B1A /* User.swift in Sources */,
 				98859311200484CC00259079 /* SettingsJoinTeamTableViewCell.swift in Sources */,
@@ -709,6 +716,7 @@
 				984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */,
 				9849779A20099A4600954C3A /* Status.swift in Sources */,
 				98C597BC1FE42EEE009329B2 /* TasksViewController.swift in Sources */,
+				980232F7202843280019E3B2 /* TeamTableViewController.swift in Sources */,
 				98C597C01FE430B5009329B2 /* TasksTableViewCell.swift in Sources */,
 				98C597C91FE597EC009329B2 /* TeamPromptViewController.swift in Sources */,
 				98849EE11FDDD51D009C9B1A /* Team.swift in Sources */,
