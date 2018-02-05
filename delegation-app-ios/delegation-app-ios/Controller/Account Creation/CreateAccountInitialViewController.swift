@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountInitialViewController: UIViewController {
 
     @IBOutlet weak var firstnameTextField: UITextField!
     @IBOutlet weak var lastnameTextField: UITextField!
@@ -149,7 +149,7 @@ class CreateAccountViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CreateAccountContinue" {
             Logger.log("Preparing CreateAccountContinue segue...")
-            if let dest = segue.destination as? TeamPromptViewController {
+            if let dest = segue.destination as? CreateAccountTeamPromptViewController {
                 dest.userDictionary = self.userDictionary
             }
         }

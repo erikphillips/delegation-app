@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JoinTeamTableViewCell: UITableViewCell {
+class CreateAccountJoinTeamTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     var isCellSelected = false

@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class JoinTeamViewController: UIViewController {
+class CreateAccountJoinTeamViewController: UIViewController {
 
     var userDictionary: [String: String]?
     var selectedTeams: [String]?

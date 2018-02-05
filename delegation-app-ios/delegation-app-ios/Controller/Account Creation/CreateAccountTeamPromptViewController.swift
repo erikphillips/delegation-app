@@ -1,5 +1,5 @@
 //
-//  JoinTeamTableViewController.swift
+//  TeamPromptViewController.swift
 //  delegation-app-ios
 //
 //  Created by Erik Phillips on 12/16/17.
@@ -9,24 +9,21 @@
 import UIKit
 import Firebase
 
-class JoinTeamTableViewController: UITableViewController {
+class CreateAccountTeamPromptViewController: UIViewController {
 
-    var teamsArray: [Team]?
     var userDictionary: [String: String]?
-    
-    var selectedTeams: [String]?
+    var teams: [Team]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Logger.log("JoinTeamTableViewController loaded...")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func doneButtonPressed(_ sender: Any) {
-        Logger.log("Done button pressed")
+    @IBAction func createAccountPressed(_ sender: Any) {
+        Logger.log("createAccountPressed")
         
         if let dict = self.userDictionary {
             FirebaseUtilities.createNewUser(email: dict["email"]!, password: dict["password"]!, callback: {
@@ -35,7 +32,7 @@ class JoinTeamTableViewController: UITableViewController {
                 if status.status {
                     Logger.log("new user created: \(uuid)")
                     let user = User(uuid: uuid, firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!)
-                    this.performSegue(withIdentifier: "unwindTeamSelectionToWelcome", sender: nil)
+                    this.performSegue(withIdentifier: "unwindTeamPromptToWelcome", sender: nil)
                 } else {
                     Logger.log("error creating a new user in firebase - \(status.message)", event: .error)
                     this.displayAlert(title: "Error Creating Account", message: status.message)
@@ -43,37 +40,6 @@ class JoinTeamTableViewController: UITableViewController {
             })
         } else {
             Logger.log("unable to unwrap user dictionary object", event: .error)
-        }
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let teams = teamsArray {
-            return teams.count
-        } else {
-            return 0
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TeamSelectionCell", for: indexPath) as! JoinTeamTableViewCell
-
-        if let teams = teamsArray {
-            cell.titleLabel.text = teams[indexPath.row].getTeamName()
-        }
-
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! JoinTeamTableViewCell
-        if cell.isCellSelected {
-            cell.isCellSelected = false
-        } else {
-            cell.isCellSelected = true
         }
     }
     
@@ -85,11 +51,23 @@ class JoinTeamTableViewController: UITableViewController {
         }
         
         alertController.addAction(OKAction)
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion:nil)
     }
-
+    
+    @IBAction func unwindToTeamPromptView(segue: UIStoryboardSegue) { }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "ShowTeamSelection" {
+            Logger.log("Preparing JoinTeamTableViewController segue...")
+            if let dest = segue.destination as? CreateAccountJoinTeamTableViewController {
+                dest.userDictionary = self.userDictionary
+            }
+        } else if segue.identifier == "CreateAccountCreateTeam" {
+            Logger.log("Preparing CreateAccountCreateTeam segue...")
+            if let dest = segue.destination as? CreateAccountCreateTeamViewController {
+                dest.userDictionary = self.userDictionary
+            }
+        }
     }
 
 }

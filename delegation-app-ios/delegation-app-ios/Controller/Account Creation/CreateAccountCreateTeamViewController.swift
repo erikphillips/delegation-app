@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CreateTeamViewController: UIViewController {
+class CreateAccountCreateTeamViewController: UIViewController {
 
     var userDictionary: [String: String]?
     private var userUID: String?

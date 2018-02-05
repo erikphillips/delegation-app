@@ -107,10 +107,10 @@
             </objects>
             <point key="canvasLocation" x="877.60000000000002" y="341.37931034482762"/>
         </scene>
-        <!--Create Account View Controller-->
+        <!--Create Account Initial View Controller-->
         <scene sceneID="Vym-Jj-ld9">
             <objects>
-                <viewController id="2cE-3t-tiV" customClass="CreateAccountViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2cE-3t-tiV" customClass="CreateAccountInitialViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tlf-GJ-R2w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -230,10 +230,10 @@
             </objects>
             <point key="canvasLocation" x="2012" y="-14.842578710644679"/>
         </scene>
-        <!--Team Prompt View Controller-->
+        <!--Create Account Team Prompt View Controller-->
         <scene sceneID="OIq-sO-zcD">
             <objects>
-                <viewController id="wtY-eC-XBQ" customClass="TeamPromptViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wtY-eC-XBQ" customClass="CreateAccountTeamPromptViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kXS-1d-F9u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -326,10 +326,10 @@ Creating a new team will automatically place you as the owner/admin of the team 
             </objects>
             <point key="canvasLocation" x="2813.5999999999999" y="-15.742128935532236"/>
         </scene>
-        <!--Join Team View Controller-->
+        <!--Create Account Join Team View Controller-->
         <scene sceneID="lXW-35-yYQ">
             <objects>
-                <viewController id="sbM-9g-E9y" customClass="JoinTeamViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sbM-9g-E9y" customClass="CreateAccountJoinTeamViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YoH-KG-lJN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -415,7 +415,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Team Selection-->
         <scene sceneID="RcJ-gr-skb">
             <objects>
-                <tableViewController title="Team Selection" id="9pc-Tl-339" customClass="JoinTeamTableViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Team Selection" id="9pc-Tl-339" customClass="CreateAccountJoinTeamTableViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CFU-L2-FAB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -439,7 +439,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeamSelectionCell" textLabel="cXr-eF-T3J" style="IBUITableViewCellStyleDefault" id="zOe-eQ-pAA" customClass="JoinTeamTableViewCell" customModule="delegation_app_ios" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeamSelectionCell" textLabel="cXr-eF-T3J" style="IBUITableViewCellStyleDefault" id="zOe-eQ-pAA" customClass="CreateAccountJoinTeamTableViewCell" customModule="delegation_app_ios" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zOe-eQ-pAA" id="bmw-Rj-lCE">
@@ -475,10 +475,10 @@ Creating a new team will automatically place you as the owner/admin of the team 
             </objects>
             <point key="canvasLocation" x="3694" y="-322"/>
         </scene>
-        <!--Create Team View Controller-->
+        <!--Create Account Create Team View Controller-->
         <scene sceneID="YgH-TZ-rBr">
             <objects>
-                <viewController id="jWV-aX-oiQ" customClass="CreateTeamViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jWV-aX-oiQ" customClass="CreateAccountCreateTeamViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JBb-2N-MJU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -878,12 +878,31 @@ Creating a new team will automatically place you as the owner/admin of the team 
                     </view>
                     <tabBarItem key="tabBarItem" title="Teams" image="PeopleGlyph" id="WQV-0C-kh7"/>
                     <navigationItem key="navigationItem" title="Teams" id="w2t-d6-qBW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bLB-TZ-IkF"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bLB-TZ-IkF">
+                            <connections>
+                                <segue destination="KTi-xq-uj9" kind="show" id="WUg-NP-add"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N2U-vM-50p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4322" y="2261"/>
+        </scene>
+        <!--Create Team-->
+        <scene sceneID="Lrt-zD-Bpy">
+            <objects>
+                <viewController title="Create Team" id="KTi-xq-uj9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UH1-xd-URZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="159-4S-JO7"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pHA-ZD-O1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5143" y="2259"/>
         </scene>
         <!--Utilities View Controller-->
         <scene sceneID="Aqn-J6-xe1">
