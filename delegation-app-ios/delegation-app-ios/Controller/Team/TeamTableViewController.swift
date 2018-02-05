@@ -48,6 +48,15 @@ class TeamTableViewController: UITableViewController {
         if let user = user {
             let team = user.getTeams()[indexPath.row]
             cell.team = team
+            cell.teamTitleLabel.text = team.getTeamName()
+            
+            let teamUpdateHandler = {
+                [cell] (team: Team) in
+                Logger.log("team table view recieved team update for guid=\(team.getGUID())")
+                cell.teamTitleLabel.text = team.getTeamName()
+            }
+            
+            team.observers.observe(canary: self, callback: teamUpdateHandler)
         }
 
         return cell

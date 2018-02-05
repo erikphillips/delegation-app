@@ -1113,16 +1113,16 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeamReuseCell" textLabel="4Bl-PG-y6q" style="IBUITableViewCellStyleDefault" id="0zR-K0-Cja" customClass="TeamTableViewCell" customModule="delegation_app_ios" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeamReuseCell" id="0zR-K0-Cja" customClass="TeamTableViewCell" customModule="delegation_app_ios" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0zR-K0-Cja" id="2e0-Cr-Voh">
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Bl-PG-y6q">
-                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;team_title&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8L-26-Nao">
+                                            <rect key="frame" x="16" y="11" width="317" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1130,7 +1130,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="teamTitleLabel" destination="4Bl-PG-y6q" id="kRa-oU-Bz2"/>
+                                    <outlet property="teamTitleLabel" destination="R8L-26-Nao" id="wCE-6f-pep"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1142,7 +1142,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKc-b0-8xG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4322" y="2963"/>
+            <point key="canvasLocation" x="4320.8000000000002" y="2962.2188905547227"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="tM0-7V-IEP">

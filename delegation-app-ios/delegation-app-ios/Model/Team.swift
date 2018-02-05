@@ -37,16 +37,16 @@ class Team {
         
         self.guid = guid
         
-        Logger.log("created new team, waiting on observable for 'teams/\(guid)/information/'")
+        Logger.log("created new team, waiting on observable for 'teams/\(guid)/'")
         
         var ref: DatabaseReference!
-        ref = Database.database().reference().child("teams/\(guid)/information/")
+        ref = Database.database().reference().child("teams/\(guid)/")
         
         ref.observe(DataEventType.value, with: {
             [weak self] (snapshot) in
             guard let this = self else { return }
             
-            Logger.log("team update recieved from database for 'teams/\(this.guid)/information/", event: .verbose)
+            Logger.log("team update recieved from database for 'teams/\(this.guid)/", event: .verbose)
             
             let value = snapshot.value as? NSDictionary
             this.teamname = value?["teamname"] as? String ?? this.teamname
