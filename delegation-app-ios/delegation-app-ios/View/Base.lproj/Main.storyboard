@@ -512,7 +512,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <rect key="frame" x="37" y="172" width="300" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="organization"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" textContentType="organization"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Fs-lF-YPk">
                                 <rect key="frame" x="16" y="539" width="343" height="50"/>
@@ -880,7 +880,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                     <navigationItem key="navigationItem" title="Teams" id="w2t-d6-qBW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bLB-TZ-IkF">
                             <connections>
-                                <segue destination="KTi-xq-uj9" kind="show" id="WUg-NP-add"/>
+                                <segue destination="KTi-xq-uj9" kind="show" identifier="ShowCreateTeamView" id="WUg-NP-add"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -892,15 +892,63 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Create Team-->
         <scene sceneID="Lrt-zD-Bpy">
             <objects>
-                <viewController title="Create Team" id="KTi-xq-uj9" sceneMemberID="viewController">
+                <viewController title="Create Team" id="KTi-xq-uj9" customClass="CreateNewTeamViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UH1-xd-URZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woc-o3-d3y">
+                                <rect key="frame" x="16" y="556" width="343" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Create New Team">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="createAccountAndNewTeam:" destination="jWV-aX-oiQ" eventType="touchUpInside" id="Xqf-c9-uxn"/>
+                                    <action selector="createNewTeamPressed:" destination="KTi-xq-uj9" eventType="touchUpInside" id="Ros-VG-Ja9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter team title/name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMn-vd-60X">
+                                <rect key="frame" x="37" y="87" width="300" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Team Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sCQ-En-KLf">
+                                <rect key="frame" x="37" y="116" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" textContentType="organization"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j2n-f4-2nY">
+                                <rect key="frame" x="37" y="190" width="300" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brief team description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B59-LP-tA7">
+                                <rect key="frame" x="37" y="161" width="300" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="159-4S-JO7"/>
                     </view>
+                    <connections>
+                        <outlet property="teamDescriptionTextView" destination="j2n-f4-2nY" id="XGx-xg-ESC"/>
+                        <outlet property="teamNameTextField" destination="sCQ-En-KLf" id="MHh-Y7-cl1"/>
+                        <segue destination="0uG-mM-trf" kind="unwind" identifier="unwindCreateTeamToTeamsTableView" unwindAction="unwindToTeamsTableViewWithSegue:" id="smd-4P-nf0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pHA-ZD-O1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="0uG-mM-trf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5143" y="2259"/>
         </scene>

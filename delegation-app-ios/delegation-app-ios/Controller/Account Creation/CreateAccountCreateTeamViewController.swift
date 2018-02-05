@@ -58,25 +58,6 @@ class CreateAccountCreateTeamViewController: UIViewController {
                             that.displayAlert(title: "Error Creating Account", message: status.message)
                         }
                     })
-                    
-//                    let _ = User(firstname: dict["firstname"] ?? Globals.UserGlobals.DEFAULT_FIRSTNAME,
-//                                 lastname: dict["lastname"] ?? Globals.UserGlobals.DEFAULT_LASTNAME,
-//                                 phoneNumber: dict["phone"] ?? Globals.UserGlobals.DEFAULT_PHONE,
-//                                 emailAddress: dict["email"] ?? Globals.UserGlobals.DEFAULT_EMAIL,
-//                                 password: dict["password"] ?? Globals.UserGlobals.DEFAULT_PASSWORD, callback: {
-//                        [weak self] (user, status) in
-//                        guard let this = self else { return; }
-//
-//                        if status.status {
-//                            Logger.log("user account created successfully")
-//                            let _ = Team(teamname: this.teamNameTextField.text!, description: this.teamDescriptionTextView.text!, owner: user.getUUID())
-//                            user.addNewTeam(teamname: this.teamNameTextField.text!)
-//                            this.performSegue(withIdentifier: "unwindTeamSelectionToWelcome", sender: nil)
-//                        } else {
-//                            Logger.log("error creating user account", event: .error)
-//                            this.displayAlert(title: "Error Creating Account", message: status.message)
-//                        }
-//                    })
                 } else {
                     Logger.log("createAccountAndNewTeam failed - unable to unwrap user dictionary", event: .error)
                 }
