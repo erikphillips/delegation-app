@@ -16,29 +16,7 @@ class Team {
     private var owner : String
     private var guid: String
     
-//    init(teamname: String, owner: String) {
-//        self.teamname = teamname
-//        self.owner = owner
-//        self.members = []
-//        self.members.append(owner)
-//        self.description = ""
-//    }
-//
-//    init(teamname: String, description: String, owner: String) {
-//        self.teamname = teamname
-//        self.owner = owner
-//        self.description = description
-//        self.members = []
-//        self.members.append(owner)
-//    }
-//
-//    init(teamname: String, uid: String) {
-//        self.teamname = teamname
-//        self.uid = uid
-//        self.members = []
-//        self.description = ""
-//        self.owner = ""
-//    }
+    public var observers = FBObservers<Team>()
     
     init() {
         self.teamname = Globals.TeamGlobals.DEFAULT_TEAMNAME
@@ -74,6 +52,8 @@ class Team {
             this.teamname = value?["teamname"] as? String ?? this.teamname
             this.description = value?["description"] as? String ?? this.description
             this.owner = value?["owner"] as? String ?? this.owner
+            
+            this.observers.notify(this)
         })
     }
     
@@ -91,6 +71,7 @@ class Team {
         ref.child("members").childByAutoId().setValue(owner)
         
         Logger.log("create a new non-observable team account in database with guid='\(self.guid)'")
+        self.observers.notify(self)
     }
     
     func getTeamName() -> String {

@@ -869,7 +869,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="FYw-q9-pSD" kind="embed" id="x9I-l7-2xh"/>
+                                    <segue destination="FYw-q9-pSD" kind="embed" identifier="TeamsEmbeddedSegue" id="x9I-l7-2xh"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -1104,22 +1104,34 @@ Creating a new team will automatically place you as the owner/admin of the team 
             </objects>
             <point key="canvasLocation" x="6046" y="2261"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Team Table View Controller-->
         <scene sceneID="TKO-pS-Kx3">
             <objects>
-                <tableViewController id="FYw-q9-pSD" sceneMemberID="viewController">
+                <tableViewController id="FYw-q9-pSD" customClass="TeamTableViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ofD-nh-iry">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0zR-K0-Cja">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeamReuseCell" textLabel="4Bl-PG-y6q" style="IBUITableViewCellStyleDefault" id="0zR-K0-Cja" customClass="TeamTableViewCell" customModule="delegation_app_ios" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0zR-K0-Cja" id="2e0-Cr-Voh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Bl-PG-y6q">
+                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="teamTitleLabel" destination="4Bl-PG-y6q" id="kRa-oU-Bz2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

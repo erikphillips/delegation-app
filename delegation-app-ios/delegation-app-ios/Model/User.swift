@@ -123,7 +123,7 @@ class User {
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
         
-        Logger.log("creating a new user information, waiting on observable for '\(uuid)'")
+        Logger.log("creating a new user information (non-observable), uuid='\(uuid)'")
         
         let ref = Database.database().reference(withPath: "users/\(self.uuid)/information")
         ref.child("firstname").setValue(firstname)

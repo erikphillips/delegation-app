@@ -14,6 +14,10 @@ class TeamTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let user = user {
+            Logger.log("TeamTableViewController loaded - user team count=\(user.getTeams().count)")
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -24,30 +28,30 @@ class TeamTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if let user = user {
+            return user.getTeams().count
+        } else {
+            return 0
+        }
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TeamReuseCell", for: indexPath) as! TeamTableViewCell
 
-        // Configure the cell...
+        if let user = user {
+            let team = user.getTeams()[indexPath.row]
+            cell.team = team
+        }
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
