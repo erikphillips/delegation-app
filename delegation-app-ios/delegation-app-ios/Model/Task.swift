@@ -29,21 +29,7 @@ class Task {
     private var uuid: String
     private var tuid: String
 
-//    init(title: String, priority: String, description: String, team: String, status: String, resolution: String, assigneeUUID: String, originatorUUID: String?) {
-//        self.title = title
-//        self.priority = priority
-//        self.description = description
-//        self.team = team
-//        self.status = status
-//        self.resolution = Resolution(rawValue: resolution) ?? Resolution.none
-//        self.assigneeUUID = assigneeUUID
-//
-//        if let originatorUUID = originatorUUID {
-//            self.originatorUUID = originatorUUID
-//        } else {
-//            self.originatorUUID = ""
-//        }
-//    }
+    public var observers = FBObservers<Task>()
     
     init() {
         self.title = Globals.TaskGlobals.DEFAULT_TITLE
@@ -91,6 +77,8 @@ class Task {
             this.status = Task.parseTaskStatus(value?["status"] as? String ?? this.status.rawValue)
             this.assigneeUUID = value?["assignee"] as? String ?? this.assigneeUUID
             this.originatorUUID = value?["originator"] as? String ?? this.originatorUUID
+            
+            this.observers.notify(this)
         })
     }
     
@@ -177,6 +165,10 @@ class Task {
                 ref.child("assignee").setValue(assignee)
                 Logger.log("incomplete method - unable to truly assign different user", event: .error)
             }
+            
+            // Notify all observers of task updates
+            self.observers.notify(self)
+            
         } else {
             Logger.log("unable to update task in database - no tuid or uuid other than global", event: .error)
         }

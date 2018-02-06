@@ -56,11 +56,29 @@ class TasksTableViewController: UITableViewController {
             cell.taskAssignedLabel.text = task.getAssigneeUUID()
             cell.taskTeamNameLabel.text = task.getTeamUID()
             cell.taskPriorityLabel.text = task.getPriority()
+            cell.taskStatusLabel.text = task.getStatus()
+            
+            let taskUpdateHandler = {
+                [cell] (task: Task) in
+                cell.taskNameLabel.text = task.getTitle()
+                cell.taskAssignedLabel.text = task.getAssigneeUUID()
+                cell.taskTeamNameLabel.text = task.getTeamUID()
+                cell.taskPriorityLabel.text = task.getPriority()
+                cell.taskStatusLabel.text = task.getStatus()
+            }
+            
+            task.observers.observe(canary: self, callback: taskUpdateHandler)
         }
         
         return cell
     }
  
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let user = user {
+            self.performSegue(withIdentifier: "TasksTableShowTaskDetail", sender: user.getTasks()[indexPath.row])
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -96,14 +114,15 @@ class TasksTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "TasksTableShowTaskDetail" {
+            if let dest = segue.destination as? TaskDetailTableViewController {
+                if let task = sender as? Task {
+                    Logger.log("TasksTableShowTaskDetail segue launching for row=\(task.getTitle())")
+                    dest.task = task
+                }
+            }
+        }
     }
-    */
 
 }

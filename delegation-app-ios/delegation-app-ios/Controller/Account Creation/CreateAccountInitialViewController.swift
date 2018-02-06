@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CreateAccountInitialViewController: UIViewController {
+class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstnameTextField: UITextField!
     @IBOutlet weak var lastnameTextField: UITextField!
@@ -21,6 +21,11 @@ class CreateAccountInitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.firstnameTextField.delegate = self
+        self.lastnameTextField.delegate = self
+        self.emailAddressTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.confirmPasswordTextField.delegate = self
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(CreateAccountViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(CreateAccountViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -38,6 +43,36 @@ class CreateAccountInitialViewController: UIViewController {
         self.emailAddressTextField.text = "erik@app.com"
         self.passwordTextField.text = "123456"
         self.confirmPasswordTextField.text = "123456"
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case firstnameTextField:
+            textField.resignFirstResponder()
+            lastnameTextField.becomeFirstResponder()
+            break
+        case lastnameTextField:
+            textField.resignFirstResponder()
+            emailAddressTextField.becomeFirstResponder()
+            break
+        case emailAddressTextField:
+            textField.resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+            break
+        case passwordTextField:
+            textField.resignFirstResponder()
+            confirmPasswordTextField.becomeFirstResponder()
+            break
+        case confirmPasswordTextField:
+            textField.resignFirstResponder()
+            self.continueButtonPressed(self)
+            break
+        default:
+            textField.resignFirstResponder()
+            break
+        }
+        
+        return false
     }
     
     @IBAction func continueButtonPressed(_ sender: Any) {

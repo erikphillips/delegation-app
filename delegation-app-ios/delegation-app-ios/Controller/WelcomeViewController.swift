@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, UITextFieldDelegate {
 
     private var segueUser: User?
     private var uuid: String = Globals.UserGlobals.DEFAULT_UUID
@@ -22,6 +22,8 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        self.usernameTextField.delegate = self
+        self.passwordTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +36,24 @@ class WelcomeViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case usernameTextField:
+            textField.resignFirstResponder()
+            self.passwordTextField.becomeFirstResponder()
+            break
+        case passwordTextField:
+            textField.resignFirstResponder()
+            self.submitLogin(self)
+            break
+        default:
+            textField.resignFirstResponder()
+            break
+        }
+        
+        return false
     }
     
     @IBAction func submitLogin(_ sender: Any) {

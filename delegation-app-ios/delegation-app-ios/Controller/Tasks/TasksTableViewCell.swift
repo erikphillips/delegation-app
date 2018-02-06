@@ -16,6 +16,7 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var taskPriorityLabel: UILabel!
     @IBOutlet weak var taskTeamNameLabel: UILabel!
     @IBOutlet weak var taskAssignedLabel: UILabel!
+    @IBOutlet weak var taskStatusLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +26,7 @@ class TasksTableViewCell: UITableViewCell {
             taskPriorityLabel.text = task.getPriority()
             taskTeamNameLabel.text = task.getTeamUID()
             taskAssignedLabel.text = task.getAssigneeUUID()
+            taskStatusLabel.text = task.getStatus()
         }
     }
     

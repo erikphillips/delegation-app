@@ -109,6 +109,10 @@ class Team {
                 self.owner = owner
                 ref.child("owner").setValue(owner)
             }
+            
+            // Notify all observers that an update has occurred
+            self.observers.notify(self)
+            
         } else {
             Logger.log("unable to update team in database - no guid other than default", event: .error)
         }
