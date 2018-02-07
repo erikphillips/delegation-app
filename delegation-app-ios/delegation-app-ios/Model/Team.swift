@@ -53,6 +53,16 @@ class Team {
             this.description = value?["description"] as? String ?? this.description
             this.owner = value?["owner"] as? String ?? this.owner
             
+            if let dict = value?["members"] as? NSDictionary {
+                for (key, value) in dict {
+                    if let value = value as? String {
+                        if !this.members.contains(value) {
+                            this.members.append(value)
+                        }
+                    }
+                }
+            }
+            
             this.observers.notify(this)
         })
     }
@@ -88,6 +98,14 @@ class Team {
     
     func getOwnerUUID() -> String {
         return self.owner
+    }
+    
+    func getMembers() -> [String] {
+        return self.members
+    }
+    
+    func getMemberCount() -> String {
+        return String(self.members.count)
     }
     
     func updateTeam(teamname: String?, description: String?, owner: String?) {

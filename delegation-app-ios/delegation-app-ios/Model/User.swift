@@ -178,6 +178,9 @@ class User {
         let ref = Database.database().reference(withPath: "users/\(self.uuid)/teams/")
         ref.childByAutoId().setValue(guid)
         
+        let teamRef = Database.database().reference(withPath: "teams/\(guid)/members/")
+        teamRef.childByAutoId().setValue(self.uuid)
+        
         self.teams.append(Team(guid: guid))
     }
     
