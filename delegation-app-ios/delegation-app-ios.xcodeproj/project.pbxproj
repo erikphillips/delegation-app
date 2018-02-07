@@ -45,6 +45,7 @@
 		98C597CF1FE5982B009329B2 /* CreateAccountJoinTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597CE1FE5982B009329B2 /* CreateAccountJoinTeamTableViewController.swift */; };
 		98C597D11FE59DA5009329B2 /* CreateAccountJoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D01FE59DA5009329B2 /* CreateAccountJoinTeamTableViewCell.swift */; };
 		98C597D51FE644F5009329B2 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */; };
+		98CB98AD202A8BDA006E3370 /* CreateAccountTeamDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB98AC202A8BDA006E3370 /* CreateAccountTeamDetailTableViewController.swift */; };
 		98CD42131FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */; };
 		98CD42151FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */; };
 		98D2A8C01FF75B2F00248366 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */; };
@@ -123,6 +124,7 @@
 		98C597CE1FE5982B009329B2 /* CreateAccountJoinTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountJoinTeamTableViewController.swift; sourceTree = "<group>"; };
 		98C597D01FE59DA5009329B2 /* CreateAccountJoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountJoinTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		98CB98AC202A8BDA006E3370 /* CreateAccountTeamDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountTeamDetailTableViewController.swift; sourceTree = "<group>"; };
 		98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewController.swift; sourceTree = "<group>"; };
 		98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +200,14 @@
 				98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		98577F8E202A72BF00CFC822 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				98C597CA1FE59808009329B2 /* CreateAccountJoinTeamViewController.swift */,
+			);
+			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		98849E9E1FDDC7AA009C9B1A = {
@@ -329,12 +339,13 @@
 		98C597C71FE59774009329B2 /* Account Creation */ = {
 			isa = PBXGroup;
 			children = (
+				98577F8E202A72BF00CFC822 /* Deprecated */,
 				986F8E721FDFB6D10033B9D0 /* CreateAccountInitialViewController.swift */,
 				98C597C81FE597EC009329B2 /* CreateAccountTeamPromptViewController.swift */,
 				98C597CC1FE5981A009329B2 /* CreateAccountCreateTeamViewController.swift */,
-				98C597CA1FE59808009329B2 /* CreateAccountJoinTeamViewController.swift */,
 				98C597CE1FE5982B009329B2 /* CreateAccountJoinTeamTableViewController.swift */,
 				98C597D01FE59DA5009329B2 /* CreateAccountJoinTeamTableViewCell.swift */,
+				98CB98AC202A8BDA006E3370 /* CreateAccountTeamDetailTableViewController.swift */,
 			);
 			path = "Account Creation";
 			sourceTree = "<group>";
@@ -715,6 +726,7 @@
 				98CD42151FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift in Sources */,
 				98849EB31FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld in Sources */,
 				98E5E4151FEB5D0A00AF0B37 /* Utilities.swift in Sources */,
+				98CB98AD202A8BDA006E3370 /* CreateAccountTeamDetailTableViewController.swift in Sources */,
 				984FECC42028D39400F13A34 /* CreateNewTeamViewController.swift in Sources */,
 				98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */,
 				984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */,

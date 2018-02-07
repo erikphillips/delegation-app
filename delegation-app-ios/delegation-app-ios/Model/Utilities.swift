@@ -514,6 +514,24 @@ class FirebaseUtilities {
         }
     }
     
+    static func fetchAllTeams(callback: @escaping ((_ teams: [Team]) -> Void)) {
+        let ref = Database.database().reference(withPath: "teams/")
+        ref.observeSingleEvent(of: DataEventType.value, with: {
+            (snapshot) in
+            
+            var teams: [Team] = []
+            if let dict = snapshot.value as? NSDictionary {
+                for (key, _) in dict {
+                    if let key = key as? String {
+                        teams.append(Team(guid: key))
+                    }
+                }
+            }
+            
+            callback(teams)
+        })
+    }
+    
     static func performWelcomeProcedure(controller: UIViewController, username: String, password: String, callback: @escaping ((_ user: User?, _ tasks: [Task]?, _ status: Status) -> Void)) {
         loginUser(username: username, password: password, callback: { (uuid, error) in
             if let uuid = uuid {

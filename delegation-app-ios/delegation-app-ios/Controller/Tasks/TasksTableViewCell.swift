@@ -20,6 +20,8 @@ class TasksTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        Logger.log("Task cell awake from nib")
 
         if let task = task {
             taskNameLabel.text = task.getTitle()
@@ -28,6 +30,24 @@ class TasksTableViewCell: UITableViewCell {
             taskAssignedLabel.text = task.getAssigneeUUID()
             taskStatusLabel.text = task.getStatus()
         }
+//            self.taskNameLabel.text = task.getTitle()
+//            self.taskAssignedLabel.text = task.getAssigneeUUID()
+//            self.taskTeamNameLabel.text = task.getTeamUID()
+//            self.taskPriorityLabel.text = task.getPriority()
+//            self.taskStatusLabel.text = task.getStatus()
+//            
+//            let taskUpdateHandler = {
+//                [weak self] (task: Task) in
+//                guard let this = self else { return }
+//                this.taskNameLabel.text = task.getTitle()
+//                this.taskAssignedLabel.text = task.getAssigneeUUID()
+//                this.taskTeamNameLabel.text = task.getTeamUID()
+//                this.taskPriorityLabel.text = task.getPriority()
+//                this.taskStatusLabel.text = task.getStatus()
+//            }
+//            
+//            task.observers.observe(canary: self, callback: taskUpdateHandler)
+//        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

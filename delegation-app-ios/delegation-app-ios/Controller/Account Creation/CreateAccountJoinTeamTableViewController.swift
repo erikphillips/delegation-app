@@ -14,11 +14,24 @@ class CreateAccountJoinTeamTableViewController: UITableViewController {
     var teamsArray: [Team]?
     var userDictionary: [String: String]?
     
-    var selectedTeams: [String]?
+    var selectedTeams: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger.log("JoinTeamTableViewController loaded...")
+        
+//        self.displayLoadingScreen()
+        FirebaseUtilities.fetchAllTeams(callback: {
+            [weak self] (teams) in
+            guard let this = self else { return }
+            
+            this.teamsArray = teams
+            this.tableView.reloadData()
+//            this.dismissLoadingScreen(callback: {
+//                () in
+//                Logger.log("Loading screen dismissed.")
+//            })
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +48,12 @@ class CreateAccountJoinTeamTableViewController: UITableViewController {
                 if status.status {
                     Logger.log("new user created: \(uuid)")
                     let user = User(uuid: uuid, firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!)
+                    
+                    Logger.log("will add \(this.selectedTeams.count) selected teams")
+                    for guid in this.selectedTeams {
+                        user.addNewTeam(guid: guid)
+                    }
+                    
                     this.performSegue(withIdentifier: "unwindTeamSelectionToWelcome", sender: nil)
                 } else {
                     Logger.log("error creating a new user in firebase - \(status.message)", event: .error)
@@ -60,20 +79,50 @@ class CreateAccountJoinTeamTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamSelectionCell", for: indexPath) as! CreateAccountJoinTeamTableViewCell
-
+        cell.checkmarkImage.isHidden = !cell.isCellSelected
+        cell.accessoryType = .detailButton
+        
         if let teams = teamsArray {
-            cell.titleLabel.text = teams[indexPath.row].getTeamName()
+            let team = teams[indexPath.row]
+            cell.team = team
+            cell.titleLabel.text = team.getTeamName()
+            
+            team.observers.observe(canary: self, callback: {
+                [cell] (team: Team) in
+                cell.titleLabel.text = team.getTeamName()
+                Logger.log("JoinTeamTableView loaded a team updated handler for guid='\(team.getGUID())', name='\(team.getTeamName())'")
+            })
         }
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
         let cell = tableView.cellForRow(at: indexPath) as! CreateAccountJoinTeamTableViewCell
-        if cell.isCellSelected {
-            cell.isCellSelected = false
-        } else {
-            cell.isCellSelected = true
+        cell.isCellSelected = !cell.isCellSelected
+        cell.checkmarkImage.isHidden = !cell.isCellSelected
+        
+        if let guid = cell.team?.getGUID() {
+            self.selectedTeams.append(guid)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! CreateAccountJoinTeamTableViewCell
+        cell.isCellSelected = !cell.isCellSelected
+        cell.checkmarkImage.isHidden = !cell.isCellSelected
+        
+        if let guid = cell.team?.getGUID() {
+            if let index = self.selectedTeams.index(of: guid) {
+                self.selectedTeams.remove(at: index)
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        if let teams = self.teamsArray {
+            self.performSegue(withIdentifier: "CreateAccountTeamDetailSegue", sender: teams[indexPath.row])
         }
     }
     
@@ -87,9 +136,39 @@ class CreateAccountJoinTeamTableViewController: UITableViewController {
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion: nil)
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    func displayLoadingScreen() {
+        Logger.log("Displaying loading screen.")
         
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func dismissLoadingScreen(callback: @escaping (() -> Void)) {
+        Logger.log("Dismissing loading screen...")
+        self.dismiss(animated: true, completion: {
+            callback()
+        })
+    }
+
+    @IBAction func unwindToJoinTeamTableView(segue: UIStoryboardSegue) { }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CreateAccountTeamDetailSegue" {
+            if let dest = segue.destination as? CreateAccountTeamDetailTableViewController {
+                if let team = sender as? Team {
+                    Logger.log("CreateAccountTeamDetailSegue called for guid='\(team.getGUID())'")
+                    dest.team = team
+                }
+            }
+        }
     }
 
 }

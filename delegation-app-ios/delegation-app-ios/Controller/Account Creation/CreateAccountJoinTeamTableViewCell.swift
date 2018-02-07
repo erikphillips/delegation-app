@@ -10,8 +10,11 @@ import UIKit
 
 class CreateAccountJoinTeamTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    var team: Team?
     var isCellSelected = false
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var checkmarkImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
