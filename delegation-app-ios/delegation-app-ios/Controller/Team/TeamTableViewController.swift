@@ -61,6 +61,20 @@ class TeamTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let user = self.user {
+            let team = user.getTeams()[indexPath.row]
+            self.performSegue(withIdentifier: "ShowTeamSpecificTasksSegue", sender: team)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        if let user = self.user {
+            let team = user.getTeams()[indexPath.row]
+            self.performSegue(withIdentifier: "ShowTeamDetailSegue", sender: team)
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -97,14 +111,24 @@ class TeamTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowTeamDetailSegue" {
+            if let dest = segue.destination as? TeamDetailTableViewController {
+                if let team = sender as? Team {
+                    Logger.log("ShowTeamDetailSegue called")
+                    dest.team = team
+                }
+            }
+        }
+        
+        if segue.identifier == "ShowTeamSpecificTasksSegue" {
+            if let dest = segue.destination as? TeamSpecificTasksTableViewController {
+                if let team = sender as? Team {
+                    Logger.log("ShowTeamSpecificTasksSegue called")
+                    dest.team = team
+                }
+            }
+        }
     }
-    */
 
 }
