@@ -47,6 +47,22 @@ class Globals {
     public class ApplicationGlobals {
         static let VERSION: String = "v0.1"
     }
+    
+    public class UIGlobals {
+        public class Colors {
+            static let PRIMARY_LIGHT =          UIColor(red: 171.0, green: 204.0, blue: 255.0, alpha: 1.0)
+            static let PRIMARY_MEDIUM_LIGHT =   UIColor(red: 124.0, green: 175.0, blue: 255.0, alpha: 1.0)
+            static let PRIMARY =                UIColor(red:  23.0, green: 113.0, blue: 255.0, alpha: 1.0)
+            static let PRIMARY_MEDIUM_DARK =    UIColor(red:   0.0, green:  55.0, blue: 143.0, alpha: 1.0)
+            static let PRIMARY_DARK =           UIColor(red:   0.0, green:  43.0, blue: 110.0, alpha: 1.0)
+            
+            static let SECONDARY_LIGHT =        UIColor(red: 255.0, green: 221.0, blue: 163.0, alpha: 1.0)
+            static let SECONDARY_MEDIUM_LIGHT = UIColor(red: 255.0, green: 203.0, blue: 111.0, alpha: 1.0)
+            static let SECONDARY =              UIColor(red: 255.0, green: 162.0, blue:   0.0, alpha: 1.0)
+            static let SECONDARY_MEDUIM_DARK =  UIColor(red: 216.0, green: 138.0, blue:   0.0, alpha: 1.0)
+            static let SECONDARY_DARK =         UIColor(red: 166.0, green: 106.0, blue:   0.0, alpha: 1.0)
+        }
+    }
 }
 
 class Utilities {
