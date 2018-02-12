@@ -83,7 +83,6 @@ class Task {
     }
     
     init(uuid: String, guid: String, title: String, priority: String, description: String, status: TaskStatus) {
-        
         self.title = title
         self.priority = priority
         self.description = description
