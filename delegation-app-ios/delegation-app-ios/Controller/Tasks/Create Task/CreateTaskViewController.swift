@@ -11,6 +11,7 @@ import UIKit
 class CreateTaskViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     var user: User?
+    var selectedGUID: String?
     
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var taskDescriptionTextView: UITextView!
@@ -25,6 +26,16 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        if let selectedGUID = self.selectedGUID {
+            self.taskTeamTextField.text = selectedGUID
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedGUID = self.selectedGUID {
+            self.taskTeamTextField.text = selectedGUID
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +43,13 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     @IBAction func teamSelectionEditingPressed(_ sender: Any) {
-        Logger.log("selected team textbox pressed")
+        Logger.log("Team selection textbox pressed")
+        self.view.endEditing(true)
+        FirebaseUtilities.fetchAllTeamGUIDs(callback: {
+            [weak self] (teams: [String]) in
+            guard let this = self else { return }
+            this.performSegue(withIdentifier: "CreateTaskSelectTeamSegue", sender: teams)
+        })
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -46,8 +63,7 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
         let priority = Globals.TaskGlobals.DEFAULT_PRIORITY
         let desc = self.taskDescriptionTextView.text ?? ""
         let status = Globals.TaskGlobals.DEFAULT_STATUS
-//        let teamName = self.taskTeamTextField.text ?? ""
-        let teamUUID = "New Team"
+        let teamGUID = self.taskTeamTextField.text ?? Globals.TaskGlobals.DEFAULT_TEAM
         
         if title == "" {
             self.displayAlert(title: "Title Error", message: "Tasks require titles.")
@@ -59,16 +75,16 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
             return
         }
         
-//        if teamName == "" {
-//            self.displayAlert(title: "Team Name Error", message: "Tasks need teams.")
-//            return
-//        }
+        if teamGUID == "" || teamGUID == Globals.TeamGlobals.DEFAULT_GUID {
+            self.displayAlert(title: "Team Name Error", message: "Tasks need teams.")
+            return
+        }
         
         if let user = user {
             if user.getUUID() == Globals.UserGlobals.DEFAULT_UUID {
                 self.displayAlert(title: "Error Fetching User", message: "An unknown erorr occured when attempting to fetch the UUID.")
             } else {
-                let task = Task(uuid: user.getUUID(), guid: teamUUID, title: title, priority: priority, description: desc, status: status)
+                let task = Task(uuid: user.getUUID(), guid: teamGUID, title: title, priority: priority, description: desc, status: status)
                 
                 task.observers.observe(canary: self, callback: {
                     [weak self] (task: Task) in
@@ -77,7 +93,6 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
                     Logger.log("Task created successfully, performing nav unwind segue")
                     this.navigationController?.popViewController(animated: true)
                 })
-                
             }
         }
         
@@ -107,7 +122,16 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
         self.present(alertController, animated: true, completion:nil)
     }
     
+    @IBAction func unwindToCreateTaskView(segue: UIStoryboardSegue) { }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "CreateTaskSelectTeamSegue" {
+            if let dest = segue.destination as? CreateTaskSelectTeamTableViewController {
+                if let teams = sender as? [String] {
+                    Logger.log("CreateTaskSelectTeamSegue called")
+                    dest.teams = teams
+                }
+            }
+        }
     }
 }
