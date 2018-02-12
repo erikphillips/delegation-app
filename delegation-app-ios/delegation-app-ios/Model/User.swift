@@ -84,18 +84,45 @@ class User {
             
             if let teams = value?["teams"] as? NSDictionary {
                 Logger.log("teams information unwrapped for user observable")
+//                var foundGUIDs: [String] = []
+                
+                this.teams = []
                 for (_, value) in teams {
                     if let guid = value as? String {
                         this.teams.append(Team(guid: guid))
                         Logger.log("added a team, guid='\(guid)'")
+                        
+//                        foundGUIDs.append(guid)
+//
+//                        var addThisTeam = true
+//                        for team in this.teams {
+//                            if team.getGUID() == guid {
+//                                addThisTeam = false
+//                                break
+//                            }
+//                        }
+//
+//                        if addThisTeam {
+//                            this.teams.append(Team(guid: guid))
+//                            Logger.log("added a team, guid='\(guid)'")
+//                        }
                     }
                 }
+                
+//                for team in this.teams {
+//                    if !foundGUIDs.contains(team.getGUID()) {
+//                        if let idx = this.teams.index(where: {$0 === team}) {
+//                            this.teams.remove(at: idx)
+//                        }
+//                    }
+//                }
             } else {
                 Logger.log("teams could not be unwrapped in user observable")
             }
             
             if let tasks = value?["current_tasks"] as? NSDictionary {
                 Logger.log("task information unwrapped for user observable")
+                this.tasks = []  // clear the array to start from beginning
                 for (_, value) in tasks {
                     if let tuid = value as? String {
                         this.tasks.append(Task(uuid: this.uuid, tuid: tuid))
