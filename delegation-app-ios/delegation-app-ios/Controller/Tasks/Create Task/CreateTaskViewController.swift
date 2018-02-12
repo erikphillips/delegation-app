@@ -17,12 +17,6 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
     @IBOutlet weak var taskDescriptionTextView: UITextView!
     @IBOutlet weak var taskTeamTextField: UITextField!
     
-//    @IBOutlet weak var taskPriorityValueTextField: UILabel!
-//    @IBAction func priorityChangerPressed(_ sender: UIStepper) {
-//        Logger.log("Stepper changed value to \(Int(sender.value))")
-//        self.taskPriorityValueTextField.text = String(Int(sender.value))
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -86,29 +80,10 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
             } else {
                 let task = Task(uuid: user.getUUID(), guid: teamGUID, title: title, priority: priority, description: desc, status: status)
                 
-                task.observers.observe(canary: self, callback: {
-                    [weak self] (task: Task) in
-                    guard let this = self else { return }
-                    
-                    Logger.log("Task created successfully, performing nav unwind segue")
-                    this.navigationController?.popViewController(animated: true)
-                })
+                Logger.log("Task created successfully, performing nav unwind segue")
+                self.navigationController?.popViewController(animated: true)
             }
         }
-        
-        // TODO: Fix this to work with the new API
-//        if let user = user {
-//            if user.getUUID() == Globals.UserGlobals.DEFAULT_UUID {
-//                self.displayAlert(title: "Error Fetching User", message: "An unknown erorr occured when attempting to fetch the UUID.")
-//            } else {
-//                let task = Task(title: title, priority: priority, description: desc, team: teamUUID, status: status, resolution: resolution, assigneeUUID: user.getUUID(), originatorUUID: user.getUUID())
-//                FirebaseUtilities.createTask(task)
-//
-//                self.navigationController?.popViewController(animated: true)
-//            }
-//        } else {
-//            self.displayAlert(title: "Invalid User", message: "Unable to get a user object.")
-//        }
     }
     
     func displayAlert(title: String, message: String) {

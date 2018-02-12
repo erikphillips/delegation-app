@@ -12,6 +12,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     var user: User?
     
+    var refreshControl: UIRefreshControl!
     @IBOutlet weak var taskTableView: UITableView!
     
     override func viewDidLoad() {
@@ -27,6 +28,21 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.taskTableView.delegate = self
         self.taskTableView.dataSource = self
         self.taskTableView.rowHeight = 100.0
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.tintColor = Globals.UIGlobals.Colors.PRIMARY
+//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
+
+        self.taskTableView.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(sender: AnyObject) {
+        self.taskTableView.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +53,21 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+//    lazy var refreshControl: UIRefreshControl = {
+//        let refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: #selector(ViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+//
+//        return refreshControl
+//    }()
+//
+//    @objc func handleRefresh(refreshControl: UIRefreshControl) {
+//        // Do some reloading of data and update the table view's data source
+//        // Fetch more objects from a web service, for example...
+//
+//        self.taskTableView.reloadData()
+//        refreshControl.endRefreshing()
+//    }
     
     @IBAction func reloadButtonPressed(_ sender: Any) {
         Logger.log("Tasks Main reloadButtomPressed")

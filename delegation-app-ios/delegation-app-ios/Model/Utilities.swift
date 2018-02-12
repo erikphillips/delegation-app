@@ -50,17 +50,17 @@ class Globals {
     
     public class UIGlobals {
         public class Colors {
-            static let PRIMARY_LIGHT =          UIColor(red: 171.0, green: 204.0, blue: 255.0, alpha: 1.0)
-            static let PRIMARY_MEDIUM_LIGHT =   UIColor(red: 124.0, green: 175.0, blue: 255.0, alpha: 1.0)
-            static let PRIMARY =                UIColor(red:  23.0, green: 113.0, blue: 255.0, alpha: 1.0)
-            static let PRIMARY_MEDIUM_DARK =    UIColor(red:   0.0, green:  55.0, blue: 143.0, alpha: 1.0)
-            static let PRIMARY_DARK =           UIColor(red:   0.0, green:  43.0, blue: 110.0, alpha: 1.0)
+            static let PRIMARY_LIGHT =          UIColor(red: 171/255, green: 204/255, blue: 255/255, alpha: 1.0)
+            static let PRIMARY_MEDIUM_LIGHT =   UIColor(red: 124/255, green: 175/255, blue: 255/255, alpha: 1.0)
+            static let PRIMARY =                UIColor(red:  23/255, green: 113/255, blue: 255/255, alpha: 1.0)
+            static let PRIMARY_MEDIUM_DARK =    UIColor(red:   0/255, green:  55/255, blue: 143/255, alpha: 1.0)
+            static let PRIMARY_DARK =           UIColor(red:   0/255, green:  43/255, blue: 110/255, alpha: 1.0)
             
-            static let SECONDARY_LIGHT =        UIColor(red: 255.0, green: 221.0, blue: 163.0, alpha: 1.0)
-            static let SECONDARY_MEDIUM_LIGHT = UIColor(red: 255.0, green: 203.0, blue: 111.0, alpha: 1.0)
-            static let SECONDARY =              UIColor(red: 255.0, green: 162.0, blue:   0.0, alpha: 1.0)
-            static let SECONDARY_MEDUIM_DARK =  UIColor(red: 216.0, green: 138.0, blue:   0.0, alpha: 1.0)
-            static let SECONDARY_DARK =         UIColor(red: 166.0, green: 106.0, blue:   0.0, alpha: 1.0)
+            static let SECONDARY_LIGHT =        UIColor(red: 255/255, green: 221/255, blue: 163/255, alpha: 1.0)
+            static let SECONDARY_MEDIUM_LIGHT = UIColor(red: 255/255, green: 203/255, blue: 111/255, alpha: 1.0)
+            static let SECONDARY =              UIColor(red: 255/255, green: 162/255, blue:   0/255, alpha: 1.0)
+            static let SECONDARY_MEDUIM_DARK =  UIColor(red: 216/255, green: 138/255, blue:   0/255, alpha: 1.0)
+            static let SECONDARY_DARK =         UIColor(red: 166/255, green: 106/255, blue:   0/255, alpha: 1.0)
         }
     }
 }
