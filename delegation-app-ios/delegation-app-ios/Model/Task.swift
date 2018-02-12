@@ -82,6 +82,36 @@ class Task {
         })
     }
     
+    init(uuid: String, guid: String, title: String, priority: String, description: String, status: TaskStatus) {
+        
+        self.title = title
+        self.priority = priority
+        self.description = description
+        self.team = guid
+        self.status = status
+        self.assigneeUUID = uuid
+        self.originatorUUID = uuid
+        
+        self.uuid = uuid
+        self.tuid = Globals.TaskGlobals.DEFAULT_TUID
+        
+        Logger.log("Creating new task at: 'tasks/\(uuid)/'")
+        
+        let taskRef = Database.database().reference(withPath: "tasks/\(uuid)").childByAutoId()
+        taskRef.child("title").setValue(title)
+        taskRef.child("priority").setValue(priority)
+        taskRef.child("description").setValue(description)
+        taskRef.child("status").setValue(status.rawValue)
+        taskRef.child("assignee").setValue(uuid)
+        taskRef.child("originator").setValue(uuid)
+        taskRef.child("team").setValue(guid)
+        
+        let userRef = Database.database().reference(withPath: "users/\(uuid)/current_tasks")
+        userRef.childByAutoId().setValue(taskRef.key)
+        
+        self.observers.notify(self)
+    }
+    
     func getTitle() -> String {
         return self.title
     }

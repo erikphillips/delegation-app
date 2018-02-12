@@ -40,12 +40,14 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     @IBAction func createTaskPressed(_ sender: Any) {
+        Logger.log("Create Task button pressed.")
+        
         let title = self.taskTitleTextField.text ?? ""
         let priority = Globals.TaskGlobals.DEFAULT_PRIORITY
         let desc = self.taskDescriptionTextView.text ?? ""
         let status = Globals.TaskGlobals.DEFAULT_STATUS
 //        let teamName = self.taskTeamTextField.text ?? ""
-        let teamUUID = "-L16CsxYegfD0P3yix29"
+        let teamUUID = "New Team"
         
         if title == "" {
             self.displayAlert(title: "Title Error", message: "Tasks require titles.")
@@ -61,6 +63,23 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
 //            self.displayAlert(title: "Team Name Error", message: "Tasks need teams.")
 //            return
 //        }
+        
+        if let user = user {
+            if user.getUUID() == Globals.UserGlobals.DEFAULT_UUID {
+                self.displayAlert(title: "Error Fetching User", message: "An unknown erorr occured when attempting to fetch the UUID.")
+            } else {
+                let task = Task(uuid: user.getUUID(), guid: teamUUID, title: title, priority: priority, description: desc, status: status)
+                
+                task.observers.observe(canary: self, callback: {
+                    [weak self] (task: Task) in
+                    guard let this = self else { return }
+                    
+                    Logger.log("Task created successfully, performing nav unwind segue")
+                    this.navigationController?.popViewController(animated: true)
+                })
+                
+            }
+        }
         
         // TODO: Fix this to work with the new API
 //        if let user = user {
