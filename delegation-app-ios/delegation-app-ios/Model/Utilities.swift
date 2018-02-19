@@ -201,6 +201,11 @@ class Utilities {
         
         return leadingOne + areaCode + prefix + "-" + suffix
     }
+    
+    static func userMemberOfTeam(user: User, team: Team) -> Bool {
+        for t in user.getTeams() { if team.getGUID() == t.getGUID() { return true } }
+        return false
+    }
 }
 
 extension String {

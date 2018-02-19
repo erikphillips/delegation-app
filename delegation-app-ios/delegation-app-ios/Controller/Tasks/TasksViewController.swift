@@ -31,9 +31,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl.tintColor = Globals.UIGlobals.Colors.PRIMARY
-//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
-
         self.taskTableView.addSubview(refreshControl)
     }
     
@@ -68,11 +66,6 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        self.taskTableView.reloadData()
 //        refreshControl.endRefreshing()
 //    }
-    
-    @IBAction func reloadButtonPressed(_ sender: Any) {
-        Logger.log("Tasks Main reloadButtomPressed")
-        self.taskTableView.reloadData()
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -13,6 +13,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     var user: User?
     
     @IBOutlet weak var teamsTableView: UITableView!
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,15 +21,23 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.teamsTableView.delegate = self
         self.teamsTableView.dataSource = self
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.tintColor = Globals.UIGlobals.Colors.PRIMARY
+        self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
+        self.teamsTableView.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(sender: AnyObject) {
+        self.teamsTableView.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.refreshControl.endRefreshing()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    @IBAction func teamsReloadButtonPressed(_ sender: Any) {
-        Logger.log("teams reload button pressed")
-        self.teamsTableView.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

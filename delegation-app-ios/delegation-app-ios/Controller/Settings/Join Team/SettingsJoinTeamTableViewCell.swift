@@ -11,6 +11,10 @@ import UIKit
 class SettingsJoinTeamTableViewCell: UITableViewCell {
 
     var team: Team?
+    var isCellSelected = false
+    
+    @IBOutlet weak var teamTitleLabel: UILabel!
+    @IBOutlet weak var checkmarkImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
