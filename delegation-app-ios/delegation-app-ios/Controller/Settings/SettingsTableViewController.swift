@@ -162,6 +162,13 @@ class SettingsTableViewController: UITableViewController {
                 dest.user = self.user
             }
         }
+        
+        if segue.identifier == "SettingsShowYourTeams" {
+            if let dest = segue.destination as? SettingsTeamTableViewController {
+                Logger.log("SettingsShowYourTeams segue called")
+                dest.user = user
+            }
+        }
     }
     
 }

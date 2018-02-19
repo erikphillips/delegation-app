@@ -10,6 +10,7 @@ import UIKit
 
 class SettingsTeamTableViewController: UITableViewController {
     
+    var user: User?
     var teams: [Team]?
 
     override func viewDidLoad() {
@@ -19,7 +20,7 @@ class SettingsTeamTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +32,7 @@ class SettingsTeamTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let teams = teams {
+        if let teams = self.user?.getTeams() {
             return teams.count
         } else {
             return 0
@@ -41,10 +42,25 @@ class SettingsTeamTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTeamCell", for: indexPath)
 
-        cell.textLabel?.text = teams?[indexPath.row].getTeamName() ?? Globals.TeamGlobals.DEFAULT_TEAMNAME
-        cell.detailTextLabel?.text = "Role: "
+        if let teams = self.user?.getTeams() {
+            cell.textLabel?.text = teams[indexPath.row].getTeamName()
+            cell.detailTextLabel?.text = "Your Role: "
+        }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let leave = UITableViewRowAction(style: .normal, title: "Leave") { action, index in
+            Logger.log("leave button tapped")
+        }
+        leave.backgroundColor = Globals.UIGlobals.Colors.SECONDARY
+        
+        return [leave]
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 
     /*

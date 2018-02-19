@@ -727,7 +727,6 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Tasks-->
         <scene sceneID="Q3B-Vl-D2N">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q3h-mp-YZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="VD3-hr-ohW" customClass="TasksViewController" customModule="delegation_app_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3JL-Q7-4HN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -738,11 +737,11 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskCell" rowHeight="100" id="CU7-3k-Xxn" customClass="TasksTableViewCell" customModule="delegation_app_ios" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" rowHeight="100" id="CU7-3k-Xxn" customClass="TasksTableViewCell" customModule="delegation_app_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CU7-3k-Xxn" id="ioa-xa-oIY">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Task_Name&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VB-Uc-bpC">
@@ -845,6 +844,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         <segue destination="mGx-XA-i5x" kind="show" identifier="TasksTableShowTaskDetail" id="fXD-tq-fEc"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q3h-mp-YZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2693.5999999999999" y="2260.1199400299852"/>
         </scene>
@@ -1857,7 +1857,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="uuV-gz-KrN" kind="show" id="BEo-Mg-JG8"/>
+                                            <segue destination="uuV-gz-KrN" kind="show" identifier="SettingsShowYourTeams" id="BEo-Mg-JG8"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Sh3-zx-MmW">

@@ -192,12 +192,12 @@
 		984E35261FE1941300F031E0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				98C597B01FE19CA3009329B2 /* SettingsViewController.swift */,
+				98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */,
 				98DC41E32006ABD6004614B6 /* Create Team */,
 				98DC41E22006ABAC004614B6 /* Join Team */,
 				98DC41E12006ABA3004614B6 /* Update Account */,
 				98DC41E02006AB90004614B6 /* Team */,
-				98C597B01FE19CA3009329B2 /* SettingsViewController.swift */,
-				98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -474,7 +474,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.SafariKeychain = {
 								enabled = 0;
@@ -920,7 +920,6 @@
 			baseConfigurationReference = ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "delegation-app-ios/delegation-app-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H8E62THNLC;
 				INFOPLIST_FILE = "delegation-app-ios/Info.plist";
@@ -937,7 +936,6 @@
 			baseConfigurationReference = 425B7D41677F5953710A25CB /* Pods-delegation-app-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "delegation-app-ios/delegation-app-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H8E62THNLC;
 				INFOPLIST_FILE = "delegation-app-ios/Info.plist";

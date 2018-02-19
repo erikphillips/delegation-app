@@ -115,6 +115,20 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let more = UITableViewRowAction(style: .normal, title: "More") { action, index in
+            Logger.log("more button tapped")
+        }
+        more.backgroundColor = Globals.UIGlobals.Colors.PRIMARY_LIGHT
+        
+        let advanceStatus = UITableViewRowAction(style: .normal, title: "<Advance Status>") { action, index in
+            Logger.log("advanceStatus button tapped")
+        }
+        advanceStatus.backgroundColor = Globals.UIGlobals.Colors.PRIMARY
+        
+        return [advanceStatus, more]
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let user = user {
             self.performSegue(withIdentifier: "TasksTableShowTaskDetail", sender: user.getTasks()[indexPath.row])
