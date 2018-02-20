@@ -16,6 +16,8 @@ class Team {
     private var owner : String
     private var guid: String
     
+    private var tasks: [Task] = []
+    
     public var observers = FBObservers<Team>()
     
     init() {
@@ -106,6 +108,44 @@ class Team {
     
     func getMemberCount() -> String {
         return String(self.members.count)
+    }
+    
+    func getTasks() -> [Task] {
+        return self.tasks
+    }
+    
+    func loadTeamTasks() {
+        
+        self.tasks = []
+        let dispatchGroup = DispatchGroup()
+        
+        for uuid in self.members {
+            dispatchGroup.enter()
+            
+            let ref = Database.database().reference(withPath: "tasks/\(uuid)")
+            ref.observe(.value, with: {
+                [weak self, uuid] (snapshot) in
+                guard let this = self else {
+                    dispatchGroup.leave()
+                    return
+                }
+                
+                if let dict = snapshot.value as? NSDictionary {
+                    for (key, _) in dict {
+                        if let key = key as? String {
+                            this.tasks.append(Task(uuid: uuid, tuid: key))
+                        }
+                    }
+                }
+                
+                dispatchGroup.leave()
+            })
+        }
+        
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            guard let this = self else { return }
+            this.observers.notify(this)
+        }
     }
     
     func updateTeam(teamname: String?, description: String?, owner: String?) {
