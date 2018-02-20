@@ -12,15 +12,22 @@ class SettingsTeamTableViewController: UITableViewController {
     
     var user: User?
     var teams: [Team]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = Globals.UIGlobals.Colors.PRIMARY
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControlEvents.valueChanged)
+        self.tableView.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(_ refreshControl: UIRefreshControl) {
+        self.tableView.reloadData()
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            refreshControl.endRefreshing()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,9 +60,25 @@ class SettingsTeamTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let leave = UITableViewRowAction(style: .normal, title: "Leave") { action, index in
             Logger.log("leave button tapped")
+            
+            let alertController = UIAlertController(title: "Leave Team", message: "Would you like to leave this team? This action is permanent and cannot be undone.", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in Logger.log("Cancel account deletetion button pressed.")}
+            let destroyAction = UIAlertAction(title: "Leave Team", style: .destructive) {
+                [editActionsForRowAt, weak self] action in
+                guard let this = self else { return }
+                Logger.log("Leave team button pressed.")
+                if let user = this.user {
+                    user.leaveTeam(guid: user.getTeams()[editActionsForRowAt.row].getGUID())
+                }
+            }
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(destroyAction)
+            
+            self.present(alertController, animated: true)
         }
-        leave.backgroundColor = Globals.UIGlobals.Colors.SECONDARY
         
+        leave.backgroundColor = .red
         return [leave]
     }
     

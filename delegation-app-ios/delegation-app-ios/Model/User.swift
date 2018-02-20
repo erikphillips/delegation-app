@@ -211,6 +211,43 @@ class User {
         self.teams.append(Team(guid: guid))
     }
     
+    func leaveTeam(guid: String) {
+        Logger.log("user leaving team '\(guid)'")
+        
+        let ref = Database.database().reference(withPath: "users/\(self.uuid)/teams/")
+        ref.observe(DataEventType.value, with: { [ref, guid] (snapshot) in
+            if let dict = snapshot.value as? NSDictionary {
+                for (key, value) in dict {
+                    if let value = value as? String {
+                        if value == guid {
+                            if let key = key as? String {
+                                Logger.log("successfully removed team from user list")
+                                ref.child(key).setValue(nil)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+        
+        let teamRef = Database.database().reference(withPath: "teams/\(guid)/members/")
+        teamRef.observe(DataEventType.value, with: { [teamRef, weak self] (snapshot) in
+            guard let this = self else { return }
+            if let dict = snapshot.value as? NSDictionary {
+                for (key, value) in dict {
+                    if let value = value as? String {
+                        if value == this.uuid {
+                            if let key = key as? String {
+                                Logger.log("successfully removed user from team list")
+                                teamRef.child(key).setValue(nil)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
     func updateCurrentUser(firstname: String?, lastname: String?, email: String?, phone: String?, password: String?) {
         if self.uuid != Globals.UserGlobals.DEFAULT_UUID {
             Logger.log("updating user information in database", event: .verbose)
