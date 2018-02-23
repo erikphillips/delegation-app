@@ -28,7 +28,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         // Clear the password text field before the screen is presented
-        
         Logger.log("WelcomeViewController will appear...")
         self.seguePerformed = false
         self.passwordTextField.text = ""
@@ -121,6 +120,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         Logger.log("Displaying loading screen.")
         
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        alert.view.tintColor = Globals.UIGlobals.Colors.PRIMARY  // TODO: WHY DOES THIS NOT WORK?
         
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true

@@ -1,0 +1,129 @@
+{
+  "tasks" : {
+    "Kd8p3fl5xyPT0g9BGkHASF025D23" : {
+      "-L3C-HdkSi7Hf3SWVaLs" : {
+        "assignee" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "description" : "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "priority" : "5",
+        "resolution" : "none",
+        "status" : "",
+        "team" : "-L16CsxYegfD0P3yix29",
+        "title" : "Task 01"
+      },
+      "-L57Ege5RY5wNDS9rHM0" : {
+        "assignee" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "description" : "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "originator" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "priority" : "5",
+        "status" : "none",
+        "team" : "New Team",
+        "title" : "Task 02"
+      },
+      "-L57yClEvli5Cat4TtUe" : {
+        "assignee" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "description" : "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "originator" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "priority" : "5",
+        "status" : "none",
+        "team" : "New Admin Team",
+        "title" : "Task 03"
+      },
+      "-L57yFHH728NXr4nzWFf" : {
+        "assignee" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "description" : "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "originator" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "priority" : "5",
+        "status" : "none",
+        "team" : "New Admin Team",
+        "title" : "Task 04"
+      },
+      "-L5ASaQd8ZGllQYhjwLl" : {
+        "assignee" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "description" : "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "originator" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "priority" : "5",
+        "status" : "none",
+        "team" : "New Admin Team",
+        "title" : "Task 05"
+      }
+    },
+    "mn5ISqvv21cuno1ukh5UiYFTmdP2" : {
+      "test" : "test"
+    }
+  },
+  "teams" : {
+    "-L16CsxYegfD0P3yix29" : {
+      "description" : "This is the description of team 01.",
+      "members" : {
+        "-L5ozq62J_5-e-eX4MJM" : "Kd8p3fl5xyPT0g9BGkHASF025D23"
+      },
+      "owner" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+      "teamname" : "Team 01"
+    },
+    "-L16DIMOhHNtjUw8FLgV" : {
+      "description" : "This is the description of team 02.",
+      "owner" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+      "teamname" : "Team 02"
+    },
+    "New Admin Team" : {
+      "description" : "A team dedicated for admins. ",
+      "members" : {
+        "-L57F30SnaAdmqupUQKI" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "-L57F30Vop7E6LToTQ3I" : "Kd8p3fl5xyPT0g9BGkHASF025D23"
+      },
+      "owner" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+      "teamname" : "New Admin Team"
+    },
+    "New Team" : {
+      "description" : "Some Description ",
+      "members" : {
+        "-L4bELVL0rwqSiGaSi5d" : "Kd8p3fl5xyPT0g9BGkHASF025D23"
+      },
+      "owner" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+      "teamname" : "New Team"
+    },
+    "Tes Team Delete!" : {
+      "description" : "New test team",
+      "members" : {
+        "-L5glSvUiVz7H97z71fs" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+        "-L5glSvXxulepXRfj1bI" : "Kd8p3fl5xyPT0g9BGkHASF025D23"
+      },
+      "owner" : "Kd8p3fl5xyPT0g9BGkHASF025D23",
+      "teamname" : "Tes Team Delete!"
+    }
+  },
+  "users" : {
+    "Kd8p3fl5xyPT0g9BGkHASF025D23" : {
+      "current_tasks" : {
+        "-L57Ege6_-DDPF00jSa9" : "-L57Ege5RY5wNDS9rHM0",
+        "-L57yClEvli5Cat4TtUf" : "-L57yClEvli5Cat4TtUe",
+        "-L57yFHH728NXr4nzWFg" : "-L57yFHH728NXr4nzWFf",
+        "-L5ASaQeLmfekJwQUq36" : "-L5ASaQd8ZGllQYhjwLl",
+        "test" : "-L3C-HdkSi7Hf3SWVaLs"
+      },
+      "information" : {
+        "email" : "admin@delegation.com",
+        "firstname" : "Erik M",
+        "lastname" : "Phillips",
+        "phone" : "19703196538"
+      },
+      "teams" : {
+        "-L4bELVN5315aLhYUaSN" : "New Team",
+        "-L57F30U-vRHTlq39iOS" : "New Admin Team",
+        "-L5glSvXxulepXRfj1bH" : "Tes Team Delete!",
+        "-L5ozq62J_5-e-eX4MJL" : "-L16CsxYegfD0P3yix29"
+      }
+    },
+    "mn5ISqvv21cuno1ukh5UiYFTmdP2" : {
+      "current_tasks" : {
+        "test" : "test task ID"
+      },
+      "information" : {
+        "email" : "user1@delegation.com",
+        "firstname" : "User01",
+        "lastname" : "Lastname",
+        "phone" : "1234567890"
+      }
+    }
+  }
+}

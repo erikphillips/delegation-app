@@ -23,13 +23,13 @@ class TasksTableViewCell: UITableViewCell {
         
         Logger.log("Task cell awake from nib")
 
-        if let task = task {
-            taskNameLabel.text = task.getTitle()
-            taskPriorityLabel.text = task.getPriority()
-            taskTeamNameLabel.text = task.getTeamUID()
-            taskAssignedLabel.text = task.getAssigneeUUID()
-            taskStatusLabel.text = task.getStatus()
-        }
+//        if let task = task {
+//            taskNameLabel.text = task.getTitle()
+//            taskPriorityLabel.text = task.getPriority()
+//            taskTeamNameLabel.text = task.getTeamUID()
+//            taskAssignedLabel.text = task.getAssigneeUUID()
+//            taskStatusLabel.text = task.getStatus()
+//        }
 //            self.taskNameLabel.text = task.getTitle()
 //            self.taskAssignedLabel.text = task.getAssigneeUUID()
 //            self.taskTeamNameLabel.text = task.getTeamUID()
