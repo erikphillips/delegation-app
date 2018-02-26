@@ -149,6 +149,17 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 2 && indexPath.row == 2 {
+            Logger.log("Account Support row pressed.")
+            let url = NSURL(string: "mailto:delegation.application@gmail.com")
+            UIApplication.shared.openURL(url! as URL)
+        }
+        
+        print("You selected cell #\(indexPath.section).\(indexPath.row)!")
+    }
+    
     @IBAction func unwindToSettingsTableView(segue: UIStoryboardSegue) { }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
