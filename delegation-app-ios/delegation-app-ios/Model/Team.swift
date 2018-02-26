@@ -10,10 +10,10 @@ import Foundation
 import Firebase
 
 class Team {
-    private var teamname : String
+    private var teamname: String
     private var description: String
-    private var members : [String]
-    private var owner : String
+    private var members: [String]
+    private var ownerUUID: String
     private var guid: String
     
     private var tasks: [Task] = []
@@ -23,7 +23,7 @@ class Team {
     init() {
         self.teamname = Globals.TeamGlobals.DEFAULT_TEAMNAME
         self.description = Globals.TeamGlobals.DEFAULT_DESCRIPTION
-        self.owner = Globals.TeamGlobals.DEFAULT_OWNER
+        self.ownerUUID = Globals.TeamGlobals.DEFAULT_OWNER
         
         self.members = Globals.TeamGlobals.DEFAULT_MEMBERS
         self.guid = Globals.TeamGlobals.DEFAULT_GUID
@@ -34,7 +34,7 @@ class Team {
     init(guid: String) {
         self.teamname = Globals.TeamGlobals.DEFAULT_TEAMNAME
         self.description = Globals.TeamGlobals.DEFAULT_DESCRIPTION
-        self.owner = Globals.TeamGlobals.DEFAULT_OWNER
+        self.ownerUUID = Globals.TeamGlobals.DEFAULT_OWNER
         self.members = Globals.TeamGlobals.DEFAULT_MEMBERS
         
         self.guid = guid
@@ -53,10 +53,10 @@ class Team {
             let value = snapshot.value as? NSDictionary
             this.teamname = value?["teamname"] as? String ?? this.teamname
             this.description = value?["description"] as? String ?? this.description
-            this.owner = value?["owner"] as? String ?? this.owner
+            this.ownerUUID = value?["owner"] as? String ?? this.ownerUUID
             
             if let dict = value?["members"] as? NSDictionary {
-                for (key, value) in dict {
+                for (_, value) in dict {
                     if let value = value as? String {
                         if !this.members.contains(value) {
                             this.members.append(value)
@@ -73,7 +73,7 @@ class Team {
         self.guid = teamname
         self.teamname = teamname
         self.description = description
-        self.owner = owner
+        self.ownerUUID = owner
         self.members = [owner]
         
         let ref = Database.database().reference(withPath: "teams/\(self.guid)/")
@@ -99,7 +99,7 @@ class Team {
     }
     
     func getOwnerUUID() -> String {
-        return self.owner
+        return self.ownerUUID
     }
     
     func getMembers() -> [String] {
@@ -131,9 +131,15 @@ class Team {
                 }
                 
                 if let dict = snapshot.value as? NSDictionary {
-                    for (key, _) in dict {
+                    for (key, value) in dict {
                         if let key = key as? String {
-                            this.tasks.append(Task(uuid: uuid, tuid: key))
+                            if let value = value as? NSDictionary {
+                                if let teamname = value["team"] as? String {
+                                    if teamname == this.guid {
+                                        this.tasks.append(Task(uuid: uuid, tuid: key))
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -164,7 +170,7 @@ class Team {
             }
             
             if let owner = owner {
-                self.owner = owner
+                self.ownerUUID = owner
                 ref.child("owner").setValue(owner)
             }
             

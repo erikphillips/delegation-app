@@ -53,7 +53,7 @@ class TeamSpecificTasksTableViewController: UITableViewController {
             cell.taskNameLabel.text = task.getTitle()
             cell.priorityLabel.text = task.getPriority()
             cell.statusLabel.text = task.getStatus()
-            cell.assigneeLabel.text = task.getAssigneeUUID()
+            cell.assigneeLabel.text = task.getAssigneeFullName()
             
             task.observers.observe(canary: self, callback: {
                 [cell] (task) in
@@ -61,7 +61,7 @@ class TeamSpecificTasksTableViewController: UITableViewController {
                 cell.taskNameLabel.text = task.getTitle()
                 cell.priorityLabel.text = task.getPriority()
                 cell.statusLabel.text = task.getStatus()
-                cell.assigneeLabel.text = task.getAssigneeUUID()
+                cell.assigneeLabel.text = task.getAssigneeFullName()
             })
         }
 

@@ -52,21 +52,6 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
     }
     
-//    lazy var refreshControl: UIRefreshControl = {
-//        let refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(self, action: #selector(ViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
-//
-//        return refreshControl
-//    }()
-//
-//    @objc func handleRefresh(refreshControl: UIRefreshControl) {
-//        // Do some reloading of data and update the table view's data source
-//        // Fetch more objects from a web service, for example...
-//
-//        self.taskTableView.reloadData()
-//        refreshControl.endRefreshing()
-//    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -88,7 +73,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             cell.task = task
             cell.taskNameLabel.text = task.getTitle()
-            cell.taskAssignedLabel.text = task.getAssigneeUUID()
+            cell.taskAssignedLabel.text = task.getAssigneeFullName()
             cell.taskTeamNameLabel.text = task.getTeamUID()
             cell.taskPriorityLabel.text = task.getPriority()
             cell.taskStatusLabel.text = task.getStatus()
@@ -96,7 +81,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let taskUpdateHandler = {
                 [cell] (task: Task) in
                 cell.taskNameLabel.text = task.getTitle()
-                cell.taskAssignedLabel.text = task.getAssigneeUUID()
+                cell.taskAssignedLabel.text = task.getAssigneeFullName()
                 cell.taskTeamNameLabel.text = task.getTeamUID()
                 cell.taskPriorityLabel.text = task.getPriority()
                 cell.taskStatusLabel.text = task.getStatus()

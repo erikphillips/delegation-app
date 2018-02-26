@@ -25,7 +25,9 @@ class Task {
     private var team: String
     private var status: TaskStatus
     private var assigneeUUID: String
+    private var assigneeFullName: String
     private var originatorUUID: String
+    private var originatorFullName: String
     private var uuid: String
     private var tuid: String
 
@@ -39,11 +41,13 @@ class Task {
         self.status = Globals.TaskGlobals.DEFAULT_STATUS
         self.assigneeUUID = Globals.TaskGlobals.DEFAULT_ASSIGNEE
         self.originatorUUID = Globals.TaskGlobals.DEFAULT_ORIGINATOR
+        self.assigneeFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
+        self.originatorFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
         
         self.uuid = Globals.TaskGlobals.DEFAULT_UUID
         self.tuid = Globals.TaskGlobals.DEFAULT_TUID
         
-        Logger.log("created new non-observable task", event: .warning)
+        Logger.log("created new empty non-observable task", event: .warning)
     }
     
     init(uuid: String, tuid: String) {
@@ -54,6 +58,8 @@ class Task {
         self.status = Globals.TaskGlobals.DEFAULT_STATUS
         self.assigneeUUID = Globals.TaskGlobals.DEFAULT_ASSIGNEE
         self.originatorUUID = Globals.TaskGlobals.DEFAULT_ORIGINATOR
+        self.assigneeFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
+        self.originatorFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
         
         self.uuid = uuid
         self.tuid = tuid
@@ -63,7 +69,7 @@ class Task {
         var ref: DatabaseReference!
         ref = Database.database().reference().child("tasks/\(uuid)/\(tuid)/")
         
-        ref.observe(DataEventType.value, with: {
+        ref.observe(.value, with: {
             [weak self] (snapshot) in
             guard let this = self else { return }
             
@@ -78,8 +84,42 @@ class Task {
             this.assigneeUUID = value?["assignee"] as? String ?? this.assigneeUUID
             this.originatorUUID = value?["originator"] as? String ?? this.originatorUUID
             
-            this.observers.notify(this)
+            let assigneeRef = Database.database().reference(withPath: "users/\(this.assigneeUUID)/information")
+            let originatorRef = Database.database().reference(withPath: "users/\(this.originatorUUID)/information")
+            
+            let dispatchGroup = DispatchGroup()
+            
+            dispatchGroup.enter()
+            assigneeRef.observe(.value, with: {
+                [dispatchGroup, weak this] (snapshot) in
+                guard let that = this else { return }
+                if let value = snapshot.value as? NSDictionary {
+                    let first = value["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
+                    let last = value["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
+                    that.assigneeFullName = first + " " + last
+                }
+                dispatchGroup.leave()
+            })
+            
+            dispatchGroup.enter()
+            originatorRef.observe(.value, with: {
+                [dispatchGroup, weak this] (snapshot) in
+                guard let that = this else { return }
+                if let value = snapshot.value as? NSDictionary {
+                    let first = value["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
+                    let last = value["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
+                    that.originatorFullName = first + " " + last
+                }
+                dispatchGroup.leave()
+            })
+            
+            dispatchGroup.notify(queue: .main) {
+                [weak this] in
+                guard let that = this else { return }
+                that.observers.notify(that)
+            }
         })
+        
     }
     
     init(uuid: String, guid: String, title: String, priority: String, description: String, status: TaskStatus) {
@@ -90,6 +130,8 @@ class Task {
         self.status = status
         self.assigneeUUID = uuid
         self.originatorUUID = uuid
+        self.assigneeFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
+        self.originatorFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
         
         self.uuid = uuid
         self.tuid = Globals.TaskGlobals.DEFAULT_TUID
@@ -135,8 +177,16 @@ class Task {
         return self.assigneeUUID
     }
     
+    func getAssigneeFullName() -> String {
+        return self.assigneeFullName
+    }
+    
     func getOriginatorUUID() -> String {
         return self.originatorUUID
+    }
+    
+    func getOriginatorFullName() -> String {
+        return self.originatorFullName
     }
     
     private static func parseTaskStatus(_ text: String) -> TaskStatus {

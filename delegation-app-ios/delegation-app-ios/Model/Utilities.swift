@@ -23,6 +23,7 @@ class Globals {
     }
     
     public class UserGlobals {
+        static let DEFAULT_FULL_NAME: String = ""
         static let DEFAULT_FIRSTNAME: String = ""
         static let DEFAULT_LASTNAME: String = ""
         static let DEFAULT_EMAIL: String = ""

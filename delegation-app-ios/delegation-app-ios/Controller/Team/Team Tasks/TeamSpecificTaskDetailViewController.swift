@@ -28,7 +28,7 @@ class TeamSpecificTaskDetailViewController: UITableViewController {
             self.titleLabel.text = task.getTitle()
             self.statusLabel.text = task.getStatus()
             self.priorityLabel.text = task.getPriority()
-            self.assigneeLabel.text = task.getAssigneeUUID()
+            self.assigneeLabel.text = task.getAssigneeFullName()
             self.originatorLabel.text = task.getOriginatorUUID()
             self.teamLabel.text = task.getTeamUID()
             self.descriptionTextView.text = task.getDescription()
