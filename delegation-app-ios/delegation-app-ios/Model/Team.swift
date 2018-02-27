@@ -192,6 +192,27 @@ class Team {
             if let owner = owner {
                 self.ownerUUID = owner
                 ref.child("owner").setValue(owner)
+                
+                let ownerRef = Database.database().reference(withPath: "users/\(owner)/teams")
+                ownerRef.observeSingleEvent(of: .value, with: {
+                    [ownerRef, weak self](snapshot) in
+                    guard let this = self else { return }
+                    
+                    if let dict = snapshot.value as? NSDictionary {
+                        var found = false
+                        for (_, value) in dict {
+                            if let value = value as? String {
+                                if value == this.guid {
+                                    found = true
+                                    break
+                                }
+                            }
+                        }
+                        
+                        if !found { ownerRef.childByAutoId().setValue(this.guid) }
+                        Logger.log("processed new owner ref, previously existing: \(found)")
+                    }
+                })
             }
             
             // Notify all observers that an update has occurred
