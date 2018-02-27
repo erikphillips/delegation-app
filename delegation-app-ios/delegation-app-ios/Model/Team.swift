@@ -14,6 +14,7 @@ class Team {
     private var description: String
     private var members: [String]
     private var ownerUUID: String
+    private var ownerFullName: String
     private var guid: String
     
     private var tasks: [Task] = []
@@ -24,6 +25,7 @@ class Team {
         self.teamname = Globals.TeamGlobals.DEFAULT_TEAMNAME
         self.description = Globals.TeamGlobals.DEFAULT_DESCRIPTION
         self.ownerUUID = Globals.TeamGlobals.DEFAULT_OWNER
+        self.ownerFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
         
         self.members = Globals.TeamGlobals.DEFAULT_MEMBERS
         self.guid = Globals.TeamGlobals.DEFAULT_GUID
@@ -35,6 +37,7 @@ class Team {
         self.teamname = Globals.TeamGlobals.DEFAULT_TEAMNAME
         self.description = Globals.TeamGlobals.DEFAULT_DESCRIPTION
         self.ownerUUID = Globals.TeamGlobals.DEFAULT_OWNER
+        self.ownerFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
         self.members = Globals.TeamGlobals.DEFAULT_MEMBERS
         
         self.guid = guid
@@ -65,7 +68,19 @@ class Team {
                 }
             }
             
-            this.observers.notify(this)
+            let ownerRef = Database.database().reference(withPath: "users/\(this.ownerUUID)/information")
+            ownerRef.observe(.value, with: {
+                [weak this] (snapshot) in
+                guard let that = this else { return }
+                
+                if let value = snapshot.value as? NSDictionary {
+                    let first = value["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
+                    let last = value["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
+                    that.ownerFullName = first + " " + last
+                }
+                
+                that.observers.notify(that)
+            })
         })
     }
     
@@ -74,6 +89,7 @@ class Team {
         self.teamname = teamname
         self.description = description
         self.ownerUUID = owner
+        self.ownerFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
         self.members = [owner]
         
         let ref = Database.database().reference(withPath: "teams/\(self.guid)/")
@@ -100,6 +116,10 @@ class Team {
     
     func getOwnerUUID() -> String {
         return self.ownerUUID
+    }
+    
+    func getOwnerFullName() -> String {
+        return self.ownerFullName
     }
     
     func getMembers() -> [String] {

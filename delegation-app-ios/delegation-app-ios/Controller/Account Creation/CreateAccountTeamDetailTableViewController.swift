@@ -22,7 +22,7 @@ class CreateAccountTeamDetailTableViewController: UITableViewController {
         
         if let team = self.team {
             self.titleLabel.text = team.getTeamName()
-            self.ownerLabel.text = team.getOwnerUUID()
+            self.ownerLabel.text = team.getOwnerFullName()
             self.memberCountLabel.text = team.getMemberCount()
             self.descriptionTextView.text = team.getDescription()
         }
