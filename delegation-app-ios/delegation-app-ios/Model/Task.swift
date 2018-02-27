@@ -253,4 +253,50 @@ class Task {
             Logger.log("unable to update task in database - no tuid or uuid other than global", event: .error)
         }
     }
+    
+    func changeAssignee(to uuid: String) -> Task {
+        let oldRef = Database.database().reference(withPath: "tasks/\(self.uuid)/\(self.tuid)/")
+        let oldAssigneeRef = Database.database().reference(withPath: "users/\(self.uuid)/current_tasks/")
+        let newRef = Database.database().reference(withPath: "tasks/\(uuid)/").childByAutoId()
+        let newAssigneeRef = Database.database().reference(withPath: "users/\(uuid)/current_tasks/")
+        
+        self.uuid = uuid
+        self.tuid = newRef.key
+        
+        // Set the new task information
+        newRef.child("title").setValue(self.title)
+        newRef.child("priority").setValue(self.priority)
+        newRef.child("description").setValue(self.description)
+        newRef.child("status").setValue(self.status.rawValue)
+        newRef.child("assignee").setValue(self.uuid)
+        newRef.child("originator").setValue(self.originatorUUID)
+        newRef.child("team").setValue(self.team)
+        
+        // Add the task to the new assignee's array
+        newAssigneeRef.childByAutoId().setValue(self.tuid)
+        
+        // Remove the current contents at the old location
+        oldRef.removeValue()
+        
+        oldAssigneeRef.observeSingleEvent(of: .value, with: {
+            [oldAssigneeRef, weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            if let dict = snapshot.value as? NSDictionary {
+                for (key, value) in dict {
+                    if let key = key as? String, let value = value as? String{
+                        if value == this.tuid {
+                            Logger.log("removing current_task at key=\(key) value=\(value)")
+                            oldAssigneeRef.child(key).removeValue()
+                            break
+                        }
+                    }
+                }
+            }
+        })
+        
+        let newTaskObject = Task(uuid: uuid, tuid: self.tuid)
+        self.observers.notify(newTaskObject)
+        return newTaskObject
+    }
 }
