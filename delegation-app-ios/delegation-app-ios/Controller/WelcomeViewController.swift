@@ -138,6 +138,23 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    @IBAction func forgotButtonPressed(_ sender: Any) {
+        let email = self.usernameTextField?.text ?? Globals.UserGlobals.DEFAULT_EMAIL
+        if email != Globals.UserGlobals.DEFAULT_EMAIL {
+            Auth.auth().sendPasswordReset(withEmail: email) {
+                [weak self] (error) in
+                guard let this = self else { return }
+                if error == nil {
+                    this.displayAlert(title: "Email Sent", message: "An email as been sent to your email address with instructions to reset your password.")
+                } else {
+                    this.displayAlert(title: "Error Sending Email", message: error?.localizedDescription ?? "Unknown Error")
+                }
+            }
+        } else {
+            self.displayAlert(title: "Enter Email Address", message: "Please enter your email address used with your Delegation Account. If you are unable to locate your email address, please email the support team at delegarion.application@gmail.com.")
+        }
+    }
+    
     @IBAction func demoActionAdminLogin(_ sender: Any) {
         usernameTextField.text = "admin@delegation.com"
         passwordTextField.text = "password"

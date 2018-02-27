@@ -79,6 +79,14 @@ class Utilities {
         }
     }
     
+    static func validatePhoneNumber(_ phoneNumber: String) -> Status {
+        if Utilities.format(phoneNumber: phoneNumber) != nil {
+            return Status(true)
+        } else {
+            return Status(false, "The phone number is incorrectly formatted or non-existant.")
+        }
+    }
+    
     static func validatePassword(_ pswd: String) -> Status {
         if pswd == "" {
             return Status(false, "Password is required.")

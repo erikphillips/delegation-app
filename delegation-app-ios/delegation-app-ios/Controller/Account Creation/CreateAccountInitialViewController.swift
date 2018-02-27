@@ -14,6 +14,7 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
     @IBOutlet weak var firstnameTextField: UITextField!
     @IBOutlet weak var lastnameTextField: UITextField!
     @IBOutlet weak var emailAddressTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
@@ -41,6 +42,7 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
         self.firstnameTextField.text = "Erik"
         self.lastnameTextField.text = "Phillips"
         self.emailAddressTextField.text = "erik@app.com"
+        self.phoneNumberTextField.text = "9703196538"
         self.passwordTextField.text = "123456"
         self.confirmPasswordTextField.text = "123456"
     }
@@ -56,6 +58,10 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
             emailAddressTextField.becomeFirstResponder()
             break
         case emailAddressTextField:
+            textField.resignFirstResponder()
+            phoneNumberTextField.becomeFirstResponder()
+            break
+        case phoneNumberTextField:
             textField.resignFirstResponder()
             passwordTextField.becomeFirstResponder()
             break
@@ -79,6 +85,7 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
         let firstname = firstnameTextField.text!
         let lastname = lastnameTextField.text!
         let email = emailAddressTextField.text!
+        let phone = phoneNumberTextField.text!
         let password = passwordTextField.text!
         let confirmPassword = confirmPasswordTextField.text!
         
@@ -99,6 +106,12 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
             return
         }
         
+        let phoneStatus = Utilities.validatePhoneNumber(phone)
+        if !phoneStatus.status {
+            self.displayAlert(title: "Phone Number Required", message: "The phone number provided is not valid. \(phoneStatus.message)")
+            return
+        }
+        
         let passwordStatus = Utilities.validatePasswords(pswd: password, cnfrm: confirmPassword)
         if !passwordStatus.status {
             self.displayAlert(title: "Password Required", message: "\(passwordStatus.message)")
@@ -116,7 +129,7 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
                     this.userDictionary = [
                         "firstname": firstname,
                         "lastname": lastname,
-                        "phone": Globals.UserGlobals.DEFAULT_PHONE, // TODO: replace this with a valid phone number
+                        "phone": phone,
                         "email": email,
                         "password": password ]
                     this.performSegue(withIdentifier: "CreateAccountContinue", sender: nil)

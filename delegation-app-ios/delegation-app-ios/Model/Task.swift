@@ -170,7 +170,13 @@ class Task {
     }
     
     func getStatus() -> String {
-        return self.status.rawValue
+        switch self.status {
+            case .none: return "None"
+            case .closed: return "Closed"
+            case .open: return "Open"
+            case .inProgress: return "In Progress"
+            default: return self.status.rawValue
+        }
     }
     
     func getAssigneeUUID() -> String {
@@ -191,16 +197,11 @@ class Task {
     
     private static func parseTaskStatus(_ text: String) -> TaskStatus {
         switch text {
-        case "closed":
-            return .closed
-        case "open":
-            return .open
-        case "assigned":
-            return .assigned
-        case "inProgress":
-            return .inProgress
-        default:
-            return .none
+            case "closed": return .closed
+            case "open": return .open
+            case "assigned": return .assigned
+            case "inProgress": return .inProgress
+            default: return .none
         }
     }
     
