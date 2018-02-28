@@ -144,7 +144,7 @@ class Team {
             
             let ref = Database.database().reference(withPath: "tasks/\(uuid)")
             ref.observe(.value, with: {
-                [weak self, uuid] (snapshot) in
+                [weak self, uuid, dispatchGroup] (snapshot) in
                 guard let this = self else {
                     dispatchGroup.leave()
                     return

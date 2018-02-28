@@ -15,6 +15,10 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var applicationVersionLabel: UILabel!
     @IBOutlet weak var applicationBuildLabel: UILabel!
+    @IBOutlet weak var settingsFirstname: UILabel!
+    @IBOutlet weak var settingsLastname: UILabel!
+    @IBOutlet weak var settingsEmailAddress: UILabel!
+    @IBOutlet weak var settingsPhoneNumber: UILabel!
     
     @IBOutlet weak var settingsTableView: UITableView!
     @IBAction func settingsLogout(_ sender: Any) {
@@ -80,11 +84,6 @@ class SettingsTableViewController: UITableViewController {
         
         self.present(alertController, animated: true)
     }
-    
-    @IBOutlet weak var settingsFirstname: UILabel!
-    @IBOutlet weak var settingsLastname: UILabel!
-    @IBOutlet weak var settingsEmailAddress: UILabel!
-    @IBOutlet weak var settingsPhoneNumber: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

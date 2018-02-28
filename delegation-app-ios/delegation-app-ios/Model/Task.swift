@@ -175,10 +175,19 @@ class Task {
             case .closed: return "Closed"
             case .open: return "Open"
             case .inProgress: return "In Progress"
-            default: return self.status.rawValue
+            case .assigned: return "Assigned"
         }
     }
     
+    func getNextStatus() -> String? {
+        switch self.status {
+            case .open: return "Assigned"
+            case .assigned: return "In Progress"
+            case .inProgress: return "Closed"
+            default: return nil
+        }
+    }
+        
     func getAssigneeUUID() -> String {
         return self.assigneeUUID
     }
@@ -198,10 +207,26 @@ class Task {
     private static func parseTaskStatus(_ text: String) -> TaskStatus {
         switch text {
             case "closed": return .closed
+            case "Closed": return .closed
             case "open": return .open
+            case "Open": return .open
             case "assigned": return .assigned
+            case "Assigned": return .assigned
             case "inProgress": return .inProgress
+            case "In Progress": return .inProgress
             default: return .none
+        }
+    }
+    
+    func advanceStatus() {
+        if let nextStatus = self.getNextStatus() {
+            let ref = Database.database().reference(withPath: "tasks/\(self.uuid)/\(self.tuid)/status")
+            
+            self.status = Task.parseTaskStatus(nextStatus)
+            ref.setValue(self.status.rawValue)
+            
+            // Notify all observers of task updates
+            self.observers.notify(self)
         }
     }
     
@@ -237,7 +262,7 @@ class Task {
             
             if let status = status {
                 self.status = Task.parseTaskStatus(status)
-                ref.child("status").setValue(status)
+                ref.child("status").setValue(self.status.rawValue)
             }
             
             if let assignee = assignee {

@@ -585,8 +585,7 @@ class FirebaseUtilities {
             if let uuid = uuid {
                 if uuid != Globals.UserGlobals.DEFAULT_UUID {  // verify that the UUID is not simply the default UUID
                     
-                    // Initialize the begining values for the master return objects
-                    let welcome_user: User? = User(uuid: uuid)
+                    let welcome_user: User? = User(uuid: uuid)  // Initialize the begining values for the master return objects
                     
                     let userInitialSetupComplete = {
                         [callback] (user: User) in

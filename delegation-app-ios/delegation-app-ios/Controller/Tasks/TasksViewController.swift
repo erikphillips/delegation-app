@@ -94,17 +94,92 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let more = UITableViewRowAction(style: .normal, title: "More") { action, index in
-            Logger.log("more button tapped")
+        if let user = self.user {
+            let task = user.getTasks()[editActionsForRowAt.row]
+            
+            let more = UITableViewRowAction(style: .normal, title: "More") {
+                [task, weak self] action, index in
+                guard let this = self else { return }
+                
+                Logger.log("more editAction tapped for task")
+                
+                let alertController = UIAlertController(title: "More Settings", message: nil, preferredStyle: .actionSheet)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                    Logger.log("Cancel button pressed.")
+                }
+                
+                let changeStatusAction = UIAlertAction(title: "Change Status", style: .default) {
+                    [task, weak this] action in
+                    guard let that = this else { return }
+                    
+                    let statusAlertController = UIAlertController(title: "Change status from current status of \(task.getStatus())", message: nil, preferredStyle: .actionSheet)
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in Logger.log("Cancel button pressed.") }
+                    statusAlertController.addAction(cancelAction)
+                    
+                    for status in ["Open", "Assigned", "In Progress", "Closed"] {
+                        if task.getStatus() != status {
+                            let statusAction = UIAlertAction(title: status, style: .default) { [status, task] action in
+                                Logger.log("statusAction button pressed for status=\(status).")
+                                task.updateTask(title: nil, priority: nil, description: nil, team: nil, status: status, assignee: nil)
+                            }
+                            statusAlertController.addAction(statusAction)
+                        }
+                    }
+                    
+                    that.present(statusAlertController, animated: true)
+                }
+                
+                let changePriorityAction = UIAlertAction(title: "Change Priority", style: .default) {
+                    [task, weak this] action in
+                    guard let that = this else { return }
+                    
+                    let priorityAlertController = UIAlertController(title: "Change priority from current priority of \(task.getPriority())", message: nil, preferredStyle: .actionSheet)
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in Logger.log("Cancel button pressed.") }
+                    priorityAlertController.addAction(cancelAction)
+                    
+                    for priority in ["1", "2", "3", "4", "5"] {
+                        if task.getPriority() != priority {
+                            let priorityAction = UIAlertAction(title: priority, style: .default) { [priority, task] action in
+                                Logger.log("priorityAction button pressed for priority=\(priority).")
+                                task.updateTask(title: nil, priority: priority, description: nil, team: nil, status: nil, assignee: nil)
+                            }
+                            priorityAlertController.addAction(priorityAction)
+                        }
+                    }
+                    
+                    that.present(priorityAlertController, animated: true)
+                }
+
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(changeStatusAction)
+                alertController.addAction(changePriorityAction)
+                
+                this.present(alertController, animated: true)
+            }
+            
+            more.backgroundColor = Globals.UIGlobals.Colors.PRIMARY_LIGHT
+            
+            var editActions = [more]
+            
+            if let nextStatus = task.getNextStatus() {
+                let advanceStatus = UITableViewRowAction(style: .normal, title: nextStatus) {
+                    [task] action, index in
+                    Logger.log("advanceStatus button tapped")
+                    task.advanceStatus()
+                }
+                advanceStatus.backgroundColor = Globals.UIGlobals.Colors.PRIMARY
+                
+                editActions.append(advanceStatus)
+            }
+            
+            return editActions
         }
-        more.backgroundColor = Globals.UIGlobals.Colors.PRIMARY_LIGHT
         
-        let advanceStatus = UITableViewRowAction(style: .normal, title: "<Advance Status>") { action, index in
-            Logger.log("advanceStatus button tapped")
-        }
-        advanceStatus.backgroundColor = Globals.UIGlobals.Colors.PRIMARY
-        
-        return [advanceStatus, more]
+        return []
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
