@@ -8,18 +8,22 @@
 
 import UIKit
 
-class CreateTaskViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class CreateTaskViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     var user: User?
     var selectedGUID: String?
     
     @IBOutlet weak var taskTitleTextField: UITextField!
-    @IBOutlet weak var taskDescriptionTextView: UITextView!
     @IBOutlet weak var taskTeamTextField: UITextField!
+    @IBOutlet weak var taskDescriptionTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        self.taskTeamTextField.delegate = self
+        self.taskTeamTextField.delegate = self
+        self.taskDescriptionTextView.delegate = self
         
         if let selectedGUID = self.selectedGUID {
             self.taskTeamTextField.text = selectedGUID
@@ -36,6 +40,37 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
         super.didReceiveMemoryWarning()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case taskTitleTextField:
+            textField.resignFirstResponder()
+            self.taskTeamTextField.becomeFirstResponder()
+            break
+        case taskTeamTextField:
+            textField.resignFirstResponder()
+            self.taskDescriptionTextView.becomeFirstResponder()
+            break
+        case taskDescriptionTextView:
+            textField.resignFirstResponder()
+            self.createTaskPressed(self)
+            break
+        default:
+            textField.resignFirstResponder()
+            break
+        }
+        
+        return false
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            self.createTaskPressed(self)
+            return false
+        }
+        return true
+    }
+        
     @IBAction func teamSelectionEditingPressed(_ sender: Any) {
         Logger.log("Team selection textbox pressed")
         self.view.endEditing(true)
