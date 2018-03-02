@@ -8,19 +8,41 @@
 
 import UIKit
 
-class CreateNewTeamViewController: UIViewController {
+class CreateNewTeamViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     var user: User?
 
     @IBOutlet weak var teamNameTextField: UITextField!
     @IBOutlet weak var teamDescriptionTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        self.teamNameTextField.delegate = self
+        self.teamDescriptionTextView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case teamNameTextField:
+            textField.resignFirstResponder()
+            self.teamDescriptionTextView.becomeFirstResponder()
+            break
+        case teamDescriptionTextView:
+            textField.resignFirstResponder()
+            self.createNewTeamPressed(self)
+            break
+        default:
+            textField.resignFirstResponder()
+            break
+        }
+        
+        return false
     }
     
     @IBAction func createNewTeamPressed(_ sender: Any) {
