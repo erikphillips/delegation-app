@@ -91,17 +91,17 @@
 		985F2BA7201AF602004097ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		986F8E721FDFB6D10033B9D0 /* CreateAccountInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountInitialViewController.swift; sourceTree = "<group>"; };
 		9874033C1FF1923C0059309E /* UpdateAccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountSettingsViewController.swift; sourceTree = "<group>"; };
-		98849EA71FDDC7AA009C9B1A /* delegation-app-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "delegation-app-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		98849EA71FDDC7AA009C9B1A /* DelegationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DelegationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98849EAF1FDDC7AA009C9B1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		98849EB21FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = delegation_app_ios.xcdatamodel; sourceTree = "<group>"; };
 		98849EB41FDDC7AA009C9B1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98849EB71FDDC7AA009C9B1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98849EB91FDDC7AA009C9B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98849EBE1FDDC7AA009C9B1A /* delegation-app-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "delegation-app-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		98849EBE1FDDC7AA009C9B1A /* DelegationAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelegationAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98849EC21FDDC7AA009C9B1A /* delegation_app_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = delegation_app_iosTests.swift; sourceTree = "<group>"; };
 		98849EC41FDDC7AA009C9B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98849EC91FDDC7AA009C9B1A /* delegation-app-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "delegation-app-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		98849EC91FDDC7AA009C9B1A /* DelegationAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelegationAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98849ECD1FDDC7AA009C9B1A /* delegation_app_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = delegation_app_iosUITests.swift; sourceTree = "<group>"; };
 		98849ECF1FDDC7AA009C9B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98849EDE1FDDD48B009C9B1A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -217,9 +217,9 @@
 		98849E9E1FDDC7AA009C9B1A = {
 			isa = PBXGroup;
 			children = (
-				98849EA91FDDC7AA009C9B1A /* delegation-app-ios */,
-				98849EC11FDDC7AA009C9B1A /* delegation-app-iosTests */,
-				98849ECC1FDDC7AA009C9B1A /* delegation-app-iosUITests */,
+				98849EA91FDDC7AA009C9B1A /* DelegationApp */,
+				98849EC11FDDC7AA009C9B1A /* DelegationAppTests */,
+				98849ECC1FDDC7AA009C9B1A /* DelegationAppUITests */,
 				98849EA81FDDC7AA009C9B1A /* Products */,
 				5DFC93355E6E610F3380B00F /* Pods */,
 				885BF9977B85AB5AE7C15DF2 /* Frameworks */,
@@ -229,14 +229,14 @@
 		98849EA81FDDC7AA009C9B1A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				98849EA71FDDC7AA009C9B1A /* delegation-app-ios.app */,
-				98849EBE1FDDC7AA009C9B1A /* delegation-app-iosTests.xctest */,
-				98849EC91FDDC7AA009C9B1A /* delegation-app-iosUITests.xctest */,
+				98849EA71FDDC7AA009C9B1A /* DelegationApp.app */,
+				98849EBE1FDDC7AA009C9B1A /* DelegationAppTests.xctest */,
+				98849EC91FDDC7AA009C9B1A /* DelegationAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		98849EA91FDDC7AA009C9B1A /* delegation-app-ios */ = {
+		98849EA91FDDC7AA009C9B1A /* DelegationApp */ = {
 			isa = PBXGroup;
 			children = (
 				98DA8B2F202066B60050B795 /* delegation-app-ios.entitlements */,
@@ -249,25 +249,25 @@
 				98849EB11FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld */,
 				985F2BA7201AF602004097ED /* GoogleService-Info.plist */,
 			);
-			path = "delegation-app-ios";
+			path = DelegationApp;
 			sourceTree = "<group>";
 		};
-		98849EC11FDDC7AA009C9B1A /* delegation-app-iosTests */ = {
+		98849EC11FDDC7AA009C9B1A /* DelegationAppTests */ = {
 			isa = PBXGroup;
 			children = (
 				98849EC21FDDC7AA009C9B1A /* delegation_app_iosTests.swift */,
 				98849EC41FDDC7AA009C9B1A /* Info.plist */,
 			);
-			path = "delegation-app-iosTests";
+			path = DelegationAppTests;
 			sourceTree = "<group>";
 		};
-		98849ECC1FDDC7AA009C9B1A /* delegation-app-iosUITests */ = {
+		98849ECC1FDDC7AA009C9B1A /* DelegationAppUITests */ = {
 			isa = PBXGroup;
 			children = (
 				98849ECD1FDDC7AA009C9B1A /* delegation_app_iosUITests.swift */,
 				98849ECF1FDDC7AA009C9B1A /* Info.plist */,
 			);
-			path = "delegation-app-iosUITests";
+			path = DelegationAppUITests;
 			sourceTree = "<group>";
 		};
 		98849EDB1FDDCF9F009C9B1A /* Model */ = {
@@ -410,9 +410,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		98849EA61FDDC7AA009C9B1A /* delegation-app-ios */ = {
+		98849EA61FDDC7AA009C9B1A /* DelegationApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 98849ED21FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "delegation-app-ios" */;
+			buildConfigurationList = 98849ED21FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationApp" */;
 			buildPhases = (
 				428E4123CF2701E15D33FA4B /* [CP] Check Pods Manifest.lock */,
 				98849EA31FDDC7AA009C9B1A /* Sources */,
@@ -426,14 +426,14 @@
 			);
 			dependencies = (
 			);
-			name = "delegation-app-ios";
+			name = DelegationApp;
 			productName = "delegation-app-ios";
-			productReference = 98849EA71FDDC7AA009C9B1A /* delegation-app-ios.app */;
+			productReference = 98849EA71FDDC7AA009C9B1A /* DelegationApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		98849EBD1FDDC7AA009C9B1A /* delegation-app-iosTests */ = {
+		98849EBD1FDDC7AA009C9B1A /* DelegationAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 98849ED51FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "delegation-app-iosTests" */;
+			buildConfigurationList = 98849ED51FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationAppTests" */;
 			buildPhases = (
 				465AD36E9EB43D7BFB0474E1 /* [CP] Check Pods Manifest.lock */,
 				98849EBA1FDDC7AA009C9B1A /* Sources */,
@@ -447,14 +447,14 @@
 			dependencies = (
 				98849EC01FDDC7AA009C9B1A /* PBXTargetDependency */,
 			);
-			name = "delegation-app-iosTests";
+			name = DelegationAppTests;
 			productName = "delegation-app-iosTests";
-			productReference = 98849EBE1FDDC7AA009C9B1A /* delegation-app-iosTests.xctest */;
+			productReference = 98849EBE1FDDC7AA009C9B1A /* DelegationAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		98849EC81FDDC7AA009C9B1A /* delegation-app-iosUITests */ = {
+		98849EC81FDDC7AA009C9B1A /* DelegationAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 98849ED81FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "delegation-app-iosUITests" */;
+			buildConfigurationList = 98849ED81FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationAppUITests" */;
 			buildPhases = (
 				1480F48CF075C48A92D48C2B /* [CP] Check Pods Manifest.lock */,
 				98849EC51FDDC7AA009C9B1A /* Sources */,
@@ -468,9 +468,9 @@
 			dependencies = (
 				98849ECB1FDDC7AA009C9B1A /* PBXTargetDependency */,
 			);
-			name = "delegation-app-iosUITests";
+			name = DelegationAppUITests;
 			productName = "delegation-app-iosUITests";
-			productReference = 98849EC91FDDC7AA009C9B1A /* delegation-app-iosUITests.xctest */;
+			productReference = 98849EC91FDDC7AA009C9B1A /* DelegationAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -507,7 +507,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 98849EA21FDDC7AA009C9B1A /* Build configuration list for PBXProject "delegation-app-ios" */;
+			buildConfigurationList = 98849EA21FDDC7AA009C9B1A /* Build configuration list for PBXProject "DelegationApp" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -520,9 +520,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				98849EA61FDDC7AA009C9B1A /* delegation-app-ios */,
-				98849EBD1FDDC7AA009C9B1A /* delegation-app-iosTests */,
-				98849EC81FDDC7AA009C9B1A /* delegation-app-iosUITests */,
+				98849EA61FDDC7AA009C9B1A /* DelegationApp */,
+				98849EBD1FDDC7AA009C9B1A /* DelegationAppTests */,
+				98849EC81FDDC7AA009C9B1A /* DelegationAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -794,12 +794,12 @@
 /* Begin PBXTargetDependency section */
 		98849EC01FDDC7AA009C9B1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 98849EA61FDDC7AA009C9B1A /* delegation-app-ios */;
+			target = 98849EA61FDDC7AA009C9B1A /* DelegationApp */;
 			targetProxy = 98849EBF1FDDC7AA009C9B1A /* PBXContainerItemProxy */;
 		};
 		98849ECB1FDDC7AA009C9B1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 98849EA61FDDC7AA009C9B1A /* delegation-app-ios */;
+			target = 98849EA61FDDC7AA009C9B1A /* DelegationApp */;
 			targetProxy = 98849ECA1FDDC7AA009C9B1A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -938,9 +938,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H8E62THNLC;
-				INFOPLIST_FILE = "delegation-app-ios/Info.plist";
+				INFOPLIST_FILE = DelegationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erikphillips.delegation-app-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.DelegationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -954,9 +954,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H8E62THNLC;
-				INFOPLIST_FILE = "delegation-app-ios/Info.plist";
+				INFOPLIST_FILE = DelegationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erikphillips.delegation-app-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.DelegationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -977,7 +977,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/delegation-app-ios.app/delegation-app-ios";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DelegationApp.app/DelegationApp";
 			};
 			name = Debug;
 		};
@@ -995,7 +995,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/delegation-app-ios.app/delegation-app-ios";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DelegationApp.app/DelegationApp";
 			};
 			name = Release;
 		};
@@ -1036,7 +1036,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		98849EA21FDDC7AA009C9B1A /* Build configuration list for PBXProject "delegation-app-ios" */ = {
+		98849EA21FDDC7AA009C9B1A /* Build configuration list for PBXProject "DelegationApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				98849ED01FDDC7AA009C9B1A /* Debug */,
@@ -1045,7 +1045,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		98849ED21FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "delegation-app-ios" */ = {
+		98849ED21FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				98849ED31FDDC7AA009C9B1A /* Debug */,
@@ -1054,7 +1054,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		98849ED51FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "delegation-app-iosTests" */ = {
+		98849ED51FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				98849ED61FDDC7AA009C9B1A /* Debug */,
@@ -1063,7 +1063,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		98849ED81FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "delegation-app-iosUITests" */ = {
+		98849ED81FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				98849ED91FDDC7AA009C9B1A /* Debug */,
