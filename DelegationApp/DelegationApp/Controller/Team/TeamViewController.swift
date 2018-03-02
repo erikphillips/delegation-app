@@ -41,7 +41,25 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        var numOfSections: Int = 0
+        if let user = self.user {
+            if user.getTeams().count > 0 {
+                self.teamsTableView.separatorStyle = .singleLine
+                numOfSections = 1
+                self.teamsTableView.backgroundView = nil
+            }
+        }
+        
+        if numOfSections == 0 {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = "Not currently a member of any teams."
+            noDataLabel.textColor = Globals.UIGlobals.Colors.PRIMARY
+            noDataLabel.textAlignment = .center
+            self.teamsTableView.backgroundView = noDataLabel
+            self.teamsTableView.separatorStyle = .none
+        }
+        
+        return numOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

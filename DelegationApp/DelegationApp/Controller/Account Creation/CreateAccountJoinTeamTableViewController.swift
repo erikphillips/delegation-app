@@ -61,11 +61,29 @@ class CreateAccountJoinTeamTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        var numOfSections: Int = 0
+        if let teams = self.teamsArray {
+            if teams.count > 0 {
+                self.tableView.separatorStyle = .singleLine
+                numOfSections = 1
+                self.tableView.backgroundView = nil
+            }
+        }
+        
+        if numOfSections == 0 {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = "No teams available to join."
+            noDataLabel.textColor = Globals.UIGlobals.Colors.PRIMARY
+            noDataLabel.textAlignment = .center
+            self.tableView.backgroundView = noDataLabel
+            self.tableView.separatorStyle = .none
+        }
+        
+        return numOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let teams = teamsArray {
+        if let teams = self.teamsArray {
             return teams.count
         } else {
             return 0

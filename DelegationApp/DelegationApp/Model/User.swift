@@ -160,6 +160,21 @@ class User {
         self.observers.notify(self)
     }
     
+    func observeTeams() {
+        let ref = Database.database().reference(withPath: "users/\(uuid)/teams")
+        ref.observe(.childAdded, with: { [weak self] (snapshot) in
+            guard let this = self else { return }
+            let dict = snapshot.value as? NSDictionary
+            print(dict)
+        })
+        
+        ref.observe(.childRemoved, with: { [weak self] (snapshot) in
+            guard let this = self else { return }
+            let dict = snapshot.value as? NSDictionary
+            print(dict)
+        })
+    }
+    
     func getUUID() -> String {
         return self.uuid
     }

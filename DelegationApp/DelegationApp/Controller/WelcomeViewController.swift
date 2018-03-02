@@ -156,13 +156,18 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func demoActionAdminLogin(_ sender: Any) {
-        usernameTextField.text = "admin@delegation.com"
-        passwordTextField.text = "password"
+        self.usernameTextField.text = "admin@delegation.com"
+        self.passwordTextField.text = "password"
     }
     
     @IBAction func demoActionUserLogin(_ sender: Any) {
-        usernameTextField.text = "user1@delegation.com"
-        passwordTextField.text = "password"
+        self.usernameTextField.text = "user1@delegation.com"
+        self.passwordTextField.text = "password"
+    }
+    
+    @IBAction func noTaskUserLogin(_ sender: Any) {
+        self.usernameTextField.text = "user3@delgation.com"
+        self.passwordTextField.text = "password"
     }
     
     @IBAction func unwindToWelcomeView(segue: UIStoryboardSegue) { }

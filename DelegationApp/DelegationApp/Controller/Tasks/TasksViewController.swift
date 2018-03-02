@@ -53,7 +53,25 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        var numOfSections: Int = 0
+        if let user = self.user {
+            if user.getTasks().count > 0 {
+                self.taskTableView.separatorStyle = .singleLine
+                numOfSections = 1
+                self.taskTableView.backgroundView = nil
+            }
+        }
+        
+        if numOfSections == 0 {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = "No tasks available."
+            noDataLabel.textColor = Globals.UIGlobals.Colors.PRIMARY
+            noDataLabel.textAlignment = .center
+            self.taskTableView.backgroundView = noDataLabel
+            self.taskTableView.separatorStyle = .none
+        }
+        
+        return numOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

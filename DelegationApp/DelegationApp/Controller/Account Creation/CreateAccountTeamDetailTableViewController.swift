@@ -33,6 +33,7 @@ class CreateAccountTeamDetailTableViewController: UITableViewController {
     }
     
     @IBAction func joinTeamButtonPressed(_ sender: Any) {
+        Logger.log("joinTeamButtonPressed funcationality not implemented.", event: .warning)
 //        self.isCellSelected = !self.isCellSelected
 //        self.checkmarkImage.isHidden = !self.isCellSelected
     }

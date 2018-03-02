@@ -23,7 +23,7 @@ class SettingsTeamTableViewController: UITableViewController {
     }
     
     @objc func refresh(_ refreshControl: UIRefreshControl) {
-        self.tableView.reloadData()
+         self.tableView.reloadData()
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             refreshControl.endRefreshing()
@@ -35,7 +35,25 @@ class SettingsTeamTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        var numOfSections: Int = 0
+        if let user = self.user {
+            if user.getTeams().count > 0 {
+                self.tableView.separatorStyle = .singleLine
+                numOfSections = 1
+                self.tableView.backgroundView = nil
+            }
+        }
+        
+        if numOfSections == 0 {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = "You are not a member of any team."
+            noDataLabel.textColor = Globals.UIGlobals.Colors.PRIMARY
+            noDataLabel.textAlignment = .center
+            self.tableView.backgroundView = noDataLabel
+            self.tableView.separatorStyle = .none
+        }
+        
+        return numOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
