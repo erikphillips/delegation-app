@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 
 class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate {
+    
+    var passedUsername: String?
+    var passedPassword: String?
 
     @IBOutlet weak var firstnameTextField: UITextField!
     @IBOutlet weak var lastnameTextField: UITextField!
@@ -22,14 +25,20 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.firstnameTextField.delegate = self
         self.lastnameTextField.delegate = self
         self.emailAddressTextField.delegate = self
         self.passwordTextField.delegate = self
         self.confirmPasswordTextField.delegate = self
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(CreateAccountViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(CreateAccountViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        if let passedUsername = self.passedUsername {
+            self.emailAddressTextField.text = passedUsername
+        }
+        
+        if let passedPassword = self.passedPassword {
+            self.passwordTextField.text = passedPassword
+        }
         
         self.hideKeyboardWhenTappedAround()
     }

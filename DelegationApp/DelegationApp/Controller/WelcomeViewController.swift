@@ -169,9 +169,17 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SubmitLogin" {
-            Logger.log("Preparing SubmitLogin segue...")
             if let dest = segue.destination as? MainTabBarViewController {
+                Logger.log("SubmitLogin segue called")
                 dest.user = self.segueUser
+            }
+        }
+        
+        if segue.identifier == "WelcomeShowCreateAccount" {
+            if let dest = segue.destination as? CreateAccountInitialViewController {
+                Logger.log("WelcomeShowCreateAccount segue called")
+                dest.passedUsername = self.usernameTextField.text
+                dest.passedPassword = self.passwordTextField.text
             }
         }
     }
