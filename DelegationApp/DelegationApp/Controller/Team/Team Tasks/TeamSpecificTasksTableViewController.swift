@@ -76,11 +76,10 @@ class TeamSpecificTasksTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TeamSpecificTaskDetailSegue" {
-            if let dest = segue.destination as? TeamSpecificTaskDetailViewController {
+            if let dest = segue.destination as? TaskDetailTableViewController {
                 if let task = sender as? Task {
-                    // dest.user = self.user
+                    Logger.log("TeamSpecificTaskDetailSegue called to shared TaskDetailTableViewController")
                     dest.task = task
-                    Logger.log("TeamSpecificTaskDetailSegue called")
                 }
             }
         }

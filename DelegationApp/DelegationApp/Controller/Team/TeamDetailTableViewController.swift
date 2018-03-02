@@ -25,21 +25,20 @@ class TeamDetailTableViewController: UITableViewController {
             self.ownerLabel.text = team.getOwnerFullName()
             self.memberCountLabel.text = team.getMemberCount()
             self.descriptionTextView.text = team.getDescription()
+            
+            team.observers.observe(canary: self, callback: {
+                [weak self] (team) in
+                guard let this = self else { return }
+                
+                this.titleLabel.text = team.getTeamName()
+                this.ownerLabel.text = team.getOwnerFullName()
+                this.memberCountLabel.text = team.getMemberCount()
+                this.descriptionTextView.text = team.getDescription()
+            })
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

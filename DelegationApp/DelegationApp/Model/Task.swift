@@ -236,39 +236,53 @@ class Task {
             let ref = Database.database().reference(withPath: "tasks/\(self.uuid)/\(self.tuid)")
             
             if let title = title {
-                self.title = title
-                ref.child("title").setValue(title)
+                if title != self.title {
+                    self.title = title
+                    ref.child("title").setValue(title)
+                }
             }
             
             if let priority = priority {
-                self.priority = priority
-                ref.child("priority").setValue(priority)
+                if priority != self.priority {
+                    self.priority = priority
+                    ref.child("priority").setValue(priority)
+                }
             }
             
             if let description = description {
-                self.description = description
-                ref.child("description").setValue(description)
+                if description != self.description {
+                    self.description = description
+                    ref.child("description").setValue(description)
+                }
             }
             
             if let team = team {
-                self.team = team
-                ref.child("team").setValue(team)
+                if team != self.team {
+                    self.team = team
+                    ref.child("team").setValue(team)
+                }
             }
             
             if let title = title {
-                self.title = title
-                ref.child("title").setValue(title)
+                if title != self.title {
+                    self.title = title
+                    ref.child("title").setValue(title)
+                }
             }
             
             if let status = status {
-                self.status = Task.parseTaskStatus(status)
-                ref.child("status").setValue(self.status.rawValue)
+                if self.status != Task.parseTaskStatus(status) {
+                    self.status = Task.parseTaskStatus(status)
+                    ref.child("status").setValue(self.status.rawValue)
+                }
             }
             
             if let assignee = assignee {
-                self.assigneeUUID = assignee
-                ref.child("assignee").setValue(assignee)
-                Logger.log("incomplete method - unable to truly assign different user", event: .error)
+                if assignee != self.assigneeUUID {
+                    self.assigneeUUID = assignee
+                    ref.child("assignee").setValue(assignee)
+                    Logger.log("incomplete method - unable to truly assign different user", event: .error)
+                }
             }
             
             // Notify all observers of task updates

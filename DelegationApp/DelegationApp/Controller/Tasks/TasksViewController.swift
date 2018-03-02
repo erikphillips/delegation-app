@@ -77,7 +77,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.taskTeamNameLabel.text = task.getTeamUID()
             cell.taskPriorityLabel.text = task.getPriority()
             cell.taskStatusLabel.text = task.getStatus()
-            
+
             let taskUpdateHandler = {
                 [cell] (task: Task) in
                 cell.taskNameLabel.text = task.getTitle()
@@ -86,7 +86,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.taskPriorityLabel.text = task.getPriority()
                 cell.taskStatusLabel.text = task.getStatus()
             }
-            
+
             task.observers.observe(canary: self, callback: taskUpdateHandler)
         }
         
