@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsCreateTeamViewController: UIViewController {
+class SettingsCreateTeamViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     var user: User?
     
@@ -18,10 +18,31 @@ class SettingsCreateTeamViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        self.teamTitleTextField.delegate = self
+        self.teamDescriptionTextView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case teamTitleTextField:
+            textField.resignFirstResponder()
+            self.teamDescriptionTextView.becomeFirstResponder()
+            break
+        case teamDescriptionTextView:
+            textField.resignFirstResponder()
+            self.createNewTeamButtonPressed(self)
+            break
+        default:
+            textField.resignFirstResponder()
+            break
+        }
+        
+        return false
     }
     
     @IBAction func createNewTeamButtonPressed(_ sender: Any) {
