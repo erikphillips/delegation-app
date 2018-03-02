@@ -132,7 +132,6 @@
 		98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewController.swift; sourceTree = "<group>"; };
 		98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
-		98DA8B2F202066B60050B795 /* delegation-app-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "delegation-app-ios.entitlements"; sourceTree = "<group>"; };
 		98DA8B302020E1FF0050B795 /* Observers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
 		98DB37CE200D349000853862 /* CreateTaskSelectTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskSelectTeamTableViewController.swift; sourceTree = "<group>"; };
 		98DF00F020298A1A00DE7FE0 /* TaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -239,7 +238,6 @@
 		98849EA91FDDC7AA009C9B1A /* DelegationApp */ = {
 			isa = PBXGroup;
 			children = (
-				98DA8B2F202066B60050B795 /* delegation-app-ios.entitlements */,
 				98849EDD1FDDCFB1009C9B1A /* Controller */,
 				98849EDC1FDDCFAB009C9B1A /* View */,
 				98849EDB1FDDCF9F009C9B1A /* Model */,
