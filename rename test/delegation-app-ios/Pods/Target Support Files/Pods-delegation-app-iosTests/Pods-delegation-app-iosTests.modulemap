@@ -1,0 +1,6 @@
+framework module Pods_delegation_app_iosTests {
+  umbrella header "Pods-delegation-app-iosTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
