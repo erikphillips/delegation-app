@@ -63,75 +63,76 @@ class User {
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
         
-        Logger.log("created new user, waiting on observable for 'user/\(uuid)/'")
+        self.observeTeams()
         
-        var ref: DatabaseReference!
-        ref = Database.database().reference().child("users/\(uuid)/")
+        Logger.log("created new user, waiting on observable for 'user/\(uuid)/information'")
         
+        let ref = Database.database().reference().child("users/\(uuid)/information")
         ref.observe(DataEventType.value, with: {
             [weak self] (snapshot) in
             guard let this = self else { return }
             
-            Logger.log("user update recieved from database for 'users/\(this.uuid)/", event: .verbose)
+            Logger.log("user update recieved from database for 'users/\(this.uuid)/information", event: .verbose)
             
-            let value = snapshot.value as? NSDictionary
+            let information = snapshot.value as? NSDictionary
             
-            let information = value?["information"] as? NSDictionary
+//            let information = value?["information"] as? NSDictionary
             this.firstname = information?["firstname"] as? String ?? this.firstname
             this.lastname = information?["lastname"] as? String ?? this.lastname
             this.emailAddress = information?["email"] as? String ?? this.emailAddress
             this.phoneNumber = information?["phone"] as? String ?? this.phoneNumber
             
-            if let teams = value?["teams"] as? NSDictionary {
-                Logger.log("teams information unwrapped for user observable")
-//                var foundGUIDs: [String] = []
-                
-                this.teams = []
-                for (_, value) in teams {
-                    if let guid = value as? String {
-                        this.teams.append(Team(guid: guid))
-                        Logger.log("added a team, guid='\(guid)'")
-                        
-//                        foundGUIDs.append(guid)
+            
+//            if let teams = value?["teams"] as? NSDictionary {
+//                Logger.log("teams information unwrapped for user observable")
+////                var foundGUIDs: [String] = []
 //
-//                        var addThisTeam = true
-//                        for team in this.teams {
-//                            if team.getGUID() == guid {
-//                                addThisTeam = false
-//                                break
-//                            }
-//                        }
+//                this.teams = []
+//                for (_, value) in teams {
+//                    if let guid = value as? String {
+//                        this.teams.append(Team(guid: guid))
+//                        Logger.log("added a team, guid='\(guid)'")
 //
-//                        if addThisTeam {
-//                            this.teams.append(Team(guid: guid))
-//                            Logger.log("added a team, guid='\(guid)'")
-//                        }
-                    }
-                }
-                
-//                for team in this.teams {
-//                    if !foundGUIDs.contains(team.getGUID()) {
-//                        if let idx = this.teams.index(where: {$0 === team}) {
-//                            this.teams.remove(at: idx)
-//                        }
+////                        foundGUIDs.append(guid)
+////
+////                        var addThisTeam = true
+////                        for team in this.teams {
+////                            if team.getGUID() == guid {
+////                                addThisTeam = false
+////                                break
+////                            }
+////                        }
+////
+////                        if addThisTeam {
+////                            this.teams.append(Team(guid: guid))
+////                            Logger.log("added a team, guid='\(guid)'")
+////                        }
 //                    }
 //                }
-            } else {
-                Logger.log("teams could not be unwrapped in user observable")
-            }
+//
+////                for team in this.teams {
+////                    if !foundGUIDs.contains(team.getGUID()) {
+////                        if let idx = this.teams.index(where: {$0 === team}) {
+////                            this.teams.remove(at: idx)
+////                        }
+////                    }
+////                }
+//            } else {
+//                Logger.log("teams could not be unwrapped in user observable")
+//            }
             
-            if let tasks = value?["current_tasks"] as? NSDictionary {
-                Logger.log("task information unwrapped for user observable")
-                this.tasks = []  // clear the array to start from beginning
-                for (_, value) in tasks {
-                    if let tuid = value as? String {
-                        this.tasks.append(Task(uuid: this.uuid, tuid: tuid))
-                        Logger.log("added a task, tuid=\(tuid)")
-                    }
-                }
-            } else {
-                Logger.log("tasks could not be unwrapped in user observable")
-            }
+//            if let tasks = value?["current_tasks"] as? NSDictionary {
+//                Logger.log("task information unwrapped for user observable")
+//                this.tasks = []  // clear the array to start from beginning
+//                for (_, value) in tasks {
+//                    if let tuid = value as? String {
+//                        this.tasks.append(Task(uuid: this.uuid, tuid: tuid))
+//                        Logger.log("added a task, tuid=\(tuid)")
+//                    }
+//                }
+//            } else {
+//                Logger.log("tasks could not be unwrapped in user observable")
+//            }
             
             Logger.log("updated user information: \(this.toString())", event: .verbose)
             
@@ -162,16 +163,31 @@ class User {
     
     func observeTeams() {
         let ref = Database.database().reference(withPath: "users/\(uuid)/teams")
-        ref.observe(.childAdded, with: { [weak self] (snapshot) in
+        ref.observe(.childAdded, with: {
+            [weak self] (snapshot) in
             guard let this = self else { return }
-            let dict = snapshot.value as? NSDictionary
-            print(dict)
+            
+            if let guid = snapshot.value as? String {
+                Logger.log("adding new observable team guid=\"\(guid)\"")
+                this.teams.append(Team(guid: guid))
+                this.observers.notify(this)
+            }
         })
         
-        ref.observe(.childRemoved, with: { [weak self] (snapshot) in
+        ref.observe(.childRemoved, with: {
+            [weak self] (snapshot) in
             guard let this = self else { return }
-            let dict = snapshot.value as? NSDictionary
-            print(dict)
+            
+            if let guid = snapshot.value as? String {
+                for (idx, team) in this.teams.enumerated() {
+                    if team.getGUID() == guid {
+                        Logger.log("removing team idx=\(idx), guid=\"\(guid)\"")
+                        this.teams.remove(at: idx)
+                    }
+                }
+                
+                this.observers.notify(this)
+            }
         })
     }
     
@@ -223,7 +239,7 @@ class User {
         let teamRef = Database.database().reference(withPath: "teams/\(guid)/members/")
         teamRef.childByAutoId().setValue(self.uuid)
         
-        self.teams.append(Team(guid: guid))
+//        self.teams.append(Team(guid: guid))  // this is not needed as the team will be set by the observable
     }
     
     func leaveTeam(guid: String) {
