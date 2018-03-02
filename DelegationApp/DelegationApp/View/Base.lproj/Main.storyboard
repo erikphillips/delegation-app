@@ -363,6 +363,11 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                             <segue destination="9oe-rB-aSW" kind="unwind" unwindAction="unwindToJoinTeamTableViewWithSegue:" id="r25-kl-tNp"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" title="Join" id="Ksr-dk-rdv">
+                                        <connections>
+                                            <action selector="joinTeamButtonPressed:" destination="aEU-cN-X3n" id="iDB-B2-gYJ"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </navigationItem>
                             </items>
                         </navigationBar>
@@ -486,92 +491,6 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 <exit id="9oe-rB-aSW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4453.6000000000004" y="-322.48875562218893"/>
-        </scene>
-        <!--Create Account Join Team View Controller-->
-        <scene sceneID="lXW-35-yYQ">
-            <objects>
-                <viewController id="sbM-9g-E9y" customClass="CreateAccountJoinTeamViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YoH-KG-lJN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="DcK-Gh-4oq">
-                                <rect key="frame" x="16" y="20" width="343" height="115"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="115" id="UBl-EB-YsF"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzo-JZ-WJ8">
-                                <rect key="frame" x="16" y="597" width="343" height="50"/>
-                                <color key="backgroundColor" red="0.48627450979999998" green="0.68627450980000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ubg-Nf-SLF"/>
-                                </constraints>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="sbM-9g-E9y" eventType="touchUpInside" id="U7b-r4-WeW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbF-iH-VU4">
-                                <rect key="frame" x="16" y="539" width="343" height="50"/>
-                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="0vv-mp-uIM"/>
-                                </constraints>
-                                <state key="normal" title="Create Account and Join Team">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="createNewAccountAndJoinTeam:" destination="sbM-9g-E9y" eventType="touchUpInside" id="Bxm-um-kCh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvm-CU-NE4">
-                                <rect key="frame" x="16" y="423" width="343" height="50"/>
-                                <color key="backgroundColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="LNo-Ze-awV"/>
-                                </constraints>
-                                <state key="normal" title="Select Teams">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Teams Below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFx-PF-a2d">
-                                <rect key="frame" x="104" y="143" width="153" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="jbe-9n-u1Z" firstAttribute="bottom" secondItem="Mzo-JZ-WJ8" secondAttribute="bottom" constant="20" id="1KS-Sj-06d"/>
-                            <constraint firstItem="Mzo-JZ-WJ8" firstAttribute="top" secondItem="GbF-iH-VU4" secondAttribute="bottom" constant="8" id="4pc-5X-DWh"/>
-                            <constraint firstItem="GbF-iH-VU4" firstAttribute="leading" secondItem="jbe-9n-u1Z" secondAttribute="leading" constant="16" id="8kx-wh-jnH"/>
-                            <constraint firstItem="DcK-Gh-4oq" firstAttribute="top" secondItem="jbe-9n-u1Z" secondAttribute="top" id="Bn6-vU-azz"/>
-                            <constraint firstItem="jbe-9n-u1Z" firstAttribute="trailing" secondItem="GbF-iH-VU4" secondAttribute="trailing" constant="16" id="FHk-wH-diQ"/>
-                            <constraint firstItem="DcK-Gh-4oq" firstAttribute="leading" secondItem="jbe-9n-u1Z" secondAttribute="leading" constant="16" id="Jmq-xt-4sW"/>
-                            <constraint firstItem="Mzo-JZ-WJ8" firstAttribute="leading" secondItem="jbe-9n-u1Z" secondAttribute="leading" constant="16" id="PTA-yu-9GJ"/>
-                            <constraint firstItem="GbF-iH-VU4" firstAttribute="top" secondItem="fvm-CU-NE4" secondAttribute="bottom" constant="66" id="Ruo-we-i9B"/>
-                            <constraint firstItem="jbe-9n-u1Z" firstAttribute="trailing" secondItem="Mzo-JZ-WJ8" secondAttribute="trailing" constant="16" id="bTZ-c5-Kik"/>
-                            <constraint firstItem="jbe-9n-u1Z" firstAttribute="trailing" secondItem="DcK-Gh-4oq" secondAttribute="trailing" constant="16" id="c0Z-EM-hA7"/>
-                            <constraint firstItem="fvm-CU-NE4" firstAttribute="leading" secondItem="jbe-9n-u1Z" secondAttribute="leading" constant="16" id="mfE-ZH-XBj"/>
-                            <constraint firstItem="jbe-9n-u1Z" firstAttribute="trailing" secondItem="fvm-CU-NE4" secondAttribute="trailing" constant="16" id="py2-V6-IK2"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="jbe-9n-u1Z"/>
-                    </view>
-                    <connections>
-                        <outlet property="createAccountButton" destination="GbF-iH-VU4" id="oux-bP-Gac"/>
-                        <segue destination="Cvn-zS-FrI" kind="unwind" identifier="unwindToTeamPromptView" unwindAction="unwindToTeamPromptViewWithSegue:" id="uci-j2-jIF"/>
-                        <segue destination="Cvn-zS-FrI" kind="unwind" identifier="unwindToWelcomeFromJoinTeam" unwindAction="unwindToWelcomeViewWithSegue:" id="RdR-Dr-B0F"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yhr-yq-dFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Cvn-zS-FrI" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="4454" y="-993"/>
         </scene>
         <!--Team Selection-->
         <scene sceneID="RcJ-gr-skb">

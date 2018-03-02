@@ -31,4 +31,9 @@ class CreateAccountTeamDetailTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    @IBAction func joinTeamButtonPressed(_ sender: Any) {
+//        self.isCellSelected = !self.isCellSelected
+//        self.checkmarkImage.isHidden = !self.isCellSelected
+    }
 }

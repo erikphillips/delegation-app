@@ -20,17 +20,12 @@ class CreateAccountJoinTeamTableViewController: UITableViewController {
         super.viewDidLoad()
         Logger.log("JoinTeamTableViewController loaded...")
         
-//        self.displayLoadingScreen()
         FirebaseUtilities.fetchAllTeams(callback: {
             [weak self] (teams) in
             guard let this = self else { return }
             
             this.teamsArray = teams
             this.tableView.reloadData()
-//            this.dismissLoadingScreen(callback: {
-//                () in
-//                Logger.log("Loading screen dismissed.")
-//            })
         })
     }
 
