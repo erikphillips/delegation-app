@@ -1,6 +1,6 @@
 //
 //  Status.swift
-//  delegation-app-ios
+//  DelegationApp
 //
 //  Created by Erik Phillips on 1/12/18.
 //  Copyright © 2017-2018 Erik Phillips. All rights reserved.

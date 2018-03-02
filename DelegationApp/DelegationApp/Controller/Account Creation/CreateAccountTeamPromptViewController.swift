@@ -1,6 +1,6 @@
 //
 //  TeamPromptViewController.swift
-//  delegation-app-ios
+//  DelegationApp
 //
 //  Created by Erik Phillips on 12/16/17.
 //  Copyright © 2017-2018 Erik Phillips. All rights reserved.

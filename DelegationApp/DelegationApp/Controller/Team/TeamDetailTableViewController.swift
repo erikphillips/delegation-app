@@ -1,6 +1,6 @@
 //
 //  TeamDetailTableViewController.swift
-//  delegation-app-ios
+//  DelegationApp
 //
 //  Created by Erik Phillips on 2/7/18.
 //  Copyright © 2018 Erik Phillips. All rights reserved.
