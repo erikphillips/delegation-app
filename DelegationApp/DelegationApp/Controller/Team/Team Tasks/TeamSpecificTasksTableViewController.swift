@@ -32,6 +32,11 @@ class TeamSpecificTasksTableViewController: UITableViewController {
         self.tableView.refreshControl?.tintColor = Globals.UIGlobals.Colors.PRIMARY
         self.tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        Logger.log("team specific task table view will appear, reloading data")
+        self.tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

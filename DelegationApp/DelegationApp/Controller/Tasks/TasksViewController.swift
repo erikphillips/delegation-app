@@ -33,6 +33,15 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.refreshControl.tintColor = Globals.UIGlobals.Colors.PRIMARY
         self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
         self.taskTableView.addSubview(refreshControl)
+        
+        if let user = self.user {
+            user.observers.observe(canary: self, callback: {
+                [weak self] (user) in
+                guard let this = self else { return }
+                Logger.log("updating task table view")
+                this.taskTableView.reloadData()
+            })
+        }
     }
     
     @objc func refresh(sender: AnyObject) {

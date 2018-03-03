@@ -260,13 +260,6 @@ class Task {
                 }
             }
             
-//            if let team = team {
-//                if team != self.team {
-//                    self.team = team
-//                    ref.child("team").setValue(team)
-//                }
-//            }
-            
             if let title = title {
                 if title != self.title {
                     self.title = title
@@ -280,14 +273,6 @@ class Task {
                     ref.child("status").setValue(self.status.rawValue)
                 }
             }
-            
-//            if let assignee = assignee {
-//                if assignee != self.assigneeUUID {
-//                    self.assigneeUUID = assignee
-//                    ref.child("assignee").setValue(assignee)
-//                    Logger.log("incomplete method - unable to truly assign different user", event: .error)
-//                }
-//            }
             
             // Notify all observers of task updates
             self.observers.notify(self)
@@ -303,10 +288,11 @@ class Task {
         let newRef = Database.database().reference(withPath: "tasks/\(uuid)/").childByAutoId()
         let newAssigneeRef = Database.database().reference(withPath: "users/\(uuid)/current_tasks/")
         
+        // Set the new UUID and the TUID based on the childByAutoID key.
         self.uuid = uuid
         self.tuid = newRef.key
         
-        // Set the new task information
+        // Set the new task information at the new location
         newRef.child("title").setValue(self.title)
         newRef.child("priority").setValue(self.priority)
         newRef.child("description").setValue(self.description)
@@ -315,12 +301,17 @@ class Task {
         newRef.child("originator").setValue(self.originatorUUID)
         newRef.child("team").setValue(self.team)
         
-        // Add the task to the new assignee's array
+        // Add the task to the new assignee's array,
+        // this should trigger the observable within
+        // the new assignee to load the task
         newAssigneeRef.childByAutoId().setValue(self.tuid)
         
-        // Remove the current contents at the old location
+        // Remove the current contents at the old location,
         oldRef.removeValue()
         
+        // Remove the task listed under the user's current_tasks
+        // which should trigger the old assignee's observable
+        // to remove the task from their task array.
         oldAssigneeRef.observeSingleEvent(of: .value, with: {
             [oldAssigneeRef, weak self] (snapshot) in
             guard let this = self else { return }
