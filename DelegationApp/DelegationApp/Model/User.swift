@@ -238,15 +238,13 @@ class User {
         
         let teamRef = Database.database().reference(withPath: "teams/\(guid)/members/")
         teamRef.childByAutoId().setValue(self.uuid)
-        
-//        self.teams.append(Team(guid: guid))  // this is not needed as the team will be set by the observable
     }
     
     func leaveTeam(guid: String) {
         Logger.log("user leaving team '\(guid)'")
         
         let ref = Database.database().reference(withPath: "users/\(self.uuid)/teams/")
-        ref.observe(DataEventType.value, with: { [ref, guid] (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { [ref, guid] (snapshot) in
             if let dict = snapshot.value as? NSDictionary {
                 for (key, value) in dict {
                     if let value = value as? String {
@@ -262,7 +260,7 @@ class User {
         })
         
         let teamRef = Database.database().reference(withPath: "teams/\(guid)/members/")
-        teamRef.observe(DataEventType.value, with: { [teamRef, weak self] (snapshot) in
+        teamRef.observeSingleEvent(of: .value, with: { [teamRef, weak self] (snapshot) in
             guard let this = self else { return }
             if let dict = snapshot.value as? NSDictionary {
                 for (key, value) in dict {
