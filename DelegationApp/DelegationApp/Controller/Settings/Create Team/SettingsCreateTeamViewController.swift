@@ -46,20 +46,22 @@ class SettingsCreateTeamViewController: UIViewController, UITextFieldDelegate, U
     }
     
     @IBAction func createNewTeamButtonPressed(_ sender: Any) {
-        if self.teamTitleTextField.text! == Globals.TeamGlobals.DEFAULT_TEAMNAME {
+        let teamname = Utilities.trimWhitespace(self.teamTitleTextField.text!)
+        
+        if teamname == Globals.TeamGlobals.DEFAULT_TEAMNAME {
             self.displayAlert(title: "Invalid Teamname", message: "Please enter a valid teamname.")
             return
         }
         
         if let user = user {
-            FirebaseUtilities.teamNameInUse(teamname: self.teamTitleTextField.text!, callback: {
+            FirebaseUtilities.teamNameInUse(teamname: teamname, callback: {
                 [weak self] (status) in
                 guard let this = self else { return }
                 
                 if !status.status {
                     this.displayAlert(title: "Invalid Team Name", message: status.message)
                 } else {
-                    let team = Team(teamname: this.teamTitleTextField.text!, description: this.teamDescriptionTextView.text!, owner: user.getUUID())
+                    let team = Team(teamname: Utilities.trimWhitespace(this.teamTitleTextField.text!), description: this.teamDescriptionTextView.text!, owner: user.getUUID())
                     
                     if let user = this.user {
                         user.addNewTeam(guid: team.getGUID())

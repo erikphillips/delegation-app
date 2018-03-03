@@ -69,6 +69,10 @@ class Globals {
 
 class Utilities {
     
+    static func trimWhitespace(_ string: String) -> String {
+        return string.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
     static func validateEmail(_ email: String) -> Status {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
@@ -162,6 +166,10 @@ class Utilities {
         } else {
             return Status(false, "Team object is an optional set as nil")
         }
+    }
+    
+    static func unformat(phoneNumber sourcePhoneNumber: String) -> String {
+        return sourcePhoneNumber.trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
     }
     
     static func format(phoneNumber sourcePhoneNumber: String) -> String? {

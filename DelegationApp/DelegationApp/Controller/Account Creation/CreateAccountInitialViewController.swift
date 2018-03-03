@@ -47,6 +47,11 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func phoneNumberTextFieldEditingDidEnd(_ sender: Any) {
+        Logger.log("auto-formatting phone number field")
+        self.phoneNumberTextField.text = Utilities.format(phoneNumber: self.phoneNumberTextField.text!)
+    }
+    
     @IBAction func loadFakeDataButtonPressed(_ sender: Any) {
         self.firstnameTextField.text = "Erik"
         self.lastnameTextField.text = "Phillips"
@@ -60,23 +65,23 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
         switch textField {
         case firstnameTextField:
             textField.resignFirstResponder()
-            lastnameTextField.becomeFirstResponder()
+            self.lastnameTextField.becomeFirstResponder()
             break
         case lastnameTextField:
             textField.resignFirstResponder()
-            emailAddressTextField.becomeFirstResponder()
+            self.emailAddressTextField.becomeFirstResponder()
             break
         case emailAddressTextField:
             textField.resignFirstResponder()
-            phoneNumberTextField.becomeFirstResponder()
+            self.phoneNumberTextField.becomeFirstResponder()
             break
         case phoneNumberTextField:
             textField.resignFirstResponder()
-            passwordTextField.becomeFirstResponder()
+            self.passwordTextField.becomeFirstResponder()
             break
         case passwordTextField:
             textField.resignFirstResponder()
-            confirmPasswordTextField.becomeFirstResponder()
+            self.confirmPasswordTextField.becomeFirstResponder()
             break
         case confirmPasswordTextField:
             textField.resignFirstResponder()
@@ -91,12 +96,12 @@ class CreateAccountInitialViewController: UIViewController, UITextFieldDelegate 
     }
     
     @IBAction func continueButtonPressed(_ sender: Any) {
-        let firstname = firstnameTextField.text!
-        let lastname = lastnameTextField.text!
-        let email = emailAddressTextField.text!
-        let phone = phoneNumberTextField.text!
-        let password = passwordTextField.text!
-        let confirmPassword = confirmPasswordTextField.text!
+        let firstname = Utilities.trimWhitespace(self.firstnameTextField.text!)
+        let lastname = Utilities.trimWhitespace(self.lastnameTextField.text!)
+        let email = Utilities.trimWhitespace(self.emailAddressTextField.text!)
+        let phone = Utilities.unformat(phoneNumber: Utilities.trimWhitespace(self.phoneNumberTextField.text!))
+        let password = self.passwordTextField.text!
+        let confirmPassword = self.confirmPasswordTextField.text!
         
         if firstname == "" {
             self.displayAlert(title: "Firstname Required", message: "A firstname is required.")
