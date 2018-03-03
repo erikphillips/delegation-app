@@ -234,7 +234,7 @@ class Task {
         }
     }
     
-    func updateTask(title: String?, priority: String?, description: String?, team: String?, status: String?, assignee: String?) {
+    func updateTask(title: String?, priority: String?, description: String?, status: String?) {
         if self.tuid != Globals.TaskGlobals.DEFAULT_TUID && self.uuid != Globals.TaskGlobals.DEFAULT_UUID {
             Logger.log("updating task information in database for 'tasks/\(self.uuid)/\(self.tuid)'")
             let ref = Database.database().reference(withPath: "tasks/\(self.uuid)/\(self.tuid)")
@@ -260,12 +260,12 @@ class Task {
                 }
             }
             
-            if let team = team {
-                if team != self.team {
-                    self.team = team
-                    ref.child("team").setValue(team)
-                }
-            }
+//            if let team = team {
+//                if team != self.team {
+//                    self.team = team
+//                    ref.child("team").setValue(team)
+//                }
+//            }
             
             if let title = title {
                 if title != self.title {
@@ -281,13 +281,13 @@ class Task {
                 }
             }
             
-            if let assignee = assignee {
-                if assignee != self.assigneeUUID {
-                    self.assigneeUUID = assignee
-                    ref.child("assignee").setValue(assignee)
-                    Logger.log("incomplete method - unable to truly assign different user", event: .error)
-                }
-            }
+//            if let assignee = assignee {
+//                if assignee != self.assigneeUUID {
+//                    self.assigneeUUID = assignee
+//                    ref.child("assignee").setValue(assignee)
+//                    Logger.log("incomplete method - unable to truly assign different user", event: .error)
+//                }
+//            }
             
             // Notify all observers of task updates
             self.observers.notify(self)

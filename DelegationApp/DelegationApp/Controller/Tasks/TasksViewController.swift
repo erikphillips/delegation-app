@@ -140,7 +140,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         if task.getStatus() != status {
                             let statusAction = UIAlertAction(title: status, style: .default) { [status, task] action in
                                 Logger.log("statusAction button pressed for status=\(status).")
-                                task.updateTask(title: nil, priority: nil, description: nil, team: nil, status: status, assignee: nil)
+                                task.updateTask(title: nil, priority: nil, description: nil, status: status)
                             }
                             statusAlertController.addAction(statusAction)
                         }
@@ -162,7 +162,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         if task.getPriority() != priority {
                             let priorityAction = UIAlertAction(title: priority, style: .default) { [priority, task] action in
                                 Logger.log("priorityAction button pressed for priority=\(priority).")
-                                task.updateTask(title: nil, priority: priority, description: nil, team: nil, status: nil, assignee: nil)
+                                task.updateTask(title: nil, priority: priority, description: nil, status: nil)
                             }
                             priorityAlertController.addAction(priorityAction)
                         }

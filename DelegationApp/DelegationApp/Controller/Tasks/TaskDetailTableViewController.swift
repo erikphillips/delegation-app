@@ -71,9 +71,7 @@ class TaskDetailTableViewController: UITableViewController {
 //                    "title": self.titleLabel.text,
 //                    "priority": self.priorityLabel.text,
 //                    "description": self.descriptionTextView.text,
-//                    "team": self.teamLabel.text,
 //                    "status": self.statusLabel.text,
-//                    "assignee": self.assigneeLabel.text
 //                ]
 //
 //                let alertController = UIAlertController(title: "Save Task Changes?", message: nil, preferredStyle: .alert)
@@ -83,9 +81,7 @@ class TaskDetailTableViewController: UITableViewController {
 //                    task?.updateTask(title: taskPayload["title"] ?? nil,
 //                                     priority: taskPayload["priority"] ?? nil,
 //                                     description: taskPayload["description"] ?? nil,
-//                                     team: taskPayload["team"] ?? nil,
-//                                     status: taskPayload["status"] ?? nil,
-//                                     assignee: taskPayload["assignee"] ?? nil)
+//                                     status: taskPayload["status"] ?? nil)
 //                }
 //
 //                alertController.addAction(cancelAction)
@@ -106,9 +102,7 @@ class TaskDetailTableViewController: UITableViewController {
         self.task?.updateTask(title: self.titleLabel.text,
                               priority: self.priorityLabel.text,
                               description: self.descriptionTextView.text,
-                              team: self.teamLabel.text,
-                              status: self.statusLabel.text,
-                              assignee: self.assigneeLabel.text)
+                              status: self.statusLabel.text)
     }
     
     func toggleEditing() {

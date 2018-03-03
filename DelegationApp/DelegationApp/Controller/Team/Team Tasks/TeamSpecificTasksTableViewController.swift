@@ -27,10 +27,22 @@ class TeamSpecificTasksTableViewController: UITableViewController {
                 this.tableView.reloadData()
             })
         }
+        
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.tintColor = Globals.UIGlobals.Colors.PRIMARY
+        self.tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc func refresh(sender: AnyObject) {
+        self.tableView.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
