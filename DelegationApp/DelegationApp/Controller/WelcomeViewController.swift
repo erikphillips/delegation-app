@@ -21,6 +21,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.hideKeyboardWhenTappedAround()
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self

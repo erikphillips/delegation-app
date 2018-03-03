@@ -12,6 +12,7 @@ import Firebase
 class SettingsTableViewController: UITableViewController {
     
     var user: User?
+    var sectionHeaderTitleArray: [String]?
     
     @IBOutlet weak var applicationVersionLabel: UILabel!
     @IBOutlet weak var applicationBuildLabel: UILabel!
@@ -93,8 +94,11 @@ class SettingsTableViewController: UITableViewController {
         let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let buildNumberString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
-        applicationVersionLabel.text = "Delegation Application v\(appVersionString)"
-        applicationBuildLabel.text = "Build \(buildNumberString)"
+        self.applicationVersionLabel.text = "Delegation Application v\(appVersionString)"
+        self.applicationBuildLabel.text = "Build \(buildNumberString)"
+        
+        self.sectionHeaderTitleArray = []
+        
         
         if let user = user {
             user.observers.observe(canary: self, callback: {
@@ -111,7 +115,14 @@ class SettingsTableViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
             })
+            
+            self.sectionHeaderTitleArray!.append(user.getFullName())
+        } else {
+            self.sectionHeaderTitleArray!.append("User Account Management")
         }
+        
+        self.sectionHeaderTitleArray!.append("Team Management")
+        self.sectionHeaderTitleArray!.append("Application Management")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,21 +142,38 @@ class SettingsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            if let user = user {
-                return user.getFullName()
-            } else {
-                return "User Account Management"
-            }
-        case 1:
-            return "Team Management"
-        case 2:
-            return "Application Management"
-        default:
-            return nil
-        }
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        switch section {
+//        case 0:
+//            if let user = user {
+//                return user.getFullName()
+//            } else {
+//                return "User Account Management"
+//            }
+//        case 1:
+//            return "Team Management"
+//        case 2:
+//            return "Application Management"
+//        default:
+//            return nil
+//        }
+//    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38.0
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: 38.0))
+        returnedView.backgroundColor = Globals.UIGlobals.Colors.PRIMARY_LIGHT_WHITE
+        
+        let label = UILabel(frame: CGRect(x: 15, y: 0, width: self.view.bounds.size.width - 15, height: 38.0))
+        label.text = self.sectionHeaderTitleArray?[section]
+        label.textColor = Globals.UIGlobals.Colors.PRIMARY_DARK
+        label.font = UIFont.boldSystemFont(ofSize: 17.0)
+        returnedView.addSubview(label)
+        
+        return returnedView
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

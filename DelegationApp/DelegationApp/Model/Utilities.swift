@@ -51,6 +51,7 @@ class Globals {
     
     public class UIGlobals {
         public class Colors {
+            static let PRIMARY_LIGHT_WHITE =    UIColor(red: 200/255, green: 225/255, blue: 255/255, alpha: 1.0)
             static let PRIMARY_LIGHT =          UIColor(red: 171/255, green: 204/255, blue: 255/255, alpha: 1.0)
             static let PRIMARY_MEDIUM_LIGHT =   UIColor(red: 124/255, green: 175/255, blue: 255/255, alpha: 1.0)
             static let PRIMARY =                UIColor(red:  23/255, green: 113/255, blue: 255/255, alpha: 1.0)
