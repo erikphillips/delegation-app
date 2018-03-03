@@ -196,9 +196,9 @@
 			children = (
 				98C597B01FE19CA3009329B2 /* SettingsViewController.swift */,
 				98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */,
-				98DC41E32006ABD6004614B6 /* Create Team */,
-				98DC41E22006ABAC004614B6 /* Join Team */,
-				98DC41E12006ABA3004614B6 /* Update Account */,
+				98DC41E32006ABD6004614B6 /* CreateTeam */,
+				98DC41E22006ABAC004614B6 /* JoinTeam */,
+				98DC41E12006ABA3004614B6 /* UpdateAccount */,
 				98DC41E02006AB90004614B6 /* Team */,
 			);
 			path = Settings;
@@ -298,7 +298,7 @@
 				98C597D41FE644F5009329B2 /* MainTabBarViewController.swift */,
 				984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */,
 				98E5E4121FE7A1C600AF0B37 /* UtilitiesViewController.swift */,
-				98C597C71FE59774009329B2 /* Account Creation */,
+				98C597C71FE59774009329B2 /* AccountCreation */,
 				98C597B41FE2E355009329B2 /* Home */,
 				98C597B31FE2E342009329B2 /* Team */,
 				98C597B21FE2E332009329B2 /* Tasks */,
@@ -310,7 +310,7 @@
 		98C597B21FE2E332009329B2 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				98DB37CB200D344F00853862 /* Create Task */,
+				98DB37CB200D344F00853862 /* CreateTask */,
 				98C597BB1FE42EEE009329B2 /* TasksViewController.swift */,
 				98C597BF1FE430B5009329B2 /* TasksTableViewCell.swift */,
 				98DF00F020298A1A00DE7FE0 /* TaskDetailTableViewController.swift */,
@@ -325,7 +325,7 @@
 				980232F8202843380019E3B2 /* TeamTableViewCell.swift */,
 				984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */,
 				98CB98AE202B77D9006E3370 /* TeamDetailTableViewController.swift */,
-				98C944A8203FBAE800299C2B /* Team Tasks */,
+				98C944A8203FBAE800299C2B /* TeamTasks */,
 			);
 			path = Team;
 			sourceTree = "<group>";
@@ -338,7 +338,7 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		98C597C71FE59774009329B2 /* Account Creation */ = {
+		98C597C71FE59774009329B2 /* AccountCreation */ = {
 			isa = PBXGroup;
 			children = (
 				98577F8E202A72BF00CFC822 /* Deprecated */,
@@ -349,25 +349,25 @@
 				98C597D01FE59DA5009329B2 /* CreateAccountJoinTeamTableViewCell.swift */,
 				98CB98AC202A8BDA006E3370 /* CreateAccountTeamDetailTableViewController.swift */,
 			);
-			path = "Account Creation";
+			path = AccountCreation;
 			sourceTree = "<group>";
 		};
-		98C944A8203FBAE800299C2B /* Team Tasks */ = {
+		98C944A8203FBAE800299C2B /* TeamTasks */ = {
 			isa = PBXGroup;
 			children = (
 				98CB98B0202B793F006E3370 /* TeamSpecificTasksTableViewController.swift */,
 				98C944A9203FBB3A00299C2B /* TeamSpecificTaskTableViewCell.swift */,
 			);
-			path = "Team Tasks";
+			path = TeamTasks;
 			sourceTree = "<group>";
 		};
-		98DB37CB200D344F00853862 /* Create Task */ = {
+		98DB37CB200D344F00853862 /* CreateTask */ = {
 			isa = PBXGroup;
 			children = (
 				98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */,
 				98DB37CE200D349000853862 /* CreateTaskSelectTeamTableViewController.swift */,
 			);
-			path = "Create Task";
+			path = CreateTask;
 			sourceTree = "<group>";
 		};
 		98DC41E02006AB90004614B6 /* Team */ = {
@@ -379,29 +379,29 @@
 			path = Team;
 			sourceTree = "<group>";
 		};
-		98DC41E12006ABA3004614B6 /* Update Account */ = {
+		98DC41E12006ABA3004614B6 /* UpdateAccount */ = {
 			isa = PBXGroup;
 			children = (
 				9874033C1FF1923C0059309E /* UpdateAccountSettingsViewController.swift */,
 			);
-			path = "Update Account";
+			path = UpdateAccount;
 			sourceTree = "<group>";
 		};
-		98DC41E22006ABAC004614B6 /* Join Team */ = {
+		98DC41E22006ABAC004614B6 /* JoinTeam */ = {
 			isa = PBXGroup;
 			children = (
 				98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */,
 				98859310200484CC00259079 /* SettingsJoinTeamTableViewCell.swift */,
 			);
-			path = "Join Team";
+			path = JoinTeam;
 			sourceTree = "<group>";
 		};
-		98DC41E32006ABD6004614B6 /* Create Team */ = {
+		98DC41E32006ABD6004614B6 /* CreateTeam */ = {
 			isa = PBXGroup;
 			children = (
 				98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */,
 			);
-			path = "Create Team";
+			path = CreateTeam;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
