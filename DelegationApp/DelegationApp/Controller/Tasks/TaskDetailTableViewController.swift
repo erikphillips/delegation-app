@@ -64,8 +64,33 @@ class TaskDetailTableViewController: UITableViewController {
         
         if self.isMovingFromParentViewController {
             if self.unsavedChanges {
-                Logger.log("function should ask the user if they want to save changes", event: .warning)
-                self.endEditing(sender: self)
+                Logger.log("unsaved changes should be saved", event: .warning)
+                
+//                let task = self.task
+//                let taskPayload = [
+//                    "title": self.titleLabel.text,
+//                    "priority": self.priorityLabel.text,
+//                    "description": self.descriptionTextView.text,
+//                    "team": self.teamLabel.text,
+//                    "status": self.statusLabel.text,
+//                    "assignee": self.assigneeLabel.text
+//                ]
+//
+//                let alertController = UIAlertController(title: "Save Task Changes?", message: nil, preferredStyle: .alert)
+//                let cancelAction = UIAlertAction(title: "Don't Save", style: .cancel, handler: nil)
+//                let saveAction = UIAlertAction(title: "Save", style: .default) { [task, taskPayload] (action: UIAlertAction) in
+//                    Logger.log("You've pressed SAVE button");
+//                    task?.updateTask(title: taskPayload["title"] ?? nil,
+//                                     priority: taskPayload["priority"] ?? nil,
+//                                     description: taskPayload["description"] ?? nil,
+//                                     team: taskPayload["team"] ?? nil,
+//                                     status: taskPayload["status"] ?? nil,
+//                                     assignee: taskPayload["assignee"] ?? nil)
+//                }
+//
+//                alertController.addAction(cancelAction)
+//                alertController.addAction(saveAction)
+//                self.present(alertController, animated: true, completion: nil)
             }
         }
     }

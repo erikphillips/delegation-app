@@ -64,6 +64,7 @@ class User {
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
         
         self.observeTeams()
+        self.observeTasks()
         
         Logger.log("created new user, waiting on observable for 'user/\(uuid)/information'")
         
@@ -75,64 +76,10 @@ class User {
             Logger.log("user update recieved from database for 'users/\(this.uuid)/information", event: .verbose)
             
             let information = snapshot.value as? NSDictionary
-            
-//            let information = value?["information"] as? NSDictionary
             this.firstname = information?["firstname"] as? String ?? this.firstname
             this.lastname = information?["lastname"] as? String ?? this.lastname
             this.emailAddress = information?["email"] as? String ?? this.emailAddress
             this.phoneNumber = information?["phone"] as? String ?? this.phoneNumber
-            
-            
-//            if let teams = value?["teams"] as? NSDictionary {
-//                Logger.log("teams information unwrapped for user observable")
-////                var foundGUIDs: [String] = []
-//
-//                this.teams = []
-//                for (_, value) in teams {
-//                    if let guid = value as? String {
-//                        this.teams.append(Team(guid: guid))
-//                        Logger.log("added a team, guid='\(guid)'")
-//
-////                        foundGUIDs.append(guid)
-////
-////                        var addThisTeam = true
-////                        for team in this.teams {
-////                            if team.getGUID() == guid {
-////                                addThisTeam = false
-////                                break
-////                            }
-////                        }
-////
-////                        if addThisTeam {
-////                            this.teams.append(Team(guid: guid))
-////                            Logger.log("added a team, guid='\(guid)'")
-////                        }
-//                    }
-//                }
-//
-////                for team in this.teams {
-////                    if !foundGUIDs.contains(team.getGUID()) {
-////                        if let idx = this.teams.index(where: {$0 === team}) {
-////                            this.teams.remove(at: idx)
-////                        }
-////                    }
-////                }
-//            } else {
-//                Logger.log("teams could not be unwrapped in user observable")
-//            }
-            
-//            if let tasks = value?["current_tasks"] as? NSDictionary {
-//                Logger.log("task information unwrapped for user observable")
-//                this.tasks = []  // clear the array to start from beginning
-//                for (_, value) in tasks {
-//                    if let tuid = value as? String {
-//                        this.tasks.append(Task(uuid: this.uuid, tuid: tuid))
-//                        Logger.log("added a task, tuid=\(tuid)")
-//                    }
-//                }
-//            } else {
-//                Logger.log("tasks could not be unwrapped in user observable")
-//            }
             
             Logger.log("updated user information: \(this.toString())", event: .verbose)
             
@@ -183,6 +130,36 @@ class User {
                     if team.getGUID() == guid {
                         Logger.log("removing team idx=\(idx), guid=\"\(guid)\"")
                         this.teams.remove(at: idx)
+                    }
+                }
+                
+                this.observers.notify(this)
+            }
+        })
+    }
+    
+    func observeTasks() {
+        let ref = Database.database().reference(withPath: "users/\(uuid)/current_tasks")
+        ref.observe(.childAdded, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            if let tuid = snapshot.value as? String {
+                Logger.log("adding new observable task tuid=\"\(tuid)\"")
+                this.tasks.append(Task(uuid: this.uuid, tuid: tuid))
+                this.observers.notify(this)
+            }
+        })
+        
+        ref.observe(.childRemoved, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            if let tuid = snapshot.value as? String {
+                for (idx, task) in this.tasks.enumerated() {
+                    if task.getTUID() == tuid {
+                        Logger.log("removing task idx=\(idx), guid=\"\(tuid)\"")
+                        this.tasks.remove(at: idx)
                     }
                 }
                 

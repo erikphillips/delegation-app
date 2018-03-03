@@ -153,6 +153,10 @@ class Task {
         self.observers.notify(self)
     }
     
+    func getTUID() -> String {
+        return self.tuid
+    }
+    
     func getTitle() -> String {
         return self.title
     }
