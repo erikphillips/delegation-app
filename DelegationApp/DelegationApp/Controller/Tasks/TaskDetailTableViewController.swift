@@ -119,7 +119,7 @@ class TaskDetailTableViewController: UITableViewController {
                               status: self.statusLabel.text)
         
         if let newAssignee = self.selectedAsssignee {
-            _ = self.task?.changeAssignee(to: newAssignee.getUUID())
+            self.task?.changeAssignee(to: newAssignee.getUUID())
         }
     }
     

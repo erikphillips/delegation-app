@@ -80,16 +80,16 @@ class Task {
         self.uuid = uuid
         self.tuid = tuid
         
-        Logger.log("created new task, waiting on observable for 'tasks/\(uuid)/\(tuid)/'")
+        Logger.log("created new task, waiting on observable for 'tasks/\(tuid)/'")
         
         var ref: DatabaseReference!
-        ref = Database.database().reference().child("tasks/\(uuid)/\(tuid)/")
+        ref = Database.database().reference().child("tasks/\(tuid)/")
         
         ref.observe(.value, with: {
             [weak self] (snapshot) in
             guard let this = self else { return }
             
-            Logger.log("task update recieved from database for 'tasks/\(uuid)/\(tuid)/'", event: .verbose)
+            Logger.log("task update recieved from database for 'tasks/\(tuid)/'", event: .verbose)
             
             let value = snapshot.value as? NSDictionary
             this.title = value?["title"] as? String ?? this.title
@@ -158,9 +158,9 @@ class Task {
         self.uuid = uuid
         self.tuid = Globals.TaskGlobals.DEFAULT_TUID
         
-        Logger.log("Creating new task at: 'tasks/\(uuid)/'")
+        let taskRef = Database.database().reference(withPath: "tasks/").childByAutoId()
+        Logger.log("Creating new task at: 'tasks/\(taskRef.key)'")
         
-        let taskRef = Database.database().reference(withPath: "tasks/\(uuid)").childByAutoId()
         taskRef.child("title").setValue(title)
         taskRef.child("priority").setValue(priority)
         taskRef.child("description").setValue(description)
@@ -304,45 +304,31 @@ class Task {
         }
     }
     
-    func changeAssignee(to uuid: String) -> Task {
-        let oldRef = Database.database().reference(withPath: "tasks/\(self.uuid)/\(self.tuid)/")
+    func changeAssignee(to uuid: String) {
+        let taskRef = Database.database().reference(withPath: "tasks/\(self.tuid)/assignee")
         let oldAssigneeRef = Database.database().reference(withPath: "users/\(self.uuid)/current_tasks/")
-        let newRef = Database.database().reference(withPath: "tasks/\(uuid)/").childByAutoId()
         let newAssigneeRef = Database.database().reference(withPath: "users/\(uuid)/current_tasks/")
         
-        // Set the new UUID and the TUID based on the childByAutoID key.
-        let oldTUID = self.tuid
+        // Set the new UUID
         self.uuid = uuid
-        self.tuid = newRef.key
-        
-        // Set the new task information at the new location
-        newRef.child("title").setValue(self.title)
-        newRef.child("priority").setValue(self.priority)
-        newRef.child("description").setValue(self.description)
-        newRef.child("status").setValue(self.status.rawValue)
-        newRef.child("assignee").setValue(self.uuid)
-        newRef.child("originator").setValue(self.originatorUUID)
-        newRef.child("team").setValue(self.team)
+        taskRef.setValue(self.uuid)
         
         // Add the task to the new assignee's array,
         // this should trigger the observable within
         // the new assignee to load the task
         newAssigneeRef.childByAutoId().setValue(self.tuid)
         
-        // Remove the current contents at the old location,
-        oldRef.removeValue()
-        
         // Remove the task listed under the user's current_tasks
         // which should trigger the old assignee's observable
         // to remove the task from their task array.
         oldAssigneeRef.observeSingleEvent(of: .value, with: {
-            [oldTUID, oldAssigneeRef, weak self] (snapshot) in
+            [oldAssigneeRef, weak self] (snapshot) in
             guard let this = self else { return }
             
             if let dict = snapshot.value as? NSDictionary {
                 for (key, value) in dict {
                     if let key = key as? String, let value = value as? String{
-                        if value == oldTUID {
+                        if value == this.tuid {
                             Logger.log("removing current_task at key=\(key) value=\(value)")
                             oldAssigneeRef.child(key).removeValue()
                             break
@@ -352,8 +338,6 @@ class Task {
             }
         })
         
-        let newTaskObject = Task(uuid: uuid, tuid: self.tuid)
-        self.observers.notify(newTaskObject)
-        return newTaskObject
+        self.observers.notify(self)
     }
 }
