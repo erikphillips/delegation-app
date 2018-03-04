@@ -21,6 +21,15 @@ class Team {
     
     public var observers = FBObservers<Team>()
     
+    private var setupComplete = false
+    var setupCallback: (() -> Void)? {
+        didSet {
+            if setupComplete {
+                setupCallback?()
+            }
+        }
+    }
+    
     init() {
         self.teamname = Globals.TeamGlobals.DEFAULT_TEAMNAME
         self.description = Globals.TeamGlobals.DEFAULT_DESCRIPTION
@@ -31,6 +40,13 @@ class Team {
         self.guid = Globals.TeamGlobals.DEFAULT_GUID
         
         Logger.log("create a new non-observable team")
+        
+        if !self.setupComplete {
+            self.setupComplete = true
+            self.setupCallback?()
+        }
+        
+        self.observers.notify(self)
     }
     
     init(guid: String) {
@@ -58,6 +74,7 @@ class Team {
             this.description = value?["description"] as? String ?? this.description
             this.ownerUUID = value?["owner"] as? String ?? this.ownerUUID
             
+            // Process and load team members
             if let dict = value?["members"] as? NSDictionary {
                 for (_, value) in dict {
                     if let value = value as? String {
@@ -68,6 +85,7 @@ class Team {
                 }
             }
             
+            // Process and load the team owner
             let ownerRef = Database.database().reference(withPath: "users/\(this.ownerUUID)/information")
             ownerRef.observe(.value, with: {
                 [weak this] (snapshot) in
@@ -77,6 +95,11 @@ class Team {
                     let first = value["firstname"] as? String ?? Globals.UserGlobals.DEFAULT_FIRSTNAME
                     let last = value["lastname"] as? String ?? Globals.UserGlobals.DEFAULT_LASTNAME
                     that.ownerFullName = first + " " + last
+                }
+                
+                if !that.setupComplete {
+                    that.setupComplete = true
+                    that.setupCallback?()
                 }
                 
                 that.observers.notify(that)
@@ -99,6 +122,12 @@ class Team {
         ref.child("members").childByAutoId().setValue(owner)
         
         Logger.log("create a new non-observable team account in database with guid='\(self.guid)'")
+        
+        if !self.setupComplete {
+            self.setupComplete = true
+            self.setupCallback?()
+        }
+        
         self.observers.notify(self)
     }
     

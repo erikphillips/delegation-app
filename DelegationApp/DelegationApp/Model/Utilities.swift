@@ -535,6 +535,10 @@ class FirebaseUtilities {
         })
     }
     
+//    static func loadTeamMembers(guid: String) -> [User] {
+//        let ref = Database.database().reference(withPath: "teams")
+//    }
+    
     static func teamNameInUse(teamname: String, callback: @escaping ((_ status: Status) -> Void)) {
         let ref = Database.database().reference(withPath: "teams/\(teamname)")
 

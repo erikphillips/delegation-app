@@ -890,12 +890,16 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVT-BK-ybA">
-                                                    <rect key="frame" x="99" y="11" width="260" height="21"/>
+                                                    <rect key="frame" x="99" y="11" width="232" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.090196078431372548" green="0.44313725490196076" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9Tj-1t-meB">
+                                                    <rect key="frame" x="339" y="11" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -938,12 +942,16 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5V-vR-que">
-                                                    <rect key="frame" x="74" y="11" width="285" height="21"/>
+                                                    <rect key="frame" x="74" y="11" width="257" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.090196078431372548" green="0.44313725490196076" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="M0I-pg-Xsw">
+                                                    <rect key="frame" x="339" y="11" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -982,18 +990,69 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="assigneeActivityIndicator" destination="9Tj-1t-meB" id="fKx-1k-d5l"/>
                         <outlet property="assigneeLabel" destination="TVT-BK-ybA" id="s3J-Xt-d2W"/>
                         <outlet property="descriptionTextView" destination="YVK-OQ-go4" id="M9N-tq-RyV"/>
                         <outlet property="originatorLabel" destination="fmB-5k-cWx" id="IBo-dQ-a0W"/>
                         <outlet property="priorityLabel" destination="ahG-2e-jnq" id="XWa-Q2-ZPh"/>
                         <outlet property="statusLabel" destination="FUV-Tj-gbb" id="oqo-xR-M8X"/>
+                        <outlet property="teamActivityIndicator" destination="M0I-pg-Xsw" id="U2p-BX-kYx"/>
                         <outlet property="teamLabel" destination="N5V-vR-que" id="bQv-U8-68m"/>
                         <outlet property="titleLabel" destination="kb8-rw-bHh" id="8cX-K2-gtb"/>
+                        <segue destination="nHn-aX-O13" kind="show" identifier="TaskDetailChangeAssigneeSegue" id="7zk-dk-ISE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIt-8A-Uem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2814" y="3817"/>
+            <point key="canvasLocation" x="2813.5999999999999" y="3816.3418290854574"/>
+        </scene>
+        <!--Task Change Assignee Table View Controller-->
+        <scene sceneID="Yqa-6j-Uwu">
+            <objects>
+                <tableViewController id="nHn-aX-O13" customClass="TaskChangeAssigneeTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SPT-LX-rhf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskChangeAssigneeCell" textLabel="01d-m0-l8n" detailTextLabel="UOG-I9-MxU" style="IBUITableViewCellStyleSubtitle" id="Y0i-an-TcH">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y0i-an-TcH" id="BAi-qR-Gp1">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="01d-m0-l8n">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UOG-I9-MxU">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nHn-aX-O13" id="dhX-mO-Mkc"/>
+                            <outlet property="delegate" destination="nHn-aX-O13" id="uhc-7T-u7G"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="zai-Rh-J4s" kind="unwind" identifier="UnwindAssigneesToTaskDetail" unwindAction="unwindToTaskDetailWithSegue:" id="AkI-qX-Erz"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EPI-V4-SpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zai-Rh-J4s" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3657" y="3816"/>
         </scene>
         <!--Home-->
         <scene sceneID="lBu-f3-Fyh">

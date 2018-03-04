@@ -14,6 +14,9 @@ class TaskDetailTableViewController: UITableViewController {
     private var currentlyEditing = false
     private var unsavedChanges = false
     
+    var selectedAsssignee: User?
+    private var assignees: [User]?
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
@@ -21,6 +24,9 @@ class TaskDetailTableViewController: UITableViewController {
     @IBOutlet weak var originatorLabel: UILabel!
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    
+    @IBOutlet weak var assigneeActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var teamActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +60,13 @@ class TaskDetailTableViewController: UITableViewController {
             task.observers.observe(canary: self, callback: taskUpdateOccurred)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let assignee = self.selectedAsssignee {
+            Logger.log("settings new selected assignee label")
+            self.assigneeLabel.text = assignee.getFullName()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,6 +79,7 @@ class TaskDetailTableViewController: UITableViewController {
             if self.unsavedChanges {
                 Logger.log("unsaved changes should be saved", event: .warning)
                 
+                // TODO: Need to add change assignee and team
 //                let task = self.task
 //                let taskPayload = [
 //                    "title": self.titleLabel.text,
@@ -103,6 +117,10 @@ class TaskDetailTableViewController: UITableViewController {
                               priority: self.priorityLabel.text,
                               description: self.descriptionTextView.text,
                               status: self.statusLabel.text)
+        
+        if let newAssignee = self.selectedAsssignee {
+            _ = self.task?.changeAssignee(to: newAssignee.getUUID())
+        }
     }
     
     func toggleEditing() {
@@ -199,6 +217,39 @@ class TaskDetailTableViewController: UITableViewController {
     
     func editAssigneeRow() {
         Logger.log("editing assignee row")
+        // "TaskDetailChangeAssigneeSegue"
+        self.assigneeActivityIndicator.startAnimating()
+        if let task = self.task {
+            let team = Team(guid: task.getTeamUID())
+            team.setupCallback = {
+                [weak self, team] in
+                guard let this = self else { return }
+                
+                this.assignees = []
+                
+                let dispatchGroup = DispatchGroup()
+                
+                for member in team.getMembers() {
+                    dispatchGroup.enter()
+                    let user = User(uuid: member)
+                    user.setupCallback = {
+                        [dispatchGroup] in
+                        dispatchGroup.leave()
+                    }
+                    
+                    this.assignees?.append(user)
+                }
+                
+                dispatchGroup.notify(queue: .main) {
+                    [weak this] in
+                    guard let that = this else { return }
+                    that.assigneeActivityIndicator.stopAnimating()
+                    that.performSegue(withIdentifier: "TaskDetailChangeAssigneeSegue", sender: nil)
+                }
+            }
+            
+            
+        }
     }
     
     func editTeamRow() {
@@ -209,5 +260,13 @@ class TaskDetailTableViewController: UITableViewController {
         Logger.log("editing description row")
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {}
+    @IBAction func unwindToTaskDetail(segue: UIStoryboardSegue) { }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TaskDetailChangeAssigneeSegue" {
+            if let dest = segue.destination as? TaskChangeAssigneeTableViewController {
+                dest.users = self.assignees
+            }
+        }
+    }
 }

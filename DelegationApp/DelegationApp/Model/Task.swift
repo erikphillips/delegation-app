@@ -33,6 +33,15 @@ class Task {
 
     public var observers = FBObservers<Task>()
     
+    private var setupComplete = false
+    var setupCallback: (() -> Void)? {
+        didSet {
+            if setupComplete {
+                setupCallback?()
+            }
+        }
+    }
+    
     init() {
         self.title = Globals.TaskGlobals.DEFAULT_TITLE
         self.priority = Globals.TaskGlobals.DEFAULT_PRIORITY
@@ -48,6 +57,13 @@ class Task {
         self.tuid = Globals.TaskGlobals.DEFAULT_TUID
         
         Logger.log("created new empty non-observable task", event: .warning)
+        
+        if !self.setupComplete {
+            self.setupComplete = true
+            self.setupCallback?()
+        }
+        
+        self.observers.notify(self)
     }
     
     init(uuid: String, tuid: String) {
@@ -116,6 +132,12 @@ class Task {
             dispatchGroup.notify(queue: .main) {
                 [weak this] in
                 guard let that = this else { return }
+                
+                if !that.setupComplete {
+                    that.setupComplete = true
+                    that.setupCallback?()
+                }
+                
                 that.observers.notify(that)
             }
         })
@@ -289,6 +311,7 @@ class Task {
         let newAssigneeRef = Database.database().reference(withPath: "users/\(uuid)/current_tasks/")
         
         // Set the new UUID and the TUID based on the childByAutoID key.
+        let oldTUID = self.tuid
         self.uuid = uuid
         self.tuid = newRef.key
         
@@ -313,13 +336,13 @@ class Task {
         // which should trigger the old assignee's observable
         // to remove the task from their task array.
         oldAssigneeRef.observeSingleEvent(of: .value, with: {
-            [oldAssigneeRef, weak self] (snapshot) in
+            [oldTUID, oldAssigneeRef, weak self] (snapshot) in
             guard let this = self else { return }
             
             if let dict = snapshot.value as? NSDictionary {
                 for (key, value) in dict {
                     if let key = key as? String, let value = value as? String{
-                        if value == this.tuid {
+                        if value == oldTUID {
                             Logger.log("removing current_task at key=\(key) value=\(value)")
                             oldAssigneeRef.child(key).removeValue()
                             break

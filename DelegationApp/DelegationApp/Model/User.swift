@@ -29,18 +29,15 @@ class User {
     private var password: String?
     
     public var observers = FBObservers<User>()
-    private var initialSetupComplete = false
-    var userUpdatedHandler: (() -> Void)? {
+    
+    private var setupComplete = false
+    var setupCallback: (() -> Void)? {
         didSet {
-            if self.initialSetupComplete {
-                Logger.log("user updated, handler was called for \(self.toString())")
-                userUpdatedHandler?()
-            } else {
-                Logger.log("user handler was called, but setup has not finished.. aborting", event: .warning)
+            if setupComplete {
+                setupCallback?()
             }
         }
     }
-   
     
     init() {
         self.uuid = Globals.UserGlobals.DEFAULT_UUID
@@ -52,6 +49,13 @@ class User {
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
         
         Logger.log("non-observable user object created", event: .warning)
+        
+        if !self.setupComplete {
+            self.setupComplete = true
+            self.setupCallback?()
+        }
+        
+        self.observers.notify(self)
     }
     
     init(uuid: String) {
@@ -83,8 +87,11 @@ class User {
             
             Logger.log("updated user information: \(this.toString())", event: .verbose)
             
-            this.initialSetupComplete = true
-            this.userUpdatedHandler?()  // called when the user has been updated at any point in the application
+            if !this.setupComplete {
+                this.setupComplete = true
+                this.setupCallback?()
+            }
+            
             this.observers.notify(this)
         })
     }
@@ -105,6 +112,12 @@ class User {
         ref.child("lastname").setValue(lastname)
         ref.child("phone").setValue(phoneNumber)
         ref.child("email").setValue(emailAddress)
+        
+        if !self.setupComplete {
+            self.setupComplete = true
+            self.setupCallback?()
+        }
+        
         self.observers.notify(self)
     }
     
