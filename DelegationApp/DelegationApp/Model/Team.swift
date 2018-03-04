@@ -60,6 +60,9 @@ class Team {
         
         Logger.log("created new team, waiting on observable for 'teams/\(guid)/'")
         
+        self.observeTasks()
+        self.observeMembers()
+        
         var ref: DatabaseReference!
         ref = Database.database().reference().child("teams/\(guid)/")
         
@@ -74,20 +77,9 @@ class Team {
             this.description = value?["description"] as? String ?? this.description
             this.ownerUUID = value?["owner"] as? String ?? this.ownerUUID
             
-            // Process and load team members
-            if let dict = value?["members"] as? NSDictionary {
-                for (_, value) in dict {
-                    if let value = value as? String {
-                        if !this.members.contains(value) {
-                            this.members.append(value)
-                        }
-                    }
-                }
-            }
-            
             // Process and load the team owner
             let ownerRef = Database.database().reference(withPath: "users/\(this.ownerUUID)/information")
-            ownerRef.observe(.value, with: {
+            ownerRef.observeSingleEvent(of: .value, with: {
                 [weak this] (snapshot) in
                 guard let that = this else { return }
                 
@@ -131,38 +123,6 @@ class Team {
         self.observers.notify(self)
     }
     
-    func getTeamName() -> String {
-        return self.teamname
-    }
-    
-    func getDescription() -> String {
-        return self.description
-    }
-    
-    func getGUID() -> String {
-        return self.guid
-    }
-    
-    func getOwnerUUID() -> String {
-        return self.ownerUUID
-    }
-    
-    func getOwnerFullName() -> String {
-        return self.ownerFullName
-    }
-    
-    func getMembers() -> [String] {
-        return self.members
-    }
-    
-    func getMemberCount() -> String {
-        return String(self.members.count)
-    }
-    
-    func getTasks() -> [Task] {
-        return self.tasks
-    }
-    
     func observeTasks() {
         let ref = Database.database().reference(withPath: "teams/\(self.guid)/current_tasks")
         ref.observe(.childAdded, with: {
@@ -193,44 +153,66 @@ class Team {
         })
     }
     
-    func loadTeamTasks() {
-        
-        self.tasks = []
-        let dispatchGroup = DispatchGroup()
-        
-        for uuid in self.members {
-            dispatchGroup.enter()
+    func observeMembers() {
+        let ref = Database.database().reference(withPath: "teams/\(self.guid)/members")
+        ref.observe(.childAdded, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
             
-            let ref = Database.database().reference(withPath: "tasks/\(uuid)")
-            ref.observe(.value, with: {
-                [weak self, uuid, dispatchGroup] (snapshot) in
-                guard let this = self else {
-                    dispatchGroup.leave()
-                    return
-                }
-                
-                if let dict = snapshot.value as? NSDictionary {
-                    for (key, value) in dict {
-                        if let key = key as? String {
-                            if let value = value as? NSDictionary {
-                                if let teamname = value["team"] as? String {
-                                    if teamname == this.guid {
-                                        this.tasks.append(Task(tuid: key))
-                                    }
-                                }
-                            }
-                        }
+            if let uuid = snapshot.value as? String {
+                Logger.log("adding new member uuid=\"\(uuid)\"")
+                this.members.append(uuid)
+                this.observers.notify(this)
+            }
+        })
+        
+        ref.observe(.childRemoved, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            if let uuid = snapshot.value as? String {
+                for (idx, member) in this.members.enumerated() {
+                    if member == uuid {
+                        Logger.log("removing member idx=\(idx), uuid=\"\(uuid)\"")
+                        this.members.remove(at: idx)
                     }
                 }
                 
-                dispatchGroup.leave()
-            })
-        }
-        
-        dispatchGroup.notify(queue: .main) { [weak self] in
-            guard let this = self else { return }
-            this.observers.notify(this)
-        }
+                this.observers.notify(this)
+            }
+        })
+    }
+    
+    func getTeamName() -> String {
+        return self.teamname
+    }
+    
+    func getDescription() -> String {
+        return self.description
+    }
+    
+    func getGUID() -> String {
+        return self.guid
+    }
+    
+    func getOwnerUUID() -> String {
+        return self.ownerUUID
+    }
+    
+    func getOwnerFullName() -> String {
+        return self.ownerFullName
+    }
+    
+    func getMembers() -> [String] {
+        return self.members
+    }
+    
+    func getMemberCount() -> String {
+        return String(self.members.count)
+    }
+    
+    func getTasks() -> [Task] {
+        return self.tasks
     }
     
     func updateTeam(teamname: String?, description: String?, owner: String?) {

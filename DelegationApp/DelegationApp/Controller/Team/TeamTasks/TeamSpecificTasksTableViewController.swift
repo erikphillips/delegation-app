@@ -19,7 +19,6 @@ class TeamSpecificTasksTableViewController: UITableViewController {
         self.tableView.dataSource = self
         
         if let team = self.team {
-            team.loadTeamTasks()
             team.observers.observe(canary: self, callback: {
                 [weak self] (team) in
                 guard let this = self else { return }

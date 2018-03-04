@@ -172,6 +172,9 @@ class Task {
         let userRef = Database.database().reference(withPath: "users/\(uuid)/current_tasks")
         userRef.childByAutoId().setValue(taskRef.key)
         
+        let teamRef = Database.database().reference(withPath: "teams/\(guid)/current_tasks")
+        teamRef.childByAutoId().setValue(taskRef.key)
+        
         self.observers.notify(self)
     }
     
@@ -341,10 +344,34 @@ class Task {
         self.observers.notify(self)
     }
     
-    func changeTeam(to guid: String) {
+    func changeTeam(to newGUID: String) {
+        let oldTeamGUID = self.team
+        self.team = newGUID
+        
         let taskRef = Database.database().reference(withPath: "tasks/\(self.tuid)/team")
-        taskRef.setValue(guid)
-        self.team = guid
+        taskRef.setValue(newGUID)
+        
+        let newTeamRef = Database.database().reference(withPath: "teams/\(newGUID)/current_tasks")
+        newTeamRef.childByAutoId().setValue(self.tuid)
+        
+        let oldTeamRef = Database.database().reference(withPath: "teams/\(oldTeamGUID)/current_tasks")
+        oldTeamRef.observeSingleEvent(of: .value, with: {
+            [oldTeamRef, weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            if let dict = snapshot.value as? NSDictionary {
+                for (key, value) in dict {
+                    if let key = key as? String, let value = value as? String{
+                        if value == this.tuid {
+                            Logger.log("removing current_task at key=\(key) value=\(value)")
+                            oldTeamRef.child(key).removeValue()
+                            break
+                        }
+                    }
+                }
+            }
+        })
+        
         self.observers.notify(self)
     }
 }
