@@ -340,4 +340,11 @@ class Task {
         
         self.observers.notify(self)
     }
+    
+    func changeTeam(to guid: String) {
+        let taskRef = Database.database().reference(withPath: "tasks/\(self.tuid)/team")
+        taskRef.setValue(guid)
+        self.team = guid
+        self.observers.notify(self)
+    }
 }

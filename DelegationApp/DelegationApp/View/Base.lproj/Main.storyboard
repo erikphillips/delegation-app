@@ -1000,16 +1000,17 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         <outlet property="teamLabel" destination="N5V-vR-que" id="bQv-U8-68m"/>
                         <outlet property="titleLabel" destination="kb8-rw-bHh" id="8cX-K2-gtb"/>
                         <segue destination="nHn-aX-O13" kind="show" identifier="TaskDetailChangeAssigneeSegue" id="7zk-dk-ISE"/>
+                        <segue destination="fZh-f3-6Jc" kind="show" identifier="TaskDetailChangeTeamSegue" id="4gm-eu-qx0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIt-8A-Uem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2813.5999999999999" y="3816.3418290854574"/>
         </scene>
-        <!--Task Change Assignee Table View Controller-->
+        <!--Change Assignee-->
         <scene sceneID="Yqa-6j-Uwu">
             <objects>
-                <tableViewController id="nHn-aX-O13" customClass="TaskChangeAssigneeTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Change Assignee" id="nHn-aX-O13" customClass="TaskChangeAssigneeTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SPT-LX-rhf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1052,7 +1053,48 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPI-V4-SpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zai-Rh-J4s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3657" y="3816"/>
+            <point key="canvasLocation" x="3164" y="4582"/>
+        </scene>
+        <!--Change Team-->
+        <scene sceneID="Gdg-9A-uM8">
+            <objects>
+                <tableViewController title="Change Team" id="fZh-f3-6Jc" customClass="TaskChangeTeamTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cmh-Dx-n4b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskChangeTeamCell" textLabel="qet-mi-0Uo" style="IBUITableViewCellStyleDefault" id="A6f-HF-jP1">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A6f-HF-jP1" id="kS5-gT-b0x">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qet-mi-0Uo">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fZh-f3-6Jc" id="OjH-Yn-JfR"/>
+                            <outlet property="delegate" destination="fZh-f3-6Jc" id="BNZ-KW-TeE"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="j1y-mX-pNQ" kind="unwind" identifier="UnwindTeamsToTaskDetail" unwindAction="unwindToTaskDetailWithSegue:" id="eXR-ow-Bew"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eoe-YH-2cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="j1y-mX-pNQ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2463" y="4582"/>
         </scene>
         <!--Home-->
         <scene sceneID="lBu-f3-Fyh">
