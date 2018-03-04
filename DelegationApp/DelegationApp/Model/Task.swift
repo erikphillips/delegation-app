@@ -66,7 +66,7 @@ class Task {
         self.observers.notify(self)
     }
     
-    init(uuid: String, tuid: String) {
+    init(tuid: String) {
         self.title = Globals.TaskGlobals.DEFAULT_TITLE
         self.priority = Globals.TaskGlobals.DEFAULT_PRIORITY
         self.description = Globals.TaskGlobals.DEFAULT_DESCRIPTION
@@ -76,8 +76,8 @@ class Task {
         self.originatorUUID = Globals.TaskGlobals.DEFAULT_ORIGINATOR
         self.assigneeFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
         self.originatorFullName = Globals.UserGlobals.DEFAULT_FULL_NAME
+        self.uuid = Globals.UserGlobals.DEFAULT_UUID
         
-        self.uuid = uuid
         self.tuid = tuid
         
         Logger.log("created new task, waiting on observable for 'tasks/\(tuid)/'")
@@ -246,7 +246,7 @@ class Task {
     
     func advanceStatus() {
         if let nextStatus = self.getNextStatus() {
-            let ref = Database.database().reference(withPath: "tasks/\(self.uuid)/\(self.tuid)/status")
+            let ref = Database.database().reference(withPath: "tasks/\(self.tuid)/status")
             
             self.status = Task.parseTaskStatus(nextStatus)
             ref.setValue(self.status.rawValue)
@@ -258,8 +258,8 @@ class Task {
     
     func updateTask(title: String?, priority: String?, description: String?, status: String?) {
         if self.tuid != Globals.TaskGlobals.DEFAULT_TUID && self.uuid != Globals.TaskGlobals.DEFAULT_UUID {
-            Logger.log("updating task information in database for 'tasks/\(self.uuid)/\(self.tuid)'")
-            let ref = Database.database().reference(withPath: "tasks/\(self.uuid)/\(self.tuid)")
+            Logger.log("updating task information in database for 'tasks/\(self.tuid)'")
+            let ref = Database.database().reference(withPath: "tasks/\(self.tuid)")
             
             if let title = title {
                 if title != self.title {

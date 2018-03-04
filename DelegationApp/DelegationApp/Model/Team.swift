@@ -163,6 +163,36 @@ class Team {
         return self.tasks
     }
     
+    func observeTasks() {
+        let ref = Database.database().reference(withPath: "teams/\(self.guid)/current_tasks")
+        ref.observe(.childAdded, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            if let tuid = snapshot.value as? String {
+                Logger.log("adding new observable task tuid=\"\(tuid)\"")
+                this.tasks.append(Task(tuid: tuid))
+                this.observers.notify(this)
+            }
+        })
+        
+        ref.observe(.childRemoved, with: {
+            [weak self] (snapshot) in
+            guard let this = self else { return }
+            
+            if let tuid = snapshot.value as? String {
+                for (idx, task) in this.tasks.enumerated() {
+                    if task.getTUID() == tuid {
+                        Logger.log("removing task idx=\(idx), guid=\"\(tuid)\"")
+                        this.tasks.remove(at: idx)
+                    }
+                }
+                
+                this.observers.notify(this)
+            }
+        })
+    }
+    
     func loadTeamTasks() {
         
         self.tasks = []
@@ -185,7 +215,7 @@ class Team {
                             if let value = value as? NSDictionary {
                                 if let teamname = value["team"] as? String {
                                     if teamname == this.guid {
-                                        this.tasks.append(Task(uuid: uuid, tuid: key))
+                                        this.tasks.append(Task(tuid: key))
                                     }
                                 }
                             }

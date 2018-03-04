@@ -25,7 +25,7 @@ class CreateAccountJoinTeamViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         Logger.log("JoinTeam Will Appear...")
-        Logger.log("selectedTeams length: \(self.selectedTeams?.count)")
+        Logger.log("selectedTeams length: \(self.selectedTeams?.count ?? -1)")
         
         if let selectedTeams = self.selectedTeams {
             if selectedTeams.count <= 0 {

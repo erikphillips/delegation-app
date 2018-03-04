@@ -159,7 +159,7 @@ class User {
             
             if let tuid = snapshot.value as? String {
                 Logger.log("adding new observable task tuid=\"\(tuid)\"")
-                this.tasks.append(Task(uuid: this.uuid, tuid: tuid))
+                this.tasks.append(Task(tuid: tuid))
                 this.observers.notify(this)
             }
         })
