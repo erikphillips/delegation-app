@@ -170,10 +170,10 @@ class Task {
         taskRef.child("team").setValue(guid)
         
         let userRef = Database.database().reference(withPath: "users/\(uuid)/current_tasks")
-        userRef.childByAutoId().setValue(taskRef.key)
+        userRef.child(taskRef.key).setValue(taskRef.key)
         
         let teamRef = Database.database().reference(withPath: "teams/\(guid)/current_tasks")
-        teamRef.childByAutoId().setValue(taskRef.key)
+        teamRef.child(taskRef.key).setValue(taskRef.key)
         
         self.observers.notify(self)
     }
@@ -307,40 +307,26 @@ class Task {
         }
     }
     
-    func changeAssignee(to uuid: String) {
-        let taskRef = Database.database().reference(withPath: "tasks/\(self.tuid)/assignee")
-        let oldAssigneeRef = Database.database().reference(withPath: "users/\(self.uuid)/current_tasks/")
-        let newAssigneeRef = Database.database().reference(withPath: "users/\(uuid)/current_tasks/")
-        
-        // Set the new UUID
-        self.uuid = uuid
-        taskRef.setValue(self.uuid)
+    func changeAssignee(to newUUID: String) {
+        let oldAssignee = self.assigneeUUID
         
         // Add the task to the new assignee's array,
         // this should trigger the observable within
         // the new assignee to load the task
-        newAssigneeRef.childByAutoId().setValue(self.tuid)
+        Database.database().reference(withPath: "users/\(newUUID)/current_tasks/\(self.tuid)").setValue(self.tuid)
+        Logger.log("adding task to new user, uuid='\(newUUID)', tuid='\(self.tuid)'")
         
         // Remove the task listed under the user's current_tasks
         // which should trigger the old assignee's observable
         // to remove the task from their task array.
-        oldAssigneeRef.observeSingleEvent(of: .value, with: {
-            [oldAssigneeRef, weak self] (snapshot) in
-            guard let this = self else { return }
-            
-            if let dict = snapshot.value as? NSDictionary {
-                for (key, value) in dict {
-                    if let key = key as? String, let value = value as? String{
-                        if value == this.tuid {
-                            Logger.log("removing current_task at key=\(key) value=\(value)")
-                            oldAssigneeRef.child(key).removeValue()
-                            break
-                        }
-                    }
-                }
-            }
-        })
+        Database.database().reference(withPath: "users/\(oldAssignee)/current_tasks/\(self.tuid)").setValue(nil)
+        Logger.log("removing task from old user, uuid='\(oldAssignee)', tuid='\(self.tuid)'")
         
+        // Set the new UUID for this task
+        Database.database().reference(withPath: "tasks/\(self.tuid)/assignee").setValue(newUUID)
+        Logger.log("changing task assignee, tuid='\(self.tuid)', assignee='\(newUUID)'")
+        
+        self.assigneeUUID = newUUID  // shouldn't this already happen because of the observable?
         self.observers.notify(self)
     }
     
@@ -352,25 +338,10 @@ class Task {
         taskRef.setValue(newGUID)
         
         let newTeamRef = Database.database().reference(withPath: "teams/\(newGUID)/current_tasks")
-        newTeamRef.childByAutoId().setValue(self.tuid)
+        newTeamRef.child(self.tuid).setValue(self.tuid)
         
         let oldTeamRef = Database.database().reference(withPath: "teams/\(oldTeamGUID)/current_tasks")
-        oldTeamRef.observeSingleEvent(of: .value, with: {
-            [oldTeamRef, weak self] (snapshot) in
-            guard let this = self else { return }
-            
-            if let dict = snapshot.value as? NSDictionary {
-                for (key, value) in dict {
-                    if let key = key as? String, let value = value as? String{
-                        if value == this.tuid {
-                            Logger.log("removing current_task at key=\(key) value=\(value)")
-                            oldTeamRef.child(key).removeValue()
-                            break
-                        }
-                    }
-                }
-            }
-        })
+        oldTeamRef.child(self.tuid).setValue(nil)
         
         self.observers.notify(self)
     }

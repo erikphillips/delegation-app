@@ -143,6 +143,7 @@ class User {
                     if team.getGUID() == guid {
                         Logger.log("removing team idx=\(idx), guid=\"\(guid)\"")
                         this.teams.remove(at: idx)
+                        break
                     }
                 }
                 
@@ -173,6 +174,7 @@ class User {
                     if task.getTUID() == tuid {
                         Logger.log("removing task idx=\(idx), guid=\"\(tuid)\"")
                         this.tasks.remove(at: idx)
+                        break
                     }
                 }
                 
@@ -227,44 +229,50 @@ class User {
         ref.childByAutoId().setValue(guid)
         
         let teamRef = Database.database().reference(withPath: "teams/\(guid)/members/")
-        teamRef.childByAutoId().setValue(self.uuid)
+        teamRef.child(self.uuid).setValue(self.uuid)
     }
     
     func leaveTeam(guid: String) {
         Logger.log("user leaving team '\(guid)'")
         
         let ref = Database.database().reference(withPath: "users/\(self.uuid)/teams/")
-        ref.observeSingleEvent(of: .value, with: { [ref, guid] (snapshot) in
-            if let dict = snapshot.value as? NSDictionary {
-                for (key, value) in dict {
-                    if let value = value as? String {
-                        if value == guid {
-                            if let key = key as? String {
-                                Logger.log("successfully removed team from user list")
-                                ref.child(key).setValue(nil)
-                            }
-                        }
-                    }
-                }
-            }
-        })
+        ref.child("\(guid)").setValue(nil)
         
         let teamRef = Database.database().reference(withPath: "teams/\(guid)/members/")
-        teamRef.observeSingleEvent(of: .value, with: { [teamRef, weak self] (snapshot) in
-            guard let this = self else { return }
-            if let dict = snapshot.value as? NSDictionary {
-                for (key, value) in dict {
-                    if let value = value as? String {
-                        if value == this.uuid {
-                            if let key = key as? String {
-                                Logger.log("successfully removed user from team list")
-                                teamRef.child(key).setValue(nil)
-                            }
-                        }
-                    }
-                }
-            }
-        })
+        teamRef.child("\(self.uuid)").setValue(nil)
+        
+//        ref.observeSingleEvent(of: .value, with: { [ref, guid] (snapshot) in
+//            if let dict = snapshot.value as? NSDictionary {
+//                for (key, value) in dict {
+//                    if let value = value as? String {
+//                        if value == guid {
+//                            if let key = key as? String {
+//                                Logger.log("successfully removed team from user list")
+//                                ref.child(key).setValue(nil)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        })
+        
+//        teamRef.observeSingleEvent(of: .value, with: {
+//            [teamRef, weak self] (snapshot) in
+//            guard let this = self else { return }
+//
+//            if let dict = snapshot.value as? NSDictionary {
+//                for (key, value) in dict {
+//                    if let value = value as? String {
+//                        if value == this.uuid {
+//                            if let key = key as? String {
+//                                Logger.log("successfully removed user from team list")
+//                                teamRef.child(key).setValue(nil)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        })
     }
     
     func updateCurrentUser(firstname: String?, lastname: String?, email: String?, phone: String?, password: String?) {

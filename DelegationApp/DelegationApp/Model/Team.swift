@@ -63,8 +63,7 @@ class Team {
         self.observeTasks()
         self.observeMembers()
         
-        var ref: DatabaseReference!
-        ref = Database.database().reference().child("teams/\(guid)/")
+        let ref = Database.database().reference().child("teams/\(guid)/")
         
         ref.observe(DataEventType.value, with: {
             [weak self] (snapshot) in
@@ -176,6 +175,7 @@ class Team {
                     if member == uuid {
                         Logger.log("removing member idx=\(idx), uuid=\"\(uuid)\"")
                         this.members.remove(at: idx)
+                        break
                     }
                 }
                 
