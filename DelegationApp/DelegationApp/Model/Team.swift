@@ -216,15 +216,10 @@ class Team {
         return self.tasks
     }
     
-    func updateTeam(teamname: String?, description: String?, owner: String?) {
+    func updateTeam(description: String?, owner: String?) {
         if self.guid != Globals.TeamGlobals.DEFAULT_GUID {
-            Logger.log("updating team information in database for 'teams/\(self.guid)/information'")
-            let ref = Database.database().reference(withPath: "teams/\(self.guid)/information")
-            
-            if let teamname = teamname {
-                self.teamname = teamname
-                ref.child("teamname").setValue(teamname)
-            }
+            Logger.log("updating team information in database for 'teams/\(self.guid)'")
+            let ref = Database.database().reference(withPath: "teams/\(self.guid)")
             
             if let description = description {
                 self.description = description
@@ -234,27 +229,6 @@ class Team {
             if let owner = owner {
                 self.ownerUUID = owner
                 ref.child("owner").setValue(owner)
-                
-                let ownerRef = Database.database().reference(withPath: "users/\(owner)/teams")
-                ownerRef.observeSingleEvent(of: .value, with: {
-                    [ownerRef, weak self](snapshot) in
-                    guard let this = self else { return }
-                    
-                    if let dict = snapshot.value as? NSDictionary {
-                        var found = false
-                        for (_, value) in dict {
-                            if let value = value as? String {
-                                if value == this.guid {
-                                    found = true
-                                    break
-                                }
-                            }
-                        }
-                        
-                        if !found { ownerRef.childByAutoId().setValue(this.guid) }
-                        Logger.log("processed new owner ref, previously existing: \(found)")
-                    }
-                })
             }
             
             // Notify all observers that an update has occurred

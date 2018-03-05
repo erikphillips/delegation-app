@@ -1053,7 +1053,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPI-V4-SpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zai-Rh-J4s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3164" y="4582"/>
+            <point key="canvasLocation" x="3174" y="4621"/>
         </scene>
         <!--Change Team-->
         <scene sceneID="Gdg-9A-uM8">
@@ -1094,7 +1094,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoe-YH-2cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="j1y-mX-pNQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2463" y="4582"/>
+            <point key="canvasLocation" x="2462" y="4621"/>
         </scene>
         <!--Home-->
         <scene sceneID="lBu-f3-Fyh">
@@ -1601,7 +1601,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         <sections>
                             <tableViewSection id="flG-vm-3mF">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Wnv-cF-zlx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Wnv-cF-zlx">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wnv-cF-zlx" id="T15-lJ-Ioh">
@@ -1625,7 +1625,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="VSU-4C-gO2">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="VSU-4C-gO2">
                                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VSU-4C-gO2" id="de0-H4-mNS">
@@ -1640,16 +1640,20 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alk-Vl-oXb">
-                                                    <rect key="frame" x="80" y="11" width="279" height="21"/>
+                                                    <rect key="frame" x="80" y="11" width="251" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.090196078430000007" green="0.4431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gqh-Fa-3ph">
+                                                    <rect key="frame" x="339" y="11" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3qa-bn-F1z">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="3qa-bn-F1z">
                                         <rect key="frame" x="0.0" y="88" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3qa-bn-F1z" id="Rwj-W7-vtk">
@@ -1673,7 +1677,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="300" id="Tba-i2-Bfl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="300" id="Tba-i2-Bfl">
                                         <rect key="frame" x="0.0" y="132" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tba-i2-Bfl" id="Owx-WX-2Rf">
@@ -1687,7 +1691,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                                     <color key="textColor" red="0.0" green="0.16862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y3K-jd-g5Y">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y3K-jd-g5Y">
                                                     <rect key="frame" x="16" y="40" width="343" height="249"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1710,13 +1714,15 @@ Creating a new team will automatically place you as the owner/admin of the team 
                     <connections>
                         <outlet property="descriptionTextView" destination="y3K-jd-g5Y" id="8Cn-6E-APj"/>
                         <outlet property="memberCountLabel" destination="jty-tB-kAD" id="erQ-Bg-TxM"/>
+                        <outlet property="ownerActivityIndicator" destination="gqh-Fa-3ph" id="CVH-Jp-vHE"/>
                         <outlet property="ownerLabel" destination="Alk-Vl-oXb" id="Mj6-bl-L1v"/>
                         <outlet property="titleLabel" destination="Rrm-rS-YpQ" id="edC-JI-BIs"/>
+                        <segue destination="c1f-lm-WIw" kind="show" identifier="TeamDetailsShowChangeOwner" id="wRf-iJ-TMe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAf-lm-9Xd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5060" y="3056"/>
+            <point key="canvasLocation" x="5060" y="3055.3223388305851"/>
         </scene>
         <!--Team Tasks-->
         <scene sceneID="hP6-Q4-IO5">
@@ -2403,6 +2409,54 @@ All Rights Reserved.</string>
                 <exit id="OtR-Gs-Ecl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="7545" y="3766"/>
+        </scene>
+        <!--Change Owner-->
+        <scene sceneID="cN5-TH-Fll">
+            <objects>
+                <tableViewController title="Change Owner" id="c1f-lm-WIw" customClass="TeamChangeOwnerTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rhd-9N-5Zv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChangeOwnerCell" textLabel="u3M-2h-SKY" detailTextLabel="I45-hP-foJ" style="IBUITableViewCellStyleSubtitle" id="9g4-Gu-b9z">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9g4-Gu-b9z" id="CuX-ef-qiO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u3M-2h-SKY">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I45-hP-foJ">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="c1f-lm-WIw" id="2ns-J5-mKr"/>
+                            <outlet property="delegate" destination="c1f-lm-WIw" id="KwQ-8h-xCv"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="56j-VM-QoT" kind="unwind" identifier="UnwindChangeOwnerToTeamDetail" unwindAction="unwindToTeamDetailWithSegue:" id="dsb-Rg-My1"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ID7-Cn-OgV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="56j-VM-QoT" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5060" y="3816"/>
         </scene>
         <!--Your Teams-->
         <scene sceneID="Gcd-aF-xZM">
