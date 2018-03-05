@@ -309,7 +309,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9pc-Tl-339" kind="show" identifier="ShowTeamSelection" id="Bno-I1-mwS"/>
+                                    <action selector="joinExistingTeamButtonPressed:" destination="wtY-eC-XBQ" eventType="touchUpInside" id="A2K-Xc-sWY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kF-Fv-LVg">
@@ -334,6 +334,10 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                     <segue destination="jWV-aX-oiQ" kind="show" identifier="CreateAccountCreateTeam" id="Mpp-2P-m95"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="C7t-sZ-Uv9">
+                                <rect key="frame" x="320" y="418" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -350,8 +354,10 @@ Creating a new team will automatically place you as the owner/admin of the team 
                         <viewLayoutGuide key="safeArea" id="Xmx-dv-7Sq"/>
                     </view>
                     <connections>
+                        <outlet property="joinTeamActivityIndicator" destination="C7t-sZ-Uv9" id="qZM-qt-K5F"/>
                         <segue destination="gGk-bf-8lc" kind="unwind" identifier="unwindToCreateAccountView" unwindAction="unwindToCreateAccountViewWithSegue:" id="ViE-Vp-cz2"/>
                         <segue destination="gGk-bf-8lc" kind="unwind" identifier="unwindTeamPromptToWelcome" unwindAction="unwindToWelcomeViewWithSegue:" id="hkH-X6-Qfr"/>
+                        <segue destination="9pc-Tl-339" kind="show" identifier="CreatePromptToJoinTeamSegue" id="kUf-QX-9Uv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bx9-L6-Hoo" userLabel="First Responder" sceneMemberID="firstResponder"/>

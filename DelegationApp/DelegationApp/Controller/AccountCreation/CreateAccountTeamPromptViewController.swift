@@ -14,6 +14,8 @@ class CreateAccountTeamPromptViewController: UIViewController {
     var userDictionary: [String: String]?
     var teams: [Team]?
     
+    @IBOutlet weak var joinTeamActivityIndicator: UIActivityIndicatorView!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -43,6 +45,18 @@ class CreateAccountTeamPromptViewController: UIViewController {
         }
     }
     
+    @IBAction func joinExistingTeamButtonPressed(_ sender: Any) {
+        self.joinTeamActivityIndicator.startAnimating()
+        FirebaseUtilities.fetchAllTeams(callback: {
+            [weak self] (teams) in
+            guard let this = self else { return }
+            this.joinTeamActivityIndicator.stopAnimating()
+            this.teams = teams
+            this.performSegue(withIdentifier: "CreatePromptToJoinTeamSegue", sender: nil)
+        })
+        
+    }
+    
     func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -57,12 +71,15 @@ class CreateAccountTeamPromptViewController: UIViewController {
     @IBAction func unwindToTeamPromptView(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowTeamSelection" {
+        if segue.identifier == "CreatePromptToJoinTeamSegue" {
             Logger.log("Preparing JoinTeamTableViewController segue...")
             if let dest = segue.destination as? CreateAccountJoinTeamTableViewController {
                 dest.userDictionary = self.userDictionary
+                dest.teamsArray = self.teams
             }
-        } else if segue.identifier == "CreateAccountCreateTeam" {
+        }
+        
+        if segue.identifier == "CreateAccountCreateTeam" {
             Logger.log("Preparing CreateAccountCreateTeam segue...")
             if let dest = segue.destination as? CreateAccountCreateTeamViewController {
                 dest.userDictionary = self.userDictionary

@@ -20,13 +20,13 @@ class CreateAccountJoinTeamTableViewController: UITableViewController {
         super.viewDidLoad()
         Logger.log("JoinTeamTableViewController loaded...")
         
-        FirebaseUtilities.fetchAllTeams(callback: {
-            [weak self] (teams) in
-            guard let this = self else { return }
-            
-            this.teamsArray = teams
-            this.tableView.reloadData()
-        })
+//        FirebaseUtilities.fetchAllTeams(callback: {
+//            [weak self] (teams) in
+//            guard let this = self else { return }
+//            
+//            this.teamsArray = teams
+//            this.tableView.reloadData()
+//        })
     }
 
     override func didReceiveMemoryWarning() {
