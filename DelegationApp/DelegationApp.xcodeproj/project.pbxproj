@@ -318,8 +318,8 @@
 				98C597BB1FE42EEE009329B2 /* TasksViewController.swift */,
 				98C597BF1FE430B5009329B2 /* TasksTableViewCell.swift */,
 				98DF00F020298A1A00DE7FE0 /* TaskDetailTableViewController.swift */,
-				9869DDEB204B40D2009BA872 /* TaskChangeAssigneeTableViewController.swift */,
 				9816C3A5204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift */,
+				9869DDEB204B40D2009BA872 /* TaskChangeAssigneeTableViewController.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";

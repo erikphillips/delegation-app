@@ -260,7 +260,7 @@ class Task {
     }
     
     func updateTask(title: String?, priority: String?, description: String?, status: String?) {
-        if self.tuid != Globals.TaskGlobals.DEFAULT_TUID && self.uuid != Globals.TaskGlobals.DEFAULT_UUID {
+        if self.tuid != Globals.TaskGlobals.DEFAULT_TUID {
             Logger.log("updating task information in database for 'tasks/\(self.tuid)'")
             let ref = Database.database().reference(withPath: "tasks/\(self.tuid)")
             

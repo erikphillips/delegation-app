@@ -55,7 +55,7 @@ class TaskDetailTableViewController: UITableViewController {
                 this.statusLabel.text = task.getStatus()
                 this.priorityLabel.text = task.getPriority()
                 this.assigneeLabel.text = task.getAssigneeFullName()
-                this.originatorLabel.text = task.getAssigneeFullName()
+                this.originatorLabel.text = task.getOriginatorFullName()
                 this.teamLabel.text = task.getTeamUID()
                 this.descriptionTextView.text = task.getDescription()
             }
@@ -299,9 +299,9 @@ class TaskDetailTableViewController: UITableViewController {
     @IBAction func unwindToTaskDetail(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TaskDetailChangeTeamSegue" {
+        if segue.identifier == "TaskDetailChangeAssigneeSegue" {
             if let dest = segue.destination as? TaskChangeAssigneeTableViewController {
-                Logger.log("TaskDetailChangeTeamSegue called")
+                Logger.log("TaskDetailChangeAssigneeSegue called")
                 dest.users = self.assignees
             }
         }

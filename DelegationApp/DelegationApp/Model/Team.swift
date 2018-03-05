@@ -145,6 +145,7 @@ class Team {
                     if task.getTUID() == tuid {
                         Logger.log("removing task idx=\(idx), guid=\"\(tuid)\"")
                         this.tasks.remove(at: idx)
+                        break
                     }
                 }
                 
