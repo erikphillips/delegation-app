@@ -67,9 +67,9 @@ class Globals {
             static let SECONDARY =              UIColor(red: 255/255, green: 162/255, blue:   0/255, alpha: 1.0)
             static let SECONDARY_MEDUIM_DARK =  UIColor(red: 216/255, green: 138/255, blue:   0/255, alpha: 1.0)
             static let SECONDARY_DARK =         UIColor(red: 166/255, green: 106/255, blue:   0/255, alpha: 1.0)
+            #endif
             
-            #else
-            
+            #if TARGET_OS_MACOS
             // macOS only code
             static let PRIMARY_LIGHT_WHITE =    CIColor(red: 200/255, green: 225/255, blue: 255/255, alpha: 1.0)
             static let PRIMARY_LIGHT =          CIColor(red: 171/255, green: 204/255, blue: 255/255, alpha: 1.0)
