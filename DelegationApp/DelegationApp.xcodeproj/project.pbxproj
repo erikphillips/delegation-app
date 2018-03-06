@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		395A58E2A83757020DA68400 /* Pods_delegation_app_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540F6909FD1B30E807441657 /* Pods_delegation_app_iosUITests.framework */; };
-		85CDF24C2BBA93320FF402AD /* Pods_delegation_app_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E35656F923DEC21B68336F /* Pods_delegation_app_iosTests.framework */; };
 		980232F9202843380019E3B2 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980232F8202843380019E3B2 /* TeamTableViewCell.swift */; };
 		9816C3A6204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816C3A5204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift */; };
 		9816C3A8204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816C3A7204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift */; };
+		981CA9D9204E38EB00276DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981CA9D8204E38EB00276DAB /* AppDelegate.swift */; };
+		981CA9DB204E38EB00276DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981CA9DA204E38EB00276DAB /* ViewController.swift */; };
+		981CA9DD204E38EB00276DAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9DC204E38EB00276DAB /* Assets.xcassets */; };
+		981CA9E0204E38EB00276DAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9DE204E38EB00276DAB /* Main.storyboard */; };
 		9849779A20099A4600954C3A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
 		984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */; };
 		984FECC42028D39400F13A34 /* CreateNewTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */; };
@@ -24,8 +26,6 @@
 		98849EB31FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98849EB11FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld */; };
 		98849EB51FDDC7AA009C9B1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98849EB41FDDC7AA009C9B1A /* Assets.xcassets */; };
 		98849EB81FDDC7AA009C9B1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98849EB61FDDC7AA009C9B1A /* LaunchScreen.storyboard */; };
-		98849EC31FDDC7AA009C9B1A /* delegation_app_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EC21FDDC7AA009C9B1A /* delegation_app_iosTests.swift */; };
-		98849ECE1FDDC7AA009C9B1A /* delegation_app_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849ECD1FDDC7AA009C9B1A /* delegation_app_iosUITests.swift */; };
 		98849EDF1FDDD48B009C9B1A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EDE1FDDD48B009C9B1A /* User.swift */; };
 		98849EE11FDDD51D009C9B1A /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE01FDDD51D009C9B1A /* Team.swift */; };
 		98849EE31FDDD7DF009C9B1A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE21FDDD7DF009C9B1A /* Task.swift */; };
@@ -61,23 +61,6 @@
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		98849EBF1FDDC7AA009C9B1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 98849E9F1FDDC7AA009C9B1A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 98849EA61FDDC7AA009C9B1A;
-			remoteInfo = "delegation-app-ios";
-		};
-		98849ECA1FDDC7AA009C9B1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 98849E9F1FDDC7AA009C9B1A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 98849EA61FDDC7AA009C9B1A;
-			remoteInfo = "delegation-app-ios";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		12E2C0B11E0C0D50500BA0DE /* Pods-delegation-app-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosTests/Pods-delegation-app-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		40A4EB0441D48EE28B0295E3 /* Pods-delegation-app-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosTests/Pods-delegation-app-iosTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +72,12 @@
 		980232F8202843380019E3B2 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		9816C3A5204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskChangeTeamTableViewController.swift; sourceTree = "<group>"; };
 		9816C3A7204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChangeOwnerTableViewController.swift; sourceTree = "<group>"; };
+		981CA9D6204E38EB00276DAB /* DelegationApp-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DelegationApp-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		981CA9D8204E38EB00276DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		981CA9DA204E38EB00276DAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		981CA9DC204E38EB00276DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		981CA9DF204E38EB00276DAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		981CA9E1204E38EB00276DAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9849779920099A4600954C3A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTeamViewController.swift; sourceTree = "<group>"; };
@@ -96,19 +85,13 @@
 		9869DDEB204B40D2009BA872 /* TaskChangeAssigneeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskChangeAssigneeTableViewController.swift; sourceTree = "<group>"; };
 		986F8E721FDFB6D10033B9D0 /* CreateAccountInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountInitialViewController.swift; sourceTree = "<group>"; };
 		9874033C1FF1923C0059309E /* UpdateAccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountSettingsViewController.swift; sourceTree = "<group>"; };
-		98849EA71FDDC7AA009C9B1A /* DelegationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DelegationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		98849EA71FDDC7AA009C9B1A /* DelegationApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DelegationApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98849EAF1FDDC7AA009C9B1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		98849EB21FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = delegation_app_ios.xcdatamodel; sourceTree = "<group>"; };
 		98849EB41FDDC7AA009C9B1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98849EB71FDDC7AA009C9B1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98849EB91FDDC7AA009C9B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98849EBE1FDDC7AA009C9B1A /* DelegationAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelegationAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		98849EC21FDDC7AA009C9B1A /* delegation_app_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = delegation_app_iosTests.swift; sourceTree = "<group>"; };
-		98849EC41FDDC7AA009C9B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98849EC91FDDC7AA009C9B1A /* DelegationAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelegationAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		98849ECD1FDDC7AA009C9B1A /* delegation_app_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = delegation_app_iosUITests.swift; sourceTree = "<group>"; };
-		98849ECF1FDDC7AA009C9B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98849EDE1FDDD48B009C9B1A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		98849EE01FDDD51D009C9B1A /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		98849EE21FDDD7DF009C9B1A /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -147,27 +130,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		981CA9D3204E38EB00276DAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98849EA41FDDC7AA009C9B1A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		98849EBB1FDDC7AA009C9B1A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				85CDF24C2BBA93320FF402AD /* Pods_delegation_app_iosTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		98849EC61FDDC7AA009C9B1A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				395A58E2A83757020DA68400 /* Pods_delegation_app_iosUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +171,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		981CA9D7204E38EB00276DAB /* DelegationApp-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				981CA9D8204E38EB00276DAB /* AppDelegate.swift */,
+				981CA9DA204E38EB00276DAB /* ViewController.swift */,
+				981CA9DC204E38EB00276DAB /* Assets.xcassets */,
+				981CA9DE204E38EB00276DAB /* Main.storyboard */,
+				981CA9E1204E38EB00276DAB /* Info.plist */,
+			);
+			path = "DelegationApp-macOS";
+			sourceTree = "<group>";
+		};
 		984E35261FE1941300F031E0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,9 +207,8 @@
 		98849E9E1FDDC7AA009C9B1A = {
 			isa = PBXGroup;
 			children = (
-				98849EA91FDDC7AA009C9B1A /* DelegationApp */,
-				98849EC11FDDC7AA009C9B1A /* DelegationAppTests */,
-				98849ECC1FDDC7AA009C9B1A /* DelegationAppUITests */,
+				98849EA91FDDC7AA009C9B1A /* DelegationApp-iOS */,
+				981CA9D7204E38EB00276DAB /* DelegationApp-macOS */,
 				98849EA81FDDC7AA009C9B1A /* Products */,
 				5DFC93355E6E610F3380B00F /* Pods */,
 				885BF9977B85AB5AE7C15DF2 /* Frameworks */,
@@ -233,14 +218,13 @@
 		98849EA81FDDC7AA009C9B1A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				98849EA71FDDC7AA009C9B1A /* DelegationApp.app */,
-				98849EBE1FDDC7AA009C9B1A /* DelegationAppTests.xctest */,
-				98849EC91FDDC7AA009C9B1A /* DelegationAppUITests.xctest */,
+				98849EA71FDDC7AA009C9B1A /* DelegationApp-iOS.app */,
+				981CA9D6204E38EB00276DAB /* DelegationApp-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		98849EA91FDDC7AA009C9B1A /* DelegationApp */ = {
+		98849EA91FDDC7AA009C9B1A /* DelegationApp-iOS */ = {
 			isa = PBXGroup;
 			children = (
 				98DA8B2F202066B60050B795 /* DelegationApp.entitlements */,
@@ -253,25 +237,7 @@
 				98849EDC1FDDCFAB009C9B1A /* View */,
 				98849EDB1FDDCF9F009C9B1A /* Model */,
 			);
-			path = DelegationApp;
-			sourceTree = "<group>";
-		};
-		98849EC11FDDC7AA009C9B1A /* DelegationAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				98849EC21FDDC7AA009C9B1A /* delegation_app_iosTests.swift */,
-				98849EC41FDDC7AA009C9B1A /* Info.plist */,
-			);
-			path = DelegationAppTests;
-			sourceTree = "<group>";
-		};
-		98849ECC1FDDC7AA009C9B1A /* DelegationAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				98849ECD1FDDC7AA009C9B1A /* delegation_app_iosUITests.swift */,
-				98849ECF1FDDC7AA009C9B1A /* Info.plist */,
-			);
-			path = DelegationAppUITests;
+			path = "DelegationApp-iOS";
 			sourceTree = "<group>";
 		};
 		98849EDB1FDDCF9F009C9B1A /* Model */ = {
@@ -416,9 +382,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		98849EA61FDDC7AA009C9B1A /* DelegationApp */ = {
+		981CA9D5204E38EB00276DAB /* DelegationApp-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 98849ED21FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationApp" */;
+			buildConfigurationList = 981CA9E3204E38EB00276DAB /* Build configuration list for PBXNativeTarget "DelegationApp-macOS" */;
+			buildPhases = (
+				981CA9D2204E38EB00276DAB /* Sources */,
+				981CA9D3204E38EB00276DAB /* Frameworks */,
+				981CA9D4204E38EB00276DAB /* Resources */,
+				981CA9E7204E3C2C00276DAB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DelegationApp-macOS";
+			productName = macOSDelegationApp;
+			productReference = 981CA9D6204E38EB00276DAB /* DelegationApp-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		98849EA61FDDC7AA009C9B1A /* DelegationApp-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98849ED21FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationApp-iOS" */;
 			buildPhases = (
 				428E4123CF2701E15D33FA4B /* [CP] Check Pods Manifest.lock */,
 				98849EA31FDDC7AA009C9B1A /* Sources */,
@@ -432,52 +416,10 @@
 			);
 			dependencies = (
 			);
-			name = DelegationApp;
+			name = "DelegationApp-iOS";
 			productName = "delegation-app-ios";
-			productReference = 98849EA71FDDC7AA009C9B1A /* DelegationApp.app */;
+			productReference = 98849EA71FDDC7AA009C9B1A /* DelegationApp-iOS.app */;
 			productType = "com.apple.product-type.application";
-		};
-		98849EBD1FDDC7AA009C9B1A /* DelegationAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 98849ED51FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationAppTests" */;
-			buildPhases = (
-				465AD36E9EB43D7BFB0474E1 /* [CP] Check Pods Manifest.lock */,
-				98849EBA1FDDC7AA009C9B1A /* Sources */,
-				98849EBB1FDDC7AA009C9B1A /* Frameworks */,
-				98849EBC1FDDC7AA009C9B1A /* Resources */,
-				024E3ABFF41F470205DE041F /* [CP] Embed Pods Frameworks */,
-				095A93F090989585EEB85FE5 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				98849EC01FDDC7AA009C9B1A /* PBXTargetDependency */,
-			);
-			name = DelegationAppTests;
-			productName = "delegation-app-iosTests";
-			productReference = 98849EBE1FDDC7AA009C9B1A /* DelegationAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		98849EC81FDDC7AA009C9B1A /* DelegationAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 98849ED81FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationAppUITests" */;
-			buildPhases = (
-				1480F48CF075C48A92D48C2B /* [CP] Check Pods Manifest.lock */,
-				98849EC51FDDC7AA009C9B1A /* Sources */,
-				98849EC61FDDC7AA009C9B1A /* Frameworks */,
-				98849EC71FDDC7AA009C9B1A /* Resources */,
-				1DB0FAF60268F4F71C8861EB /* [CP] Embed Pods Frameworks */,
-				36318429DA374CCA4B6E37B3 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				98849ECB1FDDC7AA009C9B1A /* PBXTargetDependency */,
-			);
-			name = DelegationAppUITests;
-			productName = "delegation-app-iosUITests";
-			productReference = 98849EC91FDDC7AA009C9B1A /* DelegationAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -489,6 +431,10 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Erik Phillips";
 				TargetAttributes = {
+					981CA9D5204E38EB00276DAB = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					98849EA61FDDC7AA009C9B1A = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -500,16 +446,6 @@
 								enabled = 0;
 							};
 						};
-					};
-					98849EBD1FDDC7AA009C9B1A = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 98849EA61FDDC7AA009C9B1A;
-					};
-					98849EC81FDDC7AA009C9B1A = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 98849EA61FDDC7AA009C9B1A;
 					};
 				};
 			};
@@ -526,14 +462,22 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				98849EA61FDDC7AA009C9B1A /* DelegationApp */,
-				98849EBD1FDDC7AA009C9B1A /* DelegationAppTests */,
-				98849EC81FDDC7AA009C9B1A /* DelegationAppUITests */,
+				98849EA61FDDC7AA009C9B1A /* DelegationApp-iOS */,
+				981CA9D5204E38EB00276DAB /* DelegationApp-macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		981CA9D4204E38EB00276DAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				981CA9DD204E38EB00276DAB /* Assets.xcassets in Resources */,
+				981CA9E0204E38EB00276DAB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98849EA51FDDC7AA009C9B1A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -545,101 +489,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		98849EBC1FDDC7AA009C9B1A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		98849EC71FDDC7AA009C9B1A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		024E3ABFF41F470205DE041F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-iosTests/Pods-delegation-app-iosTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		095A93F090989585EEB85FE5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-iosTests/Pods-delegation-app-iosTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1480F48CF075C48A92D48C2B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-delegation-app-iosUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1DB0FAF60268F4F71C8861EB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		36318429DA374CCA4B6E37B3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		428E4123CF2701E15D33FA4B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -652,24 +504,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-delegation-app-ios-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		465AD36E9EB43D7BFB0474E1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-delegation-app-iosTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -690,6 +524,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		981CA9E7204E3C2C00276DAB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
 		98B8B2BC2007269700785A80 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -731,6 +578,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		981CA9D2204E38EB00276DAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				981CA9DB204E38EB00276DAB /* ViewController.swift in Sources */,
+				981CA9D9204E38EB00276DAB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98849EA31FDDC7AA009C9B1A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -781,38 +637,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		98849EBA1FDDC7AA009C9B1A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				98849EC31FDDC7AA009C9B1A /* delegation_app_iosTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		98849EC51FDDC7AA009C9B1A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				98849ECE1FDDC7AA009C9B1A /* delegation_app_iosUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		98849EC01FDDC7AA009C9B1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 98849EA61FDDC7AA009C9B1A /* DelegationApp */;
-			targetProxy = 98849EBF1FDDC7AA009C9B1A /* PBXContainerItemProxy */;
-		};
-		98849ECB1FDDC7AA009C9B1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 98849EA61FDDC7AA009C9B1A /* DelegationApp */;
-			targetProxy = 98849ECA1FDDC7AA009C9B1A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
+		981CA9DE204E38EB00276DAB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				981CA9DF204E38EB00276DAB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		98849EAE1FDDC7AA009C9B1A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -832,6 +667,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		981CA9E4204E38EB00276DAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "DelegationApp-macOS/DelegationApp-macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = H8E62THNLC;
+				INFOPLIST_FILE = "$(SRCROOT)/DelegationApp-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.mac.DelegationApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		981CA9E5204E38EB00276DAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "DelegationApp-macOS/DelegationApp-macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = H8E62THNLC;
+				INFOPLIST_FILE = "$(SRCROOT)/DelegationApp-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.mac.DelegationApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		98849ED01FDDC7AA009C9B1A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -946,9 +821,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H8E62THNLC;
-				INFOPLIST_FILE = DelegationApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DelegationApp-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.DelegationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.iOS.DelegationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -962,88 +837,27 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H8E62THNLC;
-				INFOPLIST_FILE = DelegationApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DelegationApp-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.DelegationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.iOS.DelegationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		98849ED61FDDC7AA009C9B1A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12E2C0B11E0C0D50500BA0DE /* Pods-delegation-app-iosTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H8E62THNLC;
-				INFOPLIST_FILE = "delegation-app-iosTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erikphillips.delegation-app-iosTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DelegationApp.app/DelegationApp";
-			};
-			name = Debug;
-		};
-		98849ED71FDDC7AA009C9B1A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40A4EB0441D48EE28B0295E3 /* Pods-delegation-app-iosTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H8E62THNLC;
-				INFOPLIST_FILE = "delegation-app-iosTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erikphillips.delegation-app-iosTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DelegationApp.app/DelegationApp";
-			};
-			name = Release;
-		};
-		98849ED91FDDC7AA009C9B1A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H8E62THNLC;
-				INFOPLIST_FILE = "delegation-app-iosUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erikphillips.delegation-app-iosUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "delegation-app-ios";
-			};
-			name = Debug;
-		};
-		98849EDA1FDDC7AA009C9B1A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7955DD0EF43B3D6329899DE6 /* Pods-delegation-app-iosUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H8E62THNLC;
-				INFOPLIST_FILE = "delegation-app-iosUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erikphillips.delegation-app-iosUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "delegation-app-ios";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		981CA9E3204E38EB00276DAB /* Build configuration list for PBXNativeTarget "DelegationApp-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				981CA9E4204E38EB00276DAB /* Debug */,
+				981CA9E5204E38EB00276DAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		98849EA21FDDC7AA009C9B1A /* Build configuration list for PBXProject "DelegationApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1053,29 +867,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		98849ED21FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationApp" */ = {
+		98849ED21FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationApp-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				98849ED31FDDC7AA009C9B1A /* Debug */,
 				98849ED41FDDC7AA009C9B1A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		98849ED51FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				98849ED61FDDC7AA009C9B1A /* Debug */,
-				98849ED71FDDC7AA009C9B1A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		98849ED81FDDC7AA009C9B1A /* Build configuration list for PBXNativeTarget "DelegationAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				98849ED91FDDC7AA009C9B1A /* Debug */,
-				98849EDA1FDDC7AA009C9B1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
