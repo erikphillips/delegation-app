@@ -7,18 +7,20 @@
 //
 
 import Cocoa
+import AppKit
 import FirebaseCore
+import FirebaseAuth
+import FirebaseDatabase
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        FirebaseApp.configure() // configure the firebase app
+        print("applicationDidFinishLaunching called")
+        FirebaseApp.configure()
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }

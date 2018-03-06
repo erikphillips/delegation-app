@@ -64,7 +64,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             Logger.log("starting the login process")
             
             self.displayLoadingScreen()
-            FirebaseUtilities.performWelcomeProcedure(controller: self, username: username!, password: password!, callback: {
+            FirebaseUtilities.performWelcomeProcedure(username: username!, password: password!, callback: {
                 [weak self] (user, tasks, status) in
                 guard let this = self else { return }
                 
