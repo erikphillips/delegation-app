@@ -1,0 +1,6 @@
+framework module Pods_DelegationApp_iOS {
+  umbrella header "Pods-DelegationApp-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

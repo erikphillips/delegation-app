@@ -22,6 +22,7 @@
 		981CA9EE204E414200276DAB /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
 		981CA9EF204E414400276DAB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BAFF26201A6D3A002C253A /* Logger.swift */; };
 		981CA9F0204E414700276DAB /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DA8B302020E1FF0050B795 /* Observers.swift */; };
+		981CA9F4204E4E2E00276DAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */; };
 		9849779A20099A4600954C3A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
 		984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */; };
 		984FECC42028D39400F13A34 /* CreateNewTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */; };
@@ -90,6 +91,7 @@
 		981CA9DC204E38EB00276DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		981CA9DF204E38EB00276DAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		981CA9E1204E38EB00276DAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9849779920099A4600954C3A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTeamViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				981CA9DC204E38EB00276DAB /* Assets.xcassets */,
 				981CA9DE204E38EB00276DAB /* Main.storyboard */,
 				981CA9E1204E38EB00276DAB /* Info.plist */,
+				981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */,
 			);
 			path = "DelegationApp-macOS";
 			sourceTree = "<group>";
@@ -231,8 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				98849EA91FDDC7AA009C9B1A /* DelegationApp-iOS */,
-				98849EDB1FDDCF9F009C9B1A /* SharedModel */,
 				981CA9D7204E38EB00276DAB /* DelegationApp-macOS */,
+				98849EDB1FDDCF9F009C9B1A /* SharedModel */,
 				98849EA81FDDC7AA009C9B1A /* Products */,
 				5DFC93355E6E610F3380B00F /* Pods */,
 				885BF9977B85AB5AE7C15DF2 /* Frameworks */,
@@ -501,6 +504,7 @@
 			files = (
 				981CA9DD204E38EB00276DAB /* Assets.xcassets in Resources */,
 				981CA9E0204E38EB00276DAB /* Main.storyboard in Resources */,
+				981CA9F4204E4E2E00276DAB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,11 +606,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DelegationApp-macOS/Pods-DelegationApp-macOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FirebaseOSX/Firebase.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-macOS/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-macOS/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library-macOS/leveldb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Firebase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -620,9 +628,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DelegationApp-iOS/Pods-DelegationApp-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library-iOS/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";

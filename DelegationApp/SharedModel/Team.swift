@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseCore
+import FirebaseAuth
+import FirebaseDatabase
 
 class Team {
     private var teamname: String
