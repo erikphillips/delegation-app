@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23CBBB4ABDDF46C1D3B22844 /* Pods_DelegationApp_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5042B220E81AA2C0CDAD451F /* Pods_DelegationApp_iOS.framework */; };
 		980232F9202843380019E3B2 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980232F8202843380019E3B2 /* TeamTableViewCell.swift */; };
 		9816C3A6204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816C3A5204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift */; };
 		9816C3A8204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816C3A7204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift */; };
@@ -14,6 +15,13 @@
 		981CA9DB204E38EB00276DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981CA9DA204E38EB00276DAB /* ViewController.swift */; };
 		981CA9DD204E38EB00276DAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9DC204E38EB00276DAB /* Assets.xcassets */; };
 		981CA9E0204E38EB00276DAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9DE204E38EB00276DAB /* Main.storyboard */; };
+		981CA9EA204E413800276DAB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EDE1FDDD48B009C9B1A /* User.swift */; };
+		981CA9EB204E413A00276DAB /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE01FDDD51D009C9B1A /* Team.swift */; };
+		981CA9EC204E413D00276DAB /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EE21FDDD7DF009C9B1A /* Task.swift */; };
+		981CA9ED204E413F00276DAB /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E5E4141FEB5D0A00AF0B37 /* Utilities.swift */; };
+		981CA9EE204E414200276DAB /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
+		981CA9EF204E414400276DAB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BAFF26201A6D3A002C253A /* Logger.swift */; };
+		981CA9F0204E414700276DAB /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DA8B302020E1FF0050B795 /* Observers.swift */; };
 		9849779A20099A4600954C3A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
 		984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */; };
 		984FECC42028D39400F13A34 /* CreateNewTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */; };
@@ -59,12 +67,16 @@
 		98E5E4131FE7A1C600AF0B37 /* UtilitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E5E4121FE7A1C600AF0B37 /* UtilitiesViewController.swift */; };
 		98E5E4151FEB5D0A00AF0B37 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E5E4141FEB5D0A00AF0B37 /* Utilities.swift */; };
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
+		DA6198BE3353128451B1CBDF /* Pods_DelegationApp_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3030D45B4AC2A70180FBC402 /* Pods_DelegationApp_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		12E2C0B11E0C0D50500BA0DE /* Pods-delegation-app-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosTests/Pods-delegation-app-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		25A82CD495E629470918C38B /* Pods-DelegationApp-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelegationApp-macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DelegationApp-macOS/Pods-DelegationApp-macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		3030D45B4AC2A70180FBC402 /* Pods_DelegationApp_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DelegationApp_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A4EB0441D48EE28B0295E3 /* Pods-delegation-app-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosTests/Pods-delegation-app-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		425B7D41677F5953710A25CB /* Pods-delegation-app-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.release.xcconfig"; sourceTree = "<group>"; };
+		5042B220E81AA2C0CDAD451F /* Pods_DelegationApp_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DelegationApp_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		540F6909FD1B30E807441657 /* Pods_delegation_app_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delegation_app_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E35656F923DEC21B68336F /* Pods_delegation_app_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delegation_app_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7955DD0EF43B3D6329899DE6 /* Pods-delegation-app-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,8 +137,11 @@
 		98DF00F020298A1A00DE7FE0 /* TaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailTableViewController.swift; sourceTree = "<group>"; };
 		98E5E4121FE7A1C600AF0B37 /* UtilitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesViewController.swift; sourceTree = "<group>"; };
 		98E5E4141FEB5D0A00AF0B37 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		A332F5B122EE0B1F885D7A80 /* Pods-DelegationApp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelegationApp-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DelegationApp-iOS/Pods-DelegationApp-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		CB8FF9377615CD3188AEE343 /* Pods-DelegationApp-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelegationApp-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DelegationApp-macOS/Pods-DelegationApp-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF6E2112359BF1AEB9421763 /* Pods-DelegationApp-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelegationApp-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DelegationApp-iOS/Pods-DelegationApp-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA6198BE3353128451B1CBDF /* Pods_DelegationApp_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */,
+				23CBBB4ABDDF46C1D3B22844 /* Pods_DelegationApp_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +174,10 @@
 				40A4EB0441D48EE28B0295E3 /* Pods-delegation-app-iosTests.release.xcconfig */,
 				FD8EF189E948C0FC3BFBF372 /* Pods-delegation-app-iosUITests.debug.xcconfig */,
 				7955DD0EF43B3D6329899DE6 /* Pods-delegation-app-iosUITests.release.xcconfig */,
+				FF6E2112359BF1AEB9421763 /* Pods-DelegationApp-iOS.debug.xcconfig */,
+				A332F5B122EE0B1F885D7A80 /* Pods-DelegationApp-iOS.release.xcconfig */,
+				25A82CD495E629470918C38B /* Pods-DelegationApp-macOS.debug.xcconfig */,
+				CB8FF9377615CD3188AEE343 /* Pods-DelegationApp-macOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -167,6 +188,8 @@
 				9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */,
 				76E35656F923DEC21B68336F /* Pods_delegation_app_iosTests.framework */,
 				540F6909FD1B30E807441657 /* Pods_delegation_app_iosUITests.framework */,
+				5042B220E81AA2C0CDAD451F /* Pods_DelegationApp_iOS.framework */,
+				3030D45B4AC2A70180FBC402 /* Pods_DelegationApp_macOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -208,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				98849EA91FDDC7AA009C9B1A /* DelegationApp-iOS */,
+				98849EDB1FDDCF9F009C9B1A /* SharedModel */,
 				981CA9D7204E38EB00276DAB /* DelegationApp-macOS */,
 				98849EA81FDDC7AA009C9B1A /* Products */,
 				5DFC93355E6E610F3380B00F /* Pods */,
@@ -235,12 +259,11 @@
 				985F2BA7201AF602004097ED /* GoogleService-Info.plist */,
 				98849EDD1FDDCFB1009C9B1A /* Controller */,
 				98849EDC1FDDCFAB009C9B1A /* View */,
-				98849EDB1FDDCF9F009C9B1A /* Model */,
 			);
 			path = "DelegationApp-iOS";
 			sourceTree = "<group>";
 		};
-		98849EDB1FDDCF9F009C9B1A /* Model */ = {
+		98849EDB1FDDCF9F009C9B1A /* SharedModel */ = {
 			isa = PBXGroup;
 			children = (
 				98849EDE1FDDD48B009C9B1A /* User.swift */,
@@ -251,7 +274,7 @@
 				98BAFF26201A6D3A002C253A /* Logger.swift */,
 				98DA8B302020E1FF0050B795 /* Observers.swift */,
 			);
-			path = Model;
+			path = SharedModel;
 			sourceTree = "<group>";
 		};
 		98849EDC1FDDCFAB009C9B1A /* View */ = {
@@ -386,10 +409,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 981CA9E3204E38EB00276DAB /* Build configuration list for PBXNativeTarget "DelegationApp-macOS" */;
 			buildPhases = (
+				253EB583CD39DD807027D452 /* [CP] Check Pods Manifest.lock */,
 				981CA9D2204E38EB00276DAB /* Sources */,
 				981CA9D3204E38EB00276DAB /* Frameworks */,
 				981CA9D4204E38EB00276DAB /* Resources */,
 				981CA9E7204E3C2C00276DAB /* ShellScript */,
+				A0F8D0A7575C80A565DA7228 /* [CP] Embed Pods Frameworks */,
+				C2EA57AAC6A369CC545B5976 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -492,6 +518,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		253EB583CD39DD807027D452 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DelegationApp-macOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		428E4123CF2701E15D33FA4B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -503,7 +547,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-delegation-app-ios-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-DelegationApp-iOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -522,7 +566,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DelegationApp-iOS/Pods-DelegationApp-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		981CA9E7204E3C2C00276DAB /* ShellScript */ = {
@@ -551,13 +595,31 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
+		A0F8D0A7575C80A565DA7228 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DelegationApp-macOS/Pods-DelegationApp-macOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FirebaseOSX/Firebase.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Firebase.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DelegationApp-macOS/Pods-DelegationApp-macOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A10E1787994A9639367A6E25 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-DelegationApp-iOS/Pods-DelegationApp-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -572,7 +634,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DelegationApp-iOS/Pods-DelegationApp-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2EA57AAC6A369CC545B5976 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DelegationApp-macOS/Pods-DelegationApp-macOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -582,8 +659,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				981CA9ED204E413F00276DAB /* Utilities.swift in Sources */,
+				981CA9EB204E413A00276DAB /* Team.swift in Sources */,
+				981CA9EE204E414200276DAB /* Status.swift in Sources */,
+				981CA9F0204E414700276DAB /* Observers.swift in Sources */,
 				981CA9DB204E38EB00276DAB /* ViewController.swift in Sources */,
+				981CA9EC204E413D00276DAB /* Task.swift in Sources */,
 				981CA9D9204E38EB00276DAB /* AppDelegate.swift in Sources */,
+				981CA9EA204E413800276DAB /* User.swift in Sources */,
+				981CA9EF204E414400276DAB /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +753,7 @@
 /* Begin XCBuildConfiguration section */
 		981CA9E4204E38EB00276DAB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25A82CD495E629470918C38B /* Pods-DelegationApp-macOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "DelegationApp-macOS/DelegationApp-macOS.entitlements";
@@ -689,6 +774,7 @@
 		};
 		981CA9E5204E38EB00276DAB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB8FF9377615CD3188AEE343 /* Pods-DelegationApp-macOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "DelegationApp-macOS/DelegationApp-macOS.entitlements";
@@ -816,7 +902,7 @@
 		};
 		98849ED31FDDC7AA009C9B1A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */;
+			baseConfigurationReference = FF6E2112359BF1AEB9421763 /* Pods-DelegationApp-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -832,7 +918,7 @@
 		};
 		98849ED41FDDC7AA009C9B1A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 425B7D41677F5953710A25CB /* Pods-delegation-app-ios.release.xcconfig */;
+			baseConfigurationReference = A332F5B122EE0B1F885D7A80 /* Pods-DelegationApp-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

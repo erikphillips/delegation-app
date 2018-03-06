@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>873517016079-p3mcofigbli072akt6b2e6teuknkmgls.apps.googleusercontent.com</string>
+	<string>873517016079-al7he34sla0tljsho7hjquhsqqqjmbli.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.873517016079-p3mcofigbli072akt6b2e6teuknkmgls</string>
+	<string>com.googleusercontent.apps.873517016079-al7he34sla0tljsho7hjquhsqqqjmbli</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAdzE6pL9Lobw2F2_Sl86I9QLD8wPcVQbQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.erikphillips.delegation-app-ios</string>
+	<string>com.erikphillips.iOS.DelegationApp</string>
 	<key>PROJECT_ID</key>
 	<string>delegation-app</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:873517016079:ios:3dcbfad22259d332</string>
+	<string>1:873517016079:ios:11ca5d667b5815a6</string>
 	<key>DATABASE_URL</key>
 	<string>https://delegation-app.firebaseio.com</string>
 </dict>
