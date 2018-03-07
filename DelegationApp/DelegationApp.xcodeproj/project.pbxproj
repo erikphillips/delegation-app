@@ -12,7 +12,7 @@
 		9816C3A6204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816C3A5204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift */; };
 		9816C3A8204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816C3A7204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift */; };
 		981CA9D9204E38EB00276DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981CA9D8204E38EB00276DAB /* AppDelegate.swift */; };
-		981CA9DB204E38EB00276DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981CA9DA204E38EB00276DAB /* ViewController.swift */; };
+		981CA9DB204E38EB00276DAB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981CA9DA204E38EB00276DAB /* LaunchViewController.swift */; };
 		981CA9DD204E38EB00276DAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9DC204E38EB00276DAB /* Assets.xcassets */; };
 		981CA9E0204E38EB00276DAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9DE204E38EB00276DAB /* Main.storyboard */; };
 		981CA9EA204E413800276DAB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98849EDE1FDDD48B009C9B1A /* User.swift */; };
@@ -23,6 +23,8 @@
 		981CA9EF204E414400276DAB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BAFF26201A6D3A002C253A /* Logger.swift */; };
 		981CA9F0204E414700276DAB /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DA8B302020E1FF0050B795 /* Observers.swift */; };
 		981CA9F4204E4E2E00276DAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */; };
+		983988CA2050AC910085D0AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983988C92050AC910085D0AD /* LoginViewController.swift */; };
+		983988CE2050AF430085D0AD /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983988CC2050AF430085D0AD /* CreateAccountViewController.swift */; };
 		9849779A20099A4600954C3A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
 		984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */; };
 		984FECC42028D39400F13A34 /* CreateNewTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */; };
@@ -87,12 +89,14 @@
 		9816C3A7204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChangeOwnerTableViewController.swift; sourceTree = "<group>"; };
 		981CA9D6204E38EB00276DAB /* DelegationApp-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DelegationApp-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		981CA9D8204E38EB00276DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		981CA9DA204E38EB00276DAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		981CA9DA204E38EB00276DAB /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		981CA9DC204E38EB00276DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		981CA9DF204E38EB00276DAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		981CA9E1204E38EB00276DAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		982E67D7204F066800678358 /* DelegationApp-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DelegationApp-macOS.entitlements"; sourceTree = "<group>"; };
+		983988C92050AC910085D0AD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		983988CC2050AF430085D0AD /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9849779920099A4600954C3A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTeamViewController.swift; sourceTree = "<group>"; };
@@ -202,13 +206,47 @@
 			children = (
 				982E67D7204F066800678358 /* DelegationApp-macOS.entitlements */,
 				981CA9D8204E38EB00276DAB /* AppDelegate.swift */,
-				981CA9DA204E38EB00276DAB /* ViewController.swift */,
 				981CA9DC204E38EB00276DAB /* Assets.xcassets */,
-				981CA9DE204E38EB00276DAB /* Main.storyboard */,
 				981CA9E1204E38EB00276DAB /* Info.plist */,
 				981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */,
+				983988C72050ABEE0085D0AD /* Controller */,
+				983988C62050ABE60085D0AD /* View */,
 			);
 			path = "DelegationApp-macOS";
+			sourceTree = "<group>";
+		};
+		983988C62050ABE60085D0AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				981CA9DE204E38EB00276DAB /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		983988C72050ABEE0085D0AD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				983988C82050AC620085D0AD /* Launch */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		983988C82050AC620085D0AD /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				983988CB2050AF2D0085D0AD /* CreateAccount */,
+				981CA9DA204E38EB00276DAB /* LaunchViewController.swift */,
+				983988C92050AC910085D0AD /* LoginViewController.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		983988CB2050AF2D0085D0AD /* CreateAccount */ = {
+			isa = PBXGroup;
+			children = (
+				983988CC2050AF430085D0AD /* CreateAccountViewController.swift */,
+			);
+			path = CreateAccount;
 			sourceTree = "<group>";
 		};
 		984E35261FE1941300F031E0 /* Settings */ = {
@@ -677,11 +715,13 @@
 				981CA9ED204E413F00276DAB /* Utilities.swift in Sources */,
 				981CA9EB204E413A00276DAB /* Team.swift in Sources */,
 				981CA9EE204E414200276DAB /* Status.swift in Sources */,
+				983988CE2050AF430085D0AD /* CreateAccountViewController.swift in Sources */,
 				981CA9F0204E414700276DAB /* Observers.swift in Sources */,
-				981CA9DB204E38EB00276DAB /* ViewController.swift in Sources */,
+				981CA9DB204E38EB00276DAB /* LaunchViewController.swift in Sources */,
 				981CA9EC204E413D00276DAB /* Task.swift in Sources */,
 				981CA9D9204E38EB00276DAB /* AppDelegate.swift in Sources */,
 				981CA9EA204E413800276DAB /* User.swift in Sources */,
+				983988CA2050AC910085D0AD /* LoginViewController.swift in Sources */,
 				981CA9EF204E414400276DAB /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

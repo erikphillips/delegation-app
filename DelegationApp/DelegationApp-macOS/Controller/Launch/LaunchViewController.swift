@@ -8,14 +8,14 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class LaunchViewController: NSViewController {
     
     var user: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Loading ViewController")
+        Logger.log("LaunchViewController viewDidLoad")
 
         // Do any additional setup after loading the view.
         
@@ -36,7 +36,6 @@ class ViewController: NSViewController {
             print(this.user?.toString() ?? "Error")
         }
     }
-    
 
 }
 
