@@ -10,6 +10,8 @@ import Cocoa
 
 class CreateAccountViewController: NSViewController {
 
+    var loginDictionary: NSDictionary?
+    
     @IBOutlet weak var firstNameTextField: NSTextField!
     @IBOutlet weak var lastNameTextField: NSTextField!
     @IBOutlet weak var emailAddressTextField: NSTextField!
@@ -20,6 +22,11 @@ class CreateAccountViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger.log("CreateAccountViewController viewDidLoad")
+        
+        if let dict = self.loginDictionary {
+            self.emailAddressTextField.stringValue = dict.value(forKey: "email") as? String ?? Globals.UserGlobals.DEFAULT_EMAIL
+            self.passwordTextField.stringValue = dict.value(forKey: "password") as? String ?? Globals.UserGlobals.DEFAULT_PASSWORD
+        }
     }
     
     @IBAction func createAccountButtonPressed(_ sender: Any) {

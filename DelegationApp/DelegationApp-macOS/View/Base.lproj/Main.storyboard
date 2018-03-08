@@ -707,45 +707,34 @@
             <objects>
                 <viewController title="Launching Delegation" id="XfG-lQ-9wD" customClass="LaunchViewController" customModule="DelegationApp_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h8k-PS-zK6">
-                                <rect key="frame" x="14" y="13" width="121" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Test Firebase" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G4G-UU-34O">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="loadPressed:" target="XfG-lQ-9wD" id="8Ee-Aw-ZxQ"/>
-                                </connections>
-                            </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Pn-zr-XYm">
-                                <rect key="frame" x="20" y="110" width="440" height="140"/>
+                                <rect key="frame" x="20" y="170" width="440" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyDown" image="AppLogo" id="yKb-Ag-jie"/>
                             </imageView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOY-H7-8fz">
-                                <rect key="frame" x="156" y="83" width="165" height="32"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOY-H7-8fz">
+                                <rect key="frame" x="288" y="64" width="178" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zCV-eA-T60">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="3Gv-Jz-Aeq" kind="sheet" id="Lac-0j-NQS"/>
+                                    <action selector="loginButtonPressed:" target="XfG-lQ-9wD" id="chu-2p-kJc"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NZT-0Q-vSx">
-                                <rect key="frame" x="156" y="57" width="165" height="32"/>
+                                <rect key="frame" x="108" y="64" width="180" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Create Account" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="csA-I2-IZN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="q0q-4S-9EB" kind="sheet" id="bAw-jf-3hg"/>
+                                    <segue destination="q0q-4S-9EB" kind="sheet" identifier="CreateNewAccountSegue" id="bAw-jf-3hg"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9pU-Wx-BvJ">
@@ -759,23 +748,112 @@ All Rights Reserved.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="esY-dY-DlK">
+                                <rect key="frame" x="114" y="132" width="346" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Email Address" drawsBackground="YES" id="FXb-tc-RPG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1n-zk-Axc">
+                                <rect key="frame" x="114" y="100" width="346" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Password" drawsBackground="YES" usesSingleLineMode="YES" id="z0I-14-kFv">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LIy-R2-fXm">
+                                <rect key="frame" x="18" y="137" width="90" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Email Address" id="NAp-FX-6bb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3t-CW-K1p">
+                                <rect key="frame" x="45" y="103" width="63" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="mHR-Nc-aEM">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h8k-PS-zK6">
+                                <rect key="frame" x="345" y="10" width="121" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Test Firebase" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G4G-UU-34O">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loadPressed:" target="XfG-lQ-9wD" id="8Ee-Aw-ZxQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="emailAddressTextField" destination="esY-dY-DlK" id="vZ8-Ft-Ivb"/>
+                        <outlet property="passwordTextField" destination="Y1n-zk-Axc" id="5eK-xb-4u9"/>
+                        <segue destination="wqa-J1-QWL" kind="show" identifier="ShowMainViewSegue" id="bd4-N2-Buu"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="702"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="Flb-0o-lve">
+            <objects>
+                <windowController id="wqa-J1-QWL" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="f8l-sm-bHd">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="314" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+                        <connections>
+                            <outlet property="delegate" destination="wqa-J1-QWL" id="fzN-8d-KVB"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="WwJ-Wm-EQc" kind="relationship" relationship="window.shadowedContentViewController" id="Epk-Fk-zu3"/>
+                    </connections>
+                </windowController>
+                <customObject id="XDF-a4-VbN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="893" y="250"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="es5-Hn-v5C">
+            <objects>
+                <viewController id="WwJ-Wm-EQc" sceneMemberID="viewController">
+                    <view key="view" id="QCI-No-KIe">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="450"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="UAv-es-zBT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1099" y="767"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="4RG-wd-6gI">
             <objects>
                 <viewController id="q0q-4S-9EB" customClass="CreateAccountViewController" customModule="DelegationApp_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="MK8-WP-l7v">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QA0-du-pV9">
-                                <rect key="frame" x="63" y="260" width="70" height="17"/>
+                                <rect key="frame" x="63" y="244" width="70" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="First Name" id="8BF-OF-0t0">
                                     <font key="font" metaFont="system"/>
@@ -784,7 +862,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VCZ-La-IGV">
-                                <rect key="frame" x="64" y="228" width="69" height="17"/>
+                                <rect key="frame" x="64" y="212" width="69" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Last Name" id="gbE-wb-aVK">
                                     <font key="font" metaFont="system"/>
@@ -793,7 +871,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSi-Pk-ZIz">
-                                <rect key="frame" x="43" y="197" width="90" height="17"/>
+                                <rect key="frame" x="43" y="181" width="90" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Email Address" id="lcW-b1-byj">
                                     <font key="font" metaFont="system"/>
@@ -802,7 +880,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fCy-bA-Txw">
-                                <rect key="frame" x="38" y="165" width="95" height="17"/>
+                                <rect key="frame" x="38" y="149" width="95" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Phone Number" id="2AN-oG-e0L">
                                     <font key="font" metaFont="system"/>
@@ -811,7 +889,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdX-xq-bLK">
-                                <rect key="frame" x="70" y="133" width="63" height="17"/>
+                                <rect key="frame" x="70" y="117" width="63" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="Vzz-yc-9Ri">
                                     <font key="font" metaFont="system"/>
@@ -820,7 +898,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpN-IX-erN">
-                                <rect key="frame" x="18" y="101" width="115" height="17"/>
+                                <rect key="frame" x="18" y="85" width="115" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Confirm Password" id="5wc-rp-u2m">
                                     <font key="font" metaFont="system"/>
@@ -829,7 +907,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S5e-A3-QlI">
-                                <rect key="frame" x="148" y="258" width="282" height="22"/>
+                                <rect key="frame" x="148" y="242" width="282" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="First Name" drawsBackground="YES" id="bBS-yE-9cE">
                                     <font key="font" metaFont="system"/>
@@ -838,7 +916,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SX9-B2-St7">
-                                <rect key="frame" x="148" y="226" width="282" height="22"/>
+                                <rect key="frame" x="148" y="210" width="282" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Last Name" drawsBackground="YES" id="BRZ-4R-StF">
                                     <font key="font" metaFont="system"/>
@@ -847,7 +925,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JAy-bi-jk4">
-                                <rect key="frame" x="148" y="194" width="282" height="22"/>
+                                <rect key="frame" x="148" y="178" width="282" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Email Address" drawsBackground="YES" id="r8t-S5-SIX">
                                     <font key="font" metaFont="system"/>
@@ -856,7 +934,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jHK-Z3-adg">
-                                <rect key="frame" x="148" y="162" width="282" height="22"/>
+                                <rect key="frame" x="148" y="146" width="282" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Phone Number" drawsBackground="YES" id="9nk-GN-okw">
                                     <font key="font" metaFont="system"/>
@@ -865,7 +943,7 @@ All Rights Reserved.</string>
                                 </textFieldCell>
                             </textField>
                             <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rXS-G2-AOT">
-                                <rect key="frame" x="148" y="130" width="282" height="22"/>
+                                <rect key="frame" x="148" y="114" width="282" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Password" drawsBackground="YES" usesSingleLineMode="YES" id="vWA-BY-ajt">
                                     <font key="font" metaFont="system"/>
@@ -877,7 +955,7 @@ All Rights Reserved.</string>
                                 </secureTextFieldCell>
                             </secureTextField>
                             <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VkT-dR-2SZ">
-                                <rect key="frame" x="148" y="98" width="282" height="22"/>
+                                <rect key="frame" x="148" y="82" width="282" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Confirm Password" drawsBackground="YES" usesSingleLineMode="YES" id="Elx-92-Wan">
                                     <font key="font" metaFont="system"/>
@@ -889,7 +967,7 @@ All Rights Reserved.</string>
                                 </secureTextFieldCell>
                             </secureTextField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B5K-Fa-gQ3">
-                                <rect key="frame" x="302" y="29" width="135" height="32"/>
+                                <rect key="frame" x="302" y="13" width="135" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="p0r-hU-17B">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -903,7 +981,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UP7-PL-orR">
-                                <rect key="frame" x="302" y="62" width="134" height="32"/>
+                                <rect key="frame" x="302" y="46" width="134" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Create Account" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FTZ-NG-htP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -913,6 +991,15 @@ Gw
                                     <action selector="createAccountButtonPressed:" target="q0q-4S-9EB" id="4ig-fz-1Km"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QcK-QD-cXk">
+                                <rect key="frame" x="18" y="291" width="415" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Create New Account" id="Jrf-FK-AlN">
+                                    <font key="font" metaFont="system" size="24"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -926,18 +1013,18 @@ Gw
                 </viewController>
                 <customObject id="OzV-yX-NzB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-277" y="1178"/>
+            <point key="canvasLocation" x="-274" y="1200"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="v7M-WB-Q30">
             <objects>
                 <viewController id="3Gv-Jz-Aeq" customClass="LoginViewController" customModule="DelegationApp_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="WXH-fW-9FS">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="220"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QmI-Cf-dcx">
-                                <rect key="frame" x="114" y="258" width="316" height="22"/>
+                                <rect key="frame" x="114" y="122" width="316" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Email Address" drawsBackground="YES" id="aLh-XR-88Z">
                                     <font key="font" metaFont="system"/>
@@ -946,7 +1033,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wyh-dK-AdC">
-                                <rect key="frame" x="114" y="226" width="316" height="22"/>
+                                <rect key="frame" x="114" y="90" width="316" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Password" drawsBackground="YES" usesSingleLineMode="YES" id="6jD-sc-c1O">
                                     <font key="font" metaFont="system"/>
@@ -958,7 +1045,7 @@ Gw
                                 </secureTextFieldCell>
                             </secureTextField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GfO-8S-bYb">
-                                <rect key="frame" x="18" y="263" width="90" height="17"/>
+                                <rect key="frame" x="18" y="127" width="90" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Email Address" id="mFb-4y-wia">
                                     <font key="font" metaFont="system"/>
@@ -967,7 +1054,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2Y-Ze-tu0">
-                                <rect key="frame" x="45" y="229" width="63" height="17"/>
+                                <rect key="frame" x="45" y="93" width="63" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="qes-l0-68p">
                                     <font key="font" metaFont="system"/>
@@ -976,7 +1063,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-xh-JaU">
-                                <rect key="frame" x="301" y="190" width="132" height="32"/>
+                                <rect key="frame" x="301" y="54" width="132" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IgQ-wi-iB1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -987,7 +1074,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFI-Kb-Ugx">
-                                <rect key="frame" x="301" y="157" width="132" height="32"/>
+                                <rect key="frame" x="301" y="21" width="132" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4M4-Dk-EBP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1000,19 +1087,32 @@ Gw
                                     <action selector="cancelButtonPressed:" target="3Gv-Jz-Aeq" id="6Ln-aG-zho"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t5T-ZJ-p8h">
+                                <rect key="frame" x="18" y="171" width="414" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Delegation Application Login" id="edf-xs-QGs">
+                                    <font key="font" metaFont="system" size="24"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="emailAddressTextField" destination="QmI-Cf-dcx" id="nUy-0s-AJx"/>
                         <outlet property="passwordTextField" destination="Wyh-dK-AdC" id="yPi-ES-rFq"/>
+                        <segue destination="wqa-J1-QWL" kind="show" identifier="ShowMainViewSegue" id="Phi-pa-0d1"/>
                     </connections>
                 </viewController>
                 <customObject id="fMZ-Vk-Lcu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="239" y="1178"/>
+            <point key="canvasLocation" x="259" y="1140"/>
         </scene>
     </scenes>
     <resources>
         <image name="AppLogo" width="799" height="227"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="bd4-N2-Buu"/>
+    </inferredMetricsTieBreakers>
 </document>

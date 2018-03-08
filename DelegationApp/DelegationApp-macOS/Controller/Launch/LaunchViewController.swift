@@ -12,19 +12,25 @@ class LaunchViewController: NSViewController {
     
     var user: User?
 
+    @IBOutlet weak var emailAddressTextField: NSTextField!
+    @IBOutlet weak var passwordTextField: NSSecureTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         Logger.log("LaunchViewController viewDidLoad")
-
-        // Do any additional setup after loading the view.
         
     }
-
+    
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
+    }
+    
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        Logger.log("loginButtonPressed, show main segue called")
+        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowMainViewSegue"), sender: nil)
     }
     
     @IBAction func loadPressed(_ sender: Any) {
@@ -34,6 +40,16 @@ class LaunchViewController: NSViewController {
             [weak self] in
             guard let this = self else { return }
             print(this.user?.toString() ?? "Error")
+        }
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier?.rawValue == "CreateNewAccountSegue" {
+            if let dest = segue.destinationController as? CreateAccountViewController {
+                Logger.log("CreateNewAccountSegue called")
+                dest.loginDictionary = ["email": self.emailAddressTextField.stringValue,
+                                        "password": self.passwordTextField.stringValue]
+            }
         }
     }
 
