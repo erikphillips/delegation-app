@@ -12,7 +12,7 @@ class SideBarViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        Logger.log("SideBarViewController viewDidLoad")
     }
     
 }

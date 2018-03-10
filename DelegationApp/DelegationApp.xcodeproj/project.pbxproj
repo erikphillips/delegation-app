@@ -44,6 +44,9 @@
 		98859311200484CC00259079 /* SettingsJoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859310200484CC00259079 /* SettingsJoinTeamTableViewCell.swift */; };
 		98859313200484E300259079 /* SettingsJoinTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */; };
 		98859315200484FB00259079 /* SettingsCreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */; };
+		9893FF382053A66400798CFE /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF362053A66400798CFE /* HeaderViewController.swift */; };
+		9893FF3B2053A68700798CFE /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3A2053A68700798CFE /* SideBarViewController.swift */; };
+		9893FF3E2053A69800798CFE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3C2053A69800798CFE /* MainViewController.swift */; };
 		98BAFF27201A6D3A002C253A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BAFF26201A6D3A002C253A /* Logger.swift */; };
 		98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B01FE19CA3009329B2 /* SettingsViewController.swift */; };
 		98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */; };
@@ -118,6 +121,9 @@
 		98859310200484CC00259079 /* SettingsJoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsJoinTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsJoinTeamTableViewController.swift; sourceTree = "<group>"; };
 		98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCreateTeamViewController.swift; sourceTree = "<group>"; };
+		9893FF362053A66400798CFE /* HeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
+		9893FF3A2053A68700798CFE /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
+		9893FF3C2053A69800798CFE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		98BAFF26201A6D3A002C253A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		98C597B01FE19CA3009329B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 			children = (
 				9893FF342053A59D00798CFE /* Deprecated */,
 				983988C82050AC620085D0AD /* Launch */,
+				9893FF352053A63200798CFE /* Main */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -351,6 +358,16 @@
 				983988C92050AC910085D0AD /* LoginViewController.swift */,
 			);
 			path = Deprecated;
+			sourceTree = "<group>";
+		};
+		9893FF352053A63200798CFE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9893FF362053A66400798CFE /* HeaderViewController.swift */,
+				9893FF3A2053A68700798CFE /* SideBarViewController.swift */,
+				9893FF3C2053A69800798CFE /* MainViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		98C597B21FE2E332009329B2 /* Tasks */ = {
@@ -725,7 +742,10 @@
 				981CA9EE204E414200276DAB /* Status.swift in Sources */,
 				983988CE2050AF430085D0AD /* CreateAccountViewController.swift in Sources */,
 				981CA9F0204E414700276DAB /* Observers.swift in Sources */,
+				9893FF382053A66400798CFE /* HeaderViewController.swift in Sources */,
 				981CA9DB204E38EB00276DAB /* LaunchViewController.swift in Sources */,
+				9893FF3E2053A69800798CFE /* MainViewController.swift in Sources */,
+				9893FF3B2053A68700798CFE /* SideBarViewController.swift in Sources */,
 				981CA9EC204E413D00276DAB /* Task.swift in Sources */,
 				981CA9D9204E38EB00276DAB /* AppDelegate.swift in Sources */,
 				981CA9EA204E413800276DAB /* User.swift in Sources */,
