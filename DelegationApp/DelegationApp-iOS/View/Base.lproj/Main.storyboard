@@ -13,7 +13,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,7 +132,7 @@
         <!--Create Account Initial View Controller-->
         <scene sceneID="Vym-Jj-ld9">
             <objects>
-                <viewController id="2cE-3t-tiV" customClass="CreateAccountInitialViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2cE-3t-tiV" customClass="CreateAccountInitialViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tlf-GJ-R2w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,7 +266,7 @@
         <!--Create Account Team Prompt View Controller-->
         <scene sceneID="OIq-sO-zcD">
             <objects>
-                <viewController id="wtY-eC-XBQ" customClass="CreateAccountTeamPromptViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wtY-eC-XBQ" customClass="CreateAccountTeamPromptViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kXS-1d-F9u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -368,7 +368,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Team Details-->
         <scene sceneID="InH-21-NOk">
             <objects>
-                <tableViewController title="Team Details" id="aEU-cN-X3n" customClass="CreateAccountTeamDetailTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Team Details" id="aEU-cN-X3n" customClass="CreateAccountTeamDetailTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nz4-8z-MY5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -515,7 +515,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Team Selection-->
         <scene sceneID="RcJ-gr-skb">
             <objects>
-                <tableViewController title="Team Selection" id="9pc-Tl-339" customClass="CreateAccountJoinTeamTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Team Selection" id="9pc-Tl-339" customClass="CreateAccountJoinTeamTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CFU-L2-FAB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -539,7 +539,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TeamSelectionCell" id="zOe-eQ-pAA" customClass="CreateAccountJoinTeamTableViewCell" customModule="DelegationApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TeamSelectionCell" id="zOe-eQ-pAA" customClass="CreateAccountJoinTeamTableViewCell" customModule="DelegationApp_iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zOe-eQ-pAA" id="bmw-Rj-lCE">
@@ -584,7 +584,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Create Account Create Team View Controller-->
         <scene sceneID="YgH-TZ-rBr">
             <objects>
-                <viewController id="jWV-aX-oiQ" customClass="CreateAccountCreateTeamViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jWV-aX-oiQ" customClass="CreateAccountCreateTeamViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JBb-2N-MJU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -684,7 +684,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Tasks-->
         <scene sceneID="Q3B-Vl-D2N">
             <objects>
-                <viewController id="VD3-hr-ohW" customClass="TasksViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VD3-hr-ohW" customClass="TasksViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3JL-Q7-4HN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -694,7 +694,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskCell" rowHeight="100" id="CU7-3k-Xxn" customClass="TasksTableViewCell" customModule="DelegationApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskCell" rowHeight="100" id="CU7-3k-Xxn" customClass="TasksTableViewCell" customModule="DelegationApp_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CU7-3k-Xxn" id="ioa-xa-oIY">
@@ -801,7 +801,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Task Details-->
         <scene sceneID="NuH-FB-tnw">
             <objects>
-                <tableViewController title="Task Details" id="mGx-XA-i5x" customClass="TaskDetailTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Task Details" id="mGx-XA-i5x" customClass="TaskDetailTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ck6-PO-7IS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1016,7 +1016,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Change Assignee-->
         <scene sceneID="Yqa-6j-Uwu">
             <objects>
-                <tableViewController title="Change Assignee" id="nHn-aX-O13" customClass="TaskChangeAssigneeTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Change Assignee" id="nHn-aX-O13" customClass="TaskChangeAssigneeTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SPT-LX-rhf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1064,7 +1064,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Change Team-->
         <scene sceneID="Gdg-9A-uM8">
             <objects>
-                <tableViewController title="Change Team" id="fZh-f3-6Jc" customClass="TaskChangeTeamTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Change Team" id="fZh-f3-6Jc" customClass="TaskChangeTeamTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cmh-Dx-n4b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1105,7 +1105,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Home-->
         <scene sceneID="lBu-f3-Fyh">
             <objects>
-                <viewController id="dRI-uF-Knz" customClass="HomeViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dRI-uF-Knz" customClass="HomeViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cJD-GS-oAc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1131,7 +1131,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Main Tab Bar View Controller-->
         <scene sceneID="hyn-po-v0n">
             <objects>
-                <tabBarController id="RDA-9x-nGO" customClass="MainTabBarViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="RDA-9x-nGO" customClass="MainTabBarViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iYx-hS-lFn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1151,7 +1151,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Create Task-->
         <scene sceneID="MXS-Qr-h5U">
             <objects>
-                <viewController title="Create Task" id="awO-af-s8G" customClass="CreateTaskViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Create Task" id="awO-af-s8G" customClass="CreateTaskViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Ai-wj-9T6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1246,7 +1246,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Teams-->
         <scene sceneID="Ew2-fy-kRg">
             <objects>
-                <viewController id="NV4-a9-VCF" customClass="TeamViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NV4-a9-VCF" customClass="TeamViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6qb-lL-wrQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1256,7 +1256,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TeamReuseCell" id="tbV-6M-Gj2" customClass="TeamTableViewCell" customModule="DelegationApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TeamReuseCell" id="tbV-6M-Gj2" customClass="TeamTableViewCell" customModule="DelegationApp_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tbV-6M-Gj2" id="h5B-ON-wUy">
@@ -1303,7 +1303,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Create Team-->
         <scene sceneID="Lrt-zD-Bpy">
             <objects>
-                <viewController title="Create Team" id="KTi-xq-uj9" customClass="CreateNewTeamViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Create Team" id="KTi-xq-uj9" customClass="CreateNewTeamViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UH1-xd-URZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1367,7 +1367,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Utilities View Controller-->
         <scene sceneID="Aqn-J6-xe1">
             <objects>
-                <viewController id="fEd-CR-YaB" customClass="UtilitiesViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fEd-CR-YaB" customClass="UtilitiesViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4hE-1o-Pp2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1511,7 +1511,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Create Task Select Team Table View Controller-->
         <scene sceneID="dcZ-Jg-8HW">
             <objects>
-                <tableViewController storyboardIdentifier="CreateTaskSelectTeam" id="GA4-rG-wwz" customClass="CreateTaskSelectTeamTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CreateTaskSelectTeam" id="GA4-rG-wwz" customClass="CreateTaskSelectTeamTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9m5-Wb-aTu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1570,7 +1570,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Settings-->
         <scene sceneID="Dyx-ym-yRj">
             <objects>
-                <viewController id="ZEK-CF-VPe" customClass="SettingsViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZEK-CF-VPe" customClass="SettingsViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dh5-Oe-uyO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1599,7 +1599,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Team Details-->
         <scene sceneID="92U-tP-9m8">
             <objects>
-                <tableViewController title="Team Details" id="hcz-Rd-6Fg" customClass="TeamDetailTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Team Details" id="hcz-Rd-6Fg" customClass="TeamDetailTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SRK-F9-a70">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1733,13 +1733,13 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Team Tasks-->
         <scene sceneID="hP6-Q4-IO5">
             <objects>
-                <tableViewController title="Team Tasks" id="4es-nG-0G1" customClass="TeamSpecificTasksTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Team Tasks" id="4es-nG-0G1" customClass="TeamSpecificTasksTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="abU-wi-XB1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeamSpecificTaskCell" rowHeight="75" id="Qqu-Gq-1BG" customClass="TeamSpecificTaskTableViewCell" customModule="DelegationApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeamSpecificTaskCell" rowHeight="75" id="Qqu-Gq-1BG" customClass="TeamSpecificTaskTableViewCell" customModule="DelegationApp_iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qqu-Gq-1BG" id="caZ-h8-BYK">
@@ -1821,7 +1821,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
         <!--Settings Table View Controller-->
         <scene sceneID="tM0-7V-IEP">
             <objects>
-                <tableViewController id="3NS-VD-ag1" customClass="SettingsTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="3NS-VD-ag1" customClass="SettingsTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qiO-oK-8wE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2056,7 +2056,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                         <rect key="frame" x="0.0" y="568" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dop-tC-sh3" id="0aS-oT-hPd">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbP-Ge-02h">
@@ -2077,18 +2077,18 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                         <rect key="frame" x="0.0" y="612" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2zT-gf-ex4" id="b30-Mr-Pz7">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Account Support" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zYe-r7-YYR">
-                                                    <rect key="frame" x="15" y="5" width="130" height="20.5"/>
+                                                    <rect key="frame" x="16" y="5" width="130" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.16862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="delegation.application@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5o2-Vd-uiu">
-                                                    <rect key="frame" x="15" y="25.5" width="194" height="14.5"/>
+                                                    <rect key="frame" x="16" y="25.5" width="194" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.48627450979999998" green="0.68627450980000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2140,7 +2140,7 @@ Creating a new team will automatically place you as the owner/admin of the team 
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oj6-bM-aBH">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <string key="text">Copyright © 2017-2018 Erik Phillips 
 All Rights Reserved.</string>
@@ -2174,7 +2174,7 @@ All Rights Reserved.</string>
         <!--Update Account Settings View Controller-->
         <scene sceneID="GPQ-bS-KAk">
             <objects>
-                <viewController id="ICn-tI-Lah" customClass="UpdateAccountSettingsViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ICn-tI-Lah" customClass="UpdateAccountSettingsViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B4u-9L-iAe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2298,13 +2298,13 @@ All Rights Reserved.</string>
         <!--Join Teams-->
         <scene sceneID="MQ2-Mo-uwq">
             <objects>
-                <tableViewController title="Join Teams" id="746-f8-xxd" customClass="SettingsJoinTeamTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Join Teams" id="746-f8-xxd" customClass="SettingsJoinTeamTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Iqw-Ve-NpI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsJoinTeamCell" id="ca8-cd-9AS" customClass="SettingsJoinTeamTableViewCell" customModule="DelegationApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsJoinTeamCell" id="ca8-cd-9AS" customClass="SettingsJoinTeamTableViewCell" customModule="DelegationApp_iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ca8-cd-9AS" id="vaX-FK-tqB">
@@ -2347,7 +2347,7 @@ All Rights Reserved.</string>
         <!--Create Team-->
         <scene sceneID="kOB-dM-o5h">
             <objects>
-                <viewController title="Create Team" id="TDw-7Z-dRX" customClass="SettingsCreateTeamViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Create Team" id="TDw-7Z-dRX" customClass="SettingsCreateTeamViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qs3-67-BbK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2419,7 +2419,7 @@ All Rights Reserved.</string>
         <!--Change Owner-->
         <scene sceneID="cN5-TH-Fll">
             <objects>
-                <tableViewController title="Change Owner" id="c1f-lm-WIw" customClass="TeamChangeOwnerTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Change Owner" id="c1f-lm-WIw" customClass="TeamChangeOwnerTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rhd-9N-5Zv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2467,13 +2467,13 @@ All Rights Reserved.</string>
         <!--Your Teams-->
         <scene sceneID="Gcd-aF-xZM">
             <objects>
-                <tableViewController title="Your Teams" id="uuV-gz-KrN" customClass="SettingsTeamTableViewController" customModule="DelegationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Your Teams" id="uuV-gz-KrN" customClass="SettingsTeamTableViewController" customModule="DelegationApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yX0-sd-RcD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTeamCell" textLabel="bIz-6g-QMx" detailTextLabel="DGn-id-SVr" style="IBUITableViewCellStyleSubtitle" id="MQG-Zz-2hj" customClass="SettingsTeamTableViewCell" customModule="DelegationApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTeamCell" textLabel="bIz-6g-QMx" detailTextLabel="DGn-id-SVr" style="IBUITableViewCellStyleSubtitle" id="MQG-Zz-2hj" customClass="SettingsTeamTableViewCell" customModule="DelegationApp_iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MQG-Zz-2hj" id="yg8-xG-Xnb">
