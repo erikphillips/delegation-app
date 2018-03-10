@@ -31,15 +31,16 @@ class LaunchViewController: NSViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
         Logger.log("loginButtonPressed, show main segue called")
         self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowMainViewSegue"), sender: nil)
+        self.view.window?.close()
     }
     
     @IBAction func loadPressed(_ sender: Any) {
         print("Button Pressed")
         self.user = User(uuid: "Kd8p3fl5xyPT0g9BGkHASF025D23")
-        user?.setupCallback = {
+        self.user?.setupCallback = {
             [weak self] in
             guard let this = self else { return }
-            print(this.user?.toString() ?? "Error")
+            Logger.log(this.user?.toString() ?? "Error")
         }
     }
     

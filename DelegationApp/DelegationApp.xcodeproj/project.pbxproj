@@ -226,6 +226,7 @@
 		983988C72050ABEE0085D0AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9893FF342053A59D00798CFE /* Deprecated */,
 				983988C82050AC620085D0AD /* Launch */,
 			);
 			path = Controller;
@@ -236,7 +237,6 @@
 			children = (
 				983988CB2050AF2D0085D0AD /* CreateAccount */,
 				981CA9DA204E38EB00276DAB /* LaunchViewController.swift */,
-				983988C92050AC910085D0AD /* LoginViewController.swift */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -343,6 +343,14 @@
 				984E35261FE1941300F031E0 /* Settings */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		9893FF342053A59D00798CFE /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				983988C92050AC910085D0AD /* LoginViewController.swift */,
+			);
+			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		98C597B21FE2E332009329B2 /* Tasks */ = {
