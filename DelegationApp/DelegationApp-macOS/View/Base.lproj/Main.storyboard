@@ -836,7 +836,7 @@ All Rights Reserved.</string>
                         <touchBarItem id="xlU-ny-hz8">
                             <viewController key="viewController" id="w25-Ht-urW">
                                 <segmentedControl key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDU-rP-SBZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="3"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="jAK-xv-X2D">
                                         <font key="font" metaFont="system"/>
@@ -865,7 +865,7 @@ All Rights Reserved.</string>
                         </touchBarItem>
                         <touchBarItem id="wxw-K3-BPO">
                             <viewController key="viewController" id="YUc-aR-EiC">
-                                <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DJM-XN-paI">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DJM-XN-paI">
                                     <rect key="frame" x="0.0" y="0.0" width="84" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QDi-pg-9sl">
@@ -878,7 +878,7 @@ All Rights Reserved.</string>
                         </touchBarItem>
                         <touchBarItem id="JVi-bL-LOy">
                             <viewController key="viewController" id="ISB-9u-w22">
-                                <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uF6-f2-uNx">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uF6-f2-uNx">
                                     <rect key="frame" x="0.0" y="0.0" width="84" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="New Task" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bN1-py-vhu">
@@ -1095,10 +1095,10 @@ All Rights Reserved.</string>
             </objects>
             <point key="canvasLocation" x="1067" y="1542"/>
         </scene>
-        <!--RightSideBarViewController-->
+        <!--LeftSideBarViewController-->
         <scene sceneID="1y1-8i-NTC">
             <objects>
-                <viewController title="RightSideBarViewController" id="XRC-Qa-ZPC" customClass="SideBarViewController" customModule="DelegationApp_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="LeftSideBarViewController" id="XRC-Qa-ZPC" customClass="SideBarViewController" customModule="DelegationApp_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="vOh-3h-jw9">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="650"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1117,7 +1117,7 @@ All Rights Reserved.</string>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="145" minWidth="40" maxWidth="1000" id="jJf-to-QXE">
+                                                <tableColumn identifier="teams" width="145" minWidth="40" maxWidth="1000" headerToolTip="Teams by Title" id="jJf-to-QXE">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Teams">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1155,7 +1155,7 @@ All Rights Reserved.</string>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ROB-Jk-wAs">
-                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
+                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="gky-HF-Uo1">
@@ -1169,6 +1169,9 @@ All Rights Reserved.</string>
                             </scrollView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="sideTableView" destination="ohj-CI-ZcK" id="KzF-bq-0UK"/>
+                    </connections>
                 </viewController>
                 <customObject id="Rkr-Za-Vr9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1196,7 +1199,7 @@ All Rights Reserved.</string>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="355" minWidth="40" maxWidth="1000" id="Tr0-wi-3aI">
+                                                <tableColumn identifier="title" width="355" minWidth="40" maxWidth="1000" headerToolTip="Task Title" id="Tr0-wi-3aI">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Title">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1229,7 +1232,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="127" minWidth="40" maxWidth="1000" id="Olq-Pb-hgA">
+                                                <tableColumn identifier="team" width="127" minWidth="40" maxWidth="1000" headerToolTip="Task Team" id="Olq-Pb-hgA">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Team">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1262,7 +1265,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="97" minWidth="10" maxWidth="3.4028234663852886e+38" id="Uyj-iT-Zbq">
+                                                <tableColumn identifier="assignee" width="97" minWidth="10" maxWidth="3.4028234663852886e+38" headerToolTip="Task Assignee" id="Uyj-iT-Zbq">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Assignee">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1295,7 +1298,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Sgg-8e-BIs">
+                                                <tableColumn identifier="originator" width="125" minWidth="10" maxWidth="3.4028234663852886e+38" headerToolTip="Task Originator" id="Sgg-8e-BIs">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Originator">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1328,7 +1331,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="77" minWidth="10" maxWidth="3.4028234663852886e+38" id="qjN-7W-imy">
+                                                <tableColumn identifier="status" width="77" minWidth="10" maxWidth="3.4028234663852886e+38" headerToolTip="Task Status" id="qjN-7W-imy">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Status">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1361,7 +1364,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="49" minWidth="10" maxWidth="3.4028234663852886e+38" id="M63-U8-Kqd">
+                                                <tableColumn identifier="priority" width="49" minWidth="10" maxWidth="3.4028234663852886e+38" headerToolTip="Task Priority" id="M63-U8-Kqd">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Priority">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1399,7 +1402,7 @@ All Rights Reserved.</string>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="5Ev-Tj-r53">
-                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
+                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="zgB-iK-Pn5">
@@ -1413,6 +1416,9 @@ All Rights Reserved.</string>
                             </scrollView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="mainTableView" destination="xUf-lR-ccB" id="Hjn-W9-hkI"/>
+                    </connections>
                 </viewController>
                 <customObject id="R2h-WV-kR2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1439,7 +1445,7 @@ All Rights Reserved.</string>
                                 <rect key="frame" x="20" y="20" width="410" height="230"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="Gr2-fU-f6Z">
-                                    <rect key="frame" x="1" y="23" width="408" height="206"/>
+                                    <rect key="frame" x="1" y="0.0" width="408" height="229"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="6ks-82-6s7" viewBased="YES" id="UU1-gj-ENb">
@@ -1487,7 +1493,7 @@ All Rights Reserved.</string>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="EjH-tu-cN6">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="rmF-hV-2PE">
@@ -1672,7 +1678,7 @@ All Rights Reserved.</string>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="llf-wZ-sbQ">
                                 <rect key="frame" x="90" y="26" width="242" height="11"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="&lt;version_build&gt;" id="a44-Pj-kPN">
-                                    <font key="font" metaFont="system" size="9"/>
+                                    <font key="font" metaFont="miniSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1784,14 +1790,14 @@ All Rights Reserved.</string>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4S-cb-Dgf">
                                 <rect key="frame" x="20" y="61" width="310" height="250"/>
                                 <clipView key="contentView" id="Q8S-ze-usV">
-                                    <rect key="frame" x="1" y="1" width="293" height="248"/>
+                                    <rect key="frame" x="1" y="1" width="308" height="248"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Mko-0V-BEd">
-                                            <rect key="frame" x="0.0" y="0.0" width="293" height="248"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="308" height="248"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="293" height="248"/>
+                                            <size key="minSize" width="308" height="248"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </textView>
@@ -1803,7 +1809,7 @@ All Rights Reserved.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="AuU-wn-eXf">
-                                    <rect key="frame" x="294" y="1" width="15" height="248"/>
+                                    <rect key="frame" x="293" y="1" width="16" height="248"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1913,14 +1919,14 @@ All Rights Reserved.</string>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4P-Gq-RA2">
                                 <rect key="frame" x="20" y="61" width="310" height="212"/>
                                 <clipView key="contentView" id="ox8-fq-37X">
-                                    <rect key="frame" x="1" y="1" width="293" height="210"/>
+                                    <rect key="frame" x="1" y="1" width="308" height="210"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="3n6-Ts-SHS">
-                                            <rect key="frame" x="0.0" y="0.0" width="293" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="308" height="210"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="293" height="210"/>
+                                            <size key="minSize" width="308" height="210"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </textView>
@@ -1932,7 +1938,7 @@ All Rights Reserved.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="nRB-I7-UZx">
-                                    <rect key="frame" x="294" y="1" width="15" height="210"/>
+                                    <rect key="frame" x="293" y="1" width="16" height="210"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
