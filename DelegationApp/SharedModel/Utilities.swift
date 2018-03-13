@@ -616,8 +616,6 @@ class FirebaseUtilities {
         })
     }
     
-    #if TARGET_OS_IOS
-    // iOS only code
     static func performWelcomeProcedure(username: String, password: String, callback: @escaping ((_ user: User?, _ tasks: [Task]?, _ status: Status) -> Void)) {
         loginUser(username: username, password: password, callback: { (uuid, error) in
             if let uuid = uuid {
@@ -651,5 +649,4 @@ class FirebaseUtilities {
         })
     }
     
-    #endif
 }
