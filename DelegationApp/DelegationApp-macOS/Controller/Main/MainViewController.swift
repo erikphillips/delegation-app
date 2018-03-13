@@ -21,6 +21,8 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        
+        self.mainTableView.doubleAction = #selector(MainViewController.doubleClickRow)
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -39,6 +41,15 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         }
         
         return result
+    }
+    
+    @objc func doubleClickRow() {
+        Logger.log("doubleClickRow \(self.mainTableView.clickedRow)")
+        
+        let selectedRow = self.mainTableView.clickedRow
+        if selectedRow >= 0 {
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowTaskDetailSegue"), sender: nil)
+        }
     }
     
 }

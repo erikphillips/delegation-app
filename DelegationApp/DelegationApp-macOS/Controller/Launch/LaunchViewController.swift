@@ -14,6 +14,7 @@ class LaunchViewController: NSViewController {
 
     @IBOutlet weak var emailAddressTextField: NSTextField!
     @IBOutlet weak var passwordTextField: NSSecureTextField!
+    @IBOutlet weak var loginProgressIndicator: NSProgressIndicator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +29,49 @@ class LaunchViewController: NSViewController {
         }
     }
     
+    @IBAction func demoLoadAdminBtnPressed(_ sender: Any) {
+        Logger.log("demoLoadAdminBtnPressed")
+        self.emailAddressTextField.stringValue = "admin@delegation.com"
+        self.passwordTextField.stringValue = "password"
+    }
+    
     @IBAction func loginButtonPressed(_ sender: Any) {
         Logger.log("loginButtonPressed, show main segue called")
-        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowMainViewSegue"), sender: nil)
-        self.view.window?.close()
+        
+        let username = self.emailAddressTextField.stringValue
+        let password = self.passwordTextField.stringValue
+        
+        self.loginProgressIndicator.startAnimation(nil)
+        FirebaseUtilities.performWelcomeProcedure(username: username, password: password, callback: {
+            [weak self] (user, tasks, status) in
+            guard let this = self else { return }
+            
+            if let user = user {
+                this.user = user
+                this.user?.setupCallback = {
+                    [weak this] in
+                    guard let that = this else { return }
+                    that.loginProgressIndicator.stopAnimation(nil)
+                    that.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowMainViewSegue"), sender: nil)
+                    that.view.window?.close()
+                }
+            } else {
+                Logger.log("loginButtonPressed error: unable to retrieve a valid user", event: .error)
+                if status.status == false {
+                    this.loginProgressIndicator.stopAnimation(nil)
+                    let _ = this.displayAlert(title: "Unable to Login", message: "Unable to login with provided username and password \(status.message)")
+                }
+            }
+        })
+    }
+    
+    func displayAlert(title: String, message: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.informativeText = message
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        return alert.runModal() == .alertFirstButtonReturn
     }
     
     @IBAction func loadPressed(_ sender: Any) {
@@ -50,6 +90,13 @@ class LaunchViewController: NSViewController {
                 Logger.log("CreateNewAccountSegue called")
                 dest.loginDictionary = ["email": self.emailAddressTextField.stringValue,
                                         "password": self.passwordTextField.stringValue]
+            }
+        }
+        
+        if segue.identifier?.rawValue == "ShowMainViewSegue" {
+            if let dest = segue.destinationController as? MainWindowController {
+                Logger.log("ShowMainViewSegue called")
+                dest.user = self.user
             }
         }
     }
