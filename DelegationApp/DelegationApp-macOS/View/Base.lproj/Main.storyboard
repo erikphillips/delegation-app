@@ -64,6 +64,7 @@
                                         <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
+                                                <segue destination="B8D-0N-5wS" kind="show" id="dY4-Lm-ICN"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
@@ -680,7 +681,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="78" y="-113"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -819,19 +820,142 @@ All Rights Reserved.</string>
         <!--Window Controller-->
         <scene sceneID="Flb-0o-lve">
             <objects>
-                <windowController id="wqa-J1-QWL" sceneMemberID="viewController">
+                <windowController id="wqa-J1-QWL" customClass="MainWindowController" customModule="DelegationApp_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Delegation" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="f8l-sm-bHd">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="314" width="1000" height="700"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
                         <value key="minSize" type="size" width="1000" height="700"/>
+                        <toolbar key="toolbar" implicitIdentifier="A30F4DF0-E91D-41F9-9003-BA08478C4442" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="ujc-BJ-tBv">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="4580E1E2-C50A-4C10-A7F2-43116DC79C56" label="" paletteLabel="App Logo" image="AppLogo" id="3Py-pV-Bva">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="110" height="30"/>
+                                    <size key="maxSize" width="110" height="30"/>
+                                    <imageView key="view" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="hka-Oa-9Kd">
+                                        <rect key="frame" x="0.0" y="14" width="110" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppLogo" id="IsG-qp-oyw"/>
+                                    </imageView>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="BA2B5B6A-90CE-469A-A355-60D1B13F1A18" label="Search" paletteLabel="Search" image="SearchGlyph" id="cLp-i1-EaS">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="30" height="30"/>
+                                    <size key="maxSize" width="48" height="48"/>
+                                    <button key="view" id="JxP-Li-X4Q">
+                                        <rect key="frame" x="7" y="14" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SearchGlyph" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="vPd-hL-7eV">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="0Aq-At-sjU" kind="popover" popoverAnchorView="JxP-Li-X4Q" popoverBehavior="t" preferredEdge="maxY" id="XJg-Ki-IZa"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="192B1116-06BF-446C-A617-5F2B64768E65" label="Refresh" paletteLabel="Refresh" image="RefreshGlyph" id="w6M-9Y-jTw">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="30" height="30"/>
+                                    <size key="maxSize" width="48" height="48"/>
+                                    <button key="view" id="w2I-mU-wJf">
+                                        <rect key="frame" x="9" y="14" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="RefreshGlyph" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="kAd-Qm-2We">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="A1CECC2F-F30B-4E00-A377-C36B61F97F0D" label="New Task" paletteLabel="New Task" image="CreateNewGlyph" id="pyh-1B-vhH">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="30" height="30"/>
+                                    <size key="maxSize" width="48" height="48"/>
+                                    <button key="view" id="9i7-am-dtL">
+                                        <rect key="frame" x="14" y="14" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="CreateNewGlyph" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Cqj-9y-LOY">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="grA-p4-Xqt" kind="show" id="lNK-Ax-AEb"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="47768F30-721A-46A3-B56C-244A760E344E" label="New Team" paletteLabel="New Team" image="PlusGlyph" id="b8m-2u-bDU">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="30" height="30"/>
+                                    <size key="maxSize" width="48" height="48"/>
+                                    <button key="view" id="WC1-1j-j9U">
+                                        <rect key="frame" x="16" y="14" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PlusGlyph" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="isi-5z-hS6">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="vIq-K4-ygM" kind="show" id="FZ7-8Z-15o"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="EDA49806-F185-4B3B-A824-8ACC776EB8CA" label="Settings" paletteLabel="Settings" image="SettingsGlyph" id="JM6-gc-Gjc">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="30" height="30"/>
+                                    <size key="maxSize" width="48" height="48"/>
+                                    <button key="view" id="5N3-uG-jRZ">
+                                        <rect key="frame" x="11" y="14" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SettingsGlyph" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="4xp-ji-HhA">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="L0u-3P-Gwt" kind="show" id="5SL-mA-pd5"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="MaJ-bE-Q5u"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="r2W-gk-HH1"/>
+                                <toolbarItem implicitItemIdentifier="F27A0FB8-E868-4353-B801-361729712E78" label="" paletteLabel="Segmented Filtering" id="mup-Tn-vUG">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="278" height="23"/>
+                                    <size key="maxSize" width="278" height="23"/>
+                                    <segmentedControl key="view" toolTip="Show Personal Tasks" verticalHuggingPriority="750" id="AR3-9p-asp">
+                                        <rect key="frame" x="0.0" y="14" width="278" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="capsule" trackingMode="selectOne" id="L3Z-LI-t1X">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Personal" toolTip="All Personal Tasks" width="90" selected="YES"/>
+                                                <segment label="Team" toolTip="All Team Tasks" width="90" tag="1"/>
+                                                <segment label="Delegation" toolTip="Smart Delegation" width="90" enabled="NO"/>
+                                            </segments>
+                                        </segmentedCell>
+                                    </segmentedControl>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="3Py-pV-Bva"/>
+                                <toolbarItem reference="r2W-gk-HH1"/>
+                                <toolbarItem reference="mup-Tn-vUG"/>
+                                <toolbarItem reference="MaJ-bE-Q5u"/>
+                                <toolbarItem reference="cLp-i1-EaS"/>
+                                <toolbarItem reference="w6M-9Y-jTw"/>
+                                <toolbarItem reference="pyh-1B-vhH"/>
+                                <toolbarItem reference="b8m-2u-bDU"/>
+                                <toolbarItem reference="JM6-gc-Gjc"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="wqa-J1-QWL" id="fzN-8d-KVB"/>
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="Fde-T7-1D8" kind="relationship" relationship="window.shadowedContentViewController" id="kfX-T5-Xla"/>
+                        <outlet property="testCustomToolbarItem" destination="f8l-sm-bHd" id="AYE-k7-LiG"/>
+                        <outlet property="toolbar" destination="ujc-BJ-tBv" id="qZ0-fT-OG1"/>
+                        <segue destination="Ory-5S-1z7" kind="relationship" relationship="window.shadowedContentViewController" id="QfJ-Uo-7xP"/>
                     </connections>
                 </windowController>
                 <customObject id="XDF-a4-VbN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -840,7 +964,6 @@ All Rights Reserved.</string>
                         <touchBarItem id="xlU-ny-hz8">
                             <viewController key="viewController" id="w25-Ht-urW">
                                 <segmentedControl key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDU-rP-SBZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="jAK-xv-X2D">
                                         <font key="font" metaFont="system"/>
@@ -857,7 +980,7 @@ All Rights Reserved.</string>
                         <touchBarItem id="Am3-A8-dRb">
                             <viewController key="viewController" id="uWQ-Dr-a7F">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tww-tB-vca">
-                                    <rect key="frame" x="0.0" y="0.0" width="96" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="96" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Search" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zgb-Ue-8rn">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -870,7 +993,7 @@ All Rights Reserved.</string>
                         <touchBarItem id="wxw-K3-BPO">
                             <viewController key="viewController" id="YUc-aR-EiC">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DJM-XN-paI">
-                                    <rect key="frame" x="0.0" y="0.0" width="84" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QDi-pg-9sl">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -883,7 +1006,7 @@ All Rights Reserved.</string>
                         <touchBarItem id="JVi-bL-LOy">
                             <viewController key="viewController" id="ISB-9u-w22">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uF6-f2-uNx">
-                                    <rect key="frame" x="0.0" y="0.0" width="84" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="New Task" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bN1-py-vhu">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -896,7 +1019,7 @@ All Rights Reserved.</string>
                         <touchBarItem id="Pu0-eT-KbP">
                             <viewController key="viewController" id="KXw-c2-ha5">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xJo-SB-kvz">
-                                    <rect key="frame" x="0.0" y="0.0" width="84" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="New Team" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g4S-DB-2R8">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -910,169 +1033,6 @@ All Rights Reserved.</string>
                 </touchBar>
             </objects>
             <point key="canvasLocation" x="1067" y="460"/>
-        </scene>
-        <!--VerticalSplitController-->
-        <scene sceneID="O7B-c3-Ezg">
-            <objects>
-                <customObject id="6X8-Vd-xhQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <splitViewController title="VerticalSplitController" id="Fde-T7-1D8" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem id="rXs-Cz-Rsb"/>
-                        <splitViewItem id="bsc-Jo-dRV"/>
-                    </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" id="tHI-2P-u0n">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <outlet property="delegate" destination="Fde-T7-1D8" id="SlC-bH-f97"/>
-                        </connections>
-                    </splitView>
-                    <connections>
-                        <outlet property="splitView" destination="tHI-2P-u0n" id="o7k-dC-ncL"/>
-                        <segue destination="ce8-Xv-1EG" kind="relationship" relationship="splitItems" id="Qog-Gi-5qO"/>
-                        <segue destination="Ory-5S-1z7" kind="relationship" relationship="splitItems" id="2vF-kV-Yd6"/>
-                    </connections>
-                </splitViewController>
-            </objects>
-            <point key="canvasLocation" x="1067" y="1115"/>
-        </scene>
-        <!--HeaderViewController-->
-        <scene sceneID="Krz-gQ-B3U">
-            <objects>
-                <viewController title="HeaderViewController" id="ce8-Xv-1EG" customClass="HeaderViewController" customModule="DelegationApp_macOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Tp4-S4-lgB">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="50"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8aa-r5-Zzw">
-                                <rect key="frame" x="20" y="10" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="hpg-Jv-x1G"/>
-                                    <constraint firstAttribute="height" constant="30" id="rTj-La-xyo"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DelgationIcon" id="Hk7-tY-ECA"/>
-                            </imageView>
-                            <button toolTip="Delegation Settings" translatesAutoresizingMaskIntoConstraints="NO" id="GNc-lb-tyE">
-                                <rect key="frame" x="950" y="10" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="CYa-wW-II1"/>
-                                    <constraint firstAttribute="width" constant="30" id="JmS-0W-JBx"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SettingsGlyph" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="FQq-xx-W1S">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="settingsButtonPressed:" target="ce8-Xv-1EG" id="BaH-UE-mfD"/>
-                                    <segue destination="G9w-t3-TIJ" kind="popover" popoverAnchorView="GNc-lb-tyE" popoverBehavior="t" preferredEdge="maxY" id="ZhB-fu-LQ1"/>
-                                </connections>
-                            </button>
-                            <button toolTip="Create New Team" translatesAutoresizingMaskIntoConstraints="NO" id="ndC-7F-ujm">
-                                <rect key="frame" x="910" y="10" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="3FS-xe-HrB"/>
-                                    <constraint firstAttribute="height" constant="30" id="np2-lm-ErZ"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PlusGlyph" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="xCX-Gh-FFc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">t</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="createNewTeamButtonPressed:" target="ce8-Xv-1EG" id="ZrF-hd-6gh"/>
-                                    <segue destination="vIq-K4-ygM" kind="show" id="iEU-Bh-Cx9"/>
-                                </connections>
-                            </button>
-                            <button toolTip="Create New Task" translatesAutoresizingMaskIntoConstraints="NO" id="OsF-sP-Avw">
-                                <rect key="frame" x="870" y="10" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="CVI-xA-fRz"/>
-                                    <constraint firstAttribute="height" constant="30" id="uwx-aw-BSH"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="CreateNewGlyph" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="TXe-oD-Ros">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">n</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="newTaskButtonPressed:" target="ce8-Xv-1EG" id="I9x-Zz-vuq"/>
-                                    <segue destination="grA-p4-Xqt" kind="show" id="eYK-Q2-Nfn"/>
-                                </connections>
-                            </button>
-                            <button toolTip="Refresh" translatesAutoresizingMaskIntoConstraints="NO" id="uMv-Ro-icm">
-                                <rect key="frame" x="830" y="10" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="EHH-KA-rtT"/>
-                                    <constraint firstAttribute="width" constant="30" id="kIV-0G-dd8"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="RefreshGlyph" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="9fK-SX-9XU">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">r</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="refreshButtonPressed:" target="ce8-Xv-1EG" id="moQ-qy-kR4"/>
-                                </connections>
-                            </button>
-                            <button toolTip="Search" translatesAutoresizingMaskIntoConstraints="NO" id="1I6-4t-Va5">
-                                <rect key="frame" x="790" y="10" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="huK-xd-Nol"/>
-                                    <constraint firstAttribute="width" constant="30" id="v7h-se-V53"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" alternateTitle="Search" bezelStyle="shadowlessSquare" image="SearchGlyph" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="dWE-Kv-P65">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">f</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="searchButtonPressed:" target="ce8-Xv-1EG" id="BXa-Fj-Dyc"/>
-                                    <segue destination="0Aq-At-sjU" kind="popover" popoverAnchorView="1I6-4t-Va5" popoverBehavior="t" preferredEdge="maxY" id="IQV-X5-uiL"/>
-                                </connections>
-                            </button>
-                            <segmentedControl toolTip="Show Personal Tasks" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0T4-If-zQ8">
-                                <rect key="frame" x="78" y="13" width="278" height="23"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="capsule" trackingMode="selectOne" id="ekm-el-D70">
-                                    <font key="font" metaFont="system"/>
-                                    <segments>
-                                        <segment label="Personal" toolTip="All Personal Tasks" width="90" selected="YES"/>
-                                        <segment label="Team" toolTip="All Team Tasks" width="90" tag="1"/>
-                                        <segment label="Delegation" toolTip="Smart Delegation" width="90" enabled="NO"/>
-                                    </segments>
-                                </segmentedCell>
-                                <connections>
-                                    <action selector="segmentControlPressed:" target="ce8-Xv-1EG" id="MLb-rb-wXP"/>
-                                </connections>
-                            </segmentedControl>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="OsF-sP-Avw" firstAttribute="leading" secondItem="uMv-Ro-icm" secondAttribute="trailing" constant="10" id="02X-uT-vC8"/>
-                            <constraint firstItem="GNc-lb-tyE" firstAttribute="top" secondItem="Tp4-S4-lgB" secondAttribute="top" constant="10" id="2Zl-GC-C2A"/>
-                            <constraint firstItem="uMv-Ro-icm" firstAttribute="leading" secondItem="1I6-4t-Va5" secondAttribute="trailing" constant="10" id="3Fi-BD-sGo"/>
-                            <constraint firstItem="ndC-7F-ujm" firstAttribute="leading" secondItem="OsF-sP-Avw" secondAttribute="trailing" constant="10" id="46a-pO-Cby"/>
-                            <constraint firstItem="0T4-If-zQ8" firstAttribute="top" secondItem="Tp4-S4-lgB" secondAttribute="top" constant="14" id="8yp-GH-dQo"/>
-                            <constraint firstItem="OsF-sP-Avw" firstAttribute="top" secondItem="Tp4-S4-lgB" secondAttribute="top" constant="10" id="EN6-HW-ML1"/>
-                            <constraint firstItem="8aa-r5-Zzw" firstAttribute="leading" secondItem="Tp4-S4-lgB" secondAttribute="leading" constant="20" id="I2l-th-vbU"/>
-                            <constraint firstItem="8aa-r5-Zzw" firstAttribute="top" secondItem="Tp4-S4-lgB" secondAttribute="top" constant="10" id="XmG-ho-mFT"/>
-                            <constraint firstItem="uMv-Ro-icm" firstAttribute="top" secondItem="Tp4-S4-lgB" secondAttribute="top" constant="10" id="Yv8-ha-Yax"/>
-                            <constraint firstItem="0T4-If-zQ8" firstAttribute="leading" secondItem="8aa-r5-Zzw" secondAttribute="trailing" constant="28" id="bxM-FK-keb"/>
-                            <constraint firstItem="GNc-lb-tyE" firstAttribute="leading" secondItem="ndC-7F-ujm" secondAttribute="trailing" constant="10" id="fTo-jT-b1o"/>
-                            <constraint firstAttribute="trailing" secondItem="GNc-lb-tyE" secondAttribute="trailing" constant="20" id="hmG-Lc-Rac"/>
-                            <constraint firstItem="1I6-4t-Va5" firstAttribute="top" secondItem="Tp4-S4-lgB" secondAttribute="top" constant="10" id="uES-YD-mQg"/>
-                            <constraint firstItem="ndC-7F-ujm" firstAttribute="top" secondItem="Tp4-S4-lgB" secondAttribute="top" constant="10" id="uUT-5j-cqm"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="segmentControl" destination="0T4-If-zQ8" id="Yiu-6E-mAR"/>
-                    </connections>
-                </viewController>
-                <customObject id="qo6-Xa-Pgm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2479" y="967"/>
         </scene>
         <!--HorizontalSplitViewController-->
         <scene sceneID="ehV-HB-4Re">
@@ -1097,7 +1057,7 @@ All Rights Reserved.</string>
                 </splitViewController>
                 <customObject id="7sY-XS-6DA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1067" y="1542"/>
+            <point key="canvasLocation" x="1067" y="1127"/>
         </scene>
         <!--LeftSideBarViewController-->
         <scene sceneID="1y1-8i-NTC">
@@ -1159,7 +1119,7 @@ All Rights Reserved.</string>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ROB-Jk-wAs">
-                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
+                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="gky-HF-Uo1">
@@ -1179,7 +1139,7 @@ All Rights Reserved.</string>
                 </viewController>
                 <customObject id="Rkr-Za-Vr9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2054" y="1417"/>
+            <point key="canvasLocation" x="755" y="1825"/>
         </scene>
         <!--MainViewController-->
         <scene sceneID="iNU-mj-54W">
@@ -1406,7 +1366,7 @@ All Rights Reserved.</string>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="5Ev-Tj-r53">
-                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
+                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="zgB-iK-Pn5">
@@ -1426,7 +1386,7 @@ All Rights Reserved.</string>
                 </viewController>
                 <customObject id="R2h-WV-kR2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2616" y="1417"/>
+            <point key="canvasLocation" x="1267" y="1825"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="7ab-uM-TFB">
@@ -1497,7 +1457,7 @@ All Rights Reserved.</string>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="EjH-tu-cN6">
-                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
+                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="rmF-hV-2PE">
@@ -1514,7 +1474,7 @@ All Rights Reserved.</string>
                 </viewController>
                 <customObject id="arK-6W-J7M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3431" y="525"/>
+            <point key="canvasLocation" x="1985" y="-778"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="at4-bJ-9c7">
@@ -1535,7 +1495,7 @@ All Rights Reserved.</string>
                 </windowController>
                 <customObject id="Xrj-A8-1XM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3431" y="1260"/>
+            <point key="canvasLocation" x="1935" y="335"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="7WN-iM-q5G">
@@ -1556,7 +1516,7 @@ All Rights Reserved.</string>
                 </windowController>
                 <customObject id="4Im-cD-nMT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3431" y="1853"/>
+            <point key="canvasLocation" x="1935" y="898"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="EmP-mF-Qj4">
@@ -1749,7 +1709,29 @@ All Rights Reserved.</string>
                 </viewController>
                 <customObject id="MYA-B1-4Fw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3990" y="639"/>
+            <point key="canvasLocation" x="2422" y="-254"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="OD0-Bz-QlR">
+            <objects>
+                <windowController id="L0u-3P-Gwt" sceneMemberID="viewController">
+                    <window key="window" title="Account Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="x5b-4Z-Ncn">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="314" width="350" height="530"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+                        <value key="minSize" type="size" width="350" height="530"/>
+                        <connections>
+                            <outlet property="delegate" destination="L0u-3P-Gwt" id="pDH-F2-WVl"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="G9w-t3-TIJ" kind="relationship" relationship="window.shadowedContentViewController" id="yfr-rP-wBv"/>
+                    </connections>
+                </windowController>
+                <customObject id="t3b-do-dJc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1935" y="-253"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Zdg-ei-iS1">
@@ -1794,14 +1776,14 @@ All Rights Reserved.</string>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4S-cb-Dgf">
                                 <rect key="frame" x="20" y="61" width="310" height="250"/>
                                 <clipView key="contentView" id="Q8S-ze-usV">
-                                    <rect key="frame" x="1" y="1" width="308" height="248"/>
+                                    <rect key="frame" x="1" y="1" width="293" height="248"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Mko-0V-BEd">
-                                            <rect key="frame" x="0.0" y="0.0" width="308" height="248"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="293" height="248"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="308" height="248"/>
+                                            <size key="minSize" width="293" height="248"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </textView>
@@ -1813,7 +1795,7 @@ All Rights Reserved.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="AuU-wn-eXf">
-                                    <rect key="frame" x="293" y="1" width="16" height="248"/>
+                                    <rect key="frame" x="294" y="1" width="15" height="248"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1852,7 +1834,7 @@ DQ
                 </viewController>
                 <customObject id="ElY-Sm-nlP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3898" y="1853"/>
+            <point key="canvasLocation" x="2422" y="898"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Gj9-SN-DlA">
@@ -1929,14 +1911,14 @@ DQ
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4P-Gq-RA2">
                                 <rect key="frame" x="20" y="61" width="310" height="212"/>
                                 <clipView key="contentView" id="ox8-fq-37X">
-                                    <rect key="frame" x="1" y="1" width="308" height="210"/>
+                                    <rect key="frame" x="1" y="1" width="293" height="210"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="3n6-Ts-SHS">
-                                            <rect key="frame" x="0.0" y="0.0" width="308" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="293" height="210"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="308" height="210"/>
+                                            <size key="minSize" width="293" height="210"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </textView>
@@ -1948,7 +1930,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="nRB-I7-UZx">
-                                    <rect key="frame" x="293" y="1" width="16" height="210"/>
+                                    <rect key="frame" x="294" y="1" width="15" height="210"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1982,18 +1964,18 @@ DQ
                 </viewController>
                 <customObject id="gaT-T6-y5M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3898" y="1260"/>
+            <point key="canvasLocation" x="2422" y="335"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="4RG-wd-6gI">
             <objects>
                 <viewController id="q0q-4S-9EB" customClass="CreateAccountViewController" customModule="DelegationApp_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="MK8-WP-l7v">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="349"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QA0-du-pV9">
-                                <rect key="frame" x="18" y="244" width="119" height="17"/>
+                                <rect key="frame" x="18" y="253" width="119" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="115" id="ufU-oK-cFo"/>
                                 </constraints>
@@ -2004,7 +1986,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VCZ-La-IGV">
-                                <rect key="frame" x="18" y="212" width="115" height="17"/>
+                                <rect key="frame" x="18" y="221" width="115" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="111" id="yYt-BZ-H8h"/>
                                 </constraints>
@@ -2015,7 +1997,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xSi-Pk-ZIz">
-                                <rect key="frame" x="18" y="181" width="115" height="17"/>
+                                <rect key="frame" x="18" y="190" width="115" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="111" id="qaI-9N-JLL"/>
                                 </constraints>
@@ -2026,7 +2008,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fCy-bA-Txw">
-                                <rect key="frame" x="18" y="149" width="115" height="17"/>
+                                <rect key="frame" x="18" y="158" width="115" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="111" id="XuB-uv-LcQ"/>
                                 </constraints>
@@ -2037,7 +2019,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mdX-xq-bLK">
-                                <rect key="frame" x="18" y="117" width="115" height="17"/>
+                                <rect key="frame" x="18" y="126" width="115" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="111" id="ZQQ-Pp-s0H"/>
                                 </constraints>
@@ -2048,7 +2030,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PpN-IX-erN">
-                                <rect key="frame" x="18" y="85" width="118" height="17"/>
+                                <rect key="frame" x="18" y="94" width="118" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="114" id="liV-ou-X8j"/>
                                 </constraints>
@@ -2059,7 +2041,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S5e-A3-QlI">
-                                <rect key="frame" x="148" y="242" width="282" height="22"/>
+                                <rect key="frame" x="148" y="251" width="282" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="First Name" drawsBackground="YES" id="bBS-yE-9cE">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2067,7 +2049,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SX9-B2-St7">
-                                <rect key="frame" x="148" y="210" width="282" height="22"/>
+                                <rect key="frame" x="148" y="219" width="282" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Last Name" drawsBackground="YES" id="BRZ-4R-StF">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2075,7 +2057,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JAy-bi-jk4">
-                                <rect key="frame" x="148" y="178" width="282" height="22"/>
+                                <rect key="frame" x="148" y="187" width="282" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Email Address" drawsBackground="YES" id="r8t-S5-SIX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2083,7 +2065,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jHK-Z3-adg">
-                                <rect key="frame" x="148" y="146" width="282" height="22"/>
+                                <rect key="frame" x="148" y="155" width="282" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Phone Number" drawsBackground="YES" id="9nk-GN-okw">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2091,7 +2073,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rXS-G2-AOT">
-                                <rect key="frame" x="148" y="114" width="282" height="22"/>
+                                <rect key="frame" x="148" y="123" width="282" height="22"/>
                                 <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Password" drawsBackground="YES" usesSingleLineMode="YES" id="vWA-BY-ajt">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2102,7 +2084,7 @@ DQ
                                 </secureTextFieldCell>
                             </secureTextField>
                             <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VkT-dR-2SZ">
-                                <rect key="frame" x="148" y="82" width="282" height="22"/>
+                                <rect key="frame" x="148" y="91" width="282" height="22"/>
                                 <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Confirm Password" drawsBackground="YES" usesSingleLineMode="YES" id="Elx-92-Wan">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2112,6 +2094,14 @@ DQ
                                     </allowedInputSourceLocales>
                                 </secureTextFieldCell>
                             </secureTextField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QcK-QD-cXk">
+                                <rect key="frame" x="18" y="300" width="415" height="29"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Create New Account" id="Jrf-FK-AlN">
+                                    <font key="font" metaFont="system" size="24"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B5K-Fa-gQ3">
                                 <rect key="frame" x="142" y="13" width="295" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="p0r-hU-17B">
@@ -2125,14 +2115,6 @@ Gw
                                     <action selector="cancelButtonPressed:" target="q0q-4S-9EB" id="iia-OA-bY2"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QcK-QD-cXk">
-                                <rect key="frame" x="18" y="291" width="415" height="29"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Create New Account" id="Jrf-FK-AlN">
-                                    <font key="font" metaFont="system" size="24"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UP7-PL-orR">
                                 <rect key="frame" x="142" y="46" width="294" height="32"/>
                                 <buttonCell key="cell" type="push" title="Create Account" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FTZ-NG-htP">
@@ -2169,6 +2151,7 @@ DQ
                             <constraint firstItem="QcK-QD-cXk" firstAttribute="top" secondItem="MK8-WP-l7v" secondAttribute="top" constant="20" id="VLI-Kr-p9m"/>
                             <constraint firstAttribute="trailing" secondItem="S5e-A3-QlI" secondAttribute="trailing" constant="20" id="YQv-q0-y7f"/>
                             <constraint firstItem="jHK-Z3-adg" firstAttribute="top" secondItem="JAy-bi-jk4" secondAttribute="bottom" constant="10" id="aA4-p6-PhG"/>
+                            <constraint firstItem="UP7-PL-orR" firstAttribute="top" secondItem="VkT-dR-2SZ" secondAttribute="bottom" constant="17" id="arz-X9-wDP"/>
                             <constraint firstAttribute="trailing" secondItem="JAy-bi-jk4" secondAttribute="trailing" constant="20" id="bQ8-c3-ASB"/>
                             <constraint firstItem="rXS-G2-AOT" firstAttribute="leading" secondItem="mdX-xq-bLK" secondAttribute="trailing" constant="17" id="dQx-6w-kK5"/>
                             <constraint firstAttribute="trailing" secondItem="SX9-B2-St7" secondAttribute="trailing" constant="20" id="dcs-9U-H4c"/>
@@ -2181,7 +2164,6 @@ DQ
                             <constraint firstItem="PpN-IX-erN" firstAttribute="leading" secondItem="MK8-WP-l7v" secondAttribute="leading" constant="20" id="pVV-A1-ojv"/>
                             <constraint firstItem="SX9-B2-St7" firstAttribute="top" secondItem="S5e-A3-QlI" secondAttribute="bottom" constant="10" id="psP-TQ-miZ"/>
                             <constraint firstAttribute="trailing" secondItem="UP7-PL-orR" secondAttribute="trailing" constant="20" id="rGi-XB-lcL"/>
-                            <constraint firstItem="UP7-PL-orR" firstAttribute="top" secondItem="VkT-dR-2SZ" secondAttribute="bottom" constant="8" id="sgx-FK-9FK"/>
                             <constraint firstAttribute="trailing" secondItem="jHK-Z3-adg" secondAttribute="trailing" constant="20" id="wTk-XO-rl8"/>
                             <constraint firstItem="jHK-Z3-adg" firstAttribute="leading" secondItem="fCy-bA-Txw" secondAttribute="trailing" constant="17" id="wpP-ut-ELH"/>
                             <constraint firstItem="QA0-du-pV9" firstAttribute="top" secondItem="QcK-QD-cXk" secondAttribute="bottom" constant="30" id="x6l-0c-IqW"/>
@@ -2200,13 +2182,12 @@ DQ
                 </viewController>
                 <customObject id="OzV-yX-NzB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74" y="1205"/>
+            <point key="canvasLocation" x="74" y="1209.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="AppLogo" width="799" height="227"/>
         <image name="CreateNewGlyph" width="30" height="30"/>
-        <image name="DelgationIcon" width="1024" height="1024"/>
         <image name="PlusGlyph" width="30" height="30"/>
         <image name="RefreshGlyph" width="30" height="30"/>
         <image name="SearchGlyph" width="30" height="30"/>

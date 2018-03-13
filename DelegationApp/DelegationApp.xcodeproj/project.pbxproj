@@ -47,6 +47,7 @@
 		9893FF382053A66400798CFE /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF362053A66400798CFE /* HeaderViewController.swift */; };
 		9893FF3B2053A68700798CFE /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3A2053A68700798CFE /* SideBarViewController.swift */; };
 		9893FF3E2053A69800798CFE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3C2053A69800798CFE /* MainViewController.swift */; };
+		98A422B820576AA000A9F154 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A422B720576AA000A9F154 /* MainWindowController.swift */; };
 		98BAFF27201A6D3A002C253A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BAFF26201A6D3A002C253A /* Logger.swift */; };
 		98C597B11FE19CA3009329B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B01FE19CA3009329B2 /* SettingsViewController.swift */; };
 		98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */; };
@@ -124,6 +125,7 @@
 		9893FF362053A66400798CFE /* HeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
 		9893FF3A2053A68700798CFE /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		9893FF3C2053A69800798CFE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		98A422B720576AA000A9F154 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		98BAFF26201A6D3A002C253A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		98C597B01FE19CA3009329B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98C597B51FE2E434009329B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				9893FF362053A66400798CFE /* HeaderViewController.swift */,
 				9893FF3A2053A68700798CFE /* SideBarViewController.swift */,
 				9893FF3C2053A69800798CFE /* MainViewController.swift */,
+				98A422B720576AA000A9F154 /* MainWindowController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				981CA9EA204E413800276DAB /* User.swift in Sources */,
 				983988CA2050AC910085D0AD /* LoginViewController.swift in Sources */,
 				981CA9EF204E414400276DAB /* Logger.swift in Sources */,
+				98A422B820576AA000A9F154 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
