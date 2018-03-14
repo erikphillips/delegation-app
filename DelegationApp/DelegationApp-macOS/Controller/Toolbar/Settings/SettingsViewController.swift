@@ -40,6 +40,60 @@ class SettingsViewController: NSViewController {
     
     @IBAction func saveChangesBtnPressed(_ sender: Any) {
         Logger.log("saveChangesBtnPressed")
+        
+        var newFirstname: String? = nil
+        var newLastname: String? = nil
+        var newPhoneNumber: String? = nil
+        var newEmailAddress: String? = nil
+        var newPassword: String? = nil
+        var newConfirmPassword: String? = nil
+        
+        if self.firstnameTextField.stringValue != self.user?.getFirstName() {
+            newFirstname = self.firstnameTextField.stringValue
+        }
+        
+        if self.lastnameTextField.stringValue != self.user?.getLastName() {
+            newLastname = self.lastnameTextField.stringValue
+        }
+        
+        if self.phoneTextField.stringValue != self.user?.getPhoneNumber() {
+            newPhoneNumber = self.phoneTextField.stringValue
+        }
+        
+        if self.emailTextField.stringValue != self.user?.getEmailAddress() {
+            newEmailAddress = self.emailTextField.stringValue
+            
+            let verifyStatus = Utilities.validateEmail(newEmailAddress ?? Globals.UserGlobals.DEFAULT_EMAIL)
+            if !verifyStatus.status {
+                newEmailAddress = nil
+                Logger.log("Invalid email address: \(verifyStatus.message)", event: .warning)
+                // TODO: Display alert for invalid email address
+            }
+        }
+        
+        // TODO: Implement password text fields
+//        if self.passwordTextField.text != Globals.UserGlobals.DEFAULT_PASSWORD
+//            || self.confirmPasswordTextField.text != Globals.UserGlobals.DEFAULT_PASSWORD {
+//
+//            newPassword = self.passwordTextField.text
+//            newConfirmPassword = self.confirmPasswordTextField.text
+//
+//            let verifyStatus = Utilities.validatePasswords(pswd: newPassword ?? Globals.UserGlobals.DEFAULT_PASSWORD,
+//                                                           cnfrm: newConfirmPassword ?? Globals.UserGlobals.DEFAULT_PASSWORD)
+//
+//            if !verifyStatus.status {
+//                newPassword = nil
+//                newConfirmPassword = nil
+//                Logger.log("invalid passwords: \(verifyStatus.message)")
+//                // TODO: Display alert indicating invalid passwords
+//            }
+//        }
+        
+        if let user = self.user {
+            Logger.log("Updating the current user with new information from settings update.")
+            user.updateCurrentUser(firstname: newFirstname, lastname: newLastname, email: newEmailAddress, phone: newPhoneNumber, password: newPassword)
+            let _ = self.displayAlert(title: "Account Information Updated Successfully", message: "")
+        }
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
@@ -52,6 +106,15 @@ class SettingsViewController: NSViewController {
     
     @IBAction func accountSupportBtnPressed(_ sender: Any) {
         Logger.log("accountSupportBtnPressed")
+    }
+    
+    func displayAlert(title: String, message: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.informativeText = message
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        return alert.runModal() == .alertFirstButtonReturn
     }
     
 }
