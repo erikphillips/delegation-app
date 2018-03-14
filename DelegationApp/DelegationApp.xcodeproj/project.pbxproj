@@ -322,6 +322,15 @@
 			path = Deprecated;
 			sourceTree = "<group>";
 		};
+		9883D33C2059CD560041AA1F /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				9893FF3A2053A68700798CFE /* SideBarViewController.swift */,
+				9893FF3C2053A69800798CFE /* MainViewController.swift */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
 		98849E9E1FDDC7AA009C9B1A = {
 			isa = PBXGroup;
 			children = (
@@ -409,9 +418,8 @@
 		9893FF352053A63200798CFE /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				9883D33C2059CD560041AA1F /* Deprecated */,
 				98A422B720576AA000A9F154 /* MainWindowController.swift */,
-				9893FF3A2053A68700798CFE /* SideBarViewController.swift */,
-				9893FF3C2053A69800798CFE /* MainViewController.swift */,
 				98A422C32057BFC100A9F154 /* TaskDetail */,
 			);
 			path = Main;
