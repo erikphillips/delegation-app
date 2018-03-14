@@ -109,6 +109,8 @@ class SettingsViewController: NSViewController {
         FirebaseUtilities.fetchAllTeams { [weak self] (teams) in
             guard let this = self else { return }
             
+            this.allJoinableTeams = []
+            
             if let user = this.user {
                 for team in teams {
                     if !Utilities.userMemberOfTeam(user: user, team: team) {

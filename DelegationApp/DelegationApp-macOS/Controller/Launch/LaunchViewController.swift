@@ -29,10 +29,31 @@ class LaunchViewController: NSViewController {
         }
     }
     
-    @IBAction func demoLoadAdminBtnPressed(_ sender: Any) {
-        Logger.log("demoLoadAdminBtnPressed")
-        self.emailAddressTextField.stringValue = "admin@delegation.com"
-        self.passwordTextField.stringValue = "password"
+//    @IBAction func demoLoadAdminBtnPressed(_ sender: Any) {
+//        Logger.log("demoLoadAdminBtnPressed")
+//        self.emailAddressTextField.stringValue = "admin@delegation.com"
+//        self.passwordTextField.stringValue = "password"
+//    }
+    
+    @IBOutlet weak var demoSavedCredentials: NSPopUpButton!
+    @IBAction func demoLoadSavedCredentials(_ sender: Any) {
+        
+        let email = self.demoSavedCredentials.selectedItem!.title
+        self.emailAddressTextField.stringValue = email
+        
+        switch email {
+        case "admin@delegation.com":
+            self.passwordTextField.stringValue = "password"
+            break
+        case "user1@delegation.com":
+            self.passwordTextField.stringValue = "password"
+            break
+        case "user3@delgation.com":
+            self.passwordTextField.stringValue = "password"
+            break
+        default:
+            break
+        }
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -72,16 +93,6 @@ class LaunchViewController: NSViewController {
         alert.alertStyle = .warning
         alert.addButton(withTitle: "OK")
         return alert.runModal() == .alertFirstButtonReturn
-    }
-    
-    @IBAction func loadPressed(_ sender: Any) {
-        print("Button Pressed")
-        self.user = User(uuid: "Kd8p3fl5xyPT0g9BGkHASF025D23")
-        self.user?.setupCallback = {
-            [weak self] in
-            guard let this = self else { return }
-            Logger.log(this.user?.toString() ?? "Error")
-        }
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
