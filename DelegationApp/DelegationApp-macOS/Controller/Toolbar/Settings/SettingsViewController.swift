@@ -11,12 +11,16 @@ import Cocoa
 class SettingsViewController: NSViewController {
     
     var user: User?
+    var allJoinableTeams: [Team]?
 
     @IBOutlet weak var firstnameTextField: NSTextField!
     @IBOutlet weak var lastnameTextField: NSTextField!
     @IBOutlet weak var emailTextField: NSTextField!
     @IBOutlet weak var phoneTextField: NSTextField!
     @IBOutlet weak var versionString: NSTextField!
+    
+    @IBOutlet weak var yourTeamsProgressIndicator: NSProgressIndicator!
+    @IBOutlet weak var joinTeamsProgressIndicator: NSProgressIndicator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,16 +100,55 @@ class SettingsViewController: NSViewController {
         }
     }
     
+    @IBAction func yourTeamsBtnPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "ShowYourTeamsSegue"), sender: self)
+    }
+    
+    @IBAction func joinTeamBtnPressed(_ sender: Any) {
+        self.joinTeamsProgressIndicator.startAnimation(nil)
+        FirebaseUtilities.fetchAllTeams { [weak self] (teams) in
+            guard let this = self else { return }
+            
+            if let user = this.user {
+                for team in teams {
+                    if !Utilities.userMemberOfTeam(user: user, team: team) {
+                        this.allJoinableTeams?.append(team)
+                    }
+                }
+            }
+            
+            this.joinTeamsProgressIndicator.stopAnimation(nil)
+            this.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "ShowJoinTeamsSegue"), sender: self)
+        }
+    }
+    
     @IBAction func logoutBtnPressed(_ sender: Any) {
         Logger.log("logoutBtnPressed")
+        let status = FirebaseUtilities.logoutCurrentUser()
+        if !status.status {
+            let _ = self.displayAlert(title: "Logout Error", message: "An error occured when attempting to sign out: \(status.message)")
+        }
+        
+        // TODO: Send message that a logout occured.
     }
     
     @IBAction func deleteAccountBtnPressed(_ sender: Any) {
         Logger.log("deleteAccountBtnPressed")
+        let _ = self.displayAlert(title: "Unsupported Functionality", message: "This functionality is currently not supported or implemented.")
     }
     
     @IBAction func accountSupportBtnPressed(_ sender: Any) {
         Logger.log("accountSupportBtnPressed")
+        let emailService = NSSharingService.init(named: NSSharingService.Name.composeEmail)!
+        emailService.recipients = ["delegation.application@gmail.com"]
+        emailService.subject = "Delegation Application Support"
+        
+        if emailService.canPerform(withItems: []) {
+            emailService.perform(withItems: [])
+        } else {
+            let _ = self.displayAlert(title: "Unable to Create Email", message: "The default mail application cannot be opened. Please send a message to delegation.application@gmail.com with your issue.")
+        }
+
     }
     
     func displayAlert(title: String, message: String) -> Bool {
@@ -115,6 +158,24 @@ class SettingsViewController: NSViewController {
         alert.alertStyle = .warning
         alert.addButton(withTitle: "OK")
         return alert.runModal() == .alertFirstButtonReturn
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier?.rawValue == "ShowYourTeamsSegue" {
+            if let dest = segue.destinationController as? YourTeamViewController {
+                Logger.log("ShowYourTeamsSegue called")
+                dest.user = self.user
+                dest.teams = self.user?.getTeams()
+            }
+        }
+        
+        if segue.identifier?.rawValue == "ShowJoinTeamsSegue" {
+            if let dest = segue.destinationController as? JoinTeamViewController {
+                Logger.log("ShowJoinTeamsSegue called")
+                dest.user = self.user
+                dest.teams = self.allJoinableTeams
+            }
+        }
     }
     
 }

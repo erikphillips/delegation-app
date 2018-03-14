@@ -10,10 +10,11 @@ import Cocoa
 
 class YourTeamTableViewCell: NSTableCellView {
 
+    @IBOutlet weak var checkbox: NSButton!
+    @IBOutlet weak var teamNameTextField: NSTextField!
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
-        // Drawing code here.
     }
     
 }

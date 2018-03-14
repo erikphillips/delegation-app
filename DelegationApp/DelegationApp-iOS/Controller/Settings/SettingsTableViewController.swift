@@ -23,13 +23,7 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var settingsTableView: UITableView!
     @IBAction func settingsLogout(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        
+        let status = FirebaseUtilities.logoutCurrentUser()
         self.performSegue(withIdentifier: "unwindToWelcomeView", sender: sender)
     }
     

@@ -23,6 +23,10 @@
 		981CA9EF204E414400276DAB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BAFF26201A6D3A002C253A /* Logger.swift */; };
 		981CA9F0204E414700276DAB /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DA8B302020E1FF0050B795 /* Observers.swift */; };
 		981CA9F4204E4E2E00276DAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */; };
+		9834FD782058D96300F48870 /* JoinTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9834FD772058D96300F48870 /* JoinTeamViewController.swift */; };
+		9834FD7A2058D97400F48870 /* YourTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9834FD792058D97400F48870 /* YourTeamViewController.swift */; };
+		9834FD7C2058D9AA00F48870 /* YourTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9834FD7B2058D9AA00F48870 /* YourTeamTableViewCell.swift */; };
+		9834FD7E2058D9BC00F48870 /* JoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9834FD7D2058D9BC00F48870 /* JoinTeamTableViewCell.swift */; };
 		983988CA2050AC910085D0AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983988C92050AC910085D0AD /* LoginViewController.swift */; };
 		983988CE2050AF430085D0AD /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983988CC2050AF430085D0AD /* CreateAccountViewController.swift */; };
 		9849779A20099A4600954C3A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
@@ -99,7 +103,7 @@
 		980232F8202843380019E3B2 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		9816C3A5204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskChangeTeamTableViewController.swift; sourceTree = "<group>"; };
 		9816C3A7204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChangeOwnerTableViewController.swift; sourceTree = "<group>"; };
-		981CA9D6204E38EB00276DAB /* DelegationApp-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DelegationApp-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		981CA9D6204E38EB00276DAB /* Delegation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delegation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		981CA9D8204E38EB00276DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		981CA9DA204E38EB00276DAB /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		981CA9DC204E38EB00276DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +111,10 @@
 		981CA9E1204E38EB00276DAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		982E67D7204F066800678358 /* DelegationApp-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DelegationApp-macOS.entitlements"; sourceTree = "<group>"; };
+		9834FD772058D96300F48870 /* JoinTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamViewController.swift; sourceTree = "<group>"; };
+		9834FD792058D97400F48870 /* YourTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTeamViewController.swift; sourceTree = "<group>"; };
+		9834FD7B2058D9AA00F48870 /* YourTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTeamTableViewCell.swift; sourceTree = "<group>"; };
+		9834FD7D2058D9BC00F48870 /* JoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamTableViewCell.swift; sourceTree = "<group>"; };
 		983988C92050AC910085D0AD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		983988CC2050AF430085D0AD /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9849779920099A4600954C3A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -239,6 +247,24 @@
 			path = "DelegationApp-macOS";
 			sourceTree = "<group>";
 		};
+		9834FD752058D93A00F48870 /* YourTeams */ = {
+			isa = PBXGroup;
+			children = (
+				9834FD792058D97400F48870 /* YourTeamViewController.swift */,
+				9834FD7B2058D9AA00F48870 /* YourTeamTableViewCell.swift */,
+			);
+			path = YourTeams;
+			sourceTree = "<group>";
+		};
+		9834FD762058D94400F48870 /* JoinTeam */ = {
+			isa = PBXGroup;
+			children = (
+				9834FD772058D96300F48870 /* JoinTeamViewController.swift */,
+				9834FD7D2058D9BC00F48870 /* JoinTeamTableViewCell.swift */,
+			);
+			path = JoinTeam;
+			sourceTree = "<group>";
+		};
 		983988C62050ABE60085D0AD /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,7 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				98849EA71FDDC7AA009C9B1A /* DelegationApp-iOS.app */,
-				981CA9D6204E38EB00276DAB /* DelegationApp-macOS.app */,
+				981CA9D6204E38EB00276DAB /* Delegation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -396,6 +422,8 @@
 			children = (
 				98A422C12057B3C800A9F154 /* SettingsWindowController.swift */,
 				98A422BF2057967A00A9F154 /* SettingsViewController.swift */,
+				9834FD752058D93A00F48870 /* YourTeams */,
+				9834FD762058D94400F48870 /* JoinTeam */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -558,7 +586,7 @@
 			);
 			name = "DelegationApp-macOS";
 			productName = macOSDelegationApp;
-			productReference = 981CA9D6204E38EB00276DAB /* DelegationApp-macOS.app */;
+			productReference = 981CA9D6204E38EB00276DAB /* Delegation.app */;
 			productType = "com.apple.product-type.application";
 		};
 		98849EA61FDDC7AA009C9B1A /* DelegationApp-iOS */ = {
@@ -816,6 +844,7 @@
 				981CA9DB204E38EB00276DAB /* LaunchViewController.swift in Sources */,
 				98A422C02057967A00A9F154 /* SettingsViewController.swift in Sources */,
 				98A422C22057B3C800A9F154 /* SettingsWindowController.swift in Sources */,
+				9834FD7E2058D9BC00F48870 /* JoinTeamTableViewCell.swift in Sources */,
 				9893FF3E2053A69800798CFE /* MainViewController.swift in Sources */,
 				9893FF3B2053A68700798CFE /* SideBarViewController.swift in Sources */,
 				981CA9EC204E413D00276DAB /* Task.swift in Sources */,
@@ -823,8 +852,11 @@
 				981CA9D9204E38EB00276DAB /* AppDelegate.swift in Sources */,
 				981CA9EA204E413800276DAB /* User.swift in Sources */,
 				983988CA2050AC910085D0AD /* LoginViewController.swift in Sources */,
+				9834FD7C2058D9AA00F48870 /* YourTeamTableViewCell.swift in Sources */,
 				98A422CE2057C11000A9F154 /* NewTaskWindowController.swift in Sources */,
 				981CA9EF204E414400276DAB /* Logger.swift in Sources */,
+				9834FD782058D96300F48870 /* JoinTeamViewController.swift in Sources */,
+				9834FD7A2058D97400F48870 /* YourTeamViewController.swift in Sources */,
 				98A422B820576AA000A9F154 /* MainWindowController.swift in Sources */,
 				98A422D02057C12300A9F154 /* NewTaskViewController.swift in Sources */,
 			);
@@ -925,7 +957,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_SWIFT_FLAGS = "-D TARGET_OS_MACOS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.macOS.DelegationApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Delegation;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 4.0;
@@ -947,7 +979,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_SWIFT_FLAGS = "-D TARGET_OS_MACOS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erikphillips.macOS.DelegationApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Delegation;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 4.0;
