@@ -108,7 +108,7 @@ class Task {
             let dispatchGroup = DispatchGroup()
             
             dispatchGroup.enter()
-            assigneeRef.observe(.value, with: {
+            assigneeRef.observeSingleEvent(of: .value, with: {
                 [dispatchGroup, weak this] (snapshot) in
                 guard let that = this else { return }
                 if let value = snapshot.value as? NSDictionary {
@@ -120,7 +120,7 @@ class Task {
             })
             
             dispatchGroup.enter()
-            originatorRef.observe(.value, with: {
+            originatorRef.observeSingleEvent(of: .value, with: {
                 [dispatchGroup, weak this] (snapshot) in
                 guard let that = this else { return }
                 if let value = snapshot.value as? NSDictionary {
