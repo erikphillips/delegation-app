@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CreateAccountCreateTeamViewController: UIViewController {
+class CreateAccountCreateTeamViewController: UIViewController, UITextFieldDelegate {
 
     var userDictionary: [String: String]?
     private var userUID: String?
@@ -20,10 +20,25 @@ class CreateAccountCreateTeamViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        self.teamNameTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case teamNameTextField:
+            textField.resignFirstResponder()
+            self.teamDescriptionTextView.becomeFirstResponder()
+            break
+        default:
+            textField.resignFirstResponder()
+            break
+        }
+        
+        return false
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {

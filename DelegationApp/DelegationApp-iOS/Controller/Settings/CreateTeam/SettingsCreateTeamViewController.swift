@@ -45,6 +45,20 @@ class SettingsCreateTeamViewController: UIViewController, UITextFieldDelegate, U
         return false
     }
     
+    func textViewShouldReturn(_ textView: UITextView) -> Bool {
+        switch textView {
+        case teamDescriptionTextView:
+            textView.resignFirstResponder()
+            self.createNewTeamButtonPressed(self)
+            break
+        default:
+            textView.resignFirstResponder()
+            break
+        }
+        
+        return false
+    }
+    
     @IBAction func createNewTeamButtonPressed(_ sender: Any) {
         let teamname = Utilities.trimWhitespace(self.teamTitleTextField.text!)
         

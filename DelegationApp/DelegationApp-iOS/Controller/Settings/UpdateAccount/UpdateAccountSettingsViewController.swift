@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class UpdateAccountSettingsViewController: UIViewController {
+class UpdateAccountSettingsViewController: UIViewController, UITextFieldDelegate {
 
     var user: User?
     
@@ -23,6 +23,13 @@ class UpdateAccountSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        self.firstNameTextField.delegate = self
+        self.lastNameTextField.delegate = self
+        self.emailAddressTextField.delegate = self
+        self.phoneNumberTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.confirmPasswordTextField.delegate = self
         
         if let user = user {
             self.firstNameTextField.text = user.getFirstName()
@@ -41,6 +48,40 @@ class UpdateAccountSettingsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case firstNameTextField:
+            textField.resignFirstResponder()
+            self.lastNameTextField.becomeFirstResponder()
+            break
+        case lastNameTextField:
+            textField.resignFirstResponder()
+            self.emailAddressTextField.becomeFirstResponder()
+            break
+        case emailAddressTextField:
+            textField.resignFirstResponder()
+            self.phoneNumberTextField.becomeFirstResponder()
+            break
+        case phoneNumberTextField:
+            textField.resignFirstResponder()
+            self.passwordTextField.becomeFirstResponder()
+            break
+        case passwordTextField:
+            textField.resignFirstResponder()
+            self.confirmPasswordTextField.becomeFirstResponder()
+            break
+        case confirmPasswordTextField:
+            textField.resignFirstResponder()
+            self.saveButtonPressed(self)
+            break
+        default:
+            textField.resignFirstResponder()
+            break
+        }
+        
+        return false
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
@@ -158,17 +199,5 @@ class UpdateAccountSettingsViewController: UIViewController {
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion:nil)
     }
-    
-    // There should be no need to pass the user back to the settings view controller. It should recieve observable updates.
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "unwindToSettingsTableView" {
-//            if let dest = segue.destination as? SettingsTableViewController {
-//                if self.updateUserInformation {
-//                    Logger.log("segue called - username=\"\(self.user?.getEmailAddress())\"")
-//                    dest.user = self.user
-//                }
-//            }
-//        }
-//    }
 
 }
