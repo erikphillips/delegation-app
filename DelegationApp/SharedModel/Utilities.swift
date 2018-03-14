@@ -530,6 +530,18 @@ class FirebaseUtilities {
         callback(500)
     }
     
+    static func logoutCurrentUser() -> Status {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            Logger.log("Error signing out: \(signOutError.localizedDescription)", event: .severe)
+            return Status(false, signOutError.localizedDescription)
+        }
+        
+        return Status(true)
+    }
+    
     static func loginUser(username: String, password: String, callback: @escaping ((_ uuid: String?, _ error: Error?) -> Void)) {
         Auth.auth().signIn(withEmail: username, password: password) {
             (user, error) in
