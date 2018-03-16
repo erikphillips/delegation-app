@@ -2580,6 +2580,9 @@ DQ
                                     <string key="keyEquivalent">r</string>
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="revertChangesBtnPressed:" target="L8U-Ce-1a1" id="koY-J0-UN1"/>
+                                </connections>
                             </button>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DyX-k8-cby">
                                 <rect key="frame" x="26" y="67" width="298" height="135"/>
@@ -2646,6 +2649,9 @@ DQ
                                     <string key="keyEquivalent">s</string>
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="saveChangesBtnPressed:" target="L8U-Ce-1a1" id="Vt6-bQ-JEE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -2695,6 +2701,15 @@ DQ
                             <constraint firstItem="F8c-0q-b0e" firstAttribute="top" secondItem="qAT-Qy-pzg" secondAttribute="bottom" constant="15" id="v74-TR-nY2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="assigneeTextField" destination="AF0-4V-16e" id="8tp-wA-7br"/>
+                        <outlet property="descriptionTextView" destination="610-k1-7Ct" id="kE2-cU-Msn"/>
+                        <outlet property="originatorTextField" destination="5lN-hg-Lxj" id="GFi-wb-Oe5"/>
+                        <outlet property="priorityButton" destination="OhI-K7-U3p" id="IrH-Sd-AEV"/>
+                        <outlet property="statusButton" destination="trd-js-ow6" id="t6V-M2-MQA"/>
+                        <outlet property="teamTextField" destination="snA-qy-f1K" id="8xs-jk-BjF"/>
+                        <outlet property="titleTextField" destination="PIs-9S-ecc" id="3qy-eP-EaI"/>
+                    </connections>
                 </viewController>
                 <customObject id="CN2-Be-neh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,6 +10,7 @@ import Cocoa
 
 class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate  {
 
+    var user: User?
 //    var tasks: [Task]?
     var tasks: [String]? = ["One", "Two", "Three"]
     
@@ -48,7 +49,21 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         
         let selectedRow = self.mainTableView.clickedRow
         if selectedRow >= 0 {
-            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowTaskDetailSegue"), sender: nil)
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowTaskDetailSegue"), sender: selectedRow)
+        }
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier?.rawValue == "ShowTaskDetailSegue" {
+            if let dest = segue.destinationController as? TaskDetailWindowController {
+                if let contentVC = dest.contentViewController as? TaskDetailViewController {
+                    if let row = sender as? Int {
+                        Logger.log("ShowTaskDetailSegue called")
+                        contentVC.user = self.user
+                        contentVC.task = self.user?.getTasks()[row]
+                    }
+                }
+            }
         }
     }
     
