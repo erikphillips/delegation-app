@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate  {
+class DeprecatedMainViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate  {
 
 //    var tasks: [Task]?
     var tasks: [String]? = ["One", "Two", "Three"]
@@ -22,7 +22,7 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         
-        self.mainTableView.doubleAction = #selector(MainViewController.doubleClickRow)
+        self.mainTableView.doubleAction = #selector(DeprecatedMainViewController.doubleClickRow)
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
