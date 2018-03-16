@@ -1,6 +1,6 @@
 {
   "name": "FirebaseAuth",
-  "version": "4.4.3",
+  "version": "4.4.4",
   "summary": "The official iOS client for Firebase Authentication",
   "description": "Firebase Authentication allows you to manage your own account system without any backend code. It\nsupports email and password accounts, as well as several 3rd party authentication mechanisms.",
   "homepage": "https://firebase.google.com",
@@ -11,7 +11,7 @@
   "authors": "Google, Inc.",
   "source": {
     "git": "https://github.com/firebase/firebase-ios-sdk.git",
-    "tag": "4.4.3"
+    "tag": "4.4.4"
   },
   "social_media_url": "https://twitter.com/Firebase",
   "platforms": {
@@ -55,7 +55,7 @@
     "Firebase/Auth/CHANGELOG.md"
   ],
   "pod_target_xcconfig": {
-    "GCC_PREPROCESSOR_DEFINITIONS": "FIRAuth_VERSION=4.4.3 FIRAuth_MINOR_VERSION=4.4"
+    "GCC_PREPROCESSOR_DEFINITIONS": "FIRAuth_VERSION=4.4.4 FIRAuth_MINOR_VERSION=4.4"
   },
   "frameworks": "Security",
   "dependencies": {

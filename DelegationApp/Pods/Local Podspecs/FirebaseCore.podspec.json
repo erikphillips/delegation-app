@@ -1,6 +1,6 @@
 {
   "name": "FirebaseCore",
-  "version": "4.0.15",
+  "version": "4.0.17",
   "summary": "Firebase Core for iOS",
   "description": "Firebase Core includes FIRApp and FIROptions which provide central configuration for other Firebase services.",
   "homepage": "https://firebase.google.com",
@@ -11,7 +11,7 @@
   "authors": "Google, Inc.",
   "source": {
     "git": "https://github.com/firebase/firebase-ios-sdk.git",
-    "tag": "4.0.15"
+    "tag": "4.0.17"
   },
   "social_media_url": "https://twitter.com/Firebase",
   "platforms": {
@@ -38,6 +38,6 @@
     ]
   },
   "pod_target_xcconfig": {
-    "OTHER_CFLAGS": "-fno-autolink -DFIRCore_VERSION=4.0.15 -DFirebase_VERSION=4.8.0"
+    "OTHER_CFLAGS": "-fno-autolink -DFIRCore_VERSION=4.0.17 -DFirebase_VERSION=4.8.0"
   }
 }
