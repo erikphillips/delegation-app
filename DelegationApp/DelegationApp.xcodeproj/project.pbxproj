@@ -425,8 +425,8 @@
 				9883D33C2059CD560041AA1F /* Deprecated */,
 				98A422B720576AA000A9F154 /* MainWindowController.swift */,
 				98CE951F205AF37400A290FA /* SidebarViewController.swift */,
-				98A422C32057BFC100A9F154 /* TaskDetail */,
 				98CE9523205B41E400A290FA /* MainViewController.swift */,
+				98A422C32057BFC100A9F154 /* TaskDetail */,
 			);
 			path = Main;
 			sourceTree = "<group>";

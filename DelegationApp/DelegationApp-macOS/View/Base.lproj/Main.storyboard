@@ -772,7 +772,7 @@ All Rights Reserved.</string>
         <!--Window Controller-->
         <scene sceneID="Flb-0o-lve">
             <objects>
-                <windowController id="wqa-J1-QWL" customClass="MainWindowController" customModule="Delegation" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="wqa-J1-QWL" customClass="MainWindowController" customModule="Delegation" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Delegation" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="f8l-sm-bHd">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1157,7 +1157,7 @@ All Rights Reserved.</string>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="225" minWidth="40" maxWidth="1000" id="Q8Y-uY-ohd">
+                                                <tableColumn identifier="TaskTitleCell" width="225" minWidth="40" maxWidth="1000" id="Q8Y-uY-ohd">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Title">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1190,7 +1190,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="150" minWidth="40" maxWidth="1000" id="wc5-YD-yuB">
+                                                <tableColumn identifier="TaskTeamCell" width="150" minWidth="40" maxWidth="1000" id="wc5-YD-yuB">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Team">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1223,7 +1223,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="150" minWidth="40" maxWidth="1000" id="Yjz-Pi-LSa">
+                                                <tableColumn identifier="TaskAssigneeCell" width="150" minWidth="40" maxWidth="1000" id="Yjz-Pi-LSa">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Assignee">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1256,7 +1256,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="150" minWidth="40" maxWidth="1000" id="8aS-gg-dpJ">
+                                                <tableColumn identifier="TaskOriginatorCell" width="150" minWidth="40" maxWidth="1000" id="8aS-gg-dpJ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Originator">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1289,7 +1289,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="100" minWidth="40" maxWidth="1000" id="8WJ-Fw-eAx">
+                                                <tableColumn identifier="TaskStatusCell" width="100" minWidth="40" maxWidth="1000" id="8WJ-Fw-eAx">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Status">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1322,7 +1322,7 @@ All Rights Reserved.</string>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="55" minWidth="40" maxWidth="1000" id="Vkt-1f-MN4">
+                                                <tableColumn identifier="TaskPriorityCell" width="55" minWidth="40" maxWidth="1000" id="Vkt-1f-MN4">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Priority">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

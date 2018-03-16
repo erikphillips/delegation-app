@@ -16,38 +16,12 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        
         Logger.log("MainWindowController windowDidLoad")
-    
-//        if let contentVC = self.contentViewController as? NSSplitViewController {
-//            let splitViews = contentVC.splitViewItems
-//            if let sidebarVC = splitViews[0].viewController as? SidebarViewController {
-//                Logger.log("assigning sidebarVC user")
-//                sidebarVC.user = self.user
-//                sidebarVC.refresh()
-//            }
-//
-//            let mainContent = splitViews[1].viewController
-//        }
     }
     
     override func windowWillLoad() {
         Logger.log("MainWindowController windowWillLoad")
     }
-    
-//    override func windowWillLoad() {
-//        Logger.log("MainWindowController windowWillLoad")
-//
-//        if let contentVC = self.contentViewController as? NSSplitViewController {
-//            let splitViews = contentVC.splitViewItems
-//            if let sidebarVC = splitViews[0].viewController as? SidebarViewController {
-//                Logger.log("assigning sidebarVC user")
-//                sidebarVC.user = self.user
-//            }
-//
-//            let mainContent = splitViews[1].viewController
-//        }
-//    }
     
     @IBOutlet weak var toolbarSegmentedFiltering: NSSegmentedControl!
     @IBAction func toolbarSegmentedFilteringPressed(_ sender: Any) {
@@ -70,6 +44,19 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
     
     @IBAction func toolbarRefreshBtnPressed(_ sender: Any) {
         Logger.log("refresh button pressed")
+        
+        if let contentVC = self.contentViewController as? NSSplitViewController {
+            let splitViews = contentVC.splitViewItems
+            if let sidebarVC = splitViews[0].viewController as? SidebarViewController {
+                Logger.log("sending refresh to sidebarVC content")
+                sidebarVC.refresh()
+            }
+
+            if let mainContent = splitViews[1].viewController as? MainViewController {
+                Logger.log("sending refresh to mainContent VC")
+                mainContent.refresh()
+            }
+        }
     }
     
     @IBAction func toolbarNewTaskBtnPressed(_ sender: Any) {
