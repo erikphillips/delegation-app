@@ -49,8 +49,8 @@
 		98859313200484E300259079 /* SettingsJoinTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */; };
 		98859315200484FB00259079 /* SettingsCreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */; };
 		9893FF382053A66400798CFE /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF362053A66400798CFE /* HeaderViewController.swift */; };
-		9893FF3B2053A68700798CFE /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3A2053A68700798CFE /* SideBarViewController.swift */; };
-		9893FF3E2053A69800798CFE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3C2053A69800798CFE /* MainViewController.swift */; };
+		9893FF3B2053A68700798CFE /* DeprecatedSideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3A2053A68700798CFE /* DeprecatedSideBarViewController.swift */; };
+		9893FF3E2053A69800798CFE /* DeprecatedMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3C2053A69800798CFE /* DeprecatedMainViewController.swift */; };
 		98A422B820576AA000A9F154 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A422B720576AA000A9F154 /* MainWindowController.swift */; };
 		98A422C02057967A00A9F154 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A422BF2057967A00A9F154 /* SettingsViewController.swift */; };
 		98A422C22057B3C800A9F154 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A422C12057B3C800A9F154 /* SettingsWindowController.swift */; };
@@ -79,6 +79,8 @@
 		98CB98B1202B793F006E3370 /* TeamSpecificTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB98B0202B793F006E3370 /* TeamSpecificTasksTableViewController.swift */; };
 		98CD42131FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */; };
 		98CD42151FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */; };
+		98CE9520205AF37400A290FA /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CE951F205AF37400A290FA /* SidebarViewController.swift */; };
+		98CE9524205B41E400A290FA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CE9523205B41E400A290FA /* MainViewController.swift */; };
 		98D2A8C01FF75B2F00248366 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */; };
 		98DA8B312020E1FF0050B795 /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DA8B302020E1FF0050B795 /* Observers.swift */; };
 		98DB37CF200D349000853862 /* CreateTaskSelectTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DB37CE200D349000853862 /* CreateTaskSelectTeamTableViewController.swift */; };
@@ -139,8 +141,8 @@
 		98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsJoinTeamTableViewController.swift; sourceTree = "<group>"; };
 		98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCreateTeamViewController.swift; sourceTree = "<group>"; };
 		9893FF362053A66400798CFE /* HeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
-		9893FF3A2053A68700798CFE /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
-		9893FF3C2053A69800798CFE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9893FF3A2053A68700798CFE /* DeprecatedSideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeprecatedSideBarViewController.swift; sourceTree = "<group>"; };
+		9893FF3C2053A69800798CFE /* DeprecatedMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeprecatedMainViewController.swift; sourceTree = "<group>"; };
 		98A422B720576AA000A9F154 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		98A422BF2057967A00A9F154 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98A422C12057B3C800A9F154 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,8 @@
 		98CB98B0202B793F006E3370 /* TeamSpecificTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSpecificTasksTableViewController.swift; sourceTree = "<group>"; };
 		98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewController.swift; sourceTree = "<group>"; };
 		98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewCell.swift; sourceTree = "<group>"; };
+		98CE951F205AF37400A290FA /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
+		98CE9523205B41E400A290FA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		98DA8B2F202066B60050B795 /* DelegationApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DelegationApp.entitlements; sourceTree = "<group>"; };
 		98DA8B302020E1FF0050B795 /* Observers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
@@ -322,6 +326,15 @@
 			path = Deprecated;
 			sourceTree = "<group>";
 		};
+		9883D33C2059CD560041AA1F /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				9893FF3A2053A68700798CFE /* DeprecatedSideBarViewController.swift */,
+				9893FF3C2053A69800798CFE /* DeprecatedMainViewController.swift */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
 		98849E9E1FDDC7AA009C9B1A = {
 			isa = PBXGroup;
 			children = (
@@ -409,10 +422,11 @@
 		9893FF352053A63200798CFE /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				9883D33C2059CD560041AA1F /* Deprecated */,
 				98A422B720576AA000A9F154 /* MainWindowController.swift */,
-				9893FF3A2053A68700798CFE /* SideBarViewController.swift */,
-				9893FF3C2053A69800798CFE /* MainViewController.swift */,
+				98CE951F205AF37400A290FA /* SidebarViewController.swift */,
 				98A422C32057BFC100A9F154 /* TaskDetail */,
+				98CE9523205B41E400A290FA /* MainViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -845,8 +859,9 @@
 				98A422C02057967A00A9F154 /* SettingsViewController.swift in Sources */,
 				98A422C22057B3C800A9F154 /* SettingsWindowController.swift in Sources */,
 				9834FD7E2058D9BC00F48870 /* JoinTeamTableViewCell.swift in Sources */,
-				9893FF3E2053A69800798CFE /* MainViewController.swift in Sources */,
-				9893FF3B2053A68700798CFE /* SideBarViewController.swift in Sources */,
+				98CE9524205B41E400A290FA /* MainViewController.swift in Sources */,
+				9893FF3E2053A69800798CFE /* DeprecatedMainViewController.swift in Sources */,
+				9893FF3B2053A68700798CFE /* DeprecatedSideBarViewController.swift in Sources */,
 				981CA9EC204E413D00276DAB /* Task.swift in Sources */,
 				98A422C52057BFF100A9F154 /* TaskDetailWindowController.swift in Sources */,
 				981CA9D9204E38EB00276DAB /* AppDelegate.swift in Sources */,
@@ -859,6 +874,7 @@
 				9834FD7A2058D97400F48870 /* YourTeamViewController.swift in Sources */,
 				98A422B820576AA000A9F154 /* MainWindowController.swift in Sources */,
 				98A422D02057C12300A9F154 /* NewTaskViewController.swift in Sources */,
+				98CE9520205AF37400A290FA /* SidebarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

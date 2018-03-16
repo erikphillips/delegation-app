@@ -108,6 +108,16 @@ class LaunchViewController: NSViewController {
             if let dest = segue.destinationController as? MainWindowController {
                 Logger.log("ShowMainViewSegue called")
                 dest.user = self.user
+                
+                if let contentVC = dest.contentViewController as? NSSplitViewController {
+                    let splitViews = contentVC.splitViewItems
+                    if let sidebarVC = splitViews[0].viewController as? SidebarViewController {
+                        Logger.log("assigning sidebarVC user")
+                        sidebarVC.user = self.user
+                    }
+                    
+                    let mainContent = splitViews[1].viewController
+                }
             }
         }
     }

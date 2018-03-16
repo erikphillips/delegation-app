@@ -2,13 +2,13 @@
 //  MainViewController.swift
 //  DelegationApp-macOS
 //
-//  Created by Erik Phillips on 3/15/18.
+//  Created by Erik Phillips on 3/9/18.
 //  Copyright © 2018 Erik Phillips. All rights reserved.
 //
 
 import Cocoa
 
-class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class DeprecatedMainViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate  {
 
 //    var tasks: [Task]?
     var tasks: [String]? = ["One", "Two", "Three"]
@@ -17,7 +17,6 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         Logger.log("MainViewController viewDidLoad")
         
         self.mainTableView.delegate = self
