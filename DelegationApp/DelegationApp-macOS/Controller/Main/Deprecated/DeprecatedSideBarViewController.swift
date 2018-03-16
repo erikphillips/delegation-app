@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SideBarViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class DeprecatedSideBarViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
 //    var teams: [Team]?
     var teams: [String]? = ["One", "Two", "Three"]
