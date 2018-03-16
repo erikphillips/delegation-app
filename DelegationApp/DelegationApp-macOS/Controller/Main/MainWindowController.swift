@@ -16,9 +16,38 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
     
     override func windowDidLoad() {
         super.windowDidLoad()
+        
+        Logger.log("MainWindowController windowDidLoad")
     
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+//        if let contentVC = self.contentViewController as? NSSplitViewController {
+//            let splitViews = contentVC.splitViewItems
+//            if let sidebarVC = splitViews[0].viewController as? SidebarViewController {
+//                Logger.log("assigning sidebarVC user")
+//                sidebarVC.user = self.user
+//                sidebarVC.refresh()
+//            }
+//
+//            let mainContent = splitViews[1].viewController
+//        }
     }
+    
+    override func windowWillLoad() {
+        Logger.log("MainWindowController windowWillLoad")
+    }
+    
+//    override func windowWillLoad() {
+//        Logger.log("MainWindowController windowWillLoad")
+//
+//        if let contentVC = self.contentViewController as? NSSplitViewController {
+//            let splitViews = contentVC.splitViewItems
+//            if let sidebarVC = splitViews[0].viewController as? SidebarViewController {
+//                Logger.log("assigning sidebarVC user")
+//                sidebarVC.user = self.user
+//            }
+//
+//            let mainContent = splitViews[1].viewController
+//        }
+//    }
     
     @IBOutlet weak var toolbarSegmentedFiltering: NSSegmentedControl!
     @IBAction func toolbarSegmentedFilteringPressed(_ sender: Any) {

@@ -79,6 +79,7 @@
 		98CB98B1202B793F006E3370 /* TeamSpecificTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB98B0202B793F006E3370 /* TeamSpecificTasksTableViewController.swift */; };
 		98CD42131FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */; };
 		98CD42151FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */; };
+		98CE9520205AF37400A290FA /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CE951F205AF37400A290FA /* SidebarViewController.swift */; };
 		98D2A8C01FF75B2F00248366 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */; };
 		98DA8B312020E1FF0050B795 /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DA8B302020E1FF0050B795 /* Observers.swift */; };
 		98DB37CF200D349000853862 /* CreateTaskSelectTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DB37CE200D349000853862 /* CreateTaskSelectTeamTableViewController.swift */; };
@@ -169,6 +170,7 @@
 		98CB98B0202B793F006E3370 /* TeamSpecificTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSpecificTasksTableViewController.swift; sourceTree = "<group>"; };
 		98CD42121FFEBB5F001F4CB0 /* SettingsTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewController.swift; sourceTree = "<group>"; };
 		98CD42141FFEBB70001F4CB0 /* SettingsTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTeamTableViewCell.swift; sourceTree = "<group>"; };
+		98CE951F205AF37400A290FA /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		98D2A8BF1FF75B2F00248366 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		98DA8B2F202066B60050B795 /* DelegationApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DelegationApp.entitlements; sourceTree = "<group>"; };
 		98DA8B302020E1FF0050B795 /* Observers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 			children = (
 				9883D33C2059CD560041AA1F /* Deprecated */,
 				98A422B720576AA000A9F154 /* MainWindowController.swift */,
+				98CE951F205AF37400A290FA /* SidebarViewController.swift */,
 				98A422C32057BFC100A9F154 /* TaskDetail */,
 			);
 			path = Main;
@@ -867,6 +870,7 @@
 				9834FD7A2058D97400F48870 /* YourTeamViewController.swift in Sources */,
 				98A422B820576AA000A9F154 /* MainWindowController.swift in Sources */,
 				98A422D02057C12300A9F154 /* NewTaskViewController.swift in Sources */,
+				98CE9520205AF37400A290FA /* SidebarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
