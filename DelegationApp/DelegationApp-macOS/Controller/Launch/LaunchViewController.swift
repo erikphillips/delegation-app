@@ -116,7 +116,10 @@ class LaunchViewController: NSViewController {
                         sidebarVC.user = self.user
                     }
                     
-                    let mainContent = splitViews[1].viewController
+                    if let mainContent = splitViews[1].viewController as? MainViewController {
+                        Logger.log("assigning mainContent user")
+                        mainContent.user = self.user
+                    }
                 }
             }
         }
