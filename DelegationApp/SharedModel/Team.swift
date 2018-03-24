@@ -112,7 +112,7 @@ class Team {
         ref.child("teamname").setValue(teamname)
         ref.child("description").setValue(description)
         ref.child("owner").setValue(owner)
-        ref.child("members").childByAutoId().setValue(owner)
+        // ref.child("members").childByAutoId().setValue(owner)
         
         Logger.log("create a new non-observable team account in database with guid='\(self.guid)'")
         
