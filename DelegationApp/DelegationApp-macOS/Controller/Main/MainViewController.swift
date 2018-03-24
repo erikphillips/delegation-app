@@ -11,6 +11,7 @@ import Cocoa
 class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
     var user: User?
+    var displayedTasks: [Task]?
     
     @IBOutlet weak var mainTableView: NSTableView!
     
@@ -31,7 +32,13 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
     
     override func viewWillAppear() {
         Logger.log("MainViewController viewWillAppear")
-        self.mainTableView.reloadData()
+        
+        self.refresh()
+        self.user?.observers.observe(canary: self, callback: {
+            [weak self] (user) in
+            guard let this = self else { return }
+            this.refresh()
+        })
     }
     
     @objc func onSegmentChangedNotification(notification: Notification) {
@@ -51,11 +58,16 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
     }
     
     func refresh() {
+        self.displayedTasks = self.user?.getTasks()
         self.mainTableView.reloadData()
     }
     
+    func filteringController() {
+        
+    }
+    
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if let tasks = self.user?.getTasks() {
+        if let tasks = self.displayedTasks {
             return tasks.count
         }
         return 0
@@ -65,9 +77,9 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         let result = self.mainTableView.makeView(withIdentifier: (tableColumn?.identifier)!, owner: self) as! NSTableCellView
         let identifier = tableColumn?.identifier.rawValue ?? "error"
         
-        if let task = self.user?.getTasks()[row] {
+        if let task = self.displayedTasks?[row] {
             
-            let updateTaskContents = {
+            let updateTaskContents = {  // this is the callback for updating the task
                 [identifier, result] (task: Task) in
                 
                 switch(identifier) {
@@ -118,7 +130,7 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
                     if let row = sender as? Int {
                         Logger.log("ShowTaskDetailSegue called")
                         contentVC.user = self.user
-                        contentVC.task = self.user?.getTasks()[row]
+                        contentVC.task = self.displayedTasks?[row]
                     }
                 }
             }
