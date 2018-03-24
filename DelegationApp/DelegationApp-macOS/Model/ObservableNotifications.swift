@@ -44,6 +44,10 @@ class ObservableNotifications {
     static let NOTIFICATION_ALL_TEAM_SELECTION = Notification.Name("NOTIFICATION_ALL_TEAM_SELECTION")
     static let NOTIFICATION_TEAM_SELECTION = Notification.Name("NOTIFICATION_TEAM_SELECTION")
     
+    static let NOTIFICATION_CLOSE_WINDOW_NEW_TEAM = Notification.Name("NOTIFICATION_CLOSE_WINDOW_NEW_TEAM")
+    static let NOTIFICATION_CLOSE_WINDOW_NEW_TASK = Notification.Name("NOTIFICATION_CLOSE_WINDOW_NEW_TASK")
+
+    
 }
 
 //extension Notification.Name {

@@ -800,7 +800,7 @@ All Rights Reserved.</string>
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="314" width="1000" height="600"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
                         <value key="minSize" type="size" width="800" height="400"/>
                         <toolbar key="toolbar" implicitIdentifier="A30F4DF0-E91D-41F9-9003-BA08478C4442" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="ujc-BJ-tBv">
                             <allowedToolbarItems>
@@ -885,9 +885,11 @@ All Rights Reserved.</string>
                                         </buttonCell>
                                         <connections>
                                             <action selector="toolbarNewTeamBtnPressed:" target="wqa-J1-QWL" id="JsL-Ht-j91"/>
-                                            <segue destination="vIq-K4-ygM" kind="show" identifier="ShowNewTeamSegue" id="FZ7-8Z-15o"/>
                                         </connections>
                                     </button>
+                                    <connections>
+                                        <segue destination="vIq-K4-ygM" kind="show" identifier="ShowNewTeamSegue" id="1WW-YR-2Mi"/>
+                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="EDA49806-F185-4B3B-A824-8ACC776EB8CA" label="Settings" paletteLabel="Settings" image="SettingsGlyph" id="JM6-gc-Gjc">
                                     <nil key="toolTip"/>
@@ -2173,6 +2175,9 @@ Gw
 DQ
 </string>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="createTeamBtnPressed:" target="NXY-Zc-r2R" id="N3A-uu-oVC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -2196,6 +2201,10 @@ DQ
                             <constraint firstItem="W4S-cb-Dgf" firstAttribute="top" secondItem="kHB-p8-oda" secondAttribute="bottom" constant="8" id="v7l-Ig-fac"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="teamDescriptionTextView" destination="Mko-0V-BEd" id="cva-yK-H27"/>
+                        <outlet property="teamTitleTextField" destination="JVO-n4-AZp" id="HtX-tY-BCO"/>
+                    </connections>
                 </viewController>
                 <customObject id="ElY-Sm-nlP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2766,7 +2775,7 @@ DQ
         <!--New Task-->
         <scene sceneID="Gj9-SN-DlA">
             <objects>
-                <viewController title="New Task" id="Gm8-9a-Gno" customClass="NewTeamViewController" customModule="Delegation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="New Task" id="Gm8-9a-Gno" customClass="NewTaskViewController" customModule="Delegation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ynh-hc-aic">
                         <rect key="frame" x="0.0" y="0.0" width="350" height="450"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2820,19 +2829,16 @@ DQ
 DQ
 </string>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="createTaskBtnPressed:" target="Gm8-9a-Gno" id="zCZ-aT-BfM"/>
+                                </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LBQ-EA-STZ">
                                 <rect key="frame" x="63" y="303" width="270" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="Task Team" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Ad7-ea-8I8" id="s50-nM-Cw9">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="s50-nM-Cw9">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="u4p-4b-CtE">
-                                        <items>
-                                            <menuItem title="Task Team" state="on" id="Ad7-ea-8I8"/>
-                                            <menuItem title="Item 2" id="055-5C-wok"/>
-                                            <menuItem title="Item 3" id="4xX-wl-dO5"/>
-                                        </items>
-                                    </menu>
+                                    <menu key="menu" id="u4p-4b-CtE"/>
                                 </popUpButtonCell>
                             </popUpButton>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4P-Gq-RA2">
@@ -2861,6 +2867,10 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ELd-HM-jnY">
+                                <rect key="frame" x="292" y="309" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="LBQ-EA-STZ" firstAttribute="leading" secondItem="2Jd-6i-RXI" secondAttribute="trailing" constant="8" id="1sv-KQ-awE"/>
@@ -2888,6 +2898,12 @@ DQ
                             <constraint firstAttribute="trailing" secondItem="c4P-Gq-RA2" secondAttribute="trailing" constant="20" id="oBF-hQ-YEx"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="taskDescriptionTextView" destination="3n6-Ts-SHS" id="Oou-W2-M67"/>
+                        <outlet property="taskTeamSelectionButton" destination="LBQ-EA-STZ" id="qoa-eo-PZu"/>
+                        <outlet property="taskTeamSelectionIndicator" destination="ELd-HM-jnY" id="fNy-mL-L2t"/>
+                        <outlet property="taskTitleTextField" destination="Nmb-Df-O36" id="mTd-BP-wxD"/>
+                    </connections>
                 </viewController>
                 <customObject id="gaT-T6-y5M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3121,6 +3137,6 @@ DQ
         <image name="SettingsGlyph" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FZ7-8Z-15o"/>
+        <segue reference="1WW-YR-2Mi"/>
     </inferredMetricsTieBreakers>
 </document>

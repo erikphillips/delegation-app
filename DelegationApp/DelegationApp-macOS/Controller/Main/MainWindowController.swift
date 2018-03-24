@@ -59,10 +59,12 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
     
     @IBAction func toolbarNewTaskBtnPressed(_ sender: Any) {
         Logger.log("new task pressed")
+        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowNewTaskSegue"), sender: nil)
     }
     
     @IBAction func toolbarNewTeamBtnPressed(_ sender: Any) {
         Logger.log("new team pressed")
+        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowNewTeamSegue"), sender: nil)
     }
     
     @IBAction func toolbarSettingsBtnPressed(_ sender: Any) {
@@ -77,6 +79,24 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
                     Logger.log("ShowAccountSettingsSegue called")
                     contentVC.user = self.user
                     contentVC.updateView()
+                }
+            }
+        }
+        
+        if segue.identifier?.rawValue == "ShowNewTeamSegue" {
+            if let dest = segue.destinationController as? NewTeamWindowController {
+                if let contentVC = dest.contentViewController as? NewTeamViewController {
+                    Logger.log("ShowNewTeamSegue called")
+                    contentVC.user = self.user
+                }
+            }
+        }
+        
+        if segue.identifier?.rawValue == "ShowNewTaskSegue" {
+            if let dest = segue.destinationController as? NewTaskWindowController {
+                if let contentVC = dest.contentViewController as? NewTaskViewController {
+                    Logger.log("ShowNewTaskSegue called")
+                    contentVC.user = self.user
                 }
             }
         }
