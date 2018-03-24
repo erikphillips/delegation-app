@@ -43,6 +43,23 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
         self.outlineView.reloadData()
     }
     
+    // Notification called whenever the selection changes in the outline view
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        Logger.log("SideBar outline view selection changed to=\(self.outlineView.selectedRow)")
+        
+        if let item = outlineView.item(atRow: self.outlineView.selectedRow) as? (String, Int) {
+            Logger.log("selected item=\(item), posting notification if applicable")
+            
+            if item.0 == self.headers[0] {
+                NotificationCenter.default.post(name: ObservableNotifications.NOTIFICATION_ALL_TEAM_SELECTION, object: nil)
+            } else if item.0 == "specific_team" {
+                if let team = self.user?.getTeams()[item.1] {
+                    NotificationCenter.default.post(name: ObservableNotifications.NOTIFICATION_TEAM_SELECTION, object: nil, userInfo: ["teamname": team.getGUID(), "team": team])
+                }
+            }
+        }
+    }
+    
     let headers = ["All Teams", "Specific Teams"]
     
     // You must give each row a unique identifier, referred to as `item` by the outline view
@@ -76,6 +93,15 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
             return true
         } else {
             return false
+        }
+    }
+    
+    // Return true if the row is selectable
+    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+        if let item = item as? (String, Int), item.0 == self.headers[1] {
+            return false  // the only row that should not be selected is the Specific Teams header cell
+        } else {
+            return true
         }
     }
     

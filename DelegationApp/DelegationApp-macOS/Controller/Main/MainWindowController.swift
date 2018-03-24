@@ -25,17 +25,8 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
     
     @IBOutlet weak var toolbarSegmentedFiltering: NSSegmentedControl!
     @IBAction func toolbarSegmentedFilteringPressed(_ sender: Any) {
-        Logger.log("segmentControlPressed - \(toolbarSegmentedFiltering.selectedSegment)")
-        switch self.toolbarSegmentedFiltering.selectedSegment {
-        case 0:  // Perform action for "Personal"
-            return
-        case 1:  // Perform action for "Team"
-            return
-        case 2:  // Perform action for "Delegate"
-            return
-        default:
-            return
-        }
+        Logger.log("segmentControlPressed - \(toolbarSegmentedFiltering.selectedSegment), posting notification")
+        NotificationCenter.default.post(name: ObservableNotifications.NOTIFICATION_SEGMENT_CHANGED, object: nil, userInfo: ["segment": self.toolbarSegmentedFiltering.selectedSegment])
     }
     
     @IBAction func toolbarSearchBtnPressed(_ sender: Any) {

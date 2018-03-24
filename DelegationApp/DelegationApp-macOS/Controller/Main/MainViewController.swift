@@ -23,11 +23,31 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         self.mainTableView.dataSource = self
         
         self.mainTableView.doubleAction = #selector(DeprecatedMainViewController.doubleClickRow)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onSegmentChangedNotification(notification:)), name: ObservableNotifications.NOTIFICATION_SEGMENT_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onAllTeamSelectionNotification(notification:)), name: ObservableNotifications.NOTIFICATION_ALL_TEAM_SELECTION, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onTeamSelectionNotification(notification:)), name: ObservableNotifications.NOTIFICATION_TEAM_SELECTION, object: nil)
     }
     
     override func viewWillAppear() {
         Logger.log("MainViewController viewWillAppear")
         self.mainTableView.reloadData()
+    }
+    
+    @objc func onSegmentChangedNotification(notification: Notification) {
+        if let segment = notification.userInfo?["segment"] as? Int {
+            Logger.log("segment changed notification for new segment=\(segment)")
+        }
+    }
+    
+    @objc func onAllTeamSelectionNotification(notification: Notification) {
+        Logger.log("all teams selected notification recieved in MainView")
+    }
+    
+    @objc func onTeamSelectionNotification(notification: Notification) {
+        if let teamname = notification.userInfo?["teamname"] as? String {
+            Logger.log("teams selected notification received for \(teamname)")
+        }
     }
     
     func refresh() {
