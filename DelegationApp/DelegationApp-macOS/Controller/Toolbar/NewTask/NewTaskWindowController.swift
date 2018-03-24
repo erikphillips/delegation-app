@@ -15,10 +15,16 @@ class NewTaskWindowController: NSWindowController {
         self.shouldCascadeWindows = true
     
         NotificationCenter.default.addObserver(self, selector: #selector(onLogoutNotification(notification:)), name: ObservableNotifications.NOTIFICATION_APP_LOGOUT, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onCloseWindowNotification(notification:)), name: ObservableNotifications.NOTIFICATION_CLOSE_WINDOW_NEW_TASK, object: nil)
     }
     
     @objc func onLogoutNotification(notification:Notification) {
         Logger.log("logout notification received for NewTaskWindowController")
+        self.window?.close()
+    }
+    
+    @objc func onCloseWindowNotification(notification: Notification) {
+        Logger.log("close window notification received for NewTaskWindowController")
         self.window?.close()
     }
 
