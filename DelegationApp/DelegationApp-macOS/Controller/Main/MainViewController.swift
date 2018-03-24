@@ -12,6 +12,9 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
 
     var user: User?
     var displayedTasks: [Task]?
+    var filteringSelectedSegment: String?
+    var filteringFunctionID: String?
+    var filteringSelectedTeamname: String?
     
     @IBOutlet weak var mainTableView: NSTableView!
     
@@ -28,6 +31,9 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(onSegmentChangedNotification(notification:)), name: ObservableNotifications.NOTIFICATION_SEGMENT_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onAllTeamSelectionNotification(notification:)), name: ObservableNotifications.NOTIFICATION_ALL_TEAM_SELECTION, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onTeamSelectionNotification(notification:)), name: ObservableNotifications.NOTIFICATION_TEAM_SELECTION, object: nil)
+        
+        self.filteringFunctionID = "all_teams"
+        self.filteringSelectedSegment = "personal"
     }
     
     override func viewWillAppear() {
@@ -44,26 +50,69 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
     @objc func onSegmentChangedNotification(notification: Notification) {
         if let segment = notification.userInfo?["segment"] as? Int {
             Logger.log("segment changed notification for new segment=\(segment)")
+            switch segment {
+                case 0: self.filteringSelectedSegment = "personal"
+                case 1: self.filteringSelectedSegment = "team"
+                case 2: self.filteringSelectedSegment = "delegation"
+                default: Logger.log("unknown selected segment=\(segment)")
+            }
+            self.refresh()
         }
     }
     
     @objc func onAllTeamSelectionNotification(notification: Notification) {
         Logger.log("all teams selected notification recieved in MainView")
+        self.filteringFunctionID = "all_teams"
+        self.filteringSelectedTeamname = nil
+        self.refresh()
     }
     
     @objc func onTeamSelectionNotification(notification: Notification) {
         if let teamname = notification.userInfo?["teamname"] as? String {
             Logger.log("teams selected notification received for \(teamname)")
+            self.filteringFunctionID = "specific_team"
+            self.filteringSelectedTeamname = teamname
+            self.refresh()
         }
     }
     
     func refresh() {
-        self.displayedTasks = self.user?.getTasks()
-        self.mainTableView.reloadData()
-    }
-    
-    func filteringController() {
+        self.displayedTasks = []
+        var currentStepTasks: [Task] = []
         
+        if let segment = self.filteringSelectedSegment {
+            if segment == "personal" {
+                if let user = self.user {
+                    currentStepTasks = user.getTasks()
+                }
+            } else if segment == "team" {
+                if let user = self.user {
+                    for team in user.getTeams() {
+                        for task in team.getTasks() {
+                            currentStepTasks.append(task)
+                        }
+                    }
+                }
+            } else if segment == "delegation" {
+                Logger.log("non-implemented feature", event: .warning)
+            } else {
+                Logger.log("unknown segment", event: .error)
+            }
+        }
+        
+        if let id = self.filteringFunctionID {
+            if id == "all_teams" {
+                self.displayedTasks = currentStepTasks
+            } else if id == "specific_team" {
+                if let teamname = self.filteringSelectedTeamname {
+                    self.displayedTasks = Utilities.Filtering.filter(tasks: currentStepTasks, by: teamname)
+                }
+            } else {
+                Logger.log("unknown filteringFunctionID")
+            }
+        }
+        
+        self.mainTableView.reloadData()
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
