@@ -125,13 +125,18 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
-        Logger.log("logoutBtnPressed")
+        Logger.log("logoutBtnPressed, sending logout notification and requesting FB logout")
+        
         let status = FirebaseUtilities.logoutCurrentUser()
-        if !status.status {
+        if status.status {
+            let _ = self.displayAlert(title: "Logout Successful", message: "You have been successfully logged out.")
+        } else {
             let _ = self.displayAlert(title: "Logout Error", message: "An error occured when attempting to sign out: \(status.message)")
         }
         
-        // TODO: Send message that a logout occured.
+        // Send a notification that a logout was attempted -> close all windows
+        NotificationCenter.default.post(name: ObservableNotifications.NOTIFICATION_APP_LOGOUT, object: nil)
+
     }
     
     @IBAction func deleteAccountBtnPressed(_ sender: Any) {

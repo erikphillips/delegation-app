@@ -17,6 +17,13 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
     override func windowDidLoad() {
         super.windowDidLoad()
         Logger.log("MainWindowController windowDidLoad")
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(onLogoutNotification(notification:)), name: ObservableNotifications.NOTIFICATION_APP_LOGOUT, object: nil)
+    }
+    
+    @objc func onLogoutNotification(notification:Notification) {
+        Logger.log("logout notification received for MainWindowController")
+        self.window?.close()
     }
     
     override func windowWillLoad() {
