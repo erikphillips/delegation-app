@@ -51,6 +51,7 @@
 		9893FF382053A66400798CFE /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF362053A66400798CFE /* HeaderViewController.swift */; };
 		9893FF3B2053A68700798CFE /* DeprecatedSideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3A2053A68700798CFE /* DeprecatedSideBarViewController.swift */; };
 		9893FF3E2053A69800798CFE /* DeprecatedMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3C2053A69800798CFE /* DeprecatedMainViewController.swift */; };
+		98A270FE2065FC46007DBF0D /* ObservableNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A270FD2065FC46007DBF0D /* ObservableNotifications.swift */; };
 		98A422B820576AA000A9F154 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A422B720576AA000A9F154 /* MainWindowController.swift */; };
 		98A422C02057967A00A9F154 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A422BF2057967A00A9F154 /* SettingsViewController.swift */; };
 		98A422C22057B3C800A9F154 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A422C12057B3C800A9F154 /* SettingsWindowController.swift */; };
@@ -143,6 +144,7 @@
 		9893FF362053A66400798CFE /* HeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
 		9893FF3A2053A68700798CFE /* DeprecatedSideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeprecatedSideBarViewController.swift; sourceTree = "<group>"; };
 		9893FF3C2053A69800798CFE /* DeprecatedMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeprecatedMainViewController.swift; sourceTree = "<group>"; };
+		98A270FD2065FC46007DBF0D /* ObservableNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableNotifications.swift; sourceTree = "<group>"; };
 		98A422B720576AA000A9F154 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		98A422BF2057967A00A9F154 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98A422C12057B3C800A9F154 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */,
 				983988C72050ABEE0085D0AD /* Controller */,
 				983988C62050ABE60085D0AD /* View */,
+				98A270FC2065FBE6007DBF0D /* Model */,
 			);
 			path = "DelegationApp-macOS";
 			sourceTree = "<group>";
@@ -429,6 +432,14 @@
 				98A422C32057BFC100A9F154 /* TaskDetail */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		98A270FC2065FBE6007DBF0D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				98A270FD2065FC46007DBF0D /* ObservableNotifications.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		98A422BB2057961B00A9F154 /* Settings */ = {
@@ -869,6 +880,7 @@
 				983988CA2050AC910085D0AD /* LoginViewController.swift in Sources */,
 				9834FD7C2058D9AA00F48870 /* YourTeamTableViewCell.swift in Sources */,
 				98A422CE2057C11000A9F154 /* NewTaskWindowController.swift in Sources */,
+				98A270FE2065FC46007DBF0D /* ObservableNotifications.swift in Sources */,
 				981CA9EF204E414400276DAB /* Logger.swift in Sources */,
 				9834FD782058D96300F48870 /* JoinTeamViewController.swift in Sources */,
 				9834FD7A2058D97400F48870 /* YourTeamViewController.swift in Sources */,
