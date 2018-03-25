@@ -190,7 +190,7 @@ class Utilities {
 //            return tasks.filter { $0.getAssigneeUUID() == user.getUUID() }
 //        }
         
-        func distict(tasks: [Task]) -> [Task]? {
+        static func distict(tasks: [Task]) -> [Task]? {
             var tuids: [String] = []
             var rtnTasks: [Task] = []
             
