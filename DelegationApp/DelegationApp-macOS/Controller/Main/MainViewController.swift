@@ -31,6 +31,7 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(onSegmentChangedNotification(notification:)), name: ObservableNotifications.NOTIFICATION_SEGMENT_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onAllTeamSelectionNotification(notification:)), name: ObservableNotifications.NOTIFICATION_ALL_TEAM_SELECTION, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onTeamSelectionNotification(notification:)), name: ObservableNotifications.NOTIFICATION_TEAM_SELECTION, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onRequestRefreshNotification(notification:)), name: ObservableNotifications.NOTIFICATION_REQUEST_REFRESH, object: nil)
         
         self.filteringFunctionID = "all_teams"
         self.filteringSelectedSegment = "personal"
@@ -74,6 +75,10 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
             self.filteringSelectedTeamname = teamname
             self.refresh()
         }
+    }
+
+    @objc func onRequestRefreshNotification(notification: Notification) {
+        self.refresh()
     }
     
     func refresh() {
@@ -155,7 +160,8 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
                 }
             }
             
-            task.observers.observe(canary: self, callback: updateTaskContents)
+            // Uncomment the following to allow for automatic updates
+            // task.observers.observe(canary: self, callback: updateTaskContents)
             updateTaskContents(task)
             
         }

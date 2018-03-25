@@ -1799,10 +1799,12 @@ All Rights Reserved.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="confirmPasswordTextField" destination="rOZ-76-i9L" id="3kf-Ue-yuP"/>
                         <outlet property="emailTextField" destination="5Ew-Oe-i2e" id="tvH-Qe-M9G"/>
                         <outlet property="firstnameTextField" destination="Pq0-Db-smg" id="FeJ-nD-deL"/>
                         <outlet property="joinTeamsProgressIndicator" destination="O9c-8g-wjK" id="eh1-jd-MdB"/>
                         <outlet property="lastnameTextField" destination="GKW-bI-Yln" id="4Ky-lu-NHF"/>
+                        <outlet property="passwordTextField" destination="X9m-9V-R0d" id="1Mp-0W-nWQ"/>
                         <outlet property="phoneTextField" destination="e8f-Ve-cTr" id="xrz-Pk-XsG"/>
                         <outlet property="versionString" destination="llf-wZ-sbQ" id="Agw-bL-0xG"/>
                         <outlet property="yourTeamsProgressIndicator" destination="uMh-PI-TlK" id="SmE-7r-t5m"/>
@@ -3137,6 +3139,6 @@ DQ
         <image name="SettingsGlyph" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1WW-YR-2Mi"/>
+        <segue reference="7l7-VN-XT2"/>
     </inferredMetricsTieBreakers>
 </document>

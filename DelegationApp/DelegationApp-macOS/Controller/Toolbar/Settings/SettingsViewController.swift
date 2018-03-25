@@ -17,6 +17,8 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var lastnameTextField: NSTextField!
     @IBOutlet weak var emailTextField: NSTextField!
     @IBOutlet weak var phoneTextField: NSTextField!
+    @IBOutlet weak var passwordTextField: NSSecureTextField!
+    @IBOutlet weak var confirmPasswordTextField: NSSecureTextField!
     @IBOutlet weak var versionString: NSTextField!
     
     @IBOutlet weak var yourTeamsProgressIndicator: NSProgressIndicator!
@@ -71,31 +73,33 @@ class SettingsViewController: NSViewController {
             if !verifyStatus.status {
                 newEmailAddress = nil
                 Logger.log("Invalid email address: \(verifyStatus.message)", event: .warning)
-                // TODO: Display alert for invalid email address
+                let _ = self.displayAlert(title: "Invalid Email", message: "The email address you entered is invalid. \(verifyStatus.message)")
             }
         }
         
-        // TODO: Implement password text fields
-//        if self.passwordTextField.text != Globals.UserGlobals.DEFAULT_PASSWORD
-//            || self.confirmPasswordTextField.text != Globals.UserGlobals.DEFAULT_PASSWORD {
-//
-//            newPassword = self.passwordTextField.text
-//            newConfirmPassword = self.confirmPasswordTextField.text
-//
-//            let verifyStatus = Utilities.validatePasswords(pswd: newPassword ?? Globals.UserGlobals.DEFAULT_PASSWORD,
-//                                                           cnfrm: newConfirmPassword ?? Globals.UserGlobals.DEFAULT_PASSWORD)
-//
-//            if !verifyStatus.status {
-//                newPassword = nil
-//                newConfirmPassword = nil
-//                Logger.log("invalid passwords: \(verifyStatus.message)")
-//                // TODO: Display alert indicating invalid passwords
-//            }
-//        }
+        if self.passwordTextField.stringValue != Globals.UserGlobals.DEFAULT_PASSWORD
+            || self.confirmPasswordTextField.stringValue != Globals.UserGlobals.DEFAULT_PASSWORD {
+
+            newPassword = self.passwordTextField.stringValue
+            newConfirmPassword = self.confirmPasswordTextField.stringValue
+
+            let verifyStatus = Utilities.validatePasswords(pswd: newPassword ?? Globals.UserGlobals.DEFAULT_PASSWORD,
+                                                           cnfrm: newConfirmPassword ?? Globals.UserGlobals.DEFAULT_PASSWORD)
+
+            if !verifyStatus.status {
+                newPassword = nil
+                newConfirmPassword = nil
+                Logger.log("invalid passwords: \(verifyStatus.message)")
+                let _ = self.displayAlert(title: "Invalid Passwords", message: "The passwords that you entered are invalid or do not match. \(verifyStatus.message)")
+            }
+        }
         
         if let user = self.user {
             Logger.log("Updating the current user with new information from settings update.")
             user.updateCurrentUser(firstname: newFirstname, lastname: newLastname, email: newEmailAddress, phone: newPhoneNumber, password: newPassword)
+            
+            // Update the view and send a notification of successful update
+            self.updateView()
             let _ = self.displayAlert(title: "Account Information Updated Successfully", message: "")
         }
     }

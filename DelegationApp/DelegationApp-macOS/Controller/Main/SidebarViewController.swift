@@ -21,6 +21,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
         
         self.outlineView.delegate = self
         self.outlineView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onRequestRefreshNotification(notification:)), name: ObservableNotifications.NOTIFICATION_REQUEST_REFRESH, object: nil)
+
     }
     
     override func viewWillAppear() {
@@ -35,6 +38,10 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
             })
         }
         
+        self.refresh()
+    }
+    
+    @objc func onRequestRefreshNotification(notification: Notification) {
         self.refresh()
     }
     
@@ -107,6 +114,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     
     // Set the cell contents for each row and item
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+        
+        // outlineView.expandItem(item)  // set the default to be already expanded for any given item
+        
         if let item = item as? (String, Int), item.0 == self.headers[0] {
             let cell = self.outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "OutlineTeamDataCell"), owner: self) as! NSTableCellView
             cell.textField?.stringValue = "All Teams"

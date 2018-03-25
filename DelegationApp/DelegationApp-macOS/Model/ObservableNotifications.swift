@@ -46,7 +46,8 @@ class ObservableNotifications {
     
     static let NOTIFICATION_CLOSE_WINDOW_NEW_TEAM = Notification.Name("NOTIFICATION_CLOSE_WINDOW_NEW_TEAM")
     static let NOTIFICATION_CLOSE_WINDOW_NEW_TASK = Notification.Name("NOTIFICATION_CLOSE_WINDOW_NEW_TASK")
-
+    
+    static let NOTIFICATION_REQUEST_REFRESH = Notification.Name("NOTIFICATION_REQUEST_REFRESH")
     
 }
 
