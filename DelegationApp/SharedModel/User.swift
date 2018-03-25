@@ -242,39 +242,6 @@ class User {
         
         let teamRef = Database.database().reference(withPath: "teams/\(guid)/members/")
         teamRef.child("\(self.uuid)").setValue(nil)
-        
-//        ref.observeSingleEvent(of: .value, with: { [ref, guid] (snapshot) in
-//            if let dict = snapshot.value as? NSDictionary {
-//                for (key, value) in dict {
-//                    if let value = value as? String {
-//                        if value == guid {
-//                            if let key = key as? String {
-//                                Logger.log("successfully removed team from user list")
-//                                ref.child(key).setValue(nil)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        })
-        
-//        teamRef.observeSingleEvent(of: .value, with: {
-//            [teamRef, weak self] (snapshot) in
-//            guard let this = self else { return }
-//
-//            if let dict = snapshot.value as? NSDictionary {
-//                for (key, value) in dict {
-//                    if let value = value as? String {
-//                        if value == this.uuid {
-//                            if let key = key as? String {
-//                                Logger.log("successfully removed user from team list")
-//                                teamRef.child(key).setValue(nil)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        })
     }
     
     func updateCurrentUser(firstname: String?, lastname: String?, email: String?, phone: String?, password: String?) {
