@@ -39,7 +39,7 @@ class NewTaskViewController: NSViewController {
         let title = self.taskTitleTextField.stringValue
         let priority = Globals.TaskGlobals.DEFAULT_PRIORITY
         let desc = self.taskDescriptionTextView.string
-        let status = Globals.TaskGlobals.DEFAULT_STATUS
+        let status = TaskStatus.open
         let teamGUID = self.taskTeamSelectionButton.selectedItem?.title ?? Globals.TaskGlobals.DEFAULT_TEAM
         
         if title == "" {
@@ -61,8 +61,7 @@ class NewTaskViewController: NSViewController {
             if user.getUUID() == Globals.UserGlobals.DEFAULT_UUID {
                 _ = self.displayAlert(title: "Error Fetching User", message: "An unknown erorr occured when attempting to fetch the UUID.")
             } else {
-                let task = Task(uuid: user.getUUID(), guid: teamGUID, title: title, priority: priority, description: desc, status: status)
-                
+                _ = Task(uuid: user.getUUID(), guid: teamGUID, title: title, priority: priority, description: desc, status: status)
                 Logger.log("Task created successfully, closing window")
                 NotificationCenter.default.post(name: ObservableNotifications.NOTIFICATION_CLOSE_WINDOW_NEW_TASK, object: nil)
             }
