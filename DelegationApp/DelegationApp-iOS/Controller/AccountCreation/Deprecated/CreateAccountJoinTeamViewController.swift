@@ -49,7 +49,7 @@ class CreateAccountJoinTeamViewController: UIViewController {
     }
     
     @IBAction func createNewAccountAndJoinTeam(_ sender: Any) {
-        if let userDictionary = self.userDictionary {
+        if let _ = self.userDictionary {
             // TODO: Create a new user using the new API
             
 //            FirebaseUtilities.createNewUser(newUser: user, selectedTeams: self.selectedTeams ?? [], callback: {

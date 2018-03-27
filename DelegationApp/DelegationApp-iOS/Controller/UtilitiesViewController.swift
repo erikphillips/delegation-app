@@ -103,7 +103,7 @@ class UtilitiesViewController: UIViewController {
         ref = Database.database().reference().child("test")
         
         Logger.log("Active listener pressed...")
-        let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
+        ref.observe(DataEventType.value, with: { (snapshot) in
             Logger.log(String(describing: snapshot))
             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
             Logger.log(String(describing: postDict))

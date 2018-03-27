@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AppKit
+import UIKit
 
 class Globals {
     public class TaskGlobals {

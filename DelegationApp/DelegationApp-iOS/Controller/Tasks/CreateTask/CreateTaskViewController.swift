@@ -113,7 +113,7 @@ class CreateTaskViewController: UIViewController, UIPopoverPresentationControlle
             if user.getUUID() == Globals.UserGlobals.DEFAULT_UUID {
                 self.displayAlert(title: "Error Fetching User", message: "An unknown erorr occured when attempting to fetch the UUID.")
             } else {
-                let task = Task(uuid: user.getUUID(), guid: teamGUID, title: title, priority: priority, description: desc, status: status)
+                _ = Task(uuid: user.getUUID(), guid: teamGUID, title: title, priority: priority, description: desc, status: status)
                 
                 Logger.log("Task created successfully, performing nav unwind segue")
                 self.navigationController?.popViewController(animated: true)

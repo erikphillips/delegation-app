@@ -33,7 +33,7 @@ class CreateAccountTeamPromptViewController: UIViewController {
                 guard let this = self else { return }
                 if status.status {
                     Logger.log("new user created: \(uuid)")
-                    let user = User(uuid: uuid, firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!)
+                    _ = User(uuid: uuid, firstname: dict["firstname"]!, lastname: dict["lastname"]!, phoneNumber: dict["phone"]!, emailAddress: dict["email"]!)
                     this.performSegue(withIdentifier: "unwindTeamPromptToWelcome", sender: nil)
                 } else {
                     Logger.log("error creating a new user in firebase - \(status.message)", event: .error)

@@ -23,7 +23,7 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var settingsTableView: UITableView!
     @IBAction func settingsLogout(_ sender: Any) {
-        let status = FirebaseUtilities.logoutCurrentUser()
+        _ = FirebaseUtilities.logoutCurrentUser()
         self.performSegue(withIdentifier: "unwindToWelcomeView", sender: sender)
     }
     
@@ -175,7 +175,7 @@ class SettingsTableViewController: UITableViewController {
         if indexPath.section == 2 && indexPath.row == 2 {
             Logger.log("Account Support row pressed.")
             let url = NSURL(string: "mailto:delegation.application@gmail.com")
-            UIApplication.shared.openURL(url! as URL)
+            UIApplication.shared.open(url! as URL)
         }
         
         print("You selected cell #\(indexPath.section).\(indexPath.row)!")
