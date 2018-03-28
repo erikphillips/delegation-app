@@ -7,7 +7,14 @@
 //
 
 import Foundation
+
+#if TARGET_OS_IOS
 import UIKit
+#endif
+
+#if TARGET_OS_MACOS
+import AppKit
+#endif
 
 class Globals {
     public class TaskGlobals {
@@ -51,8 +58,7 @@ class Globals {
     
     public class UIGlobals {
         public class Colors {
-            #if TARGET_OS_IOS
-            // iOS only code
+            #if TARGET_OS_IOS  // iOS only code
             static let PRIMARY_LIGHT_WHITE =    UIColor(red: 200/255, green: 225/255, blue: 255/255, alpha: 1.0)
             static let PRIMARY_LIGHT =          UIColor(red: 171/255, green: 204/255, blue: 255/255, alpha: 1.0)
             static let PRIMARY_MEDIUM_LIGHT =   UIColor(red: 124/255, green: 175/255, blue: 255/255, alpha: 1.0)
@@ -67,8 +73,7 @@ class Globals {
             static let SECONDARY_DARK =         UIColor(red: 166/255, green: 106/255, blue:   0/255, alpha: 1.0)
             #endif
             
-            #if TARGET_OS_MACOS
-            // macOS only code
+            #if TARGET_OS_MACOS  // macOS only code
             static let PRIMARY_LIGHT_WHITE =    CIColor(red: 200/255, green: 225/255, blue: 255/255, alpha: 1.0)
             static let PRIMARY_LIGHT =          CIColor(red: 171/255, green: 204/255, blue: 255/255, alpha: 1.0)
             static let PRIMARY_MEDIUM_LIGHT =   CIColor(red: 124/255, green: 175/255, blue: 255/255, alpha: 1.0)
@@ -83,7 +88,6 @@ class Globals {
             static let SECONDARY_DARK =         CIColor(red: 166/255, green: 106/255, blue:   0/255, alpha: 1.0)
             #endif
         }
-        
         
     }
 }
