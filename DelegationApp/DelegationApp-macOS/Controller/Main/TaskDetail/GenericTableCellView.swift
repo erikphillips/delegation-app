@@ -10,10 +10,12 @@ import Cocoa
 
 class GenericTableCellView: NSTableCellView {
 
+    var user: User?
+    var task: Task?
+    var team: Team?
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
-        // Drawing code here.
     }
     
 }
