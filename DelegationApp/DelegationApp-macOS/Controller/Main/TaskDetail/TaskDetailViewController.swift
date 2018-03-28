@@ -13,6 +13,9 @@ class TaskDetailViewController: NSViewController {
     var user: User?
     var task: Task?
     
+    var selectedNewTeam: Team?
+    var selectedNewAssignee: User?
+    
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var teamTextField: NSTextField!
     @IBOutlet weak var assigneeTextField: NSTextField!
@@ -31,6 +34,16 @@ class TaskDetailViewController: NSViewController {
         self.refresh()
     }
     
+    func reloadViewElements() {
+        if let name = self.selectedNewTeam?.getGUID() {
+            self.teamTextField.stringValue = name
+        }
+        
+        if let name = self.selectedNewAssignee?.getFullName() {
+            self.assigneeTextField.stringValue = name
+        }
+    }
+    
     func refresh() {
         if let task = task {
             self.titleTextField.stringValue = task.getTitle()
@@ -44,10 +57,38 @@ class TaskDetailViewController: NSViewController {
     }
     
     @IBAction func saveChangesBtnPressed(_ sender: Any) {
+        self.task?.updateTask(title: self.titleTextField.stringValue, priority: self.priorityButton.selectedItem?.title, description: self.descriptionTextView.string, status: self.statusButton.selectedItem?.title)
+        
+        if let newAssignee = self.selectedNewAssignee {
+            self.task?.changeAssignee(to: newAssignee.getUUID())
+            self.selectedNewAssignee = nil
+        }
+
+        if let newTeam = self.selectedNewTeam {
+            self.task?.changeTeam(to: newTeam.getGUID())
+            self.selectedNewTeam = nil
+        }
     }
     
     @IBAction func revertChangesBtnPressed(_ sender: Any) {
         self.refresh()
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier?.rawValue == "ShowTaskSelectAssigneeSegue" {
+            if let dest = segue.destinationController as? TaskDetailSelectAssigneeViewController {
+                Logger.log("ShowTaskSelectAssigneeSegue called")
+                dest.task = self.task
+                dest.rootViewController = self
+            }
+        }
+        
+        if segue.identifier?.rawValue == "ShowTaskSelectTeamSegue" {
+            if let dest = segue.destinationController as? TaskDetailSelectTeamViewController {
+                Logger.log("ShowTaskSelectTeamSegue called")
+                dest.rootViewController = self
+            }
+        }
     }
     
 }
