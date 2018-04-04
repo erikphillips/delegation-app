@@ -74,6 +74,7 @@ class SettingsViewController: NSViewController {
                 newEmailAddress = nil
                 Logger.log("Invalid email address: \(verifyStatus.message)", event: .warning)
                 let _ = self.displayAlert(title: "Invalid Email", message: "The email address you entered is invalid. \(verifyStatus.message)")
+                return
             }
         }
         
@@ -91,6 +92,7 @@ class SettingsViewController: NSViewController {
                 newConfirmPassword = nil
                 Logger.log("invalid passwords: \(verifyStatus.message)")
                 let _ = self.displayAlert(title: "Invalid Passwords", message: "The passwords that you entered are invalid or do not match. \(verifyStatus.message)")
+                return
             }
         }
         
