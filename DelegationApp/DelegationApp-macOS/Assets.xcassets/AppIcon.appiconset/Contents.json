@@ -3,61 +3,61 @@
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "deligation-icon-16.png",
+      "filename" : "delegation-icon-circle-16.png",
       "scale" : "1x"
     },
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "deligation-icon-32.png",
+      "filename" : "delegation-icon-circle-32.png",
       "scale" : "2x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "deligation-icon-33.png",
+      "filename" : "delegation-icon-circle-33.png",
       "scale" : "1x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "deligation-icon-64.png",
+      "filename" : "delegation-icon-circle-64.png",
       "scale" : "2x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "deligation-icon-128.png",
+      "filename" : "delegation-icon-circle-128.png",
       "scale" : "1x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "deligation-icon-256.png",
+      "filename" : "delegation-icon-circle-256.png",
       "scale" : "2x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "deligation-icon-257.png",
+      "filename" : "delegation-icon-circle-257.png",
       "scale" : "1x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "deligation-icon-512.png",
+      "filename" : "delegation-icon-circle-512.png",
       "scale" : "2x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "deligation-icon-513.png",
+      "filename" : "delegation-icon-circle-513.png",
       "scale" : "1x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "deligation-icon-1024.png",
+      "filename" : "delegation-icon-circle-1024.png",
       "scale" : "2x"
     }
   ],
