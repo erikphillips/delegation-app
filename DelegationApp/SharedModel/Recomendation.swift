@@ -88,7 +88,9 @@ private class DelegationSnapshot {
         let ref = Database.database().reference()
         ref.observeSingleEvent(of: .value, with: {
             [weak self] (snapshot) in
-            guard let this = self else { return }
+            guard let this = self else {
+                Logger.log("error")
+                return }
             this.parseFBSnapshot(snapshot: snapshot)
             callback()
         })

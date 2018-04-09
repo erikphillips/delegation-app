@@ -35,6 +35,9 @@ class LaunchViewController: NSViewController {
 //        self.passwordTextField.stringValue = "password"
 //    }
     
+    @IBAction func launchDelegationTests(_ sender: Any) {
+        let recom = Recomendation(targetUUID: "")
+    }
     @IBOutlet weak var demoSavedCredentials: NSPopUpButton!
     @IBAction func demoLoadSavedCredentials(_ sender: Any) {
         
