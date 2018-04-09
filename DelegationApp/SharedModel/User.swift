@@ -227,8 +227,8 @@ class User {
     
     func addNewTeam(guid: String) {
         Logger.log("adding team '\(guid)' to user '\(self.uuid)'")
-        let ref = Database.database().reference(withPath: "users/\(self.uuid)/teams/")
-        ref.childByAutoId().setValue(guid)
+        let ref = Database.database().reference(withPath: "users/\(self.uuid)/teams/\(guid)")
+        ref.setValue(guid)
         
         let teamRef = Database.database().reference(withPath: "teams/\(guid)/members/")
         teamRef.child(self.uuid).setValue(self.uuid)
