@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23CBBB4ABDDF46C1D3B22844 /* Pods_DelegationApp_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5042B220E81AA2C0CDAD451F /* Pods_DelegationApp_iOS.framework */; };
 		980232F9202843380019E3B2 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980232F8202843380019E3B2 /* TeamTableViewCell.swift */; };
+		980C4D0920926453009AEE66 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C4D0820926453009AEE66 /* RecommendViewController.swift */; };
 		9816C3A6204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816C3A5204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift */; };
 		9816C3A8204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816C3A7204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift */; };
 		981CA9D9204E38EB00276DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981CA9D8204E38EB00276DAB /* AppDelegate.swift */; };
@@ -111,6 +112,7 @@
 		7955DD0EF43B3D6329899DE6 /* Pods-delegation-app-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-iosUITests/Pods-delegation-app-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delegation_app_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		980232F8202843380019E3B2 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
+		980C4D0820926453009AEE66 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		9816C3A5204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskChangeTeamTableViewController.swift; sourceTree = "<group>"; };
 		9816C3A7204D163700EDC9C5 /* TeamChangeOwnerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChangeOwnerTableViewController.swift; sourceTree = "<group>"; };
 		981CA9D6204E38EB00276DAB /* Delegation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delegation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +251,14 @@
 				3030D45B4AC2A70180FBC402 /* Pods_DelegationApp_macOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		980C4D0520926403009AEE66 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				980C4D0820926453009AEE66 /* RecommendViewController.swift */,
+			);
+			path = Recommend;
 			sourceTree = "<group>";
 		};
 		981CA9D7204E38EB00276DAB /* DelegationApp-macOS */ = {
@@ -500,6 +510,7 @@
 		98A422C82057C08200A9F154 /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
+				980C4D0520926403009AEE66 /* Recommend */,
 				98A422BB2057961B00A9F154 /* Settings */,
 				98A422BD2057964100A9F154 /* NewTeam */,
 				98A422BC2057963900A9F154 /* NewTask */,
@@ -659,7 +670,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Erik Phillips";
 				TargetAttributes = {
 					981CA9D5204E38EB00276DAB = {
@@ -906,6 +917,7 @@
 				98A270FE2065FC46007DBF0D /* ObservableNotifications.swift in Sources */,
 				981CA9EF204E414400276DAB /* Logger.swift in Sources */,
 				98A271012066B234007DBF0D /* Globals.swift in Sources */,
+				980C4D0920926453009AEE66 /* RecommendViewController.swift in Sources */,
 				9834FD782058D96300F48870 /* JoinTeamViewController.swift in Sources */,
 				9834FD7A2058D97400F48870 /* YourTeamViewController.swift in Sources */,
 				98A422B820576AA000A9F154 /* MainWindowController.swift in Sources */,
@@ -1055,6 +1067,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1062,6 +1075,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1089,7 +1103,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1113,6 +1126,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1120,6 +1134,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1141,7 +1156,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = macosx;

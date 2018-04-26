@@ -51,6 +51,10 @@ class Recomendation {
         }
     }
     
+    public func getInfoString() -> String {
+        return "tasks_count=\(self.tasks.count), teams_count=\(self.teams.count), users_count=\(self.users.count), target_user=\(self.targetUser?.uuid ?? "nil")"
+    }
+    
     private var predictionComplete = false
     var predictionCallback: (() -> Void)? {
         didSet {
