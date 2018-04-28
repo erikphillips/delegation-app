@@ -18,9 +18,7 @@ class LaunchViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         Logger.log("LaunchViewController viewDidLoad")
-        
     }
     
     override var representedObject: Any? {
@@ -28,16 +26,7 @@ class LaunchViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-    
-//    @IBAction func demoLoadAdminBtnPressed(_ sender: Any) {
-//        Logger.log("demoLoadAdminBtnPressed")
-//        self.emailAddressTextField.stringValue = "admin@delegation.com"
-//        self.passwordTextField.stringValue = "password"
-//    }
-    
-    @IBAction func launchDelegationTests(_ sender: Any) {
-        let recom = Recomendation(targetUUID: "")
-    }
+
     @IBOutlet weak var demoSavedCredentials: NSPopUpButton!
     @IBAction func demoLoadSavedCredentials(_ sender: Any) {
         
@@ -75,9 +64,14 @@ class LaunchViewController: NSViewController {
                 this.user?.setupCallback = {
                     [weak this] in
                     guard let that = this else { return }
-                    that.loginProgressIndicator.stopAnimation(nil)
-                    that.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowMainViewSegue"), sender: nil)
-                    that.view.window?.close()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                        [weak that] in
+                        guard let that2 = that else { return }
+                        // Let everything settle for 1 second before logging in (this will be fixed with new download APIs)
+                        that2.loginProgressIndicator.stopAnimation(nil)
+                        that2.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowMainViewSegue"), sender: nil)
+                        that2.view.window?.close()
+                    })
                 }
             } else {
                 Logger.log("loginButtonPressed error: unable to retrieve a valid user", event: .error)

@@ -55,38 +55,149 @@ class Recomendation {
         return "tasks_count=\(self.tasks.count), teams_count=\(self.teams.count), users_count=\(self.users.count), target_user=\(self.targetUser?.uuid ?? "nil")"
     }
     
-    private var predictionComplete = false
-    var predictionCallback: (() -> Void)? {
-        didSet {
-            if predictionComplete {
-                predictionCallback?()
-            }
+    public func generateKeywords(callback: @escaping (() -> Void)) {
+        generateTaskKeywords()
+        generateUserKeywords()
+        callback()
+    }
+    
+    private func generateTaskKeywords() {
+        var documents: [(Int, [String])] = []
+        for task in self.tasks {
+            documents.append((task.id, task.tokenize()))
+        }
+        
+        let tfidf = self.generateTFIDF(documents: documents)
+        for task in self.tasks {
+            let values: [(String, Double)] = tfidf.reduce([], { if $1.0 == task.id { return $0 + $1.1 } else { return $0 }}).sorted(by: { $0.1 > $1.1})
+            task.keywords = Array(values.filter({ $0.1 > 0 }).prefix(10)).map({$0.0})
         }
     }
     
-    public func getPredictedTasks() -> [String] {
-        guard let targetUser = self.targetUser else { return [] }
-        var pred: [String] = []
+    private func generateUserKeywords() {
+        var documents: [(Int, [String])] = []
+        for user in self.users {
+            documents.append((user.id, self.tasks.filter({ user.tasks.contains($0.tuid) }).map({ $0.tokenize() }).flatMap({ $0 })))
+        }
         
+        let tfidf = self.generateTFIDF(documents: documents)
+        for user in self.users {
+            let values: [(String, Double)] = tfidf.reduce([], { if $1.0 == user.id { return $0 + $1.1 } else { return $0 }}).sorted(by: { $0.1 > $1.1})
+            user.keywords.append(contentsOf: Array(values.filter({ $0.1 > 0 }).prefix(10)).map({$0.0}))
+            // append the task keywords to the current user defined ones
+        }
+    }
+    
+    private func generateTFIDF(documents: [(Int, [String])]) -> [(Int, [(String, Double)])]{
+        let numberOfDocuments = documents.count
+        let allTerms: [String] = Array(Set(documents.map({ $0.1 }).flatMap({ $0 })))  // all ordering of terms is lost - okay!
+        
+        var tf: [(Identity, Double)] = []
+        for document in documents {
+            for term in allTerms {
+                tf.append((Identity(id: document.0, term: term), Double(document.1.reduce(0, { if $1 == term {return $0 + 1} else { return $0}})) / Double(document.1.count)))
+            }
+        }
+        
+        var idf: [(String, Double)] = []
+        for term in allTerms {
+            let numdocs = documents.map({ $0.1 }).reduce(0, { if $1.contains(term) { return $0 + 1 } else { return $0 }})
+            idf.append((term, log10(Double(numberOfDocuments) / Double(numdocs))))
+        }
+        
+        var tfidfMatrix: [(Int, [(String, Double)])] = []
+        for document in documents {
+            var sequence: [(String, Double)] = []
+            for term in allTerms {
+                let idfValue = idf.reduce([], { if $1.0 == term { return $0 + [$1.1] } else { return $0 }}).first ?? 0.0
+                let tfValue = tf.reduce([], { if $1.0.id == document.0 && $1.0.term == term { return $0 + [$1.1] } else { return $0 }}).first ?? 0.0
+                sequence.append((term, idfValue * tfValue))
+            }
+            tfidfMatrix.append((document.0, sequence))
+        }
+        
+        return tfidfMatrix
+    }
+    
+    private class Identity {
+        public let id: Int
+        public let term: String
+        init(id: Int, term: String) {
+            self.id = id
+            self.term = term
+        }
+    }
+    
+    public func getPredictedTasks(callback: @escaping ((_ tasks: [String]) -> Void)) {
+        guard let targetUser = self.targetUser else {
+            Logger.log("no target user set", event: .error)
+            return
+        }
+        
+        var pred: [String] = []  // stores the final predictions for this user
+        
+        // Get all the teams for which the target user is associated with
         let teams: [TeamSnapshot] = self.teams.filter({ targetUser.teams.contains($0.guid) })
+        
+        // Compute the tasks for each of the teams in turn, added any found tasks to the result
         for team in teams {
+            // FilteredUsers is the different clusters within the team
             let filteredUsers: [UserSnapshot] = self.users.filter({ $0.teams.contains(team.guid) })
             
-            var filteredTasks: [TaskSnapshot] = []
-            for user in filteredUsers {
-                for tuid in user.tasks {
-                    if let task = self.tasks.first(where: { $0.tuid == tuid }) {
-                        if task.status == "open" {
+            var filteredTasks: [TaskSnapshot] = []  // empty array to hold the tasks
+            for user in filteredUsers {  // for each cluster point
+                for tuid in user.tasks {  // for each task that is associated with that user
+                    if let task = self.tasks.first(where: { $0.tuid == tuid }) {  // there should only be one task that matches the TUID
+                        if task.status == "open" {  // only add the task if it is not already assigned (ie 'open')
                             filteredTasks.append(task)
                         }
                     }
                 }
             }
             
-            pred.append(contentsOf: filteredTasks.map({ $0.tuid }))
+            // TODO at this point, run any algorithm on the filteredUsers (clusters) and the tasks (targets)
+            pred.append(contentsOf: filteredTasks.map({ $0.tuid }))  // for now, just append
         }
         
-        return pred
+        callback(Array(Set(pred)))
+        // return Array(Set(pred))  // return only unique values (order is not maintained!)
+    }
+    
+    private func KMeansClustering(filteredUsers: [UserSnapshot], filteredTasks: [TaskSnapshot]) {
+        Logger.log("running KMeansClustering")
+        let clusters: [Cluster] = filteredUsers.map({ Cluster(user: $0) })
+        
+    }
+}
+
+private class Cluster {
+    public let user: UserSnapshot
+    public let tag: Int
+    public var currentTasks: [TaskSnapshot]
+    
+    init(user: UserSnapshot) {
+        self.user = user
+        self.tag = Cluster.getTag()
+        self.currentTasks = []
+    }
+    
+    public func addTask(_ task: TaskSnapshot) {
+        if !self.currentTasks.contains(where: { $0.tuid == task.tuid }) {
+            self.currentTasks.append(task)
+        }
+    }
+    
+    public func removeTask(_ task: TaskSnapshot) {
+        if let idx = self.currentTasks.index(where: { $0.tuid == task.tuid }) {
+            self.currentTasks.remove(at: idx)
+        }
+    }
+    
+    // Static function to generate the cluster tag
+    private static var currTagCounter = 0;
+    private static func getTag() -> Int {
+        Cluster.currTagCounter += 1
+        return Cluster.currTagCounter - 1
     }
 }
 
@@ -95,12 +206,20 @@ private class UserSnapshot {
     public var keywords: [String]
     public var tasks: [String]
     public var teams: [String]
+    public let id: Int
     
     init(uuid: String, tasks: [String], teams: [String]) {
         self.uuid = uuid
         self.keywords = []
         self.tasks = tasks
         self.teams = teams
+        self.id = UserSnapshot.getID()
+    }
+    
+    private static var idCounter = 0
+    private static func getID() -> Int {
+        UserSnapshot.idCounter += 1
+        return UserSnapshot.idCounter - 1
     }
 }
 
@@ -109,12 +228,26 @@ private class TaskSnapshot {
     public let title: String
     public let description: String
     public let status: String
+    public let id: Int
+    public var keywords: [String]
     
     init(tuid: String, title: String, description: String, status: String) {
         self.tuid = tuid
         self.title = title
         self.description = description
         self.status = status
+        self.id = TaskSnapshot.getID()
+        self.keywords = []
+    }
+    
+    public func tokenize() -> [String] {
+        return self.title.components(separatedBy: " ").map({$0.lowercased()})
+    }
+    
+    private static var idCounter = 0
+    private static func getID() -> Int {
+        TaskSnapshot.idCounter += 1
+        return TaskSnapshot.idCounter - 1
     }
 }
 
@@ -186,7 +319,7 @@ private class DelegationSnapshot {
                     }
                     
                     var uTasks: [String] = []
-                    if let tasksDict = value["tasks"] as? NSDictionary {
+                    if let tasksDict = value["current_tasks"] as? NSDictionary {
                         for (tuid, _) in tasksDict {
                             if let tuid = tuid as? String {
                                 uTasks.append(tuid)

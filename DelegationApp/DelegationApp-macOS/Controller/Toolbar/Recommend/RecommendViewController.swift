@@ -42,12 +42,29 @@ class RecommendViewController: NSViewController {
         }
     }
     
+    @IBAction func computeKeywords(_ sender: Any) {
+        addConsoleMessage("INFO: Compute keywords button pressed")
+        if let rec = self.rec {
+            rec.generateKeywords {
+                [weak self] in
+                guard let this = self else { return }
+                this.addConsoleMessage("Keywords generated.")
+            }
+        }
+    }
+    
     @IBAction func getPredsBtnPressed(_ sender: Any) {
         addConsoleMessage("INFO: Get predictions button pressed")
         
         if let rec = self.rec {
-            let pred_tasks = rec.getPredictedTasks()
-            addConsoleMessage("Predictions completed: \(pred_tasks.count) tasks found.")
+            rec.getPredictedTasks(callback: {
+                [weak self] (pred_tasks) in
+                guard let this = self else { return }
+                this.addConsoleMessage("Predictions completed: \(pred_tasks.count) tasks found.")
+                for t in pred_tasks {
+                    this.addConsoleMessage("\t" + t)
+                }
+            })
         } else {
             addConsoleMessage("ERROR: No recommendation system initialized.")
             addConsoleMessage("INFO: Load the recommendation system before getting predictions.")
