@@ -77,7 +77,9 @@ class Recomendation {
     private func generateUserKeywords() {
         var documents: [(Int, [String])] = []
         for user in self.users {
-            documents.append((user.id, self.tasks.filter({ user.tasks.contains($0.tuid) }).map({ $0.tokenize() }).flatMap({ $0 })))
+            documents.append((user.id, self.tasks.filter({
+                user.tasks.contains($0.tuid) && $0.status != "open"  // only take tasks that have status > open
+            }).map({ $0.tokenize() }).flatMap({ $0 })))  // tokenize the task and capture the words
         }
         
         let tfidf = self.generateTFIDF(documents: documents)
@@ -156,10 +158,11 @@ class Recomendation {
             }
             
             // TODO at this point, run any algorithm on the filteredUsers (clusters) and the tasks (targets)
-            pred.append(contentsOf: filteredTasks.map({ $0.tuid }))  // for now, just append
+            self.KMeansClustering(filteredUsers: filteredUsers, filteredTasks: filteredTasks)
+            // pred.append(contentsOf: filteredTasks.map({ $0.tuid }))  // for now, just append
         }
         
-        callback(Array(Set(pred)))
+        callback(Array(Set(targetUser.tasks)))
         // return Array(Set(pred))  // return only unique values (order is not maintained!)
     }
     
@@ -167,23 +170,76 @@ class Recomendation {
         Logger.log("running KMeansClustering")
         let clusters: [Cluster] = filteredUsers.map({ Cluster(user: $0) })
         
+        for task in filteredTasks {
+            for cluster in clusters {
+                let sim: Double = self.getSimilarity(task: task, cluster: cluster)
+                cluster.table[task.id] = sim
+                task.table[cluster.tag] = sim
+            }
+        }
+        
+        // Assignment round 1 -- if similarity meets threshold
+        for cluster in clusters {
+            for entry in cluster.table {
+                if entry.value > 0.5 {
+                    cluster.addTask(filteredTasks.filter({ $0.id == entry.key }).first)
+                }
+            }
+        }
+        
+        // Assignment round 2 -- if not already assigned, assign to best
+        for task in filteredTasks {
+            if task.assignmentCount == 0 {
+                let keys = task.table.keys
+                var currMax = (-1, -1.0)  // (key, value)
+                for key in keys {
+                    if task.table[key]! > currMax.1 {
+                        currMax = (key, task.table[key]!)
+                    }
+                }
+                
+                if currMax.0 != -1 && clusters.contains(where: {$0.tag == currMax.0 }) {
+                    clusters.filter({ $0.tag == currMax.0 }).first!.addTask(task)
+                }
+            }
+        }
+        
+        // Assign the tasks back to the user
+        for cluster in clusters {
+            cluster.finalize()
+        }
+    }
+    
+    private func getSimilarity(task: TaskSnapshot, cluster: Cluster) -> Double {
+        let taskKeywords = task.keywords
+        let clusterKeywords = cluster.user.keywords
+        
+        for word in taskKeywords {
+            if clusterKeywords.contains(word) { return 1.0 }
+        }
+        
+        return 0.0
+        
     }
 }
 
 private class Cluster {
     public let user: UserSnapshot
     public let tag: Int
-    public var currentTasks: [TaskSnapshot]
+    public var currentTasks: [TaskSnapshot] = []
+    public var table: [Int: Double] = [:]
     
     init(user: UserSnapshot) {
         self.user = user
         self.tag = Cluster.getTag()
-        self.currentTasks = []
     }
     
-    public func addTask(_ task: TaskSnapshot) {
-        if !self.currentTasks.contains(where: { $0.tuid == task.tuid }) {
-            self.currentTasks.append(task)
+    public func addTask(_ task: TaskSnapshot?) {
+        if let task = task {
+            if !self.currentTasks.contains(where: { $0.tuid == task.tuid }) {
+                task.assignmentCount += 1
+                self.currentTasks.append(task)
+            }
         }
     }
     
@@ -191,6 +247,10 @@ private class Cluster {
         if let idx = self.currentTasks.index(where: { $0.tuid == task.tuid }) {
             self.currentTasks.remove(at: idx)
         }
+    }
+    
+    public func finalize() {
+        self.user.tasks = self.currentTasks.map({ $0.tuid })
     }
     
     // Static function to generate the cluster tag
@@ -229,7 +289,9 @@ private class TaskSnapshot {
     public let description: String
     public let status: String
     public let id: Int
-    public var keywords: [String]
+    public var keywords: [String] = []
+    public var table: [Int: Double] = [:]
+    public var assignmentCount = 0
     
     init(tuid: String, title: String, description: String, status: String) {
         self.tuid = tuid
@@ -237,7 +299,6 @@ private class TaskSnapshot {
         self.description = description
         self.status = status
         self.id = TaskSnapshot.getID()
-        self.keywords = []
     }
     
     public func tokenize() -> [String] {
