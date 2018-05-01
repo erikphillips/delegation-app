@@ -136,8 +136,6 @@ class Recomendation {
             return
         }
         
-        var pred: [String] = []  // stores the final predictions for this user
-        
         // Get all the teams for which the target user is associated with
         let teams: [TeamSnapshot] = self.teams.filter({ targetUser.teams.contains($0.guid) })
         
@@ -159,11 +157,9 @@ class Recomendation {
             
             // TODO at this point, run any algorithm on the filteredUsers (clusters) and the tasks (targets)
             self.KMeansClustering(filteredUsers: filteredUsers, filteredTasks: filteredTasks)
-            // pred.append(contentsOf: filteredTasks.map({ $0.tuid }))  // for now, just append
         }
         
         callback(Array(Set(targetUser.tasks)))
-        // return Array(Set(pred))  // return only unique values (order is not maintained!)
     }
     
     private func KMeansClustering(filteredUsers: [UserSnapshot], filteredTasks: [TaskSnapshot]) {
@@ -181,7 +177,7 @@ class Recomendation {
         // Assignment round 1 -- if similarity meets threshold
         for cluster in clusters {
             for entry in cluster.table {
-                if entry.value > 0.5 {
+                if entry.value > 0.5 {  // add all the matches above 50%
                     cluster.addTask(filteredTasks.filter({ $0.id == entry.key }).first)
                 }
             }
@@ -210,16 +206,34 @@ class Recomendation {
         }
     }
     
+    // TODO: This function needs an overhaul
+    //       There should be a way to compare the similarity of words
+    //       with one another that is fast and efficient.
     private func getSimilarity(task: TaskSnapshot, cluster: Cluster) -> Double {
         let taskKeywords = task.keywords
         let clusterKeywords = cluster.user.keywords
         
         for word in taskKeywords {
-            if clusterKeywords.contains(word) { return 1.0 }
+            if clusterKeywords.contains(word) { return 1.0 }  // currently returns 1 if exact match
         }
         
         return 0.0
-        
+    }
+    
+    public static func runRecommendationSystem(targetUUID: String, callback: @escaping ((_ tasks: [String]) -> Void)) {
+        let rec = Recomendation(targetUUID: targetUUID)
+        rec.setupCallback = { [rec, callback] in
+            Logger.log("recommendation system initialized and setup")
+            rec.generateKeywords { [rec, callback] in
+                Logger.log("recommendation system keyword generation complete")
+                rec.getPredictedTasks(callback: { [callback] (pred_tasks) in
+                    Logger.log("recommendation system predictions complete")
+                    Logger.log("found \(pred_tasks.count) task predictions:")
+                    for t in pred_tasks { Logger.log("  " + t) }  // print info
+                    callback(pred_tasks)
+                })
+            }
+        }
     }
 }
 
