@@ -49,6 +49,7 @@
 		98859311200484CC00259079 /* SettingsJoinTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859310200484CC00259079 /* SettingsJoinTeamTableViewCell.swift */; };
 		98859313200484E300259079 /* SettingsJoinTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */; };
 		98859315200484FB00259079 /* SettingsCreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */; };
+		9889CB51209E35BD00AA7348 /* TaskPredictionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9889CB50209E35BD00AA7348 /* TaskPredictionTableViewCell.swift */; };
 		9893FF382053A66400798CFE /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF362053A66400798CFE /* HeaderViewController.swift */; };
 		9893FF3B2053A68700798CFE /* DeprecatedSideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3A2053A68700798CFE /* DeprecatedSideBarViewController.swift */; };
 		9893FF3E2053A69800798CFE /* DeprecatedMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893FF3C2053A69800798CFE /* DeprecatedMainViewController.swift */; };
@@ -150,6 +151,7 @@
 		98859310200484CC00259079 /* SettingsJoinTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsJoinTeamTableViewCell.swift; sourceTree = "<group>"; };
 		98859312200484E300259079 /* SettingsJoinTeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsJoinTeamTableViewController.swift; sourceTree = "<group>"; };
 		98859314200484FB00259079 /* SettingsCreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCreateTeamViewController.swift; sourceTree = "<group>"; };
+		9889CB50209E35BD00AA7348 /* TaskPredictionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPredictionTableViewCell.swift; sourceTree = "<group>"; };
 		9893FF362053A66400798CFE /* HeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewController.swift; sourceTree = "<group>"; };
 		9893FF3A2053A68700798CFE /* DeprecatedSideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeprecatedSideBarViewController.swift; sourceTree = "<group>"; };
 		9893FF3C2053A69800798CFE /* DeprecatedMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeprecatedMainViewController.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				98C597B71FE42EDA009329B2 /* HomeViewController.swift */,
+				9889CB50209E35BD00AA7348 /* TaskPredictionTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -964,6 +967,7 @@
 				98859315200484FB00259079 /* SettingsCreateTeamViewController.swift in Sources */,
 				986F8E731FDFB6D10033B9D0 /* CreateAccountInitialViewController.swift in Sources */,
 				98C597CD1FE5981A009329B2 /* CreateAccountCreateTeamViewController.swift in Sources */,
+				9889CB51209E35BD00AA7348 /* TaskPredictionTableViewCell.swift in Sources */,
 				98C597B61FE2E434009329B2 /* SettingsTableViewController.swift in Sources */,
 				98C597B81FE42EDA009329B2 /* HomeViewController.swift in Sources */,
 				98C597CF1FE5982B009329B2 /* CreateAccountJoinTeamTableViewController.swift in Sources */,
