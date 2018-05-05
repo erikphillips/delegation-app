@@ -49,6 +49,8 @@ class ObservableNotifications {
     
     static let NOTIFICATION_REQUEST_REFRESH = Notification.Name("NOTIFICATION_REQUEST_REFRESH")
     
+    static let NOTIFICATION_PREDICTIONS_LOADED = Notification.Name("NOTIFICATION_PREDICTIONS_LOADED")
+    
 }
 
 //extension Notification.Name {

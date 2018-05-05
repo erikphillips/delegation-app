@@ -11,14 +11,14 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseDatabase
 
-class Recomendation {
+class Recommendation {
     private var targetUser: UserSnapshot? = nil
     private var tasks: [TaskSnapshot] = []
     private var teams: [TeamSnapshot] = []
     private var users: [UserSnapshot] = []
     
     private var setupComplete = false
-    var setupCallback: (() -> Void)? {
+    private var setupCallback: (() -> Void)? {
         didSet {
             if setupComplete {
                 setupCallback?()
@@ -51,11 +51,11 @@ class Recomendation {
         }
     }
     
-    public func getInfoString() -> String {
+    private func getInfoString() -> String {
         return "tasks_count=\(self.tasks.count), teams_count=\(self.teams.count), users_count=\(self.users.count), target_user=\(self.targetUser?.uuid ?? "nil")"
     }
     
-    public func generateKeywords(callback: @escaping (() -> Void)) {
+    private func generateKeywords(callback: @escaping (() -> Void)) {
         generateTaskKeywords()
         generateUserKeywords()
         callback()
@@ -130,7 +130,7 @@ class Recomendation {
         }
     }
     
-    public func getPredictedTasks(callback: @escaping ((_ tasks: [String]) -> Void)) {
+    private func getPredictedTasks(callback: @escaping ((_ tasks: [String]) -> Void)) {
         guard let targetUser = self.targetUser else {
             Logger.log("no target user set", event: .error)
             return
@@ -156,6 +156,7 @@ class Recomendation {
             }
             
             // TODO at this point, run any algorithm on the filteredUsers (clusters) and the tasks (targets)
+            // The algorithm I am using is very similar to KMeansClustering
             self.KMeansClustering(filteredUsers: filteredUsers, filteredTasks: filteredTasks)
         }
         
@@ -221,7 +222,7 @@ class Recomendation {
     }
     
     public static func runRecommendationSystem(targetUUID: String, callback: @escaping ((_ tasks: [String]) -> Void)) {
-        let rec = Recomendation(targetUUID: targetUUID)
+        let rec = Recommendation(targetUUID: targetUUID)
         rec.setupCallback = { [rec, callback] in
             Logger.log("recommendation system initialized and setup")
             rec.generateKeywords { [rec, callback] in

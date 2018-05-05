@@ -333,7 +333,7 @@ class FirebaseUtilities {
             callback(teams)
         })
     }
-    
+        
     static func performWelcomeProcedure(username: String, password: String, callback: @escaping ((_ user: User?, _ tasks: [Task]?, _ status: Status) -> Void)) {
         loginUser(username: username, password: password, callback: { (uuid, error) in
             if let uuid = uuid {

@@ -57,6 +57,21 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
         }
     }
     
+    @IBAction func toolbarPredictBtnPressed(_ sender: Any) {
+        Logger.log("predict button pressed")
+        if let user = self.user {
+            Logger.log("getting predictions for user \(user)")
+            user.runPredictionAlgorithm(callback: {
+                (tasks) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    // Let everything settle for 1 second before logging in (this will be fixed with new download APIs)
+                    Logger.log("predictions gathered, sending notification")
+                    NotificationCenter.default.post(name: ObservableNotifications.NOTIFICATION_PREDICTIONS_LOADED, object: nil, userInfo: [:])
+                })
+            })
+        }
+    }
+    
     @IBAction func toolbarNewTaskBtnPressed(_ sender: Any) {
         Logger.log("new task pressed")
         self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowNewTaskSegue"), sender: nil)

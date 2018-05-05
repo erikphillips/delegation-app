@@ -32,6 +32,7 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(onAllTeamSelectionNotification(notification:)), name: ObservableNotifications.NOTIFICATION_ALL_TEAM_SELECTION, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onTeamSelectionNotification(notification:)), name: ObservableNotifications.NOTIFICATION_TEAM_SELECTION, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onRequestRefreshNotification(notification:)), name: ObservableNotifications.NOTIFICATION_REQUEST_REFRESH, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onPredictionsLoadedNotification(notification:)), name: ObservableNotifications.NOTIFICATION_PREDICTIONS_LOADED, object: nil)
         
         self.filteringFunctionID = "all_teams"
         self.filteringSelectedSegment = "personal"
@@ -78,10 +79,18 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
     }
 
     @objc func onRequestRefreshNotification(notification: Notification) {
+        if (self.filteringSelectedSegment == "delegation") {
+            self.refresh()
+        }
+    }
+    
+    @objc func onPredictionsLoadedNotification(notification: Notification) {
         self.refresh()
     }
     
     func refresh() {
+        Logger.log("refreshing mainview table")
+        
         self.displayedTasks = []
         var currentStepTasks: [Task] = []
         
@@ -99,7 +108,9 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
                     }
                 }
             } else if segment == "delegation" {
-                Logger.log("non-implemented feature", event: .warning)
+                if let user = self.user {
+                    currentStepTasks = user.getRecommendedTasks()
+                }
             } else {
                 Logger.log("unknown segment", event: .error)
             }

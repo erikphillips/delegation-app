@@ -94,8 +94,8 @@
 		98F286C0206B00EB001571CF /* TaskDetailSelectTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F286BF206B00EB001571CF /* TaskDetailSelectTeamViewController.swift */; };
 		98F286C2206B0110001571CF /* TaskDetailSelectAssigneeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F286C1206B0110001571CF /* TaskDetailSelectAssigneeViewController.swift */; };
 		98F286C4206B087D001571CF /* GenericTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F286C3206B087D001571CF /* GenericTableCellView.swift */; };
-		98FB315E207A8A7C0047A4C7 /* Recomendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FB315D207A8A7C0047A4C7 /* Recomendation.swift */; };
-		98FB315F207A8A7C0047A4C7 /* Recomendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FB315D207A8A7C0047A4C7 /* Recomendation.swift */; };
+		98FB315E207A8A7C0047A4C7 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FB315D207A8A7C0047A4C7 /* Recommendation.swift */; };
+		98FB315F207A8A7C0047A4C7 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FB315D207A8A7C0047A4C7 /* Recommendation.swift */; };
 		CAB77A04A8E5071E6309E41F /* Pods_delegation_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9696EB395A067F1B97D4C866 /* Pods_delegation_app_ios.framework */; };
 		DA6198BE3353128451B1CBDF /* Pods_DelegationApp_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3030D45B4AC2A70180FBC402 /* Pods_DelegationApp_macOS.framework */; };
 /* End PBXBuildFile section */
@@ -195,7 +195,7 @@
 		98F286BF206B00EB001571CF /* TaskDetailSelectTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailSelectTeamViewController.swift; sourceTree = "<group>"; };
 		98F286C1206B0110001571CF /* TaskDetailSelectAssigneeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailSelectAssigneeViewController.swift; sourceTree = "<group>"; };
 		98F286C3206B087D001571CF /* GenericTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableCellView.swift; sourceTree = "<group>"; };
-		98FB315D207A8A7C0047A4C7 /* Recomendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recomendation.swift; sourceTree = "<group>"; };
+		98FB315D207A8A7C0047A4C7 /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		A332F5B122EE0B1F885D7A80 /* Pods-DelegationApp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelegationApp-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DelegationApp-iOS/Pods-DelegationApp-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		ACA73197C0D28A23E66651F0 /* Pods-delegation-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delegation-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delegation-app-ios/Pods-delegation-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		CB8FF9377615CD3188AEE343 /* Pods-DelegationApp-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelegationApp-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DelegationApp-macOS/Pods-DelegationApp-macOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -407,7 +407,7 @@
 				98BAFF26201A6D3A002C253A /* Logger.swift */,
 				98DA8B302020E1FF0050B795 /* Observers.swift */,
 				98A270FF2066B234007DBF0D /* Globals.swift */,
-				98FB315D207A8A7C0047A4C7 /* Recomendation.swift */,
+				98FB315D207A8A7C0047A4C7 /* Recommendation.swift */,
 			);
 			path = SharedModel;
 			sourceTree = "<group>";
@@ -921,7 +921,7 @@
 				9834FD782058D96300F48870 /* JoinTeamViewController.swift in Sources */,
 				9834FD7A2058D97400F48870 /* YourTeamViewController.swift in Sources */,
 				98A422B820576AA000A9F154 /* MainWindowController.swift in Sources */,
-				98FB315F207A8A7C0047A4C7 /* Recomendation.swift in Sources */,
+				98FB315F207A8A7C0047A4C7 /* Recommendation.swift in Sources */,
 				98A422D02057C12300A9F154 /* NewTaskViewController.swift in Sources */,
 				98CE9520205AF37400A290FA /* SidebarViewController.swift in Sources */,
 			);
@@ -938,7 +938,7 @@
 				98E5E4131FE7A1C600AF0B37 /* UtilitiesViewController.swift in Sources */,
 				9816C3A6204BF6CC00EDC9C5 /* TaskChangeTeamTableViewController.swift in Sources */,
 				98849EDF1FDDD48B009C9B1A /* User.swift in Sources */,
-				98FB315E207A8A7C0047A4C7 /* Recomendation.swift in Sources */,
+				98FB315E207A8A7C0047A4C7 /* Recommendation.swift in Sources */,
 				98859311200484CC00259079 /* SettingsJoinTeamTableViewCell.swift in Sources */,
 				98C597BA1FE42EE5009329B2 /* TeamViewController.swift in Sources */,
 				98C597D51FE644F5009329B2 /* MainTabBarViewController.swift in Sources */,

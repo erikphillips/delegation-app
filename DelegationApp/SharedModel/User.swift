@@ -22,6 +22,7 @@ enum AccessRole: String {
 class User {
     private var teams : [Team]
     private var tasks : [Task]
+    private var predictedTasks : [Task]
     
     private var uuid: String
     private var firstname: String
@@ -49,6 +50,7 @@ class User {
         self.phoneNumber = Globals.UserGlobals.DEFAULT_PHONE
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
+        self.predictedTasks = Globals.UserGlobals.DEFAULT_TASKS
         
         Logger.log("non-observable user object created", event: .warning)
         
@@ -68,6 +70,7 @@ class User {
         self.phoneNumber = Globals.UserGlobals.DEFAULT_PHONE
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
+        self.predictedTasks = Globals.UserGlobals.DEFAULT_TASKS
         
         self.observeTeams()
         self.observeTasks()
@@ -106,6 +109,7 @@ class User {
         self.phoneNumber = phoneNumber
         self.tasks = Globals.UserGlobals.DEFAULT_TASKS
         self.teams = Globals.UserGlobals.DEFAULT_TEAMS
+        self.predictedTasks = Globals.UserGlobals.DEFAULT_TASKS
         
         Logger.log("creating a new user information (non-observable), uuid='\(uuid)'")
         
@@ -217,6 +221,10 @@ class User {
         return Utilities.format(phoneNumber: self.phoneNumber) ?? Globals.UserGlobals.DEFAULT_PHONE
     }
     
+    func getRecommendedTasks() -> [Task] {
+        return self.predictedTasks
+    }
+    
     func getPassword() -> String {
         if let password = self.password {
             return password
@@ -293,6 +301,21 @@ class User {
         } else {
             Logger.log("unable to update user information in database - no uuid other than default", event: .error)
         }
+    }
+    
+    func runPredictionAlgorithm(callback: @escaping ((_ tasks: [Task]) -> Void)) {
+        Recommendation.runRecommendationSystem(targetUUID: self.uuid, callback: {
+            [callback, weak self] (taskTUIDs) in
+            guard let this = self else { return }
+            
+            var tasks: [Task] = []
+            for tuid in taskTUIDs {
+                tasks.append(Task(tuid: tuid))
+            }
+            
+            this.predictedTasks = tasks;
+            callback(tasks)
+        })
     }
     
     func toString() -> String {
