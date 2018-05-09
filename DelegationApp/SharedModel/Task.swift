@@ -167,7 +167,7 @@ class Task {
         taskRef.child("priority").setValue(priority)
         taskRef.child("description").setValue(description)
         taskRef.child("status").setValue(status.rawValue)
-        taskRef.child("assignee").setValue(uuid)
+        taskRef.child("assignee").setValue(uuid)  // initially set the assignee to the originator
         taskRef.child("originator").setValue(uuid)
         taskRef.child("team").setValue(guid)
         
@@ -176,6 +176,15 @@ class Task {
         
         let teamRef = Database.database().reference(withPath: "teams/\(guid)/current_tasks")
         teamRef.child(taskRef.key).setValue(taskRef.key)
+        
+        FirebaseUtilities.fetchTeamOwnerUUID(guid: guid) {  // attempt to change the assignee to the team owner
+            [weak self] (status, ownerUUID) in
+            guard let this = self else { return }
+            if status.status && ownerUUID != Globals.UserGlobals.DEFAULT_UUID {
+                Logger.log("changing assignee to the correct owner")
+                this.changeAssignee(to: ownerUUID)
+            }
+        }
         
         self.observers.notify(self)
     }
@@ -344,6 +353,14 @@ class Task {
         
         let oldTeamRef = Database.database().reference(withPath: "teams/\(oldTeamGUID)/current_tasks")
         oldTeamRef.child(self.tuid).setValue(nil)
+        
+        FirebaseUtilities.fetchTeamOwnerUUID(guid: newGUID) {  // attempt to change the assignee to the owner of the new team
+            [weak self] (status, ownerUUID) in
+            guard let this = self else { return }
+            if status.status && ownerUUID != Globals.UserGlobals.DEFAULT_UUID {
+                this.changeAssignee(to: ownerUUID)
+            }
+        }
         
         self.observers.notify(self)
     }

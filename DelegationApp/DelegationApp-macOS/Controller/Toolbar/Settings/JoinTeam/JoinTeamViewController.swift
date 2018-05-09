@@ -12,6 +12,7 @@ class JoinTeamViewController: NSViewController, NSTableViewDelegate, NSTableView
 
     var user: User?
     var teams: [Team]?
+    var cells: [JoinTeamTableViewCell] = []
     
     @IBOutlet weak var teamTableView: NSTableView!
     
@@ -21,10 +22,20 @@ class JoinTeamViewController: NSViewController, NSTableViewDelegate, NSTableView
         
         self.teamTableView.delegate = self
         self.teamTableView.dataSource = self
+        
+        self.cells = []
     }
     
     @IBAction func joinTeamBtnPressed(_ sender: Any) {
         Logger.log("joinTeamBtnPressed")
+        if let user = self.user {
+            for cell in self.cells {
+                if cell.checkbox.state == .on {
+                    user.addNewTeam(guid: cell.teamNameTextField.stringValue)
+                }
+            }
+            self.dismissViewController(self)
+        }
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
@@ -45,6 +56,7 @@ class JoinTeamViewController: NSViewController, NSTableViewDelegate, NSTableView
         if let teams = self.teams {
             result.teamNameTextField.stringValue = teams[row].getGUID()
             result.checkbox.state = .off
+            self.cells.append(result)
         }
         
         return result

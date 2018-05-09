@@ -39,6 +39,6 @@ class FBObservers<T> {
             }
         }
         
-        observers = observers.enumerated().flatMap { remove.contains($0.0) ? nil : $0.1 }
+        observers = observers.enumerated().compactMap { remove.contains($0.0) ? nil : $0.1 }
     }
 }

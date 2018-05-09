@@ -12,6 +12,7 @@ class YourTeamViewController: NSViewController, NSTableViewDelegate, NSTableView
     
     var user: User?
     var teams: [Team]?
+    var cells: [YourTeamTableViewCell] = []
 
     @IBOutlet weak var teamTableView: NSTableView!
     
@@ -21,10 +22,20 @@ class YourTeamViewController: NSViewController, NSTableViewDelegate, NSTableView
         
         self.teamTableView.delegate = self
         self.teamTableView.dataSource = self
+        
+        self.cells = []
     }
     
     @IBAction func leaveSelectedBtnPressed(_ sender: Any) {
         Logger.log("leaveSelectedBtnPressed")
+        if let user = self.user {
+            for cell in self.cells {
+                if cell.checkbox.state == .on {
+                    user.leaveTeam(guid: cell.teamNameTextField.stringValue)
+                }
+            }
+            self.dismissViewController(self)
+        }
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
@@ -45,6 +56,7 @@ class YourTeamViewController: NSViewController, NSTableViewDelegate, NSTableView
         if let teams = self.teams {
             result.teamNameTextField.stringValue = teams[row].getTeamName()
             result.checkbox.state = .off
+            self.cells.append(result)
         }
         
         return result

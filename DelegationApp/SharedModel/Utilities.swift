@@ -333,6 +333,17 @@ class FirebaseUtilities {
             callback(teams)
         })
     }
+    
+    static func fetchTeamOwnerUUID(guid: String, callback: @escaping ((_ status: Status, _ uuid: String) -> Void)) {
+        let ref = Database.database().reference(withPath: "teams/\(guid)/owner")
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            if let uuid: String = snapshot.value as? String {
+                callback(Status(true), uuid)
+            } else {
+                callback(Status(false), Globals.UserGlobals.DEFAULT_UUID)
+            }
+        }
+    }
         
     static func performWelcomeProcedure(username: String, password: String, callback: @escaping ((_ user: User?, _ tasks: [Task]?, _ status: Status) -> Void)) {
         loginUser(username: username, password: password, callback: { (uuid, error) in

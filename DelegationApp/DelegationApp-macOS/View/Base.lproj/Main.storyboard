@@ -980,7 +980,6 @@ All Rights Reserved.</string>
                         <touchBarItem id="xlU-ny-hz8">
                             <viewController key="viewController" id="w25-Ht-urW">
                                 <segmentedControl key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDU-rP-SBZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="3"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="jAK-xv-X2D">
                                         <font key="font" metaFont="system"/>
@@ -997,7 +996,7 @@ All Rights Reserved.</string>
                         <touchBarItem id="Am3-A8-dRb">
                             <viewController key="viewController" id="uWQ-Dr-a7F">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tww-tB-vca">
-                                    <rect key="frame" x="0.0" y="0.0" width="96" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="96" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Search" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zgb-Ue-8rn">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1010,7 +1009,7 @@ All Rights Reserved.</string>
                         <touchBarItem id="wxw-K3-BPO">
                             <viewController key="viewController" id="YUc-aR-EiC">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DJM-XN-paI">
-                                    <rect key="frame" x="0.0" y="0.0" width="84" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QDi-pg-9sl">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1023,7 +1022,7 @@ All Rights Reserved.</string>
                         <touchBarItem id="JVi-bL-LOy">
                             <viewController key="viewController" id="ISB-9u-w22">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uF6-f2-uNx">
-                                    <rect key="frame" x="0.0" y="0.0" width="84" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="New Task" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bN1-py-vhu">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1036,7 +1035,7 @@ All Rights Reserved.</string>
                         <touchBarItem id="Pu0-eT-KbP">
                             <viewController key="viewController" id="KXw-c2-ha5">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xJo-SB-kvz">
-                                    <rect key="frame" x="0.0" y="0.0" width="84" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="New Team" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g4S-DB-2R8">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1855,7 +1854,7 @@ All Rights Reserved.</string>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" width="345" minWidth="40" maxWidth="1000" id="0Co-5d-gS5">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Select to Leave Team">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1987,7 +1986,7 @@ Gw
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" width="345" minWidth="40" maxWidth="1000" id="o1X-Cb-8JJ">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Select to Join Team">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -2889,7 +2888,7 @@ DQ
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" width="345" minWidth="40" maxWidth="1000" id="pp1-RA-HEc">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Select Task Assignee">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -3287,6 +3286,10 @@ DQ
                                     <action selector="createAccountButtonPressed:" target="q0q-4S-9EB" id="4ig-fz-1Km"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="507-ZY-QBJ">
+                                <rect key="frame" x="61" y="34" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="B5K-Fa-gQ3" firstAttribute="top" secondItem="UP7-PL-orR" secondAttribute="bottom" constant="12" id="1HO-48-OT6"/>
@@ -3332,11 +3335,13 @@ DQ
                     </view>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="VkT-dR-2SZ" id="Ncn-dH-a18"/>
+                        <outlet property="createAccountButton" destination="UP7-PL-orR" id="iHc-JS-kja"/>
                         <outlet property="emailAddressTextField" destination="JAy-bi-jk4" id="mi9-8M-6Eo"/>
                         <outlet property="firstNameTextField" destination="S5e-A3-QlI" id="r7f-3Y-N62"/>
                         <outlet property="lastNameTextField" destination="SX9-B2-St7" id="Yfw-vM-1Zk"/>
                         <outlet property="passwordTextField" destination="rXS-G2-AOT" id="48R-eH-SLI"/>
                         <outlet property="phoneNumberTextField" destination="jHK-Z3-adg" id="mXI-BJ-86r"/>
+                        <outlet property="progressIndicator" destination="507-ZY-QBJ" id="jK3-G8-q4V"/>
                     </connections>
                 </viewController>
                 <customObject id="OzV-yX-NzB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -3355,6 +3360,6 @@ DQ
         <image name="SettingsGlyph" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1WW-YR-2Mi"/>
+        <segue reference="7l7-VN-XT2"/>
     </inferredMetricsTieBreakers>
 </document>
