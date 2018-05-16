@@ -182,14 +182,6 @@ class Utilities {
             return rtn
         }
         
-//        func filtering(tasks: [Task], by team: Team) -> [Task] {
-//            return tasks.filter { $0.getTeamUID() == team.getGUID() }
-//        }
-//
-//        func filtering(tasks: [Task], by user: User) -> [Task] {
-//            return tasks.filter { $0.getAssigneeUUID() == user.getUUID() }
-//        }
-        
         static func distict(tasks: [Task]) -> [Task]? {
             var tuids: [String] = []
             var rtnTasks: [Task] = []
