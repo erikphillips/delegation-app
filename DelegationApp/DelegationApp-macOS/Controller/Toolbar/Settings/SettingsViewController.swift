@@ -102,7 +102,7 @@ class SettingsViewController: NSViewController {
             
             // Update the view and send a notification of successful update
             self.updateView()
-            let _ = self.displayAlert(title: "Account Information Updated Successfully", message: "")
+            let _ = self.displayAlert(title: "Account Information Updated Successfully", message: "Please logout to make the changes fully effective.")
         }
     }
     
