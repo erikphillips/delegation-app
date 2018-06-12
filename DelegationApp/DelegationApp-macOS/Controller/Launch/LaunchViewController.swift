@@ -67,7 +67,7 @@ class LaunchViewController: NSViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         [weak that] in
                         guard let that2 = that else { return }
-                        // Let everything settle for 1 second before logging in (this will be fixed with new download APIs)
+                          
                         that2.loginProgressIndicator.stopAnimation(nil)
                         that2.performSegue(withIdentifier: NSStoryboardSegue.Identifier("ShowMainViewSegue"), sender: nil)
                         that2.view.window?.close()
