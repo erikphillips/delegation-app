@@ -23,7 +23,6 @@
 		981CA9EE204E414200276DAB /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
 		981CA9EF204E414400276DAB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BAFF26201A6D3A002C253A /* Logger.swift */; };
 		981CA9F0204E414700276DAB /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DA8B302020E1FF0050B795 /* Observers.swift */; };
-		981CA9F4204E4E2E00276DAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */; };
 		9834FD782058D96300F48870 /* JoinTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9834FD772058D96300F48870 /* JoinTeamViewController.swift */; };
 		9834FD7A2058D97400F48870 /* YourTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9834FD792058D97400F48870 /* YourTeamViewController.swift */; };
 		9834FD7C2058D9AA00F48870 /* YourTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9834FD7B2058D9AA00F48870 /* YourTeamTableViewCell.swift */; };
@@ -33,7 +32,8 @@
 		9849779A20099A4600954C3A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849779920099A4600954C3A /* Status.swift */; };
 		984E35251FDFBA1100F031E0 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */; };
 		984FECC42028D39400F13A34 /* CreateNewTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */; };
-		985F2BA8201AF602004097ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 985F2BA7201AF602004097ED /* GoogleService-Info.plist */; };
+		985B479A210AE7A60014B29C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 985B4799210AE7A60014B29C /* GoogleService-Info.plist */; };
+		985B479C210AE7D70014B29C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 985B479B210AE7D60014B29C /* GoogleService-Info.plist */; };
 		9869DDEC204B40D2009BA872 /* TaskChangeAssigneeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9869DDEB204B40D2009BA872 /* TaskChangeAssigneeTableViewController.swift */; };
 		986F8E731FDFB6D10033B9D0 /* CreateAccountInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986F8E721FDFB6D10033B9D0 /* CreateAccountInitialViewController.swift */; };
 		9874033D1FF1923C0059309E /* UpdateAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874033C1FF1923C0059309E /* UpdateAccountSettingsViewController.swift */; };
@@ -122,7 +122,6 @@
 		981CA9DC204E38EB00276DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		981CA9DF204E38EB00276DAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		981CA9E1204E38EB00276DAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		982E67D7204F066800678358 /* DelegationApp-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DelegationApp-macOS.entitlements"; sourceTree = "<group>"; };
 		9834FD772058D96300F48870 /* JoinTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamViewController.swift; sourceTree = "<group>"; };
 		9834FD792058D97400F48870 /* YourTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTeamViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +132,8 @@
 		9849779920099A4600954C3A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		984E35241FDFBA1100F031E0 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		984FECC32028D39400F13A34 /* CreateNewTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTeamViewController.swift; sourceTree = "<group>"; };
-		985F2BA7201AF602004097ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		985B4799210AE7A60014B29C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		985B479B210AE7D60014B29C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9869DDEB204B40D2009BA872 /* TaskChangeAssigneeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskChangeAssigneeTableViewController.swift; sourceTree = "<group>"; };
 		986F8E721FDFB6D10033B9D0 /* CreateAccountInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountInitialViewController.swift; sourceTree = "<group>"; };
 		9874033C1FF1923C0059309E /* UpdateAccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountSettingsViewController.swift; sourceTree = "<group>"; };
@@ -266,11 +266,11 @@
 		981CA9D7204E38EB00276DAB /* DelegationApp-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				985B479B210AE7D60014B29C /* GoogleService-Info.plist */,
 				982E67D7204F066800678358 /* DelegationApp-macOS.entitlements */,
 				981CA9D8204E38EB00276DAB /* AppDelegate.swift */,
 				981CA9DC204E38EB00276DAB /* Assets.xcassets */,
 				981CA9E1204E38EB00276DAB /* Info.plist */,
-				981CA9F3204E4E2E00276DAB /* GoogleService-Info.plist */,
 				983988C72050ABEE0085D0AD /* Controller */,
 				983988C62050ABE60085D0AD /* View */,
 				98A270FC2065FBE6007DBF0D /* Model */,
@@ -386,12 +386,12 @@
 		98849EA91FDDC7AA009C9B1A /* DelegationApp-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				985B4799210AE7A60014B29C /* GoogleService-Info.plist */,
 				98D3D72D20681022008BF765 /* DelegationApp-iOS.entitlements */,
 				98849EAA1FDDC7AA009C9B1A /* AppDelegate.swift */,
 				98849EB41FDDC7AA009C9B1A /* Assets.xcassets */,
 				98849EB91FDDC7AA009C9B1A /* Info.plist */,
 				98849EB11FDDC7AA009C9B1A /* delegation_app_ios.xcdatamodeld */,
-				985F2BA7201AF602004097ED /* GoogleService-Info.plist */,
 				98849EDD1FDDCFB1009C9B1A /* Controller */,
 				98849EDC1FDDCFAB009C9B1A /* View */,
 			);
@@ -728,7 +728,7 @@
 			files = (
 				981CA9DD204E38EB00276DAB /* Assets.xcassets in Resources */,
 				981CA9E0204E38EB00276DAB /* Main.storyboard in Resources */,
-				981CA9F4204E4E2E00276DAB /* GoogleService-Info.plist in Resources */,
+				985B479C210AE7D70014B29C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,7 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98849EB81FDDC7AA009C9B1A /* LaunchScreen.storyboard in Resources */,
-				985F2BA8201AF602004097ED /* GoogleService-Info.plist in Resources */,
+				985B479A210AE7A60014B29C /* GoogleService-Info.plist in Resources */,
 				98849EB51FDDC7AA009C9B1A /* Assets.xcassets in Resources */,
 				98849EB01FDDC7AA009C9B1A /* Main.storyboard in Resources */,
 			);
