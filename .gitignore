@@ -3,6 +3,10 @@
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 
+# Ensure that API keys are not pushed
+GoogleService-Info.plist
+
+
 serviceAccountKey.json
 
 ## Build generated
